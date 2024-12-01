@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            button1 = new Button();
+            tbUsername = new TextBox();
+            tbPassword = new TextBox();
+            btnLogIn = new Button();
             label2 = new Label();
             label3 = new Label();
             SuspendLayout();
@@ -39,51 +39,60 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(289, 54);
+            label1.BackColor = SystemColors.Control;
+            label1.Font = new Font("Times New Roman", 36F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.DeepSkyBlue;
+            label1.Location = new Point(72, 26);
             label1.Name = "label1";
-            label1.Size = new Size(179, 25);
+            label1.Size = new Size(677, 81);
             label1.TabIndex = 0;
             label1.Text = "Student Housing B.V.";
             label1.Click += label1_Click;
             // 
-            // textBox1
+            // tbUsername
             // 
-            textBox1.Location = new Point(318, 133);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(150, 31);
-            textBox1.TabIndex = 1;
+            tbUsername.Location = new Point(419, 149);
+            tbUsername.Name = "tbUsername";
+            tbUsername.Size = new Size(150, 31);
+            tbUsername.TabIndex = 1;
             // 
-            // textBox2
+            // tbPassword
             // 
-            textBox2.Location = new Point(318, 183);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(150, 31);
-            textBox2.TabIndex = 2;
+            tbPassword.Location = new Point(419, 233);
+            tbPassword.Name = "tbPassword";
+            tbPassword.Size = new Size(150, 31);
+            tbPassword.TabIndex = 2;
             // 
-            // button1
+            // btnLogIn
             // 
-            button1.Location = new Point(342, 276);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 3;
-            button1.Text = "Log in";
-            button1.UseVisualStyleBackColor = true;
+            btnLogIn.FlatAppearance.BorderColor = Color.Black;
+            btnLogIn.FlatStyle = FlatStyle.Flat;
+            btnLogIn.Font = new Font("Times New Roman", 16F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            btnLogIn.Location = new Point(231, 312);
+            btnLogIn.Name = "btnLogIn";
+            btnLogIn.Size = new Size(301, 55);
+            btnLogIn.TabIndex = 3;
+            btnLogIn.Text = "Log in";
+            btnLogIn.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(216, 136);
+            label2.BackColor = SystemColors.Control;
+            label2.Font = new Font("Times New Roman", 18F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label2.Location = new Point(171, 149);
             label2.Name = "label2";
-            label2.Size = new Size(95, 25);
+            label2.Size = new Size(178, 42);
             label2.TabIndex = 4;
             label2.Text = "Username:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(216, 189);
+            label3.Font = new Font("Times New Roman", 16F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label3.Location = new Point(184, 227);
             label3.Name = "label3";
-            label3.Size = new Size(91, 25);
+            label3.Size = new Size(150, 37);
             label3.TabIndex = 5;
             label3.Text = "Password:";
             // 
@@ -94,12 +103,12 @@
             ClientSize = new Size(800, 450);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(button1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(btnLogIn);
+            Controls.Add(tbPassword);
+            Controls.Add(tbUsername);
             Controls.Add(label1);
             Name = "Form1";
-            Text = "Form1";
+            Text = "HouseMateLink";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -107,9 +116,9 @@
         #endregion
 
         private Label label1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Button button1;
+        private TextBox tbUsername;
+        private TextBox tbPassword;
+        private Button btnLogIn;
         private Label label2;
         private Label label3;
     }
