@@ -1,18 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Katerina\\HouseMateLink\\HouseMateLink\\",
+  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\HouseMateLink\\HouseMateLink\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|c:\\katerina\\housematelink\\housematelink\\housematelink\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|c:\\users\\user\\desktop\\housematelink\\housematelink\\housematelink\\profileoverviewadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|solutionrelative:housematelink\\profileoverviewadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|c:\\users\\user\\desktop\\housematelink\\housematelink\\housematelink\\profileoverviewtenant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|solutionrelative:housematelink\\profileoverviewtenant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|c:\\users\\user\\desktop\\housematelink\\housematelink\\housematelink\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|solutionrelative:housematelink\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|C:\\Katerina\\HouseMateLink\\HouseMateLink\\housematelink\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|c:\\users\\user\\desktop\\housematelink\\housematelink\\housematelink\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|solutionrelative:housematelink\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|c:\\katerina\\housematelink\\housematelink\\housematelink\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|solutionrelative:housematelink\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|c:\\users\\user\\desktop\\housematelink\\housematelink\\housematelink\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|solutionrelative:housematelink\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,59 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainForm.cs [Design]",
-              "DocumentMoniker": "C:\\Katerina\\HouseMateLink\\HouseMateLink\\HouseMateLink\\MainForm.cs",
-              "RelativeDocumentMoniker": "HouseMateLink\\MainForm.cs",
-              "ToolTip": "C:\\Katerina\\HouseMateLink\\HouseMateLink\\HouseMateLink\\MainForm.cs [Design]",
-              "RelativeToolTip": "HouseMateLink\\MainForm.cs [Design]",
+              "Title": "ProfileOverviewAdmin.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\HouseMateLink\\HouseMateLink\\HouseMateLink\\ProfileOverviewAdmin.cs",
+              "RelativeDocumentMoniker": "HouseMateLink\\ProfileOverviewAdmin.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\HouseMateLink\\HouseMateLink\\HouseMateLink\\ProfileOverviewAdmin.cs [Design]",
+              "RelativeToolTip": "HouseMateLink\\ProfileOverviewAdmin.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-01T13:30:48.189Z",
+              "WhenOpened": "2024-12-03T17:10:11.036Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Katerina\\HouseMateLink\\HouseMateLink\\HouseMateLink\\Form1.cs",
-              "RelativeDocumentMoniker": "HouseMateLink\\Form1.cs",
-              "ToolTip": "C:\\Katerina\\HouseMateLink\\HouseMateLink\\HouseMateLink\\Form1.cs",
-              "RelativeToolTip": "HouseMateLink\\Form1.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "DocumentIndex": 1,
+              "Title": "ProfileOverviewTenant.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\HouseMateLink\\HouseMateLink\\HouseMateLink\\ProfileOverviewTenant.cs",
+              "RelativeDocumentMoniker": "HouseMateLink\\ProfileOverviewTenant.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\HouseMateLink\\HouseMateLink\\HouseMateLink\\ProfileOverviewTenant.cs [Design]",
+              "RelativeToolTip": "HouseMateLink\\ProfileOverviewTenant.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T12:13:25.931Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-03T16:53:07.984Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\HouseMateLink\\HouseMateLink\\HouseMateLink\\MainForm.cs",
+              "RelativeDocumentMoniker": "HouseMateLink\\MainForm.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\HouseMateLink\\HouseMateLink\\HouseMateLink\\MainForm.cs [Design]",
+              "RelativeToolTip": "HouseMateLink\\MainForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T16:26:07.955Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Katerina\\HouseMateLink\\HouseMateLink\\HouseMateLink\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\HouseMateLink\\HouseMateLink\\HouseMateLink\\Form1.cs",
               "RelativeDocumentMoniker": "HouseMateLink\\Form1.cs",
-              "ToolTip": "C:\\Katerina\\HouseMateLink\\HouseMateLink\\HouseMateLink\\Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\User\\Desktop\\HouseMateLink\\HouseMateLink\\HouseMateLink\\Form1.cs [Design]",
               "RelativeToolTip": "HouseMateLink\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T12:09:10.544Z"
+              "WhenOpened": "2024-11-28T12:30:57.188Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\HouseMateLink\\HouseMateLink\\HouseMateLink\\Program.cs",
+              "RelativeDocumentMoniker": "HouseMateLink\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\HouseMateLink\\HouseMateLink\\HouseMateLink\\Program.cs",
+              "RelativeToolTip": "HouseMateLink\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T12:30:53.545Z"
             }
           ]
         }
