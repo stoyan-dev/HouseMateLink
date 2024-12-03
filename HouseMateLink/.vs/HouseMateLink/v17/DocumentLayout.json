@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|solutionrelative:housematelink\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|c:\\katerina\\housematelink\\housematelink\\housematelink\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|C:\\Katerina\\HouseMateLink\\HouseMateLink\\housematelink\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{E9B14108-5FA8-4D40-957A-6E9055C7E903}|HouseMateLink\\HouseMateLink.csproj|solutionrelative:housematelink\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -39,10 +39,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
@@ -78,8 +74,7 @@
               "ToolTip": "C:\\Katerina\\HouseMateLink\\HouseMateLink\\HouseMateLink\\Form1.cs [Design]",
               "RelativeToolTip": "HouseMateLink\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T12:09:10.544Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-11-28T12:09:10.544Z"
             }
           ]
         }
