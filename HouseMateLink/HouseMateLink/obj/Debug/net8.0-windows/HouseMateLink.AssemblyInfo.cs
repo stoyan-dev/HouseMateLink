@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HouseMateLink")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aa6da58d9566f71c18b771064e1d27406ecc75f3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+abdb5dc50c98c8c388adb5db94b79286452198b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("HouseMateLink")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HouseMateLink")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
