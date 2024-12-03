@@ -61,141 +61,150 @@
             tabHome.Controls.Add(tabComplaints);
             tabHome.Controls.Add(tabHouseRules);
             tabHome.Controls.Add(tabShoppingList);
-            tabHome.Location = new Point(1, 11);
-            tabHome.Margin = new Padding(2, 2, 2, 2);
+            tabHome.Location = new Point(1, 14);
+            tabHome.Margin = new Padding(2);
             tabHome.Name = "tabHome";
             tabHome.SelectedIndex = 0;
-            tabHome.Size = new Size(628, 396);
+            tabHome.Size = new Size(785, 495);
             tabHome.TabIndex = 0;
             // 
             // tabHomePage
             // 
+            tabHomePage.BackColor = Color.DeepSkyBlue;
             tabHomePage.Controls.Add(grbButtons);
             tabHomePage.Controls.Add(grbHome);
-            tabHomePage.Location = new Point(4, 29);
-            tabHomePage.Margin = new Padding(2, 2, 2, 2);
+            tabHomePage.Location = new Point(4, 34);
+            tabHomePage.Margin = new Padding(2);
             tabHomePage.Name = "tabHomePage";
-            tabHomePage.Padding = new Padding(2, 2, 2, 2);
-            tabHomePage.Size = new Size(620, 363);
+            tabHomePage.Padding = new Padding(2);
+            tabHomePage.Size = new Size(777, 457);
             tabHomePage.TabIndex = 0;
             tabHomePage.Text = "Home Page";
-            tabHomePage.UseVisualStyleBackColor = true;
             // 
             // grbButtons
             // 
+            grbButtons.BackColor = Color.GhostWhite;
             grbButtons.Controls.Add(btnProfileOverview);
             grbButtons.Controls.Add(btnGrocery);
             grbButtons.Controls.Add(btnComplaints);
             grbButtons.Controls.Add(btnAnnouncements);
             grbButtons.Controls.Add(btnCalendar);
             grbButtons.Controls.Add(btnRules);
-            grbButtons.Location = new Point(234, 22);
-            grbButtons.Margin = new Padding(2, 2, 2, 2);
+            grbButtons.Location = new Point(292, 28);
+            grbButtons.Margin = new Padding(2);
             grbButtons.Name = "grbButtons";
-            grbButtons.Padding = new Padding(2, 2, 2, 2);
-            grbButtons.Size = new Size(358, 314);
+            grbButtons.Padding = new Padding(2);
+            grbButtons.Size = new Size(448, 392);
             grbButtons.TabIndex = 3;
             grbButtons.TabStop = false;
             // 
             // btnProfileOverview
             // 
+            btnProfileOverview.BackColor = Color.Gold;
             btnProfileOverview.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnProfileOverview.Location = new Point(198, 227);
-            btnProfileOverview.Margin = new Padding(2, 2, 2, 2);
+            btnProfileOverview.Location = new Point(248, 284);
+            btnProfileOverview.Margin = new Padding(2);
             btnProfileOverview.Name = "btnProfileOverview";
-            btnProfileOverview.Size = new Size(100, 66);
+            btnProfileOverview.Size = new Size(125, 82);
             btnProfileOverview.TabIndex = 5;
             btnProfileOverview.Text = "Profile Overview";
-            btnProfileOverview.UseVisualStyleBackColor = true;
+            btnProfileOverview.UseVisualStyleBackColor = false;
             // 
             // btnGrocery
             // 
+            btnGrocery.BackColor = Color.Gold;
             btnGrocery.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnGrocery.Location = new Point(29, 227);
-            btnGrocery.Margin = new Padding(2, 2, 2, 2);
+            btnGrocery.Location = new Point(36, 284);
+            btnGrocery.Margin = new Padding(2);
             btnGrocery.Name = "btnGrocery";
-            btnGrocery.Size = new Size(102, 66);
+            btnGrocery.Size = new Size(128, 82);
             btnGrocery.TabIndex = 4;
             btnGrocery.Text = "Grocery List";
-            btnGrocery.UseVisualStyleBackColor = true;
+            btnGrocery.UseVisualStyleBackColor = false;
             // 
             // btnComplaints
             // 
+            btnComplaints.BackColor = Color.Gold;
             btnComplaints.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnComplaints.Location = new Point(198, 138);
-            btnComplaints.Margin = new Padding(2, 2, 2, 2);
+            btnComplaints.Location = new Point(248, 172);
+            btnComplaints.Margin = new Padding(2);
             btnComplaints.Name = "btnComplaints";
-            btnComplaints.Size = new Size(107, 65);
+            btnComplaints.Size = new Size(134, 81);
             btnComplaints.TabIndex = 3;
             btnComplaints.Text = "Complaints";
-            btnComplaints.UseVisualStyleBackColor = true;
+            btnComplaints.UseVisualStyleBackColor = false;
             // 
             // btnAnnouncements
             // 
+            btnAnnouncements.BackColor = Color.Gold;
             btnAnnouncements.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnAnnouncements.Location = new Point(29, 138);
-            btnAnnouncements.Margin = new Padding(2, 2, 2, 2);
+            btnAnnouncements.Location = new Point(36, 172);
+            btnAnnouncements.Margin = new Padding(2);
             btnAnnouncements.Name = "btnAnnouncements";
-            btnAnnouncements.Size = new Size(117, 65);
+            btnAnnouncements.Size = new Size(146, 81);
             btnAnnouncements.TabIndex = 2;
             btnAnnouncements.Text = "Announcements";
-            btnAnnouncements.UseVisualStyleBackColor = true;
+            btnAnnouncements.UseVisualStyleBackColor = false;
             // 
             // btnCalendar
             // 
+            btnCalendar.BackColor = Color.Gold;
             btnCalendar.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnCalendar.Location = new Point(198, 35);
-            btnCalendar.Margin = new Padding(2, 2, 2, 2);
+            btnCalendar.Location = new Point(248, 44);
+            btnCalendar.Margin = new Padding(2);
             btnCalendar.Name = "btnCalendar";
-            btnCalendar.Size = new Size(107, 70);
+            btnCalendar.Size = new Size(134, 88);
             btnCalendar.TabIndex = 1;
             btnCalendar.Text = "Calendar";
-            btnCalendar.UseVisualStyleBackColor = true;
+            btnCalendar.UseVisualStyleBackColor = false;
             // 
             // btnRules
             // 
+            btnRules.BackColor = Color.Gold;
             btnRules.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnRules.Location = new Point(29, 35);
-            btnRules.Margin = new Padding(2, 2, 2, 2);
+            btnRules.Location = new Point(36, 44);
+            btnRules.Margin = new Padding(2);
             btnRules.Name = "btnRules";
-            btnRules.Size = new Size(102, 70);
+            btnRules.Size = new Size(128, 88);
             btnRules.TabIndex = 0;
             btnRules.Text = "House Rules";
-            btnRules.UseVisualStyleBackColor = true;
+            btnRules.UseVisualStyleBackColor = false;
             // 
             // grbHome
             // 
+            grbHome.BackColor = Color.GhostWhite;
             grbHome.Controls.Add(label3);
             grbHome.Controls.Add(label2);
             grbHome.Controls.Add(label1);
             grbHome.Controls.Add(btnLogOut);
             grbHome.Font = new Font("Times New Roman", 10F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            grbHome.Location = new Point(26, 22);
-            grbHome.Margin = new Padding(2, 2, 2, 2);
+            grbHome.Location = new Point(32, 28);
+            grbHome.Margin = new Padding(2);
             grbHome.Name = "grbHome";
-            grbHome.Padding = new Padding(2, 2, 2, 2);
-            grbHome.Size = new Size(185, 314);
+            grbHome.Padding = new Padding(2);
+            grbHome.Size = new Size(231, 392);
             grbHome.TabIndex = 2;
             grbHome.TabStop = false;
             grbHome.Text = "Student Housing B.V.";
+            grbHome.Enter += grbHome_Enter;
             // 
             // label3
             // 
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label3.Location = new Point(5, 208);
+            label3.Location = new Point(6, 260);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(175, 30);
+            label3.Size = new Size(219, 38);
             label3.TabIndex = 3;
             label3.Text = "Phone: 0123456789";
             // 
             // label2
             // 
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.Location = new Point(5, 162);
+            label2.Location = new Point(6, 202);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(175, 42);
+            label2.Size = new Size(219, 52);
             label2.TabIndex = 2;
             label2.Text = "Email: stoyandev@yahoo.com";
             // 
@@ -203,83 +212,90 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(5, 138);
+            label1.Location = new Point(6, 172);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(85, 25);
+            label1.Size = new Size(98, 30);
             label1.TabIndex = 1;
             label1.Text = "Contact:";
             // 
             // btnLogOut
             // 
-            btnLogOut.Font = new Font("Times New Roman", 10F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnLogOut.Location = new Point(27, 253);
-            btnLogOut.Margin = new Padding(2, 2, 2, 2);
+            btnLogOut.BackColor = Color.Gold;
+            btnLogOut.Font = new Font("Times New Roman", 10F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            btnLogOut.ForeColor = SystemColors.ActiveCaptionText;
+            btnLogOut.Location = new Point(34, 316);
+            btnLogOut.Margin = new Padding(2);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(111, 57);
+            btnLogOut.Size = new Size(139, 71);
             btnLogOut.TabIndex = 0;
             btnLogOut.TabStop = false;
             btnLogOut.Text = "Log Out";
-            btnLogOut.UseVisualStyleBackColor = true;
+            btnLogOut.UseVisualStyleBackColor = false;
             // 
             // tabCalendar
             // 
-            tabCalendar.Location = new Point(4, 29);
-            tabCalendar.Margin = new Padding(2, 2, 2, 2);
+            tabCalendar.Location = new Point(4, 34);
+            tabCalendar.Margin = new Padding(2);
             tabCalendar.Name = "tabCalendar";
-            tabCalendar.Padding = new Padding(2, 2, 2, 2);
-            tabCalendar.Size = new Size(620, 363);
+            tabCalendar.Padding = new Padding(2);
+            tabCalendar.Size = new Size(777, 457);
             tabCalendar.TabIndex = 1;
             tabCalendar.Text = "Calendar";
             tabCalendar.UseVisualStyleBackColor = true;
             // 
             // tabAnnouncements
             // 
-            tabAnnouncements.Location = new Point(4, 29);
+            tabAnnouncements.Location = new Point(4, 34);
+            tabAnnouncements.Margin = new Padding(4, 4, 4, 4);
             tabAnnouncements.Name = "tabAnnouncements";
-            tabAnnouncements.Padding = new Padding(3);
-            tabAnnouncements.Size = new Size(620, 363);
+            tabAnnouncements.Padding = new Padding(4, 4, 4, 4);
+            tabAnnouncements.Size = new Size(777, 457);
             tabAnnouncements.TabIndex = 2;
             tabAnnouncements.Text = "Announcements";
             tabAnnouncements.UseVisualStyleBackColor = true;
             // 
             // tabComplaints
             // 
-            tabComplaints.Location = new Point(4, 29);
+            tabComplaints.Location = new Point(4, 34);
+            tabComplaints.Margin = new Padding(4, 4, 4, 4);
             tabComplaints.Name = "tabComplaints";
-            tabComplaints.Padding = new Padding(3);
-            tabComplaints.Size = new Size(620, 363);
+            tabComplaints.Padding = new Padding(4, 4, 4, 4);
+            tabComplaints.Size = new Size(777, 457);
             tabComplaints.TabIndex = 3;
             tabComplaints.Text = "Complaints";
             tabComplaints.UseVisualStyleBackColor = true;
             // 
             // tabHouseRules
             // 
-            tabHouseRules.Location = new Point(4, 29);
+            tabHouseRules.Location = new Point(4, 34);
+            tabHouseRules.Margin = new Padding(4, 4, 4, 4);
             tabHouseRules.Name = "tabHouseRules";
-            tabHouseRules.Padding = new Padding(3);
-            tabHouseRules.Size = new Size(620, 363);
+            tabHouseRules.Padding = new Padding(4, 4, 4, 4);
+            tabHouseRules.Size = new Size(777, 457);
             tabHouseRules.TabIndex = 4;
             tabHouseRules.Text = "House Rules";
             tabHouseRules.UseVisualStyleBackColor = true;
             // 
             // tabShoppingList
             // 
-            tabShoppingList.Location = new Point(4, 29);
+            tabShoppingList.Location = new Point(4, 34);
+            tabShoppingList.Margin = new Padding(4, 4, 4, 4);
             tabShoppingList.Name = "tabShoppingList";
-            tabShoppingList.Padding = new Padding(3);
-            tabShoppingList.Size = new Size(620, 363);
+            tabShoppingList.Padding = new Padding(4, 4, 4, 4);
+            tabShoppingList.Size = new Size(777, 457);
             tabShoppingList.TabIndex = 5;
             tabShoppingList.Text = "Shopping list";
             tabShoppingList.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(640, 453);
+            BackColor = SystemColors.Control;
+            ClientSize = new Size(800, 566);
             Controls.Add(tabHome);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "MainForm";
             Text = "HouseMateLink";
             tabHome.ResumeLayout(false);

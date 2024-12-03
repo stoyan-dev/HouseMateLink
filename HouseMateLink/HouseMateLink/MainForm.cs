@@ -16,5 +16,10 @@ namespace HouseMateLink
         {
             InitializeComponent();
         }
+
+        private void grbHome_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
