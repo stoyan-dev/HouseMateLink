@@ -1,20 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace HouseMateLink
 {
-    public partial class Announcement : Form
+    public class Announcement
     {
-        public Announcement()
+        private DateTime today;
+        private const int durataion = 7;
+        private AnnouncementType announcementType;
+        public string Description { get; set; }
+
+
+        public Announcement(string description, AnnouncementType announcementType)
         {
-            InitializeComponent();
+            this.Description = description;
+            this.announcementType = announcementType;
+            today = DateTime.Today;
         }
+
+
     }
 }
