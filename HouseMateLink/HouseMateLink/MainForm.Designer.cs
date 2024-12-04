@@ -61,6 +61,8 @@
             rbEvent = new RadioButton();
             rbMessage = new RadioButton();
             btnCreateAnnouncement = new Button();
+            grbComplaints = new GroupBox();
+            dateTimePicker1 = new DateTimePicker();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
@@ -68,6 +70,7 @@
             gbProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabAnnouncements.SuspendLayout();
+            tabComplaints.SuspendLayout();
             grbAnnouncements.SuspendLayout();
             SuspendLayout();
             // 
@@ -123,7 +126,7 @@
             btnProfileOverview.Location = new Point(198, 227);
             btnProfileOverview.Margin = new Padding(2);
             btnProfileOverview.Name = "btnProfileOverview";
-            btnProfileOverview.Size = new Size(100, 66);
+            btnProfileOverview.Size = new Size(141, 66);
             btnProfileOverview.TabIndex = 5;
             btnProfileOverview.Text = "Profile Overview";
             btnProfileOverview.UseVisualStyleBackColor = false;
@@ -135,7 +138,7 @@
             btnGrocery.Location = new Point(29, 227);
             btnGrocery.Margin = new Padding(2);
             btnGrocery.Name = "btnGrocery";
-            btnGrocery.Size = new Size(102, 66);
+            btnGrocery.Size = new Size(136, 66);
             btnGrocery.TabIndex = 4;
             btnGrocery.Text = "Grocery List";
             btnGrocery.UseVisualStyleBackColor = false;
@@ -147,7 +150,7 @@
             btnComplaints.Location = new Point(198, 138);
             btnComplaints.Margin = new Padding(2);
             btnComplaints.Name = "btnComplaints";
-            btnComplaints.Size = new Size(107, 65);
+            btnComplaints.Size = new Size(141, 65);
             btnComplaints.TabIndex = 3;
             btnComplaints.Text = "Complaints";
             btnComplaints.UseVisualStyleBackColor = false;
@@ -155,11 +158,11 @@
             // btnAnnouncements
             // 
             btnAnnouncements.BackColor = Color.Gold;
-            btnAnnouncements.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            btnAnnouncements.Font = new Font("Times New Roman", 14F, FontStyle.Italic);
             btnAnnouncements.Location = new Point(29, 138);
             btnAnnouncements.Margin = new Padding(2);
             btnAnnouncements.Name = "btnAnnouncements";
-            btnAnnouncements.Size = new Size(117, 65);
+            btnAnnouncements.Size = new Size(136, 65);
             btnAnnouncements.TabIndex = 2;
             btnAnnouncements.Text = "Announcements";
             btnAnnouncements.UseVisualStyleBackColor = false;
@@ -171,7 +174,7 @@
             btnCalendar.Location = new Point(198, 35);
             btnCalendar.Margin = new Padding(2);
             btnCalendar.Name = "btnCalendar";
-            btnCalendar.Size = new Size(107, 70);
+            btnCalendar.Size = new Size(141, 70);
             btnCalendar.TabIndex = 1;
             btnCalendar.Text = "Calendar";
             btnCalendar.UseVisualStyleBackColor = false;
@@ -183,7 +186,7 @@
             btnRules.Location = new Point(29, 35);
             btnRules.Margin = new Padding(2);
             btnRules.Name = "btnRules";
-            btnRules.Size = new Size(102, 70);
+            btnRules.Size = new Size(136, 70);
             btnRules.TabIndex = 0;
             btnRules.Text = "House Rules";
             btnRules.UseVisualStyleBackColor = false;
@@ -356,13 +359,14 @@
             // 
             // tabComplaints
             // 
+            tabComplaints.BackColor = Color.DeepSkyBlue;
+            tabComplaints.Controls.Add(grbComplaints);
             tabComplaints.Location = new Point(4, 29);
             tabComplaints.Name = "tabComplaints";
             tabComplaints.Padding = new Padding(3, 3, 3, 3);
             tabComplaints.Size = new Size(620, 363);
             tabComplaints.TabIndex = 3;
             tabComplaints.Text = "Complaints";
-            tabComplaints.UseVisualStyleBackColor = true;
             // 
             // tabHouseRules
             // 
@@ -387,6 +391,7 @@
             // grbAnnouncements
             // 
             grbAnnouncements.BackColor = Color.GhostWhite;
+            grbAnnouncements.Controls.Add(dateTimePicker1);
             grbAnnouncements.Controls.Add(btnCreateAnnouncement);
             grbAnnouncements.Controls.Add(rbMessage);
             grbAnnouncements.Controls.Add(rbEvent);
@@ -395,7 +400,7 @@
             grbAnnouncements.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grbAnnouncements.Location = new Point(16, 21);
             grbAnnouncements.Name = "grbAnnouncements";
-            grbAnnouncements.Size = new Size(583, 321);
+            grbAnnouncements.Size = new Size(583, 327);
             grbAnnouncements.TabIndex = 1;
             grbAnnouncements.TabStop = false;
             grbAnnouncements.Text = "Announcements";
@@ -404,7 +409,7 @@
             // 
             lblCreateAnnouncement.AutoSize = true;
             lblCreateAnnouncement.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
-            lblCreateAnnouncement.Location = new Point(20, 217);
+            lblCreateAnnouncement.Location = new Point(20, 205);
             lblCreateAnnouncement.Name = "lblCreateAnnouncement";
             lblCreateAnnouncement.Size = new Size(154, 20);
             lblCreateAnnouncement.TabIndex = 0;
@@ -412,17 +417,17 @@
             // 
             // tbAnnouncement
             // 
-            tbAnnouncement.Location = new Point(20, 243);
+            tbAnnouncement.Location = new Point(20, 228);
             tbAnnouncement.Multiline = true;
             tbAnnouncement.Name = "tbAnnouncement";
-            tbAnnouncement.Size = new Size(390, 72);
+            tbAnnouncement.Size = new Size(548, 54);
             tbAnnouncement.TabIndex = 1;
             // 
             // rbEvent
             // 
             rbEvent.AutoSize = true;
             rbEvent.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            rbEvent.Location = new Point(416, 249);
+            rbEvent.Location = new Point(20, 295);
             rbEvent.Name = "rbEvent";
             rbEvent.Size = new Size(66, 23);
             rbEvent.TabIndex = 2;
@@ -434,7 +439,7 @@
             // 
             rbMessage.AutoSize = true;
             rbMessage.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            rbMessage.Location = new Point(488, 249);
+            rbMessage.Location = new Point(92, 295);
             rbMessage.Name = "rbMessage";
             rbMessage.Size = new Size(88, 23);
             rbMessage.TabIndex = 3;
@@ -446,12 +451,31 @@
             // 
             btnCreateAnnouncement.BackColor = Color.Gold;
             btnCreateAnnouncement.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCreateAnnouncement.Location = new Point(416, 278);
+            btnCreateAnnouncement.Location = new Point(407, 288);
             btnCreateAnnouncement.Name = "btnCreateAnnouncement";
             btnCreateAnnouncement.Size = new Size(161, 35);
             btnCreateAnnouncement.TabIndex = 4;
             btnCreateAnnouncement.Text = "Create";
             btnCreateAnnouncement.UseVisualStyleBackColor = false;
+            // 
+            // grbComplaints
+            // 
+            grbComplaints.BackColor = Color.GhostWhite;
+            grbComplaints.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
+            grbComplaints.Location = new Point(16, 20);
+            grbComplaints.Name = "grbComplaints";
+            grbComplaints.Size = new Size(585, 323);
+            grbComplaints.TabIndex = 0;
+            grbComplaints.TabStop = false;
+            grbComplaints.Text = "Complaints";
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateTimePicker1.Location = new Point(180, 293);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(212, 25);
+            dateTimePicker1.TabIndex = 5;
             // 
             // MainForm
             // 
@@ -472,6 +496,7 @@
             gbProfile.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tabAnnouncements.ResumeLayout(false);
+            tabComplaints.ResumeLayout(false);
             grbAnnouncements.ResumeLayout(false);
             grbAnnouncements.PerformLayout();
             ResumeLayout(false);
@@ -512,5 +537,7 @@
         private TextBox tbAnnouncement;
         private Label lblCreateAnnouncement;
         private Button btnCreateAnnouncement;
+        private GroupBox grbComplaints;
+        private DateTimePicker dateTimePicker1;
     }
 }
