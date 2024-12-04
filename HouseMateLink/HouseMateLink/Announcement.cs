@@ -8,6 +8,7 @@ namespace HouseMateLink
 {
     public class Announcement
     {
+ 
         private DateTime today;
         private const int durataion = 7;
         private AnnouncementType announcementType;
