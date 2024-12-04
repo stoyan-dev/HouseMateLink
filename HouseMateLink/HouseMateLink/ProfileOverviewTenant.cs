@@ -16,5 +16,11 @@ namespace HouseMateLink
         {
             InitializeComponent();
         }
+
+        private void btnGoToHomeAdmin_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            mainForm.Show();
+        }
     }
 }

@@ -45,6 +45,7 @@
             label9 = new Label();
             label10 = new Label();
             pictureBox2 = new PictureBox();
+            btnGoToHomeAdmin = new Button();
             gbProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
@@ -222,12 +223,26 @@
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
             // 
+            // btnGoToHomeAdmin
+            // 
+            btnGoToHomeAdmin.BackColor = Color.Gold;
+            btnGoToHomeAdmin.FlatStyle = FlatStyle.Popup;
+            btnGoToHomeAdmin.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGoToHomeAdmin.Location = new Point(956, 57);
+            btnGoToHomeAdmin.Name = "btnGoToHomeAdmin";
+            btnGoToHomeAdmin.Size = new Size(143, 44);
+            btnGoToHomeAdmin.TabIndex = 23;
+            btnGoToHomeAdmin.Text = "Home page";
+            btnGoToHomeAdmin.UseVisualStyleBackColor = false;
+            btnGoToHomeAdmin.Click += btnGoToHomeAdmin_Click;
+            // 
             // ProfileOverviewTenant
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DeepSkyBlue;
             ClientSize = new Size(1144, 702);
+            Controls.Add(btnGoToHomeAdmin);
             Controls.Add(groupBox1);
             Controls.Add(gbProfile);
             Controls.Add(label1);
@@ -262,5 +277,6 @@
         private Label label9;
         private Label label10;
         private PictureBox pictureBox2;
+        private Button btnGoToHomeAdmin;
     }
 }
