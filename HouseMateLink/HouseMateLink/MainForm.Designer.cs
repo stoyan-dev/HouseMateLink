@@ -495,6 +495,35 @@
             // 
             btnPostComplaint.BackColor = Color.Gold;
             btnPostComplaint.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPostComplaint.Location = new Point(418, 285);
+            btnPostComplaint.Name = "btnPostComplaint";
+            btnPostComplaint.Size = new Size(161, 35);
+            btnPostComplaint.TabIndex = 5;
+            btnPostComplaint.Text = "Post";
+            btnPostComplaint.UseVisualStyleBackColor = false;
+            // 
+            // tbCreateComplaint
+            // 
+            tbCreateComplaint.Location = new Point(18, 266);
+            tbCreateComplaint.Multiline = true;
+            tbCreateComplaint.Name = "tbCreateComplaint";
+            tbCreateComplaint.Size = new Size(394, 54);
+            tbCreateComplaint.TabIndex = 2;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
+            label7.Location = new Point(18, 243);
+            label7.Name = "label7";
+            label7.Size = new Size(214, 20);
+            label7.TabIndex = 1;
+            label7.Text = "Create Complaint (anonymous):";
+            // 
+            // tabHouseRules
+            // 
+            btnPostComplaint.BackColor = Color.Gold;
+            btnPostComplaint.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPostComplaint.Location = new Point(522, 356);
             btnPostComplaint.Margin = new Padding(4);
             btnPostComplaint.Name = "btnPostComplaint";
@@ -511,39 +540,6 @@
             tbCreateComplaint.Name = "tbCreateComplaint";
             tbCreateComplaint.Size = new Size(492, 66);
             tbCreateComplaint.TabIndex = 2;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
-            label7.Location = new Point(22, 304);
-            label7.Margin = new Padding(4, 0, 4, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(262, 25);
-            label7.TabIndex = 1;
-            label7.Text = "Create Complaint (anonymous):";
-            // 
-            // tabHouseRules
-            // 
-            tabHouseRules.Location = new Point(4, 34);
-            tabHouseRules.Margin = new Padding(4);
-            tabHouseRules.Name = "tabHouseRules";
-            tabHouseRules.Padding = new Padding(4);
-            tabHouseRules.Size = new Size(777, 457);
-            tabHouseRules.TabIndex = 4;
-            tabHouseRules.Text = "House Rules";
-            tabHouseRules.UseVisualStyleBackColor = true;
-            // 
-            // tabShoppingList
-            // 
-            tabShoppingList.Location = new Point(4, 34);
-            tabShoppingList.Margin = new Padding(4);
-            tabShoppingList.Name = "tabShoppingList";
-            tabShoppingList.Padding = new Padding(4);
-            tabShoppingList.Size = new Size(777, 457);
-            tabShoppingList.TabIndex = 5;
-            tabShoppingList.Text = "Shopping list";
-            tabShoppingList.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
