@@ -30,13 +30,13 @@
         {
             label1 = new Label();
             gbProfile = new GroupBox();
-            pictureBox1 = new PictureBox();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            lblUserName = new Label();
-            lblUserRole = new Label();
             lblUserRoom = new Label();
+            lblUserRole = new Label();
+            lblUserName = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            pictureBox1 = new PictureBox();
             groupBox1 = new GroupBox();
             label5 = new Label();
             label6 = new Label();
@@ -56,7 +56,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 28.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Gold;
-            label1.Location = new Point(243, 23);
+            label1.Location = new Point(393, 23);
             label1.Name = "label1";
             label1.Size = new Size(348, 52);
             label1.TabIndex = 0;
@@ -80,49 +80,14 @@
             gbProfile.TabStop = false;
             gbProfile.Text = "Your profile";
             // 
-            // pictureBox1
+            // lblUserRoom
             // 
-            pictureBox1.Location = new Point(6, 36);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(75, 76);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(101, 36);
-            label2.Name = "label2";
-            label2.Size = new Size(51, 17);
-            label2.TabIndex = 1;
-            label2.Text = "Name:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(101, 95);
-            label3.Name = "label3";
-            label3.Size = new Size(52, 17);
-            label3.TabIndex = 2;
-            label3.Text = "Room:";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(101, 65);
-            label4.Name = "label4";
-            label4.Size = new Size(44, 17);
-            label4.TabIndex = 3;
-            label4.Text = "Role:";
-            // 
-            // lblUserName
-            // 
-            lblUserName.AutoSize = true;
-            lblUserName.Location = new Point(158, 36);
-            lblUserName.Name = "lblUserName";
-            lblUserName.Size = new Size(16, 17);
-            lblUserName.TabIndex = 4;
-            lblUserName.Text = "..";
+            lblUserRoom.AutoSize = true;
+            lblUserRoom.Location = new Point(158, 95);
+            lblUserRoom.Name = "lblUserRoom";
+            lblUserRoom.Size = new Size(16, 17);
+            lblUserRoom.TabIndex = 6;
+            lblUserRoom.Text = "..";
             // 
             // lblUserRole
             // 
@@ -133,14 +98,49 @@
             lblUserRole.TabIndex = 5;
             lblUserRole.Text = "..";
             // 
-            // lblUserRoom
+            // lblUserName
             // 
-            lblUserRoom.AutoSize = true;
-            lblUserRoom.Location = new Point(158, 95);
-            lblUserRoom.Name = "lblUserRoom";
-            lblUserRoom.Size = new Size(16, 17);
-            lblUserRoom.TabIndex = 6;
-            lblUserRoom.Text = "..";
+            lblUserName.AutoSize = true;
+            lblUserName.Location = new Point(158, 36);
+            lblUserName.Name = "lblUserName";
+            lblUserName.Size = new Size(16, 17);
+            lblUserName.TabIndex = 4;
+            lblUserName.Text = "..";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(101, 65);
+            label4.Name = "label4";
+            label4.Size = new Size(44, 17);
+            label4.TabIndex = 3;
+            label4.Text = "Role:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(101, 95);
+            label3.Name = "label3";
+            label3.Size = new Size(52, 17);
+            label3.TabIndex = 2;
+            label3.Text = "Room:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(101, 36);
+            label2.Name = "label2";
+            label2.Size = new Size(51, 17);
+            label2.TabIndex = 1;
+            label2.Text = "Name:";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(6, 36);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(75, 76);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // groupBox1
             // 
@@ -227,7 +227,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DeepSkyBlue;
-            ClientSize = new Size(832, 566);
+            ClientSize = new Size(1144, 702);
             Controls.Add(groupBox1);
             Controls.Add(gbProfile);
             Controls.Add(label1);
