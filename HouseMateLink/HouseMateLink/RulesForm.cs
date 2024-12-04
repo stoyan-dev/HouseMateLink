@@ -5,10 +5,16 @@ namespace HouseMateLink
 {
     public partial class RulesForm : Form
     {
-        public RulesForm()
+
+        public bool IsAdmin { get; set; }
+        public RulesForm(bool isAdmin)
         {
             InitializeComponent();
             LoadHouseRules();
+            IsAdmin = isAdmin;
+
+            btnEditRules.Visible = IsAdmin;
+            rulesTextBox.ReadOnly = true;
         }
 
         private void LoadHouseRules()
@@ -29,6 +35,27 @@ namespace HouseMateLink
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnEditRules_Click(object sender, EventArgs e)
+        {
+            if (rulesTextBox.ReadOnly)
+            {
+
+                rulesTextBox.ReadOnly = false;
+                btnEditRules.Text = "Save Rules"; 
+
+            }
+
+            else
+            {
+                string updatedRules = rulesTextBox.Text;
+
+                // Logic for later
+                //System.IO.File.WriteAllText("houseRules.txt", updatedRules);
+
+                rulesTextBox.ReadOnly = true;
+            }
         }
     }
 }

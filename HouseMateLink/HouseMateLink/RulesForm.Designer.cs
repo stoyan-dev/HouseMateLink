@@ -30,6 +30,7 @@
         {
             rulesTextBox = new TextBox();
             btnBack = new Button();
+            btnEditRules = new Button();
             SuspendLayout();
             // 
             // rulesTextBox
@@ -51,12 +52,24 @@
             btnBack.UseVisualStyleBackColor = false;
             btnBack.Click += btnBack_Click;
             // 
+            // btnEditRules
+            // 
+            btnEditRules.BackColor = Color.Gold;
+            btnEditRules.Location = new Point(371, 383);
+            btnEditRules.Name = "btnEditRules";
+            btnEditRules.Size = new Size(187, 32);
+            btnEditRules.TabIndex = 2;
+            btnEditRules.Text = "Edit Rules";
+            btnEditRules.UseVisualStyleBackColor = false;
+            btnEditRules.Click += btnEditRules_Click;
+            // 
             // RulesForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DeepSkyBlue;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnEditRules);
             Controls.Add(btnBack);
             Controls.Add(rulesTextBox);
             Name = "RulesForm";
@@ -69,5 +82,6 @@
 
         private TextBox rulesTextBox;
         private Button btnBack;
+        private Button btnEditRules;
     }
 }
