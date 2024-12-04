@@ -11,7 +11,7 @@
             today = DateTime.Today;
         }
 
-        public bool isExpired()
+        public bool iComplaintExpired()
         {
             DateTime now = DateTime.Today;
             if (now.Equals(today.AddDays(duration)))

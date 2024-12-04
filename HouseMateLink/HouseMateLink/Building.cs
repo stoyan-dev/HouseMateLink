@@ -26,7 +26,7 @@ namespace HouseMateLink
             users.Remove(user);
         }
 
-        public List<User> Tenants()
+        public List<User> GetTenants()
         {
             List<User> tenants = new List<User>();
             foreach (User user in users)
@@ -37,6 +37,13 @@ namespace HouseMateLink
                 }
             }
             return tenants;
+        }
+
+        public List<User> AssignWeeklyTasks(List<User> tenants)
+        {
+            var assignedTenants = tenants.Take(5).ToList();
+            tenants = tenants.Concat(tenants.Take(5)).ToList();
+            return assignedTenants;
         }
     }
 }
