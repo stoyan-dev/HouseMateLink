@@ -30,7 +30,6 @@
         {
             label1 = new Label();
             groupBox1 = new GroupBox();
-            btnEditPhoto = new Button();
             tbUserPassword = new TextBox();
             tbUserUsername = new TextBox();
             label6 = new Label();
@@ -57,7 +56,7 @@
             label4 = new Label();
             label2 = new Label();
             label3 = new Label();
-            btnGoToHomeAdmin = new Button();
+            btnEditPhoto = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudRoom).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbUser).BeginInit();
@@ -100,18 +99,6 @@
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "User1";
-            // 
-            // btnEditPhoto
-            // 
-            btnEditPhoto.BackColor = Color.Gold;
-            btnEditPhoto.FlatStyle = FlatStyle.Popup;
-            btnEditPhoto.Location = new Point(6, 184);
-            btnEditPhoto.Name = "btnEditPhoto";
-            btnEditPhoto.Size = new Size(75, 55);
-            btnEditPhoto.TabIndex = 15;
-            btnEditPhoto.Text = "Edit photo";
-            btnEditPhoto.UseVisualStyleBackColor = false;
-            btnEditPhoto.Click += btnEditPhoto_Click;
             // 
             // tbUserPassword
             // 
@@ -360,18 +347,17 @@
             label3.TabIndex = 12;
             label3.Text = "Room:";
             // 
-            // btnGoToHomeAdmin
+            // btnEditPhoto
             // 
-            btnGoToHomeAdmin.BackColor = Color.Gold;
-            btnGoToHomeAdmin.FlatStyle = FlatStyle.Popup;
-            btnGoToHomeAdmin.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnGoToHomeAdmin.Location = new Point(964, 45);
-            btnGoToHomeAdmin.Name = "btnGoToHomeAdmin";
-            btnGoToHomeAdmin.Size = new Size(143, 44);
-            btnGoToHomeAdmin.TabIndex = 22;
-            btnGoToHomeAdmin.Text = "Home page";
-            btnGoToHomeAdmin.UseVisualStyleBackColor = false;
-            btnGoToHomeAdmin.Click += btnGoToHomeAdmin_Click;
+            btnEditPhoto.BackColor = Color.Gold;
+            btnEditPhoto.FlatStyle = FlatStyle.Popup;
+            btnEditPhoto.Location = new Point(6, 184);
+            btnEditPhoto.Name = "btnEditPhoto";
+            btnEditPhoto.Size = new Size(75, 55);
+            btnEditPhoto.TabIndex = 15;
+            btnEditPhoto.Text = "Edit photo";
+            btnEditPhoto.UseVisualStyleBackColor = false;
+            btnEditPhoto.Click += btnEditPhoto_Click;
             // 
             // ProfileOverviewAdmin
             // 
@@ -379,7 +365,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DeepSkyBlue;
             ClientSize = new Size(1158, 725);
-            Controls.Add(btnGoToHomeAdmin);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(label1);
@@ -428,6 +413,5 @@
         private Label label11;
         private Button btnSelectPhotoAdd;
         private Button btnEditPhoto;
-        private Button btnGoToHomeAdmin;
     }
 }
