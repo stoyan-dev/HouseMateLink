@@ -24,6 +24,8 @@ namespace HouseMateLink
 
         private void btnRules_Click(object sender, EventArgs e)
         {
+            RulesForm rulesForm = new RulesForm();
+            rulesForm.ShowDialog();
             tabHome.SelectedIndex = 4;
         }
 
