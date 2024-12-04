@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HouseMateLink
+﻿namespace HouseMateLink
 {
     public class Complaint
     {
@@ -14,7 +8,17 @@ namespace HouseMateLink
         public Complaint(string description)
         {
             this.Description = description;
-            today= DateTime.Today;
+            today = DateTime.Today;
+        }
+
+        public bool isExpired()
+        {
+            DateTime now = DateTime.Today;
+            if (now.Equals(today.AddDays(duration)))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

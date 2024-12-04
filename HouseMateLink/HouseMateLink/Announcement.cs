@@ -10,7 +10,7 @@ namespace HouseMateLink
     {
  
         private DateTime today;
-        private const int durataion = 7;
+        private const int duration = 7;
         private AnnouncementType announcementType;
         public string Description { get; set; }
 
@@ -22,6 +22,15 @@ namespace HouseMateLink
             today = DateTime.Today;
         }
 
+        public bool isAnnouncementExpired()
+        {
+            DateTime now = DateTime.Today;
+            if (now.Equals(today.AddDays(duration)))
+            {
+                return true;
+            }
+            return false;
+        }
 
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Security.Policy;
 
 namespace HouseMateLink
 {
@@ -14,7 +10,10 @@ namespace HouseMateLink
         public string Name { get; set; }
         public bool Role { get; set; }
         public int RoomNumber { get; set; }
-        public string Photo {  get; set; }
+        public string Photo { get; set; }
+
+        private List<Task> tasksUser;
+        private List<Announcement> announcementsUser;
 
         public User(int userID, string username, string password, string name, bool role, int roomNumber, string photo)
         {
@@ -25,6 +24,24 @@ namespace HouseMateLink
             Role = role;
             RoomNumber = roomNumber;
             Photo = photo;
+            tasksUser = new List<Task>();
+            announcementsUser= new List<Announcement>();
         }
+
+        public void AddTask(Task task)
+        {
+            tasksUser.Add(task);
+        }
+
+        public void RemoveTask(Task task)
+        {
+            tasksUser.Remove(task);
+        }
+
+        public void AddAnnouncement(Announcement announcement)
+        {
+            announcementsUser.Add(announcement);
+        }
+
     }
 }
