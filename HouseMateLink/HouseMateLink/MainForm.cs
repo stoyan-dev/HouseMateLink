@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace HouseMateLink
 {
@@ -15,6 +16,8 @@ namespace HouseMateLink
         public MainForm()
         {
             InitializeComponent();
+            dateTimePicker.Value = DateTime.Now;
+            dateTimePicker.Visible = false;
         }
 
         private void grbHome_Enter(object sender, EventArgs e)
@@ -51,6 +54,13 @@ namespace HouseMateLink
 
         private void btnProfileOverview_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void rbEvent_CheckedChanged(object sender, EventArgs e)
+        {
+            dateTimePicker.Visible = rbEvent.Checked;
+           
 
         }
     }
