@@ -47,10 +47,20 @@
             tabComplaints = new TabPage();
             tabHouseRules = new TabPage();
             tabShoppingList = new TabPage();
+            gbProfile = new GroupBox();
+            lblUserRoom = new Label();
+            lblUserRole = new Label();
+            lblUserName = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            pictureBox1 = new PictureBox();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
             grbHome.SuspendLayout();
+            gbProfile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // tabHome
@@ -173,6 +183,7 @@
             // grbHome
             // 
             grbHome.BackColor = Color.GhostWhite;
+            grbHome.Controls.Add(gbProfile);
             grbHome.Controls.Add(label3);
             grbHome.Controls.Add(label2);
             grbHome.Controls.Add(label1);
@@ -247,9 +258,9 @@
             // tabAnnouncements
             // 
             tabAnnouncements.Location = new Point(4, 34);
-            tabAnnouncements.Margin = new Padding(4, 4, 4, 4);
+            tabAnnouncements.Margin = new Padding(4);
             tabAnnouncements.Name = "tabAnnouncements";
-            tabAnnouncements.Padding = new Padding(4, 4, 4, 4);
+            tabAnnouncements.Padding = new Padding(4);
             tabAnnouncements.Size = new Size(777, 457);
             tabAnnouncements.TabIndex = 2;
             tabAnnouncements.Text = "Announcements";
@@ -258,9 +269,9 @@
             // tabComplaints
             // 
             tabComplaints.Location = new Point(4, 34);
-            tabComplaints.Margin = new Padding(4, 4, 4, 4);
+            tabComplaints.Margin = new Padding(4);
             tabComplaints.Name = "tabComplaints";
-            tabComplaints.Padding = new Padding(4, 4, 4, 4);
+            tabComplaints.Padding = new Padding(4);
             tabComplaints.Size = new Size(777, 457);
             tabComplaints.TabIndex = 3;
             tabComplaints.Text = "Complaints";
@@ -269,9 +280,9 @@
             // tabHouseRules
             // 
             tabHouseRules.Location = new Point(4, 34);
-            tabHouseRules.Margin = new Padding(4, 4, 4, 4);
+            tabHouseRules.Margin = new Padding(4);
             tabHouseRules.Name = "tabHouseRules";
-            tabHouseRules.Padding = new Padding(4, 4, 4, 4);
+            tabHouseRules.Padding = new Padding(4);
             tabHouseRules.Size = new Size(777, 457);
             tabHouseRules.TabIndex = 4;
             tabHouseRules.Text = "House Rules";
@@ -280,13 +291,102 @@
             // tabShoppingList
             // 
             tabShoppingList.Location = new Point(4, 34);
-            tabShoppingList.Margin = new Padding(4, 4, 4, 4);
+            tabShoppingList.Margin = new Padding(4);
             tabShoppingList.Name = "tabShoppingList";
-            tabShoppingList.Padding = new Padding(4, 4, 4, 4);
+            tabShoppingList.Padding = new Padding(4);
             tabShoppingList.Size = new Size(777, 457);
             tabShoppingList.TabIndex = 5;
             tabShoppingList.Text = "Shopping list";
             tabShoppingList.UseVisualStyleBackColor = true;
+            // 
+            // gbProfile
+            // 
+            gbProfile.BackColor = Color.White;
+            gbProfile.Controls.Add(lblUserRoom);
+            gbProfile.Controls.Add(lblUserRole);
+            gbProfile.Controls.Add(lblUserName);
+            gbProfile.Controls.Add(label4);
+            gbProfile.Controls.Add(label5);
+            gbProfile.Controls.Add(label6);
+            gbProfile.Controls.Add(pictureBox1);
+            gbProfile.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            gbProfile.Location = new Point(6, 28);
+            gbProfile.Margin = new Padding(4);
+            gbProfile.Name = "gbProfile";
+            gbProfile.Padding = new Padding(4);
+            gbProfile.Size = new Size(225, 170);
+            gbProfile.TabIndex = 4;
+            gbProfile.TabStop = false;
+            gbProfile.Text = "Your profile";
+            // 
+            // lblUserRoom
+            // 
+            lblUserRoom.AutoSize = true;
+            lblUserRoom.Location = new Point(127, 146);
+            lblUserRoom.Margin = new Padding(4, 0, 4, 0);
+            lblUserRoom.Name = "lblUserRoom";
+            lblUserRoom.Size = new Size(19, 20);
+            lblUserRoom.TabIndex = 6;
+            lblUserRoom.Text = "..";
+            // 
+            // lblUserRole
+            // 
+            lblUserRole.AutoSize = true;
+            lblUserRole.Location = new Point(127, 102);
+            lblUserRole.Margin = new Padding(4, 0, 4, 0);
+            lblUserRole.Name = "lblUserRole";
+            lblUserRole.Size = new Size(19, 20);
+            lblUserRole.TabIndex = 5;
+            lblUserRole.Text = "..";
+            // 
+            // lblUserName
+            // 
+            lblUserName.AutoSize = true;
+            lblUserName.Location = new Point(127, 45);
+            lblUserName.Margin = new Padding(4, 0, 4, 0);
+            lblUserName.Name = "lblUserName";
+            lblUserName.Size = new Size(19, 20);
+            lblUserName.TabIndex = 4;
+            lblUserName.Text = "..";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(118, 82);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(50, 20);
+            label4.TabIndex = 3;
+            label4.Text = "Role:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(118, 122);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(62, 20);
+            label5.TabIndex = 2;
+            label5.Text = "Room:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(118, 25);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(59, 20);
+            label6.TabIndex = 1;
+            label6.Text = "Name:";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(8, 45);
+            pictureBox1.Margin = new Padding(4);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(94, 95);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // MainForm
             // 
@@ -303,6 +403,9 @@
             grbButtons.ResumeLayout(false);
             grbHome.ResumeLayout(false);
             grbHome.PerformLayout();
+            gbProfile.ResumeLayout(false);
+            gbProfile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -327,5 +430,13 @@
         private TabPage tabComplaints;
         private TabPage tabHouseRules;
         private TabPage tabShoppingList;
+        private GroupBox gbProfile;
+        private Label lblUserRoom;
+        private Label lblUserRole;
+        private Label lblUserName;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private PictureBox pictureBox1;
     }
 }
