@@ -54,14 +54,23 @@ namespace HouseMateLink
 
         private void btnProfileOverview_Click(object sender, EventArgs e)
         {
+            ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant();
+            profileOverviewTenant.Show();
 
+            //ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin();
+            //profileOverviewAdmin.Show();
         }
 
         private void rbEvent_CheckedChanged(object sender, EventArgs e)
         {
             dateTimePicker.Visible = rbEvent.Checked;
-           
 
+
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+          
         }
     }
 }

@@ -53,6 +53,10 @@
             tabCalendar = new TabPage();
             tabAnnouncements = new TabPage();
             grbAnnouncements = new GroupBox();
+            gbMessage = new GroupBox();
+            lblDateCreated = new Label();
+            label7 = new Label();
+            lblAnnouncement = new Label();
             dateTimePicker = new DateTimePicker();
             btnCreateAnnouncement = new Button();
             rbMessage = new RadioButton();
@@ -60,18 +64,14 @@
             tbAnnouncement = new TextBox();
             tabComplaints = new TabPage();
             grbComplaints = new GroupBox();
-            btnPostComplaint = new Button();
-            tbCreateComplaint = new TextBox();
-            tabHouseRules = new TabPage();
-            tabShoppingList = new TabPage();
-            gbMessage = new GroupBox();
-            lblAnnouncement = new Label();
-            label7 = new Label();
-            lblDateCreated = new Label();
             gbComplaint = new GroupBox();
             label8 = new Label();
             lblDatePosted = new Label();
             lblComplaint = new Label();
+            btnPostComplaint = new Button();
+            tbCreateComplaint = new TextBox();
+            tabHouseRules = new TabPage();
+            tabShoppingList = new TabPage();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
@@ -80,9 +80,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabAnnouncements.SuspendLayout();
             grbAnnouncements.SuspendLayout();
+            gbMessage.SuspendLayout();
             tabComplaints.SuspendLayout();
             grbComplaints.SuspendLayout();
-            gbMessage.SuspendLayout();
             gbComplaint.SuspendLayout();
             SuspendLayout();
             // 
@@ -352,6 +352,7 @@
             btnLogOut.TabStop = false;
             btnLogOut.Text = "Log Out";
             btnLogOut.UseVisualStyleBackColor = false;
+            btnLogOut.Click += btnLogOut_Click;
             // 
             // tabCalendar
             // 
@@ -391,6 +392,48 @@
             grbAnnouncements.TabIndex = 1;
             grbAnnouncements.TabStop = false;
             grbAnnouncements.Text = "Announcements";
+            // 
+            // gbMessage
+            // 
+            gbMessage.Controls.Add(lblDateCreated);
+            gbMessage.Controls.Add(label7);
+            gbMessage.Controls.Add(lblAnnouncement);
+            gbMessage.Location = new Point(19, 39);
+            gbMessage.Name = "gbMessage";
+            gbMessage.Size = new Size(225, 126);
+            gbMessage.TabIndex = 6;
+            gbMessage.TabStop = false;
+            gbMessage.Text = "Message";
+            // 
+            // lblDateCreated
+            // 
+            lblDateCreated.AutoSize = true;
+            lblDateCreated.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold);
+            lblDateCreated.Location = new Point(116, 90);
+            lblDateCreated.Name = "lblDateCreated";
+            lblDateCreated.Size = new Size(17, 17);
+            lblDateCreated.TabIndex = 2;
+            lblDateCreated.Text = "...";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold);
+            label7.Location = new Point(20, 90);
+            label7.Name = "label7";
+            label7.Size = new Size(78, 17);
+            label7.TabIndex = 1;
+            label7.Text = "Created on:";
+            // 
+            // lblAnnouncement
+            // 
+            lblAnnouncement.AutoSize = true;
+            lblAnnouncement.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold);
+            lblAnnouncement.Location = new Point(20, 52);
+            lblAnnouncement.Name = "lblAnnouncement";
+            lblAnnouncement.Size = new Size(17, 17);
+            lblAnnouncement.TabIndex = 0;
+            lblAnnouncement.Text = "...";
             // 
             // dateTimePicker
             // 
@@ -469,83 +512,6 @@
             grbComplaints.TabStop = false;
             grbComplaints.Text = "Complaints";
             // 
-            // btnPostComplaint
-            // 
-            btnPostComplaint.BackColor = Color.Gold;
-            btnPostComplaint.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPostComplaint.Location = new Point(418, 331);
-            btnPostComplaint.Name = "btnPostComplaint";
-            btnPostComplaint.Size = new Size(161, 35);
-            btnPostComplaint.TabIndex = 5;
-            btnPostComplaint.Text = "Post";
-            btnPostComplaint.UseVisualStyleBackColor = false;
-            // 
-            // tbCreateComplaint
-            // 
-            tbCreateComplaint.Location = new Point(6, 312);
-            tbCreateComplaint.Multiline = true;
-            tbCreateComplaint.Name = "tbCreateComplaint";
-            tbCreateComplaint.Size = new Size(394, 54);
-            tbCreateComplaint.TabIndex = 2;
-            // 
-            // tabHouseRules
-            // 
-            tabHouseRules.Location = new Point(4, 29);
-            tabHouseRules.Margin = new Padding(2);
-            tabHouseRules.Name = "tabHouseRules";
-            tabHouseRules.Size = new Size(620, 406);
-            tabHouseRules.TabIndex = 4;
-            // 
-            // tabShoppingList
-            // 
-            tabShoppingList.Location = new Point(4, 29);
-            tabShoppingList.Margin = new Padding(2);
-            tabShoppingList.Name = "tabShoppingList";
-            tabShoppingList.Size = new Size(620, 406);
-            tabShoppingList.TabIndex = 5;
-            // 
-            // gbMessage
-            // 
-            gbMessage.Controls.Add(lblDateCreated);
-            gbMessage.Controls.Add(label7);
-            gbMessage.Controls.Add(lblAnnouncement);
-            gbMessage.Location = new Point(19, 39);
-            gbMessage.Name = "gbMessage";
-            gbMessage.Size = new Size(225, 126);
-            gbMessage.TabIndex = 6;
-            gbMessage.TabStop = false;
-            gbMessage.Text = "Message";
-            // 
-            // lblAnnouncement
-            // 
-            lblAnnouncement.AutoSize = true;
-            lblAnnouncement.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold);
-            lblAnnouncement.Location = new Point(20, 52);
-            lblAnnouncement.Name = "lblAnnouncement";
-            lblAnnouncement.Size = new Size(17, 17);
-            lblAnnouncement.TabIndex = 0;
-            lblAnnouncement.Text = "...";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold);
-            label7.Location = new Point(20, 90);
-            label7.Name = "label7";
-            label7.Size = new Size(78, 17);
-            label7.TabIndex = 1;
-            label7.Text = "Created on:";
-            // 
-            // lblDateCreated
-            // 
-            lblDateCreated.AutoSize = true;
-            lblDateCreated.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold);
-            lblDateCreated.Location = new Point(116, 90);
-            lblDateCreated.Name = "lblDateCreated";
-            lblDateCreated.Size = new Size(17, 17);
-            lblDateCreated.TabIndex = 2;
-            lblDateCreated.Text = "...";
-            // 
             // gbComplaint
             // 
             gbComplaint.Controls.Add(label8);
@@ -588,6 +554,41 @@
             lblComplaint.TabIndex = 0;
             lblComplaint.Text = "...";
             // 
+            // btnPostComplaint
+            // 
+            btnPostComplaint.BackColor = Color.Gold;
+            btnPostComplaint.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPostComplaint.Location = new Point(418, 331);
+            btnPostComplaint.Name = "btnPostComplaint";
+            btnPostComplaint.Size = new Size(161, 35);
+            btnPostComplaint.TabIndex = 5;
+            btnPostComplaint.Text = "Post";
+            btnPostComplaint.UseVisualStyleBackColor = false;
+            // 
+            // tbCreateComplaint
+            // 
+            tbCreateComplaint.Location = new Point(6, 312);
+            tbCreateComplaint.Multiline = true;
+            tbCreateComplaint.Name = "tbCreateComplaint";
+            tbCreateComplaint.Size = new Size(394, 54);
+            tbCreateComplaint.TabIndex = 2;
+            // 
+            // tabHouseRules
+            // 
+            tabHouseRules.Location = new Point(4, 29);
+            tabHouseRules.Margin = new Padding(2);
+            tabHouseRules.Name = "tabHouseRules";
+            tabHouseRules.Size = new Size(620, 406);
+            tabHouseRules.TabIndex = 4;
+            // 
+            // tabShoppingList
+            // 
+            tabShoppingList.Location = new Point(4, 29);
+            tabShoppingList.Margin = new Padding(2);
+            tabShoppingList.Name = "tabShoppingList";
+            tabShoppingList.Size = new Size(620, 406);
+            tabShoppingList.TabIndex = 5;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -609,11 +610,11 @@
             tabAnnouncements.ResumeLayout(false);
             grbAnnouncements.ResumeLayout(false);
             grbAnnouncements.PerformLayout();
+            gbMessage.ResumeLayout(false);
+            gbMessage.PerformLayout();
             tabComplaints.ResumeLayout(false);
             grbComplaints.ResumeLayout(false);
             grbComplaints.PerformLayout();
-            gbMessage.ResumeLayout(false);
-            gbMessage.PerformLayout();
             gbComplaint.ResumeLayout(false);
             gbComplaint.PerformLayout();
             ResumeLayout(false);
