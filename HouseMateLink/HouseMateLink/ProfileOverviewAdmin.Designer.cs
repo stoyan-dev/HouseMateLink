@@ -30,6 +30,10 @@
         {
             label1 = new Label();
             groupBox1 = new GroupBox();
+            tbUserPassword = new TextBox();
+            tbUserUsername = new TextBox();
+            label6 = new Label();
+            label5 = new Label();
             btnEdit = new Button();
             nudRoom = new NumericUpDown();
             cbRole = new ComboBox();
@@ -39,6 +43,11 @@
             label10 = new Label();
             pbUser = new PictureBox();
             groupBox2 = new GroupBox();
+            btnSelectPhotoAdd = new Button();
+            tbAddPassword = new TextBox();
+            label11 = new Label();
+            tbAddUsername = new TextBox();
+            label7 = new Label();
             btnAdduser = new Button();
             nudAddRoom = new NumericUpDown();
             pbNewUser = new PictureBox();
@@ -47,15 +56,7 @@
             label4 = new Label();
             label2 = new Label();
             label3 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            tbUserUsername = new TextBox();
-            tbUserPassword = new TextBox();
-            label7 = new Label();
-            tbAddUsername = new TextBox();
-            label11 = new Label();
-            tbAddPassword = new TextBox();
-            btnSelectPhoto = new Button();
+            btnEditPhoto = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudRoom).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbUser).BeginInit();
@@ -78,6 +79,7 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.White;
+            groupBox1.Controls.Add(btnEditPhoto);
             groupBox1.Controls.Add(tbUserPassword);
             groupBox1.Controls.Add(tbUserUsername);
             groupBox1.Controls.Add(label6);
@@ -93,16 +95,48 @@
             groupBox1.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(12, 109);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(290, 225);
+            groupBox1.Size = new Size(290, 264);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "User1";
+            // 
+            // tbUserPassword
+            // 
+            tbUserPassword.Location = new Point(186, 181);
+            tbUserPassword.Name = "tbUserPassword";
+            tbUserPassword.Size = new Size(88, 25);
+            tbUserPassword.TabIndex = 14;
+            // 
+            // tbUserUsername
+            // 
+            tbUserUsername.Location = new Point(186, 144);
+            tbUserUsername.Name = "tbUserUsername";
+            tbUserUsername.Size = new Size(88, 25);
+            tbUserUsername.TabIndex = 13;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(96, 184);
+            label6.Name = "label6";
+            label6.Size = new Size(75, 17);
+            label6.TabIndex = 12;
+            label6.Text = "Password:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(96, 147);
+            label5.Name = "label5";
+            label5.Size = new Size(80, 17);
+            label5.TabIndex = 11;
+            label5.Text = "Username:";
             // 
             // btnEdit
             // 
             btnEdit.BackColor = Color.Gold;
             btnEdit.FlatStyle = FlatStyle.Popup;
-            btnEdit.Location = new Point(6, 176);
+            btnEdit.Location = new Point(199, 228);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(75, 30);
             btnEdit.TabIndex = 10;
@@ -169,7 +203,7 @@
             // groupBox2
             // 
             groupBox2.BackColor = Color.White;
-            groupBox2.Controls.Add(btnSelectPhoto);
+            groupBox2.Controls.Add(btnSelectPhotoAdd);
             groupBox2.Controls.Add(tbAddPassword);
             groupBox2.Controls.Add(label11);
             groupBox2.Controls.Add(tbAddUsername);
@@ -189,6 +223,54 @@
             groupBox2.TabIndex = 9;
             groupBox2.TabStop = false;
             groupBox2.Text = "Add user";
+            // 
+            // btnSelectPhotoAdd
+            // 
+            btnSelectPhotoAdd.BackColor = Color.Gold;
+            btnSelectPhotoAdd.FlatStyle = FlatStyle.Popup;
+            btnSelectPhotoAdd.Location = new Point(50, 192);
+            btnSelectPhotoAdd.Name = "btnSelectPhotoAdd";
+            btnSelectPhotoAdd.Size = new Size(182, 33);
+            btnSelectPhotoAdd.TabIndex = 21;
+            btnSelectPhotoAdd.Text = "Select photo";
+            btnSelectPhotoAdd.UseVisualStyleBackColor = false;
+            btnSelectPhotoAdd.Click += btnSelectPhoto_Click;
+            // 
+            // tbAddPassword
+            // 
+            tbAddPassword.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            tbAddPassword.Location = new Point(136, 472);
+            tbAddPassword.Name = "tbAddPassword";
+            tbAddPassword.Size = new Size(116, 30);
+            tbAddPassword.TabIndex = 20;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            label11.Location = new Point(14, 479);
+            label11.Name = "label11";
+            label11.Size = new Size(97, 23);
+            label11.TabIndex = 19;
+            label11.Text = "Password:";
+            // 
+            // tbAddUsername
+            // 
+            tbAddUsername.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            tbAddUsername.Location = new Point(136, 420);
+            tbAddUsername.Name = "tbAddUsername";
+            tbAddUsername.Size = new Size(116, 30);
+            tbAddUsername.TabIndex = 18;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            label7.Location = new Point(14, 427);
+            label7.Name = "label7";
+            label7.Size = new Size(102, 23);
+            label7.TabIndex = 17;
+            label7.Text = "Username:";
             // 
             // btnAdduser
             // 
@@ -265,85 +347,17 @@
             label3.TabIndex = 12;
             label3.Text = "Room:";
             // 
-            // label5
+            // btnEditPhoto
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(96, 147);
-            label5.Name = "label5";
-            label5.Size = new Size(80, 17);
-            label5.TabIndex = 11;
-            label5.Text = "Username:";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(96, 184);
-            label6.Name = "label6";
-            label6.Size = new Size(75, 17);
-            label6.TabIndex = 12;
-            label6.Text = "Password:";
-            // 
-            // tbUserUsername
-            // 
-            tbUserUsername.Location = new Point(186, 144);
-            tbUserUsername.Name = "tbUserUsername";
-            tbUserUsername.Size = new Size(88, 25);
-            tbUserUsername.TabIndex = 13;
-            // 
-            // tbUserPassword
-            // 
-            tbUserPassword.Location = new Point(186, 181);
-            tbUserPassword.Name = "tbUserPassword";
-            tbUserPassword.Size = new Size(88, 25);
-            tbUserPassword.TabIndex = 14;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            label7.Location = new Point(14, 427);
-            label7.Name = "label7";
-            label7.Size = new Size(102, 23);
-            label7.TabIndex = 17;
-            label7.Text = "Username:";
-            // 
-            // tbAddUsername
-            // 
-            tbAddUsername.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            tbAddUsername.Location = new Point(136, 420);
-            tbAddUsername.Name = "tbAddUsername";
-            tbAddUsername.Size = new Size(116, 30);
-            tbAddUsername.TabIndex = 18;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            label11.Location = new Point(14, 479);
-            label11.Name = "label11";
-            label11.Size = new Size(97, 23);
-            label11.TabIndex = 19;
-            label11.Text = "Password:";
-            // 
-            // tbAddPassword
-            // 
-            tbAddPassword.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            tbAddPassword.Location = new Point(136, 472);
-            tbAddPassword.Name = "tbAddPassword";
-            tbAddPassword.Size = new Size(116, 30);
-            tbAddPassword.TabIndex = 20;
-            // 
-            // btnSelectPhoto
-            // 
-            btnSelectPhoto.BackColor = Color.Gold;
-            btnSelectPhoto.FlatStyle = FlatStyle.Popup;
-            btnSelectPhoto.Location = new Point(50, 192);
-            btnSelectPhoto.Name = "btnSelectPhoto";
-            btnSelectPhoto.Size = new Size(182, 33);
-            btnSelectPhoto.TabIndex = 21;
-            btnSelectPhoto.Text = "Select photo";
-            btnSelectPhoto.UseVisualStyleBackColor = false;
-            btnSelectPhoto.Click += btnSelectPhoto_Click;
+            btnEditPhoto.BackColor = Color.Gold;
+            btnEditPhoto.FlatStyle = FlatStyle.Popup;
+            btnEditPhoto.Location = new Point(6, 184);
+            btnEditPhoto.Name = "btnEditPhoto";
+            btnEditPhoto.Size = new Size(75, 55);
+            btnEditPhoto.TabIndex = 15;
+            btnEditPhoto.Text = "Edit photo";
+            btnEditPhoto.UseVisualStyleBackColor = false;
+            btnEditPhoto.Click += btnEditPhoto_Click;
             // 
             // ProfileOverviewAdmin
             // 
@@ -397,6 +411,7 @@
         private Label label7;
         private TextBox tbAddPassword;
         private Label label11;
-        private Button btnSelectPhoto;
+        private Button btnSelectPhotoAdd;
+        private Button btnEditPhoto;
     }
 }
