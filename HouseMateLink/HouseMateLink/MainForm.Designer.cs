@@ -55,7 +55,12 @@
             tabComplaints = new TabPage();
             tabHouseRules = new TabPage();
             tabShoppingList = new TabPage();
-            label7 = new Label();
+            grbAnnouncements = new GroupBox();
+            lblCreateAnnouncement = new Label();
+            tbAnnouncement = new TextBox();
+            rbEvent = new RadioButton();
+            rbMessage = new RadioButton();
+            btnCreateAnnouncement = new Button();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
@@ -63,6 +68,7 @@
             gbProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tabAnnouncements.SuspendLayout();
+            grbAnnouncements.SuspendLayout();
             SuspendLayout();
             // 
             // tabHome
@@ -339,14 +345,14 @@
             // 
             // tabAnnouncements
             // 
-            tabAnnouncements.Controls.Add(label7);
+            tabAnnouncements.BackColor = Color.DeepSkyBlue;
+            tabAnnouncements.Controls.Add(grbAnnouncements);
             tabAnnouncements.Location = new Point(4, 29);
             tabAnnouncements.Name = "tabAnnouncements";
             tabAnnouncements.Padding = new Padding(3, 3, 3, 3);
             tabAnnouncements.Size = new Size(620, 363);
             tabAnnouncements.TabIndex = 2;
             tabAnnouncements.Text = "Announcements";
-            tabAnnouncements.UseVisualStyleBackColor = true;
             // 
             // tabComplaints
             // 
@@ -378,14 +384,74 @@
             tabShoppingList.Text = "Shopping list";
             tabShoppingList.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // grbAnnouncements
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(198, 53);
-            label7.Name = "label7";
-            label7.Size = new Size(50, 20);
-            label7.TabIndex = 0;
-            label7.Text = "label7";
+            grbAnnouncements.BackColor = Color.GhostWhite;
+            grbAnnouncements.Controls.Add(btnCreateAnnouncement);
+            grbAnnouncements.Controls.Add(rbMessage);
+            grbAnnouncements.Controls.Add(rbEvent);
+            grbAnnouncements.Controls.Add(tbAnnouncement);
+            grbAnnouncements.Controls.Add(lblCreateAnnouncement);
+            grbAnnouncements.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grbAnnouncements.Location = new Point(16, 21);
+            grbAnnouncements.Name = "grbAnnouncements";
+            grbAnnouncements.Size = new Size(583, 321);
+            grbAnnouncements.TabIndex = 1;
+            grbAnnouncements.TabStop = false;
+            grbAnnouncements.Text = "Announcements";
+            // 
+            // lblCreateAnnouncement
+            // 
+            lblCreateAnnouncement.AutoSize = true;
+            lblCreateAnnouncement.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
+            lblCreateAnnouncement.Location = new Point(20, 217);
+            lblCreateAnnouncement.Name = "lblCreateAnnouncement";
+            lblCreateAnnouncement.Size = new Size(154, 20);
+            lblCreateAnnouncement.TabIndex = 0;
+            lblCreateAnnouncement.Text = "Create Announcement:";
+            // 
+            // tbAnnouncement
+            // 
+            tbAnnouncement.Location = new Point(20, 243);
+            tbAnnouncement.Multiline = true;
+            tbAnnouncement.Name = "tbAnnouncement";
+            tbAnnouncement.Size = new Size(390, 72);
+            tbAnnouncement.TabIndex = 1;
+            // 
+            // rbEvent
+            // 
+            rbEvent.AutoSize = true;
+            rbEvent.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            rbEvent.Location = new Point(416, 249);
+            rbEvent.Name = "rbEvent";
+            rbEvent.Size = new Size(66, 23);
+            rbEvent.TabIndex = 2;
+            rbEvent.TabStop = true;
+            rbEvent.Text = "Event";
+            rbEvent.UseVisualStyleBackColor = true;
+            // 
+            // rbMessage
+            // 
+            rbMessage.AutoSize = true;
+            rbMessage.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            rbMessage.Location = new Point(488, 249);
+            rbMessage.Name = "rbMessage";
+            rbMessage.Size = new Size(88, 23);
+            rbMessage.TabIndex = 3;
+            rbMessage.TabStop = true;
+            rbMessage.Text = "Message";
+            rbMessage.UseVisualStyleBackColor = true;
+            // 
+            // btnCreateAnnouncement
+            // 
+            btnCreateAnnouncement.BackColor = Color.Gold;
+            btnCreateAnnouncement.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCreateAnnouncement.Location = new Point(416, 278);
+            btnCreateAnnouncement.Name = "btnCreateAnnouncement";
+            btnCreateAnnouncement.Size = new Size(161, 35);
+            btnCreateAnnouncement.TabIndex = 4;
+            btnCreateAnnouncement.Text = "Create";
+            btnCreateAnnouncement.UseVisualStyleBackColor = false;
             // 
             // MainForm
             // 
@@ -406,7 +472,8 @@
             gbProfile.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tabAnnouncements.ResumeLayout(false);
-            tabAnnouncements.PerformLayout();
+            grbAnnouncements.ResumeLayout(false);
+            grbAnnouncements.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -439,6 +506,11 @@
         private Label label5;
         private Label label6;
         private PictureBox pictureBox1;
-        private Label label7;
+        private GroupBox grbAnnouncements;
+        private RadioButton rbMessage;
+        private RadioButton rbEvent;
+        private TextBox tbAnnouncement;
+        private Label lblCreateAnnouncement;
+        private Button btnCreateAnnouncement;
     }
 }
