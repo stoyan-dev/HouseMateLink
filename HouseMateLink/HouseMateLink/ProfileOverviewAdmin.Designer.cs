@@ -30,6 +30,7 @@
         {
             label1 = new Label();
             groupBox1 = new GroupBox();
+            btnEditPhoto = new Button();
             tbUserPassword = new TextBox();
             tbUserUsername = new TextBox();
             label6 = new Label();
@@ -56,7 +57,6 @@
             label4 = new Label();
             label2 = new Label();
             label3 = new Label();
-            btnEditPhoto = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudRoom).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbUser).BeginInit();
@@ -68,11 +68,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Times New Roman", 28.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Times New Roman", 36F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Gold;
-            label1.Location = new Point(388, 21);
+            label1.Location = new Point(351, 9);
             label1.Name = "label1";
-            label1.Size = new Size(348, 52);
+            label1.Size = new Size(446, 67);
             label1.TabIndex = 1;
             label1.Text = "Profile Overview";
             // 
@@ -99,6 +99,18 @@
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "User1";
+            // 
+            // btnEditPhoto
+            // 
+            btnEditPhoto.BackColor = Color.Gold;
+            btnEditPhoto.FlatStyle = FlatStyle.Popup;
+            btnEditPhoto.Location = new Point(6, 184);
+            btnEditPhoto.Name = "btnEditPhoto";
+            btnEditPhoto.Size = new Size(75, 55);
+            btnEditPhoto.TabIndex = 15;
+            btnEditPhoto.Text = "Edit photo";
+            btnEditPhoto.UseVisualStyleBackColor = false;
+            btnEditPhoto.Click += btnEditPhoto_Click;
             // 
             // tbUserPassword
             // 
@@ -346,18 +358,6 @@
             label3.Size = new Size(66, 23);
             label3.TabIndex = 12;
             label3.Text = "Room:";
-            // 
-            // btnEditPhoto
-            // 
-            btnEditPhoto.BackColor = Color.Gold;
-            btnEditPhoto.FlatStyle = FlatStyle.Popup;
-            btnEditPhoto.Location = new Point(6, 184);
-            btnEditPhoto.Name = "btnEditPhoto";
-            btnEditPhoto.Size = new Size(75, 55);
-            btnEditPhoto.TabIndex = 15;
-            btnEditPhoto.Text = "Edit photo";
-            btnEditPhoto.UseVisualStyleBackColor = false;
-            btnEditPhoto.Click += btnEditPhoto_Click;
             // 
             // ProfileOverviewAdmin
             // 
