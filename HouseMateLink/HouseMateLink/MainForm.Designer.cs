@@ -75,11 +75,11 @@
             btnEditRules = new Button();
             rulesTextBox = new TextBox();
             tabShoppingList = new TabPage();
+            btnClearTheLastProduct = new Button();
             lbShoppingList = new ListBox();
             lblInfo = new Label();
             btnAddToTheList = new Button();
             tbAddGroceries = new TextBox();
-            btnClearTheLastProduct = new Button();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
@@ -380,6 +380,7 @@
             // monthCalendar1
             // 
             monthCalendar1.BackColor = Color.DeepSkyBlue;
+            monthCalendar1.Font = new Font("Segoe UI", 12F);
             monthCalendar1.Location = new Point(13, 32);
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 0;
@@ -639,6 +640,18 @@
             tabShoppingList.TabIndex = 5;
             tabShoppingList.Text = "Shopping List";
             // 
+            // btnClearTheLastProduct
+            // 
+            btnClearTheLastProduct.BackColor = Color.Gold;
+            btnClearTheLastProduct.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            btnClearTheLastProduct.Location = new Point(201, 339);
+            btnClearTheLastProduct.Name = "btnClearTheLastProduct";
+            btnClearTheLastProduct.Size = new Size(197, 29);
+            btnClearTheLastProduct.TabIndex = 4;
+            btnClearTheLastProduct.Text = "Clear the last product";
+            btnClearTheLastProduct.UseVisualStyleBackColor = false;
+            btnClearTheLastProduct.Click += btnClearTheLastProduct_Click;
+            // 
             // lbShoppingList
             // 
             lbShoppingList.BackColor = Color.Gold;
@@ -677,18 +690,6 @@
             tbAddGroceries.Name = "tbAddGroceries";
             tbAddGroceries.Size = new Size(192, 27);
             tbAddGroceries.TabIndex = 0;
-            // 
-            // btnClearTheLastProduct
-            // 
-            btnClearTheLastProduct.BackColor = Color.Gold;
-            btnClearTheLastProduct.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnClearTheLastProduct.Location = new Point(201, 339);
-            btnClearTheLastProduct.Name = "btnClearTheLastProduct";
-            btnClearTheLastProduct.Size = new Size(197, 29);
-            btnClearTheLastProduct.TabIndex = 4;
-            btnClearTheLastProduct.Text = "Clear the last product";
-            btnClearTheLastProduct.UseVisualStyleBackColor = false;
-            btnClearTheLastProduct.Click += btnClearTheLastProduct_Click;
             // 
             // MainForm
             // 
