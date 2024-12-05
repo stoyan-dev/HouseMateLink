@@ -14,17 +14,12 @@ namespace HouseMateLink
     public partial class MainForm : Form
     {
         private int itemCounter = 1;
-        public bool IsAdmin { get; set; }
-        public MainForm(bool isAdmin)
+        private bool isAdmin;
+        public MainForm(bool a)
         {
             InitializeComponent();
-            dateTimePicker.Value = DateTime.Now;
-            dateTimePicker.Visible = false;
-            LoadHouseRules();
-            IsAdmin = isAdmin;
-
-            btnEditRules.Visible = IsAdmin;
-            rulesTextBox.ReadOnly = true;
+            isAdmin = a;
+            Initialization();
 
         }
 
@@ -35,8 +30,6 @@ namespace HouseMateLink
 
         private void btnRules_Click(object sender, EventArgs e)
         {
-            //RulesForm rulesForm = new RulesForm();
-            //rulesForm.ShowDialog();
             tabHome.SelectedIndex = 4;
         }
 
@@ -163,6 +156,16 @@ namespace HouseMateLink
             }
 
             itemCounter = lbShoppingList.Items.Count + 1;
+        }
+
+        private void Initialization()
+        {
+            dateTimePicker.Value = DateTime.Now;
+            dateTimePicker.Visible = false;
+            LoadHouseRules();
+
+            btnEditRules.Visible = isAdmin;
+            rulesTextBox.ReadOnly = true;
         }
     }
 }

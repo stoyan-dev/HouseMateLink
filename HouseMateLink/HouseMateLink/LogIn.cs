@@ -2,9 +2,8 @@ namespace HouseMateLink
 {
     public partial class logIn : Form
     {
-        //private Building my
-        private User newUser;
-        private bool isTenant;
+        private Building myBuilding;
+        private bool isAdmin;
         public logIn()
         {
             InitializeComponent();
@@ -18,38 +17,42 @@ namespace HouseMateLink
 
         private void btnLogIn_Click(object sender, EventArgs e)
         {
-            //ValidateUser(tbUsername.Text,tbPassword.Text);
-           // MainForm homeForm = new MainForm();
+            if(!ValidateUser(myBuilding.GetUsers()))
+            {
+                MessageBox.Show("Incorrect username or password!");
+            }
+            else
+            {
+                MainForm mainForm = new MainForm(isAdmin);
+                mainForm.Show();
+                this.Close();
+            }
         }
 
-        //private bool ValidateUser(List<User> users)
-        //{
-        //    if(users.Contains(newUser))
-        //    {
-                 
-        //    }
-        //    foreach (User user in users)
-        //    {
-        //        if (newUser.Username == user.Username && newUser.Password == user.Password)
-        //        {
-        //            if (newUser.Role == Role.ADMIN)
-        //            {
-        //                isTenant = false;
-        //            }
-        //            else
-        //            {
-        //                isTenant = true;
-        //            }
-        //            return true;
-        //        }
-        //        return false;
-        //    }
-        //}
+        private bool ValidateUser(List<User> users)
+        {
+            foreach(User user in users)
+            {
+                if (user.Username == tbUsername.Text && user.Password == tbPassword.Text)
+                {
+                    if (user.Role == Role.ADMIN)
+                    {
+                        isAdmin = true;
+                    }
+                    else
+                    {
+                        isAdmin = false;
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
 
         private void Initialization()
         {
-            newUser = new User("kate", "123", "katerina", Role.ADMIN, 0, "photo");
-            isTenant = false;
+            myBuilding = new Building("Student Housing B.V.");
+            isAdmin = false;
         }
     }
 }
