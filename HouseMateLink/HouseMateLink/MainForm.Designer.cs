@@ -71,9 +71,9 @@
             btnPostComplaint = new Button();
             tbCreateComplaint = new TextBox();
             tabHouseRules = new TabPage();
-            tabShoppingList = new TabPage();
             btnEditRules = new Button();
             rulesTextBox = new TextBox();
+            tabShoppingList = new TabPage();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
@@ -578,6 +578,7 @@
             // 
             // tabHouseRules
             // 
+            tabHouseRules.BackColor = Color.DeepSkyBlue;
             tabHouseRules.Controls.Add(btnEditRules);
             tabHouseRules.Controls.Add(rulesTextBox);
             tabHouseRules.Location = new Point(4, 29);
@@ -586,15 +587,6 @@
             tabHouseRules.Size = new Size(620, 406);
             tabHouseRules.TabIndex = 4;
             tabHouseRules.Text = "House Rules";
-            // 
-            // tabShoppingList
-            // 
-            tabShoppingList.Location = new Point(4, 29);
-            tabShoppingList.Margin = new Padding(2);
-            tabShoppingList.Name = "tabShoppingList";
-            tabShoppingList.Size = new Size(620, 406);
-            tabShoppingList.TabIndex = 5;
-            tabShoppingList.Text = "Shopping List";
             // 
             // btnEditRules
             // 
@@ -614,6 +606,15 @@
             rulesTextBox.Name = "rulesTextBox";
             rulesTextBox.Size = new Size(562, 316);
             rulesTextBox.TabIndex = 3;
+            // 
+            // tabShoppingList
+            // 
+            tabShoppingList.Location = new Point(4, 29);
+            tabShoppingList.Margin = new Padding(2);
+            tabShoppingList.Name = "tabShoppingList";
+            tabShoppingList.Size = new Size(620, 406);
+            tabShoppingList.TabIndex = 5;
+            tabShoppingList.Text = "Shopping List";
             // 
             // MainForm
             // 
