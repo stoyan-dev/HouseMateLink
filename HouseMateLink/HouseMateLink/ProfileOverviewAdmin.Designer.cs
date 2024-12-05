@@ -294,6 +294,7 @@
             btnAdduser.TabIndex = 11;
             btnAdduser.Text = "Add User";
             btnAdduser.UseVisualStyleBackColor = false;
+            btnAdduser.Click += btnAdduser_Click;
             // 
             // nudAddRoom
             // 
