@@ -16,7 +16,7 @@ namespace HouseMateLink
 
         public User(string username, string password, string name, Role role, int roomNumber, string photo)
         {
-            UserID ++;
+            UserID++;
             Username = username;
             Password = password;
             Name = name;

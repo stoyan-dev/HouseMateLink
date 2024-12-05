@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.ApplicationServices;
+using System.Text.Json;
 
 namespace HouseMateLink
 {
@@ -15,57 +16,40 @@ namespace HouseMateLink
     {
         private Building building;
         private User user;
+        string selectedPhotoFilePathEdit = null;
+        string selectedPhotoFilePathAdd = null;
+
         public ProfileOverviewAdmin()
         {
             InitializeComponent();
-            building = new Building();
+            building = new Building("");
             cbAddRole.DataSource = Role.GetValues(typeof(Role));
         }
 
         private void btnSelectPhoto_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                Title = "Choose a Photo",
-                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif",
-            };
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string selectedFilePath = openFileDialog.FileName;
-
-                try
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    pbNewUser.Image = Image.FromFile(selectedFilePath);
+                    selectedPhotoFilePathAdd = openFileDialog.FileName;
+                    pbNewUser.Image = Image.FromFile(selectedPhotoFilePathAdd);
                     pbNewUser.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void btnEditPhoto_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                Title = "Choose a Photo",
-                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif",
-            };
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string selectedFilePath = openFileDialog.FileName;
-
-                try
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    pbUser.Image = Image.FromFile(selectedFilePath);
+                    selectedPhotoFilePathEdit = openFileDialog.FileName;
+                    pbUser.Image = Image.FromFile(selectedPhotoFilePathEdit);
                     pbUser.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -77,7 +61,8 @@ namespace HouseMateLink
             int roomNum = (int)nudAddRoom.Value;
             string username = tbAddUsername.Text;
             string password = tbAddPassword.Text;
-            string photoFile = pbNewUser.Text;
+            string photoFile = selectedPhotoFilePathAdd;
+
 
             if (string.IsNullOrWhiteSpace(name) ||
                 string.IsNullOrWhiteSpace(username) ||
@@ -88,18 +73,34 @@ namespace HouseMateLink
                 return;
             }
 
-            User user = new User(username, password, name, role, roomNum, photoFile);
-            building.AddUser(user);
 
-            MessageBox.Show("New user added successfully.");
+            building.CreateAddNewUser(username, password, name, role, roomNum, photoFile);
+
+            MessageBox.Show("New user added successfully!");
+
+
             tbAddName.Clear();
             nudAddRoom.Value = 0;
             tbAddUsername.Clear();
             tbAddPassword.Clear();
-            pbNewUser.Image = null; 
+            pbNewUser.Image = null;
+            selectedPhotoFilePathAdd = null;
+
+            List<User> users = building.GetTenants();
+            string jsonString = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+            try
+            {
+                File.WriteAllText("user.json", jsonString);
+                MessageBox.Show("File created successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error writing to file: {ex.Message}");
+            }
+
         }
-       
-        }
+
     }
+}
     
 
