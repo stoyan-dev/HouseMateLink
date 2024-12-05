@@ -82,6 +82,7 @@
             btnLogIn.TabIndex = 3;
             btnLogIn.Text = "Log in";
             btnLogIn.UseVisualStyleBackColor = false;
+            btnLogIn.Click += btnLogIn_Click;
             // 
             // label2
             // 
@@ -108,7 +109,7 @@
             label3.TabIndex = 5;
             label3.Text = "Password:";
             // 
-            // Form1
+            // logIn
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -121,7 +122,7 @@
             Controls.Add(tbUsername);
             Controls.Add(label1);
             Margin = new Padding(2);
-            Name = "Form1";
+            Name = "logIn";
             Text = "HouseMateLink";
             ResumeLayout(false);
             PerformLayout();

@@ -37,6 +37,11 @@ namespace HouseMateLink
             users.Remove(user);
         }
 
+        public List<User> GetUsers()
+        {
+            return users;
+        }
+
         public List<User> GetTenants()
         {
             return tenants;
