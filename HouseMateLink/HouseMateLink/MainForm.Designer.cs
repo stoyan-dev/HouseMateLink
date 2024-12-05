@@ -51,6 +51,7 @@
             label1 = new Label();
             btnLogOut = new Button();
             tabCalendar = new TabPage();
+            monthCalendar1 = new MonthCalendar();
             tabAnnouncements = new TabPage();
             grbAnnouncements = new GroupBox();
             gbMessage = new GroupBox();
@@ -74,11 +75,10 @@
             btnEditRules = new Button();
             rulesTextBox = new TextBox();
             tabShoppingList = new TabPage();
-            monthCalendar1 = new MonthCalendar();
-            tbAddGroceries = new TextBox();
-            btnAddToTheList = new Button();
-            lblInfo = new Label();
             lbShoppingList = new ListBox();
+            lblInfo = new Label();
+            btnAddToTheList = new Button();
+            tbAddGroceries = new TextBox();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
@@ -366,6 +366,7 @@
             // 
             // tabCalendar
             // 
+            tabCalendar.BackColor = Color.DeepSkyBlue;
             tabCalendar.Controls.Add(monthCalendar1);
             tabCalendar.Location = new Point(4, 29);
             tabCalendar.Margin = new Padding(2);
@@ -374,7 +375,14 @@
             tabCalendar.Size = new Size(620, 406);
             tabCalendar.TabIndex = 1;
             tabCalendar.Text = "Calendar";
-            tabCalendar.UseVisualStyleBackColor = true;
+            // 
+            // monthCalendar1
+            // 
+            monthCalendar1.BackColor = Color.DeepSkyBlue;
+            monthCalendar1.Location = new Point(13, 32);
+            monthCalendar1.Name = "monthCalendar1";
+            monthCalendar1.TabIndex = 0;
+            monthCalendar1.TrailingForeColor = Color.Gold;
             // 
             // tabAnnouncements
             // 
@@ -629,24 +637,29 @@
             tabShoppingList.TabIndex = 5;
             tabShoppingList.Text = "Shopping List";
             // 
-            // monthCalendar1
+            // lbShoppingList
             // 
-            monthCalendar1.BackColor = Color.DeepSkyBlue;
-            monthCalendar1.Location = new Point(13, 32);
-            monthCalendar1.Name = "monthCalendar1";
-            monthCalendar1.TabIndex = 0;
+            lbShoppingList.BackColor = Color.Gold;
+            lbShoppingList.FormattingEnabled = true;
+            lbShoppingList.Location = new Point(109, 114);
+            lbShoppingList.Name = "lbShoppingList";
+            lbShoppingList.Size = new Size(374, 244);
+            lbShoppingList.TabIndex = 3;
             // 
-            // tbAddGroceries
+            // lblInfo
             // 
-            tbAddGroceries.BackColor = Color.Gold;
-            tbAddGroceries.Location = new Point(81, 27);
-            tbAddGroceries.Name = "tbAddGroceries";
-            tbAddGroceries.Size = new Size(192, 27);
-            tbAddGroceries.TabIndex = 0;
+            lblInfo.AutoSize = true;
+            lblInfo.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblInfo.Location = new Point(69, 71);
+            lblInfo.Name = "lblInfo";
+            lblInfo.Size = new Size(451, 23);
+            lblInfo.TabIndex = 2;
+            lblInfo.Text = "Here you can add the necessary groceries for the house";
             // 
             // btnAddToTheList
             // 
             btnAddToTheList.BackColor = Color.Gold;
+            btnAddToTheList.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
             btnAddToTheList.Location = new Point(366, 25);
             btnAddToTheList.Name = "btnAddToTheList";
             btnAddToTheList.Size = new Size(128, 29);
@@ -655,24 +668,13 @@
             btnAddToTheList.UseVisualStyleBackColor = false;
             btnAddToTheList.Click += btnAddToTheList_Click;
             // 
-            // lblInfo
+            // tbAddGroceries
             // 
-            lblInfo.AutoSize = true;
-            lblInfo.Font = new Font("Segoe UI", 11F);
-            lblInfo.Location = new Point(66, 73);
-            lblInfo.Name = "lblInfo";
-            lblInfo.Size = new Size(479, 25);
-            lblInfo.TabIndex = 2;
-            lblInfo.Text = "Here you can add the necessary groceries for the house";
-            // 
-            // lbShoppingList
-            // 
-            lbShoppingList.BackColor = Color.Gold;
-            lbShoppingList.FormattingEnabled = true;
-            lbShoppingList.Location = new Point(120, 118);
-            lbShoppingList.Name = "lbShoppingList";
-            lbShoppingList.Size = new Size(374, 244);
-            lbShoppingList.TabIndex = 3;
+            tbAddGroceries.BackColor = Color.Gold;
+            tbAddGroceries.Location = new Point(81, 27);
+            tbAddGroceries.Name = "tbAddGroceries";
+            tbAddGroceries.Size = new Size(192, 27);
+            tbAddGroceries.TabIndex = 0;
             // 
             // MainForm
             // 
