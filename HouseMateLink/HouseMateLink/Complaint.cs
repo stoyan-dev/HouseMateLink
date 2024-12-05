@@ -5,6 +5,7 @@ namespace HouseMateLink
 {
     public class Complaint
     {
+        public int ComplaintID { get; }
         private const int duration = 7;
         private DateTime CreatedAt;
         public string Description { get; set; }
@@ -17,6 +18,7 @@ namespace HouseMateLink
 
         public Complaint(string description)
         {
+            ComplaintID += 1;
             this.Description = description;
             CreatedAt = DateTime.Today;
         }

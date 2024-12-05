@@ -13,6 +13,7 @@ namespace HouseMateLink
 
         private List<User> users;
         private List<Complaint> complaints;
+        private List<Announcement> announcements;
         private List<User> tenants = new List<User>();
         private int taskIndex = 0;
 

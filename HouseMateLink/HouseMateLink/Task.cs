@@ -2,7 +2,7 @@
 
 public class Task
 {
-    public int TaskID { get; set; }
+    public int TaskID { get; }
     public int UserID { get; set; }
     public DateTime TaskDate { get; set; }
     public bool IsDone { get; set; }

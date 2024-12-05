@@ -8,28 +8,44 @@ namespace HouseMateLink
 {
     public class Announcement
     {
- 
-        private DateTime today;
+        public int AnnouncementID { get; }
+        private DateTime CreatedAt;
         private const int duration = 7;
         private AnnouncementType announcementType;
         public string Description { get; set; }
-
-
-        public Announcement(string description, AnnouncementType announcementType)
+        public bool isExpired
         {
-            this.Description = description;
-            this.announcementType = announcementType;
-            today = DateTime.Today;
+            get
+            {
+                return (DateTime.Now - this.CreatedAt).TotalDays > 7;
+            }
+        }
+        public bool IsEvent {  get; set; }
+        public DateTime? EventDate
+        {
+            get
+            {
+                if (!IsEvent)
+                {
+                    throw new InvalidOperationException("EventDate is only available when IsEvent is true.");
+                }
+                return DateTime.Now;
+            }
+            set
+            {
+                if (!IsEvent)
+                {
+                    throw new InvalidOperationException("Cannot set EventDate when IsEvent is false.");
+                }
+            }
         }
 
-        public bool isAnnouncementExpired()
+        public Announcement(string description, AnnouncementType announcementType, bool IsEvent)
         {
-            DateTime now = DateTime.Today;
-            if (now.Equals(today.AddDays(duration)))
-            {
-                return true;
-            }
-            return false;
+            AnnouncementID += 1;
+            this.Description = description;
+            this.announcementType = announcementType;
+            CreatedAt = DateTime.Today;
         }
 
     }
