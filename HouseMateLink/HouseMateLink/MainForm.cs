@@ -13,7 +13,7 @@ namespace HouseMateLink
 {
     public partial class MainForm : Form
     {
-        private int itemCounter = 1;
+        private int itemCounter;
         private bool isAdmin;
         public MainForm(bool a)
         {
@@ -55,11 +55,18 @@ namespace HouseMateLink
 
         private void btnProfileOverview_Click(object sender, EventArgs e)
         {
-            ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant();
-            profileOverviewTenant.Show();
-
-            //ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin();
-            //profileOverviewAdmin.Show();
+            if(isAdmin)
+            {
+                ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin();
+                profileOverviewAdmin.Show();
+                this.Close();
+            }
+            else
+            {
+                ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant();
+                profileOverviewTenant.Show();
+                this.Close();
+            }
         }
 
         private void rbEvent_CheckedChanged(object sender, EventArgs e)
@@ -71,7 +78,9 @@ namespace HouseMateLink
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-
+            Form logIn = new Form();
+            logIn.Show();
+            this.Close();
         }
 
         private void LoadHouseRules()
@@ -160,6 +169,7 @@ namespace HouseMateLink
 
         private void Initialization()
         {
+            itemCounter = 1;
             dateTimePicker.Value = DateTime.Now;
             dateTimePicker.Visible = false;
             LoadHouseRules();
