@@ -9,16 +9,27 @@ namespace HouseMateLink
 {
     public class Building
     {
-        private List<User> users;
+        public string Name { get; set; }
 
-        public Building()
+        private List<User> users;
+        private List<Complaint> complaints;
+        private List<User> tenants = new List<User>();
+        private int taskIndex = 0;
+
+        public Building(string name)
         {
             users = new List<User>();
+            complaints = new List<Complaint>();
+            this.Name = name;
         }
 
-        public void AddUser(User user)
+        public void CreateAddNewUser(string username, string password, string name, Role role, int roomNumber, string photo)
         {
-            users.Add(user);
+            User newUser = new User(username, password, name, role, roomNumber, photo);
+            users.Add(newUser);
+
+            if (newUser.Role == Role.TENANT)
+            { tenants.Add(newUser); }
         }
 
         public void RemoveUser(User user)
@@ -28,21 +39,20 @@ namespace HouseMateLink
 
         public List<User> GetTenants()
         {
-            List<User> tenants = new List<User>();
-            foreach (User user in users)
-            {
-                if (user.Role.Equals(Role.TENANT))
-                {
-                    tenants.Add(user);
-                }
-            }
             return tenants;
         }
 
-        public List<User> AssignWeeklyTasks(List<User> tenants)
+        public List<User> AssignWeeklyTasks()
         {
-            var assignedTenants = tenants.Take(5).ToList();
-            tenants = tenants.Concat(tenants.Skip(5).Take(5)).ToList();
+           List<User> assignedTenants = new List<User>();
+           int count = tenants.Count;
+
+            for(int i = 0; i < 5; i++)
+            {
+                assignedTenants.Add(tenants[(taskIndex + i) % count]);
+            }
+            taskIndex += 5 % count;
+
             return assignedTenants;
         }
     }
