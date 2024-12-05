@@ -79,6 +79,7 @@
             lblInfo = new Label();
             btnAddToTheList = new Button();
             tbAddGroceries = new TextBox();
+            btnClearTheLastProduct = new Button();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
@@ -626,6 +627,7 @@
             // tabShoppingList
             // 
             tabShoppingList.BackColor = Color.DeepSkyBlue;
+            tabShoppingList.Controls.Add(btnClearTheLastProduct);
             tabShoppingList.Controls.Add(lbShoppingList);
             tabShoppingList.Controls.Add(lblInfo);
             tabShoppingList.Controls.Add(btnAddToTheList);
@@ -643,7 +645,7 @@
             lbShoppingList.FormattingEnabled = true;
             lbShoppingList.Location = new Point(109, 114);
             lbShoppingList.Name = "lbShoppingList";
-            lbShoppingList.Size = new Size(374, 244);
+            lbShoppingList.Size = new Size(374, 204);
             lbShoppingList.TabIndex = 3;
             // 
             // lblInfo
@@ -675,6 +677,18 @@
             tbAddGroceries.Name = "tbAddGroceries";
             tbAddGroceries.Size = new Size(192, 27);
             tbAddGroceries.TabIndex = 0;
+            // 
+            // btnClearTheLastProduct
+            // 
+            btnClearTheLastProduct.BackColor = Color.Gold;
+            btnClearTheLastProduct.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            btnClearTheLastProduct.Location = new Point(201, 339);
+            btnClearTheLastProduct.Name = "btnClearTheLastProduct";
+            btnClearTheLastProduct.Size = new Size(197, 29);
+            btnClearTheLastProduct.TabIndex = 4;
+            btnClearTheLastProduct.Text = "Clear the last product";
+            btnClearTheLastProduct.UseVisualStyleBackColor = false;
+            btnClearTheLastProduct.Click += btnClearTheLastProduct_Click;
             // 
             // MainForm
             // 
@@ -765,5 +779,6 @@
         private Label lblInfo;
         private Button btnAddToTheList;
         private TextBox tbAddGroceries;
+        private Button btnClearTheLastProduct;
     }
 }

@@ -125,7 +125,7 @@ namespace HouseMateLink
             if (!string.IsNullOrEmpty(groceryItem))
             {
                 lbShoppingList.Items.Add($"{itemCounter}. {groceryItem}");
-                itemCounter++; 
+                itemCounter++;
 
                 tbAddGroceries.Text = string.Empty;
             }
@@ -133,6 +133,36 @@ namespace HouseMateLink
             {
                 MessageBox.Show("Please enter a grocery item before adding.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void btnClearTheLastProduct_Click(object sender, EventArgs e)
+        {
+            if (lbShoppingList.Items.Count > 0)
+            {
+                lbShoppingList.Items.RemoveAt(0);
+                RenumberShoppingList();
+            }
+            else
+            {
+                MessageBox.Show("The shopping list is already empty.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void RenumberShoppingList()
+        {
+            for (int i = 0; i < lbShoppingList.Items.Count; i++)
+            {
+                string itemText = lbShoppingList.Items[i].ToString();
+                int firstDotIndex = itemText.IndexOf('.');
+                if (firstDotIndex != -1)
+                {
+                    itemText = itemText.Substring(firstDotIndex + 2); 
+                }
+
+                lbShoppingList.Items[i] = $"{i + 1}. {itemText}";
+            }
+
+            itemCounter = lbShoppingList.Items.Count + 1;
         }
     }
 }
