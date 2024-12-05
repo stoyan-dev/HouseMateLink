@@ -127,7 +127,7 @@
             grbButtons.Margin = new Padding(2);
             grbButtons.Name = "grbButtons";
             grbButtons.Padding = new Padding(2);
-            grbButtons.Size = new Size(358, 314);
+            grbButtons.Size = new Size(359, 323);
             grbButtons.TabIndex = 3;
             grbButtons.TabStop = false;
             // 

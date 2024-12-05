@@ -12,9 +12,13 @@ namespace HouseMateLink
 {
     public partial class ProfileOverviewAdmin : Form
     {
+        private Building building;
+        private User user;
         public ProfileOverviewAdmin()
         {
             InitializeComponent();
+            building = new Building();
+            cbAddRole.DataSource = Role.GetValues(typeof(Role));
         }
 
         private void btnSelectPhoto_Click(object sender, EventArgs e)
@@ -63,6 +67,18 @@ namespace HouseMateLink
                     MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnAdduser_Click(object sender, EventArgs e)
+        {
+            string name = tbAddName.Text;
+            Role role = (Role)cbAddRole.SelectedIndex;
+            int roomNum = (int)nudAddRoom.Value;
+            string username = tbAddUsername.Text;
+            string password = tbAddPassword.Text;
+            
+            user = new User()
+            building.AddUser()
         }
     }
 }
