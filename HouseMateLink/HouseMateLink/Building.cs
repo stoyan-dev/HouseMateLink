@@ -42,7 +42,7 @@ namespace HouseMateLink
         public List<User> AssignWeeklyTasks(List<User> tenants)
         {
             var assignedTenants = tenants.Take(5).ToList();
-            tenants = tenants.Concat(tenants.Take(5)).ToList();
+            tenants = tenants.Concat(tenants.Skip(5).Take(5)).ToList();
             return assignedTenants;
         }
     }
