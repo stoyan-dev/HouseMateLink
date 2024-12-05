@@ -19,15 +19,16 @@ namespace HouseMateLink
 
         private void LoadHouseRules()
         {
-            string houseRules = "House Rules:\n\n" +
-                                "1. Respect each other's space.\n" +
-                                "2. Clean up after yourself.\n" +
-                                "3. No loud music after 11 PM.\n" +
-                                "4. Take out the trash on designated days.\n" +
-                                "5. Don't throw any objects in the toilet.\n" +
-                                "6. Shared expenses should be paid on time.\n" +
-                                "7. Keep common areas tidy.\n" +
-                                "8. No smoking in shared areas.\n";
+            string houseRules = @"House Rules:
+
+1. Respect each other's space.
+2. Clean up after yourself.
+3. No loud music after 11 PM.
+4. Take out the trash on designated days.
+5. Don't throw any objects in the toilet.
+6. Shared expenses should be paid on time.
+7. Keep common areas tidy.
+8. No smoking in shared areas.";
 
             rulesTextBox.Text = houseRules;
         }
