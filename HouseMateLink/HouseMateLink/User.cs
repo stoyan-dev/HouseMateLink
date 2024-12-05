@@ -13,10 +13,8 @@ namespace HouseMateLink
         public string Photo { get; set; }
         private int userID = 0;
 
-        private Task tasksUser;
-        private List<Announcement> announcementsUser;
 
-        public User(int userID, string username, string password, string name, Role role, int roomNumber, string photo)
+        public User(string username, string password, string name, Role role, int roomNumber, string photo)
         {
             UserID ++;
             Username = username;
@@ -25,12 +23,6 @@ namespace HouseMateLink
             Role = role;
             RoomNumber = roomNumber;
             Photo = photo;
-            announcementsUser= new List<Announcement>();
-        }
-
-        public void AddAnnouncement(Announcement announcement)
-        {
-            announcementsUser.Add(announcement);
         }
     }
 }
