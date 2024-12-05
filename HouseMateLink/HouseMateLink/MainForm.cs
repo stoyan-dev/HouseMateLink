@@ -13,6 +13,7 @@ namespace HouseMateLink
 {
     public partial class MainForm : Form
     {
+        private int itemCounter = 1;
         public bool IsAdmin { get; set; }
         public MainForm(bool isAdmin)
         {
@@ -119,7 +120,19 @@ namespace HouseMateLink
 
         private void btnAddToTheList_Click(object sender, EventArgs e)
         {
+            string groceryItem = tbAddGroceries.Text.Trim();
 
+            if (!string.IsNullOrEmpty(groceryItem))
+            {
+                lbShoppingList.Items.Add($"{itemCounter}. {groceryItem}");
+                itemCounter++; 
+
+                tbAddGroceries.Text = string.Empty;
+            }
+            else
+            {
+                MessageBox.Show("Please enter a grocery item before adding.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }
