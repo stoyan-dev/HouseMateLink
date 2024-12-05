@@ -116,5 +116,10 @@ namespace HouseMateLink
                 rulesTextBox.ReadOnly = true;
             }
         }
+
+        private void btnAddToTheList_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

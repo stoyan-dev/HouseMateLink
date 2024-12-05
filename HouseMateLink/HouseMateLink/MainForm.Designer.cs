@@ -74,12 +74,18 @@
             btnEditRules = new Button();
             rulesTextBox = new TextBox();
             tabShoppingList = new TabPage();
+            monthCalendar1 = new MonthCalendar();
+            tbAddGroceries = new TextBox();
+            btnAddToTheList = new Button();
+            lblInfo = new Label();
+            lbShoppingList = new ListBox();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
             grbHome.SuspendLayout();
             gbProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            tabCalendar.SuspendLayout();
             tabAnnouncements.SuspendLayout();
             grbAnnouncements.SuspendLayout();
             gbMessage.SuspendLayout();
@@ -87,6 +93,7 @@
             grbComplaints.SuspendLayout();
             gbComplaint.SuspendLayout();
             tabHouseRules.SuspendLayout();
+            tabShoppingList.SuspendLayout();
             SuspendLayout();
             // 
             // tabHome
@@ -359,6 +366,7 @@
             // 
             // tabCalendar
             // 
+            tabCalendar.Controls.Add(monthCalendar1);
             tabCalendar.Location = new Point(4, 29);
             tabCalendar.Margin = new Padding(2);
             tabCalendar.Name = "tabCalendar";
@@ -609,12 +617,62 @@
             // 
             // tabShoppingList
             // 
+            tabShoppingList.BackColor = Color.DeepSkyBlue;
+            tabShoppingList.Controls.Add(lbShoppingList);
+            tabShoppingList.Controls.Add(lblInfo);
+            tabShoppingList.Controls.Add(btnAddToTheList);
+            tabShoppingList.Controls.Add(tbAddGroceries);
             tabShoppingList.Location = new Point(4, 29);
             tabShoppingList.Margin = new Padding(2);
             tabShoppingList.Name = "tabShoppingList";
             tabShoppingList.Size = new Size(620, 406);
             tabShoppingList.TabIndex = 5;
             tabShoppingList.Text = "Shopping List";
+            // 
+            // monthCalendar1
+            // 
+            monthCalendar1.BackColor = Color.DeepSkyBlue;
+            monthCalendar1.Location = new Point(13, 32);
+            monthCalendar1.Name = "monthCalendar1";
+            monthCalendar1.TabIndex = 0;
+            // 
+            // tbAddGroceries
+            // 
+            tbAddGroceries.BackColor = Color.Gold;
+            tbAddGroceries.Location = new Point(81, 27);
+            tbAddGroceries.Name = "tbAddGroceries";
+            tbAddGroceries.Size = new Size(192, 27);
+            tbAddGroceries.TabIndex = 0;
+            // 
+            // btnAddToTheList
+            // 
+            btnAddToTheList.BackColor = Color.Gold;
+            btnAddToTheList.Location = new Point(366, 25);
+            btnAddToTheList.Name = "btnAddToTheList";
+            btnAddToTheList.Size = new Size(128, 29);
+            btnAddToTheList.TabIndex = 1;
+            btnAddToTheList.Text = "Add";
+            btnAddToTheList.UseVisualStyleBackColor = false;
+            btnAddToTheList.Click += btnAddToTheList_Click;
+            // 
+            // lblInfo
+            // 
+            lblInfo.AutoSize = true;
+            lblInfo.Font = new Font("Segoe UI", 11F);
+            lblInfo.Location = new Point(66, 73);
+            lblInfo.Name = "lblInfo";
+            lblInfo.Size = new Size(479, 25);
+            lblInfo.TabIndex = 2;
+            lblInfo.Text = "Here you can add the necessary groceries for the house";
+            // 
+            // lbShoppingList
+            // 
+            lbShoppingList.BackColor = Color.Gold;
+            lbShoppingList.FormattingEnabled = true;
+            lbShoppingList.Location = new Point(120, 118);
+            lbShoppingList.Name = "lbShoppingList";
+            lbShoppingList.Size = new Size(374, 244);
+            lbShoppingList.TabIndex = 3;
             // 
             // MainForm
             // 
@@ -634,6 +692,7 @@
             gbProfile.ResumeLayout(false);
             gbProfile.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            tabCalendar.ResumeLayout(false);
             tabAnnouncements.ResumeLayout(false);
             grbAnnouncements.ResumeLayout(false);
             grbAnnouncements.PerformLayout();
@@ -646,6 +705,8 @@
             gbComplaint.PerformLayout();
             tabHouseRules.ResumeLayout(false);
             tabHouseRules.PerformLayout();
+            tabShoppingList.ResumeLayout(false);
+            tabShoppingList.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -697,5 +758,10 @@
         private Label lblComplaint;
         private Button btnEditRules;
         private TextBox rulesTextBox;
+        private MonthCalendar monthCalendar1;
+        private ListBox lbShoppingList;
+        private Label lblInfo;
+        private Button btnAddToTheList;
+        private TextBox tbAddGroceries;
     }
 }
