@@ -6,6 +6,8 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
+
 
         /// <summary>
         /// Clean up any resources being used.
@@ -54,14 +56,8 @@
             monthCalendar1 = new MonthCalendar();
             tabAnnouncements = new TabPage();
             grbAnnouncements = new GroupBox();
-            gbMessage = new GroupBox();
-            lblDateCreated = new Label();
-            label7 = new Label();
-            lblAnnouncement = new Label();
-            dateTimePicker = new DateTimePicker();
+            panelAnnouncements = new Panel();
             btnCreateAnnouncement = new Button();
-            rbMessage = new RadioButton();
-            rbEvent = new RadioButton();
             tbAnnouncement = new TextBox();
             tabComplaints = new TabPage();
             grbComplaints = new GroupBox();
@@ -75,12 +71,12 @@
             btnEditRules = new Button();
             rulesTextBox = new TextBox();
             tabGroceryList = new TabPage();
+            btnClearAllProducts = new Button();
             btnClearTheLastProduct = new Button();
             lbShoppingList = new ListBox();
             lblInfo = new Label();
             btnAddToTheList = new Button();
             tbAddGroceries = new TextBox();
-            btnClearAllProducts = new Button();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
@@ -90,7 +86,6 @@
             tabCalendar.SuspendLayout();
             tabAnnouncements.SuspendLayout();
             grbAnnouncements.SuspendLayout();
-            gbMessage.SuspendLayout();
             tabComplaints.SuspendLayout();
             grbComplaints.SuspendLayout();
             gbComplaint.SuspendLayout();
@@ -400,114 +395,44 @@
             // 
             // grbAnnouncements
             // 
-            grbAnnouncements.BackColor = Color.GhostWhite;
-            grbAnnouncements.Controls.Add(gbMessage);
-            grbAnnouncements.Controls.Add(dateTimePicker);
+            grbAnnouncements.BackColor = Color.DeepSkyBlue;
+            grbAnnouncements.Controls.Add(panelAnnouncements);
             grbAnnouncements.Controls.Add(btnCreateAnnouncement);
-            grbAnnouncements.Controls.Add(rbMessage);
-            grbAnnouncements.Controls.Add(rbEvent);
             grbAnnouncements.Controls.Add(tbAnnouncement);
             grbAnnouncements.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grbAnnouncements.Location = new Point(16, 21);
+            grbAnnouncements.Location = new Point(3, 3);
             grbAnnouncements.Name = "grbAnnouncements";
-            grbAnnouncements.Size = new Size(598, 379);
+            grbAnnouncements.Size = new Size(614, 397);
             grbAnnouncements.TabIndex = 1;
             grbAnnouncements.TabStop = false;
             grbAnnouncements.Text = "Announcements";
+            grbAnnouncements.Enter += grbAnnouncements_Enter;
             // 
-            // gbMessage
+            // panelAnnouncements
             // 
-            gbMessage.Controls.Add(lblDateCreated);
-            gbMessage.Controls.Add(label7);
-            gbMessage.Controls.Add(lblAnnouncement);
-            gbMessage.Location = new Point(19, 39);
-            gbMessage.Name = "gbMessage";
-            gbMessage.Size = new Size(225, 126);
-            gbMessage.TabIndex = 6;
-            gbMessage.TabStop = false;
-            gbMessage.Text = "Message";
-            // 
-            // lblDateCreated
-            // 
-            lblDateCreated.AutoSize = true;
-            lblDateCreated.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold);
-            lblDateCreated.Location = new Point(116, 90);
-            lblDateCreated.Name = "lblDateCreated";
-            lblDateCreated.Size = new Size(17, 17);
-            lblDateCreated.TabIndex = 2;
-            lblDateCreated.Text = "...";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold);
-            label7.Location = new Point(20, 90);
-            label7.Name = "label7";
-            label7.Size = new Size(78, 17);
-            label7.TabIndex = 1;
-            label7.Text = "Created on:";
-            // 
-            // lblAnnouncement
-            // 
-            lblAnnouncement.AutoSize = true;
-            lblAnnouncement.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold);
-            lblAnnouncement.Location = new Point(20, 52);
-            lblAnnouncement.Name = "lblAnnouncement";
-            lblAnnouncement.Size = new Size(17, 17);
-            lblAnnouncement.TabIndex = 0;
-            lblAnnouncement.Text = "...";
-            // 
-            // dateTimePicker
-            // 
-            dateTimePicker.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dateTimePicker.Location = new Point(179, 338);
-            dateTimePicker.Name = "dateTimePicker";
-            dateTimePicker.Size = new Size(212, 25);
-            dateTimePicker.TabIndex = 5;
+            panelAnnouncements.Location = new Point(6, 30);
+            panelAnnouncements.Name = "panelAnnouncements";
+            panelAnnouncements.Size = new Size(602, 268);
+            panelAnnouncements.TabIndex = 5;
             // 
             // btnCreateAnnouncement
             // 
             btnCreateAnnouncement.BackColor = Color.Gold;
             btnCreateAnnouncement.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCreateAnnouncement.Location = new Point(406, 333);
+            btnCreateAnnouncement.Location = new Point(219, 350);
             btnCreateAnnouncement.Name = "btnCreateAnnouncement";
-            btnCreateAnnouncement.Size = new Size(161, 35);
+            btnCreateAnnouncement.Size = new Size(141, 41);
             btnCreateAnnouncement.TabIndex = 4;
             btnCreateAnnouncement.Text = "Create";
             btnCreateAnnouncement.UseVisualStyleBackColor = false;
             btnCreateAnnouncement.Click += btnCreateAnnouncement_Click;
             // 
-            // rbMessage
-            // 
-            rbMessage.AutoSize = true;
-            rbMessage.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            rbMessage.Location = new Point(91, 340);
-            rbMessage.Name = "rbMessage";
-            rbMessage.Size = new Size(88, 23);
-            rbMessage.TabIndex = 3;
-            rbMessage.TabStop = true;
-            rbMessage.Text = "Message";
-            rbMessage.UseVisualStyleBackColor = true;
-            // 
-            // rbEvent
-            // 
-            rbEvent.AutoSize = true;
-            rbEvent.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            rbEvent.Location = new Point(19, 340);
-            rbEvent.Name = "rbEvent";
-            rbEvent.Size = new Size(66, 23);
-            rbEvent.TabIndex = 2;
-            rbEvent.TabStop = true;
-            rbEvent.Text = "Event";
-            rbEvent.UseVisualStyleBackColor = true;
-            rbEvent.CheckedChanged += rbEvent_CheckedChanged;
-            // 
             // tbAnnouncement
             // 
-            tbAnnouncement.Location = new Point(19, 273);
+            tbAnnouncement.Location = new Point(20, 304);
             tbAnnouncement.Multiline = true;
             tbAnnouncement.Name = "tbAnnouncement";
-            tbAnnouncement.Size = new Size(548, 54);
+            tbAnnouncement.Size = new Size(548, 40);
             tbAnnouncement.TabIndex = 1;
             // 
             // tabComplaints
@@ -645,6 +570,18 @@
             tabGroceryList.TabIndex = 5;
             tabGroceryList.Text = "Grocery List";
             // 
+            // btnClearAllProducts
+            // 
+            btnClearAllProducts.BackColor = Color.Gold;
+            btnClearAllProducts.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            btnClearAllProducts.Location = new Point(303, 342);
+            btnClearAllProducts.Name = "btnClearAllProducts";
+            btnClearAllProducts.Size = new Size(180, 29);
+            btnClearAllProducts.TabIndex = 5;
+            btnClearAllProducts.Text = "Clear all products";
+            btnClearAllProducts.UseVisualStyleBackColor = false;
+            btnClearAllProducts.Click += btnClearAllProducts_Click;
+            // 
             // btnClearTheLastProduct
             // 
             btnClearTheLastProduct.BackColor = Color.Gold;
@@ -696,18 +633,6 @@
             tbAddGroceries.Size = new Size(192, 27);
             tbAddGroceries.TabIndex = 0;
             // 
-            // btnClearAllProducts
-            // 
-            btnClearAllProducts.BackColor = Color.Gold;
-            btnClearAllProducts.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnClearAllProducts.Location = new Point(303, 342);
-            btnClearAllProducts.Name = "btnClearAllProducts";
-            btnClearAllProducts.Size = new Size(180, 29);
-            btnClearAllProducts.TabIndex = 5;
-            btnClearAllProducts.Text = "Clear all products";
-            btnClearAllProducts.UseVisualStyleBackColor = false;
-            btnClearAllProducts.Click += btnClearAllProducts_Click;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -730,8 +655,6 @@
             tabAnnouncements.ResumeLayout(false);
             grbAnnouncements.ResumeLayout(false);
             grbAnnouncements.PerformLayout();
-            gbMessage.ResumeLayout(false);
-            gbMessage.PerformLayout();
             tabComplaints.ResumeLayout(false);
             grbComplaints.ResumeLayout(false);
             grbComplaints.PerformLayout();
@@ -773,19 +696,9 @@
         private Label label5;
         private Label label6;
         private PictureBox pictureBox1;
-        private GroupBox grbAnnouncements;
-        private RadioButton rbMessage;
-        private RadioButton rbEvent;
-        private TextBox tbAnnouncement;
-        private Button btnCreateAnnouncement;
         private GroupBox grbComplaints;
-        private DateTimePicker dateTimePicker;
         private Button btnPostComplaint;
         private TextBox tbCreateComplaint;
-        private GroupBox gbMessage;
-        private Label label7;
-        private Label lblAnnouncement;
-        private Label lblDateCreated;
         private GroupBox gbComplaint;
         private Label label8;
         private Label lblDatePosted;
@@ -799,5 +712,9 @@
         private TextBox tbAddGroceries;
         private Button btnClearTheLastProduct;
         private Button btnClearAllProducts;
+        private GroupBox grbAnnouncements;
+        private Panel panelAnnouncements;
+        private Button btnCreateAnnouncement;
+        private TextBox tbAnnouncement;
     }
 }

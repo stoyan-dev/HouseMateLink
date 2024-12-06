@@ -18,9 +18,21 @@ namespace HouseMateLink
         public MainForm(bool a)
         {
             InitializeComponent();
+            dateTimePicker = new DateTimePicker();
             isAdmin = a;
             Initialization();
 
+        }
+
+        private void Initialization()
+        {
+            itemCounter = 1;
+            dateTimePicker.Value = DateTime.Now;  // Now safe to access the control
+            dateTimePicker.Visible = false;
+            LoadHouseRules();
+
+            btnEditRules.Visible = isAdmin;
+            rulesTextBox.ReadOnly = true;
         }
 
         private void grbHome_Enter(object sender, EventArgs e)
@@ -69,12 +81,12 @@ namespace HouseMateLink
             }
         }
 
-        private void rbEvent_CheckedChanged(object sender, EventArgs e)
-        {
-            dateTimePicker.Visible = rbEvent.Checked;
+        //private void rbEvent_CheckedChanged(object sender, EventArgs e)
+        //{
+        //  dateTimePicker.Visible = rbEvent.Checked;
 
 
-        }
+        //}
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
@@ -165,20 +177,39 @@ namespace HouseMateLink
             itemCounter = lbShoppingList.Items.Count + 1;
         }
 
-        private void Initialization()
-        {
-            itemCounter = 1;
-            dateTimePicker.Value = DateTime.Now;
-            dateTimePicker.Visible = false;
-            LoadHouseRules();
-
-            btnEditRules.Visible = isAdmin;
-            rulesTextBox.ReadOnly = true;
-        }
 
         private void btnCreateAnnouncement_Click(object sender, EventArgs e)
         {
+            string message = tbAnnouncement.Text.Trim();
+            
+            if (string.IsNullOrEmpty(message))
+            {
+                MessageBox.Show("Please enter an announcement.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(message);
+
+            newAnnouncement.Size = new Size(200, 80); 
+
+            int newX = 10;   
+            int newY = 10;  
+
+            if (panelAnnouncements.Controls.Count > 0)
+            {
+                Control lastControl = panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1];
+
+                newX = lastControl.Left;
+                newY = lastControl.Bottom + 10;  
+            }
+
+            newAnnouncement.Location = new Point(newX, newY);
+
+            panelAnnouncements.Controls.Add(newAnnouncement);
+
+            panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, newAnnouncement.Bottom + 10); 
+
+            tbAnnouncement.Clear();
         }
 
         private void btnClearAllProducts_Click(object sender, EventArgs e)
@@ -193,8 +224,8 @@ namespace HouseMateLink
 
                 if (result == DialogResult.Yes)
                 {
-                    lbShoppingList.Items.Clear(); 
-                    itemCounter = 1; 
+                    lbShoppingList.Items.Clear();
+                    itemCounter = 1;
                     MessageBox.Show("All items have been cleared.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -202,6 +233,11 @@ namespace HouseMateLink
             {
                 MessageBox.Show("The shopping list is empty.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void grbAnnouncements_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualBasic.ApplicationServices;
 
 namespace HouseMateLink
 {
@@ -14,13 +11,15 @@ namespace HouseMateLink
         private List<User> users;
         private List<Complaint> complaints;
         private List<Announcement> announcements;
-        private List<User> tenants = new List<User>();
+        private List<User> tenants;
         private int taskIndex = 0;
 
         public Building(string name)
         {
             users = new List<User>();
             complaints = new List<Complaint>();
+            announcements = new List<Announcement>();
+            tenants = new List<User>();
             this.Name = name;
         }
 
@@ -30,12 +29,18 @@ namespace HouseMateLink
             users.Add(newUser);
 
             if (newUser.Role == Role.TENANT)
-            { tenants.Add(newUser); }
+            {
+                tenants.Add(newUser);
+            }
         }
 
         public void RemoveUser(User user)
         {
             users.Remove(user);
+            if (user.Role == Role.TENANT)
+            {
+                tenants.Remove(user);
+            }
         }
 
         public List<User> GetUsers()
@@ -50,18 +55,48 @@ namespace HouseMateLink
 
         public List<User> AssignWeeklyTasks()
         {
-           List<User> assignedTenants = new List<User>();
-           int count = tenants.Count;
+            List<User> assignedTenants = new List<User>();
+            int count = tenants.Count;
 
-            for(int i = 0; i < 5; i++)
+            if (count == 0) return assignedTenants;
+
+            int tasksToAssign = Math.Min(5, count);
+            for (int i = 0; i < tasksToAssign; i++)
             {
                 assignedTenants.Add(tenants[(taskIndex + i) % count]);
             }
-            taskIndex += 5 % count;
+
+            taskIndex = (taskIndex + tasksToAssign) % count;
 
             return assignedTenants;
         }
 
+        public void CreateComplaint(string complaintText)
+        {
+            if (!string.IsNullOrEmpty(complaintText))
+            {
+                Complaint newComplaint = new Complaint(complaintText);
+                complaints.Add(newComplaint);
+            }
+        }
 
+        public List<Complaint> GetComplaints()
+        {
+            return complaints;
+        }
+
+        public void CreateAnnouncement(string announcementText)
+        {
+            if (!string.IsNullOrEmpty(announcementText))
+            {
+                Announcement newAnnouncement = new Announcement(announcementText, DateTime.Now);
+                announcements.Add(newAnnouncement);
+            }
+        }
+
+        public List<Announcement> GetAnnouncements()
+        {
+            return announcements;
+        }
     }
 }

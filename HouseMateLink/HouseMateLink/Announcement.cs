@@ -1,52 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HouseMateLink
 {
     public class Announcement
     {
+        private static int announcementCounter = 0;
         public int AnnouncementID { get; }
-        private DateTime CreatedAt;
-        private const int duration = 7;
-        private AnnouncementType announcementType;
+        public DateTime CreatedAt { get; }
+        private const int duration = 7;  
         public string Description { get; set; }
-        public bool isExpired
+
+        public bool IsExpired
         {
             get
             {
-                return (DateTime.Now - this.CreatedAt).TotalDays > 7;
-            }
-        }
-        public bool IsEvent {  get; set; }
-        public DateTime EventDate
-        {
-            get
-            {
-                if (!IsEvent)
-                {
-                    throw new InvalidOperationException("EventDate is only available when IsEvent is true.");
-                }
-                return this.EventDate;
-            }
-            set
-            {
-                if (!IsEvent)
-                {
-                    throw new InvalidOperationException("Cannot set EventDate when IsEvent is false.");
-                }
+                return (DateTime.Now - this.CreatedAt).TotalDays > duration;
             }
         }
 
-        public Announcement(string description, AnnouncementType announcementType, bool IsEvent)
+        public Announcement(string description, DateTime createdAt)
         {
-            AnnouncementID += 1;
+            AnnouncementID = ++announcementCounter;
             this.Description = description;
-            this.announcementType = announcementType;
-            CreatedAt = DateTime.Today;
+            CreatedAt = createdAt;
         }
 
+        public Announcement(string description) : this(description, DateTime.Today)
+        {
+        }
     }
 }
