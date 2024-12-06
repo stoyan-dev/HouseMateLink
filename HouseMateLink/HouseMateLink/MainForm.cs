@@ -55,7 +55,7 @@ namespace HouseMateLink
 
         private void btnProfileOverview_Click(object sender, EventArgs e)
         {
-            if(isAdmin)
+            if (isAdmin)
             {
                 ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin();
                 profileOverviewAdmin.Show();
@@ -179,6 +179,29 @@ namespace HouseMateLink
         private void btnCreateAnnouncement_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnClearAllProducts_Click(object sender, EventArgs e)
+        {
+            if (lbShoppingList.Items.Count > 0)
+            {
+                DialogResult result = MessageBox.Show(
+                    "Are you sure?",
+                    "Confirm Clear",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    lbShoppingList.Items.Clear(); 
+                    itemCounter = 1; 
+                    MessageBox.Show("All items have been cleared.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("The shopping list is empty.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

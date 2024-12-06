@@ -80,6 +80,7 @@
             lblInfo = new Label();
             btnAddToTheList = new Button();
             tbAddGroceries = new TextBox();
+            btnClearAllProducts = new Button();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
@@ -631,6 +632,7 @@
             // tabGroceryList
             // 
             tabGroceryList.BackColor = Color.DeepSkyBlue;
+            tabGroceryList.Controls.Add(btnClearAllProducts);
             tabGroceryList.Controls.Add(btnClearTheLastProduct);
             tabGroceryList.Controls.Add(lbShoppingList);
             tabGroceryList.Controls.Add(lblInfo);
@@ -647,9 +649,9 @@
             // 
             btnClearTheLastProduct.BackColor = Color.Gold;
             btnClearTheLastProduct.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnClearTheLastProduct.Location = new Point(201, 339);
+            btnClearTheLastProduct.Location = new Point(109, 342);
             btnClearTheLastProduct.Name = "btnClearTheLastProduct";
-            btnClearTheLastProduct.Size = new Size(197, 29);
+            btnClearTheLastProduct.Size = new Size(180, 29);
             btnClearTheLastProduct.TabIndex = 4;
             btnClearTheLastProduct.Text = "Clear the last product";
             btnClearTheLastProduct.UseVisualStyleBackColor = false;
@@ -693,6 +695,18 @@
             tbAddGroceries.Name = "tbAddGroceries";
             tbAddGroceries.Size = new Size(192, 27);
             tbAddGroceries.TabIndex = 0;
+            // 
+            // btnClearAllProducts
+            // 
+            btnClearAllProducts.BackColor = Color.Gold;
+            btnClearAllProducts.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            btnClearAllProducts.Location = new Point(303, 342);
+            btnClearAllProducts.Name = "btnClearAllProducts";
+            btnClearAllProducts.Size = new Size(180, 29);
+            btnClearAllProducts.TabIndex = 5;
+            btnClearAllProducts.Text = "Clear all products";
+            btnClearAllProducts.UseVisualStyleBackColor = false;
+            btnClearAllProducts.Click += btnClearAllProducts_Click;
             // 
             // MainForm
             // 
@@ -784,5 +798,6 @@
         private Button btnAddToTheList;
         private TextBox tbAddGroceries;
         private Button btnClearTheLastProduct;
+        private Button btnClearAllProducts;
     }
 }
