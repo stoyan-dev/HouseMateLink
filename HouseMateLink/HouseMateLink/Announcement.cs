@@ -21,7 +21,7 @@ namespace HouseMateLink
             }
         }
         public bool IsEvent {  get; set; }
-        public DateTime? EventDate
+        public DateTime EventDate
         {
             get
             {
@@ -29,7 +29,7 @@ namespace HouseMateLink
                 {
                     throw new InvalidOperationException("EventDate is only available when IsEvent is true.");
                 }
-                return DateTime.Now;
+                return this.EventDate;
             }
             set
             {

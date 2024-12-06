@@ -75,6 +75,7 @@
             btnEditRules = new Button();
             rulesTextBox = new TextBox();
             tabGroceryList = new TabPage();
+            tabGroceryList = new TabPage();
             btnClearTheLastProduct = new Button();
             lbShoppingList = new ListBox();
             lblInfo = new Label();
@@ -380,6 +381,7 @@
             // monthCalendar1
             // 
             monthCalendar1.BackColor = Color.DeepSkyBlue;
+            monthCalendar1.Font = new Font("Segoe UI", 12F);
             monthCalendar1.Location = new Point(13, 32);
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 0;
@@ -639,6 +641,18 @@
             tabGroceryList.Size = new Size(620, 406);
             tabGroceryList.TabIndex = 5;
             tabGroceryList.Text = "Grocery List";
+            // 
+            // btnClearTheLastProduct
+            // 
+            btnClearTheLastProduct.BackColor = Color.Gold;
+            btnClearTheLastProduct.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            btnClearTheLastProduct.Location = new Point(201, 339);
+            btnClearTheLastProduct.Name = "btnClearTheLastProduct";
+            btnClearTheLastProduct.Size = new Size(197, 29);
+            btnClearTheLastProduct.TabIndex = 4;
+            btnClearTheLastProduct.Text = "Clear the last product";
+            btnClearTheLastProduct.UseVisualStyleBackColor = false;
+            btnClearTheLastProduct.Click += btnClearTheLastProduct_Click;
             // 
             // btnClearTheLastProduct
             // 
