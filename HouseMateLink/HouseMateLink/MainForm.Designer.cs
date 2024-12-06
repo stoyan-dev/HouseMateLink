@@ -75,7 +75,6 @@
             btnEditRules = new Button();
             rulesTextBox = new TextBox();
             tabGroceryList = new TabPage();
-            tabGroceryList = new TabPage();
             btnClearTheLastProduct = new Button();
             lbShoppingList = new ListBox();
             lblInfo = new Label();
@@ -234,7 +233,7 @@
             grbHome.Margin = new Padding(2);
             grbHome.Name = "grbHome";
             grbHome.Padding = new Padding(2);
-            grbHome.Size = new Size(185, 314);
+            grbHome.Size = new Size(185, 323);
             grbHome.TabIndex = 2;
             grbHome.TabStop = false;
             grbHome.Text = "Student Housing B.V.";
@@ -621,10 +620,12 @@
             // 
             // rulesTextBox
             // 
-            rulesTextBox.Location = new Point(27, 22);
+            rulesTextBox.Font = new Font("Courier New", 10F);
+            rulesTextBox.Location = new Point(24, 22);
             rulesTextBox.Multiline = true;
             rulesTextBox.Name = "rulesTextBox";
-            rulesTextBox.Size = new Size(562, 316);
+            rulesTextBox.ScrollBars = ScrollBars.Vertical;
+            rulesTextBox.Size = new Size(574, 316);
             rulesTextBox.TabIndex = 3;
             // 
             // tabGroceryList
@@ -641,18 +642,6 @@
             tabGroceryList.Size = new Size(620, 406);
             tabGroceryList.TabIndex = 5;
             tabGroceryList.Text = "Grocery List";
-            // 
-            // btnClearTheLastProduct
-            // 
-            btnClearTheLastProduct.BackColor = Color.Gold;
-            btnClearTheLastProduct.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnClearTheLastProduct.Location = new Point(201, 339);
-            btnClearTheLastProduct.Name = "btnClearTheLastProduct";
-            btnClearTheLastProduct.Size = new Size(197, 29);
-            btnClearTheLastProduct.TabIndex = 4;
-            btnClearTheLastProduct.Text = "Clear the last product";
-            btnClearTheLastProduct.UseVisualStyleBackColor = false;
-            btnClearTheLastProduct.Click += btnClearTheLastProduct_Click;
             // 
             // btnClearTheLastProduct
             // 
