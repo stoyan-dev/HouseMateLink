@@ -74,12 +74,12 @@
             tabHouseRules = new TabPage();
             btnEditRules = new Button();
             rulesTextBox = new TextBox();
-            tabShoppingList = new TabPage();
+            tabGroceryList = new TabPage();
+            btnClearTheLastProduct = new Button();
             lbShoppingList = new ListBox();
             lblInfo = new Label();
             btnAddToTheList = new Button();
             tbAddGroceries = new TextBox();
-            btnClearTheLastProduct = new Button();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
@@ -94,7 +94,7 @@
             grbComplaints.SuspendLayout();
             gbComplaint.SuspendLayout();
             tabHouseRules.SuspendLayout();
-            tabShoppingList.SuspendLayout();
+            tabGroceryList.SuspendLayout();
             SuspendLayout();
             // 
             // tabHome
@@ -104,7 +104,7 @@
             tabHome.Controls.Add(tabAnnouncements);
             tabHome.Controls.Add(tabComplaints);
             tabHome.Controls.Add(tabHouseRules);
-            tabHome.Controls.Add(tabShoppingList);
+            tabHome.Controls.Add(tabGroceryList);
             tabHome.Location = new Point(1, 11);
             tabHome.Margin = new Padding(2);
             tabHome.Name = "tabHome";
@@ -473,6 +473,7 @@
             btnCreateAnnouncement.TabIndex = 4;
             btnCreateAnnouncement.Text = "Create";
             btnCreateAnnouncement.UseVisualStyleBackColor = false;
+            btnCreateAnnouncement.Click += btnCreateAnnouncement_Click;
             // 
             // rbMessage
             // 
@@ -624,20 +625,32 @@
             rulesTextBox.Size = new Size(562, 316);
             rulesTextBox.TabIndex = 3;
             // 
-            // tabShoppingList
+            // tabGroceryList
             // 
-            tabShoppingList.BackColor = Color.DeepSkyBlue;
-            tabShoppingList.Controls.Add(btnClearTheLastProduct);
-            tabShoppingList.Controls.Add(lbShoppingList);
-            tabShoppingList.Controls.Add(lblInfo);
-            tabShoppingList.Controls.Add(btnAddToTheList);
-            tabShoppingList.Controls.Add(tbAddGroceries);
-            tabShoppingList.Location = new Point(4, 29);
-            tabShoppingList.Margin = new Padding(2);
-            tabShoppingList.Name = "tabShoppingList";
-            tabShoppingList.Size = new Size(620, 406);
-            tabShoppingList.TabIndex = 5;
-            tabShoppingList.Text = "Shopping List";
+            tabGroceryList.BackColor = Color.DeepSkyBlue;
+            tabGroceryList.Controls.Add(btnClearTheLastProduct);
+            tabGroceryList.Controls.Add(lbShoppingList);
+            tabGroceryList.Controls.Add(lblInfo);
+            tabGroceryList.Controls.Add(btnAddToTheList);
+            tabGroceryList.Controls.Add(tbAddGroceries);
+            tabGroceryList.Location = new Point(4, 29);
+            tabGroceryList.Margin = new Padding(2);
+            tabGroceryList.Name = "tabGroceryList";
+            tabGroceryList.Size = new Size(620, 406);
+            tabGroceryList.TabIndex = 5;
+            tabGroceryList.Text = "Grocery List";
+            // 
+            // btnClearTheLastProduct
+            // 
+            btnClearTheLastProduct.BackColor = Color.Gold;
+            btnClearTheLastProduct.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            btnClearTheLastProduct.Location = new Point(201, 339);
+            btnClearTheLastProduct.Name = "btnClearTheLastProduct";
+            btnClearTheLastProduct.Size = new Size(197, 29);
+            btnClearTheLastProduct.TabIndex = 4;
+            btnClearTheLastProduct.Text = "Clear the last product";
+            btnClearTheLastProduct.UseVisualStyleBackColor = false;
+            btnClearTheLastProduct.Click += btnClearTheLastProduct_Click;
             // 
             // lbShoppingList
             // 
@@ -678,18 +691,6 @@
             tbAddGroceries.Size = new Size(192, 27);
             tbAddGroceries.TabIndex = 0;
             // 
-            // btnClearTheLastProduct
-            // 
-            btnClearTheLastProduct.BackColor = Color.Gold;
-            btnClearTheLastProduct.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnClearTheLastProduct.Location = new Point(201, 339);
-            btnClearTheLastProduct.Name = "btnClearTheLastProduct";
-            btnClearTheLastProduct.Size = new Size(197, 29);
-            btnClearTheLastProduct.TabIndex = 4;
-            btnClearTheLastProduct.Text = "Clear the last product";
-            btnClearTheLastProduct.UseVisualStyleBackColor = false;
-            btnClearTheLastProduct.Click += btnClearTheLastProduct_Click;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -721,8 +722,8 @@
             gbComplaint.PerformLayout();
             tabHouseRules.ResumeLayout(false);
             tabHouseRules.PerformLayout();
-            tabShoppingList.ResumeLayout(false);
-            tabShoppingList.PerformLayout();
+            tabGroceryList.ResumeLayout(false);
+            tabGroceryList.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -746,7 +747,7 @@
         private TabPage tabAnnouncements;
         private TabPage tabComplaints;
         private TabPage tabHouseRules;
-        private TabPage tabShoppingList;
+        private TabPage tabGroceryList;
         private GroupBox gbProfile;
         private Label lblUserRoom;
         private Label lblUserRole;

@@ -149,7 +149,7 @@ namespace HouseMateLink
                 int firstDotIndex = itemText.IndexOf('.');
                 if (firstDotIndex != -1)
                 {
-                    itemText = itemText.Substring(firstDotIndex + 2); 
+                    itemText = itemText.Substring(firstDotIndex + 2);
                 }
 
                 lbShoppingList.Items[i] = $"{i + 1}. {itemText}";
@@ -166,6 +166,11 @@ namespace HouseMateLink
 
             btnEditRules.Visible = isAdmin;
             rulesTextBox.ReadOnly = true;
+        }
+
+        private void btnCreateAnnouncement_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
