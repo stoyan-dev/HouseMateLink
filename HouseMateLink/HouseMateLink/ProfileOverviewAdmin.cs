@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.VisualBasic.ApplicationServices;
-using System.Text.Json;
 
 namespace HouseMateLink
 {
@@ -61,46 +59,9 @@ namespace HouseMateLink
             int roomNum = (int)nudAddRoom.Value;
             string username = tbAddUsername.Text;
             string password = tbAddPassword.Text;
-            string photoFile = selectedPhotoFilePathAdd;
 
-
-            if (string.IsNullOrWhiteSpace(name) ||
-                string.IsNullOrWhiteSpace(username) ||
-                string.IsNullOrWhiteSpace(password) ||
-                string.IsNullOrWhiteSpace(photoFile))
-            {
-                MessageBox.Show("All fields must be filled out, including selecting a photo.", "Validation Error");
-                return;
-            }
-
-
-            building.CreateAddNewUser(username, password, name, role, roomNum, photoFile);
-
-            MessageBox.Show("New user added successfully!");
-
-
-            tbAddName.Clear();
-            nudAddRoom.Value = 0;
-            tbAddUsername.Clear();
-            tbAddPassword.Clear();
-            pbNewUser.Image = null;
-            selectedPhotoFilePathAdd = null;
-
-            List<User> users = building.GetTenants();
-            string jsonString = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
-            try
-            {
-                File.WriteAllText("user.json", jsonString);
-                MessageBox.Show("File created successfully!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error writing to file: {ex.Message}");
-            }
-
+            user = new User();
+            building.AddUser();
         }
-
     }
 }
-    
-
