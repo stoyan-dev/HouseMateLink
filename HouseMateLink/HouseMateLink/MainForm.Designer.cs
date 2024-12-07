@@ -82,6 +82,7 @@
             tabCalendar.SuspendLayout();
             tabAnnouncements.SuspendLayout();
             grbAnnouncements.SuspendLayout();
+            panelAnnouncements.SuspendLayout();
             tabComplaints.SuspendLayout();
             grbComplaints.SuspendLayout();
             tabHouseRules.SuspendLayout();
@@ -399,8 +400,6 @@
             // 
             grbAnnouncements.BackColor = Color.DeepSkyBlue;
             grbAnnouncements.Controls.Add(panelAnnouncements);
-            grbAnnouncements.Controls.Add(btnCreateAnnouncement);
-            grbAnnouncements.Controls.Add(tbAnnouncement);
             grbAnnouncements.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grbAnnouncements.Location = new Point(3, 3);
             grbAnnouncements.Name = "grbAnnouncements";
@@ -413,16 +412,18 @@
             // panelAnnouncements
             // 
             panelAnnouncements.BackColor = Color.GhostWhite;
+            panelAnnouncements.Controls.Add(tbAnnouncement);
+            panelAnnouncements.Controls.Add(btnCreateAnnouncement);
             panelAnnouncements.Location = new Point(6, 30);
             panelAnnouncements.Name = "panelAnnouncements";
-            panelAnnouncements.Size = new Size(602, 268);
+            panelAnnouncements.Size = new Size(602, 361);
             panelAnnouncements.TabIndex = 5;
             // 
             // btnCreateAnnouncement
             // 
             btnCreateAnnouncement.BackColor = Color.Gold;
             btnCreateAnnouncement.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCreateAnnouncement.Location = new Point(219, 350);
+            btnCreateAnnouncement.Location = new Point(225, 305);
             btnCreateAnnouncement.Name = "btnCreateAnnouncement";
             btnCreateAnnouncement.Size = new Size(141, 41);
             btnCreateAnnouncement.TabIndex = 4;
@@ -432,7 +433,7 @@
             // 
             // tbAnnouncement
             // 
-            tbAnnouncement.Location = new Point(20, 304);
+            tbAnnouncement.Location = new Point(30, 259);
             tbAnnouncement.Multiline = true;
             tbAnnouncement.Name = "tbAnnouncement";
             tbAnnouncement.Size = new Size(548, 40);
@@ -614,7 +615,8 @@
             tabCalendar.ResumeLayout(false);
             tabAnnouncements.ResumeLayout(false);
             grbAnnouncements.ResumeLayout(false);
-            grbAnnouncements.PerformLayout();
+            panelAnnouncements.ResumeLayout(false);
+            panelAnnouncements.PerformLayout();
             tabComplaints.ResumeLayout(false);
             grbComplaints.ResumeLayout(false);
             grbComplaints.PerformLayout();
