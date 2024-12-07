@@ -543,7 +543,7 @@
             // 
             btnClearAllProducts.BackColor = Color.Gold;
             btnClearAllProducts.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnClearAllProducts.Location = new Point(261, 274);
+            btnClearAllProducts.Location = new Point(314, 342);
             btnClearAllProducts.Margin = new Padding(2);
             btnClearAllProducts.Name = "btnClearAllProducts";
             btnClearAllProducts.Size = new Size(180, 29);
