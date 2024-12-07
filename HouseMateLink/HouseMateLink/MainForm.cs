@@ -299,6 +299,7 @@ namespace HouseMateLink
             }
 
             currentUser.CreateAnnouncement(message);
+            //SaveAnnouncementToJson();
             panelAnnouncements.Controls.Clear();
             foreach(Announcement announcement in currentUser.GetAnnouncements())
             {
@@ -318,8 +319,36 @@ namespace HouseMateLink
             }
             panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1].Bottom + 10);
             tbAnnouncement.Clear();
+            SaveAnnouncementsToJson(currentUser.GetAnnouncements());
+
 
         }
+        private void SaveAnnouncementsToJson(List<Announcement> announcements)
+        {
+            string filePath = "announcements.json";
+            bool isFileCreated = !File.Exists(filePath); 
+
+            try
+            {
+                string jsonString = JsonSerializer.Serialize(announcements, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(filePath, jsonString);
+
+                if (isFileCreated)
+                {
+                    MessageBox.Show("File created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("File updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving announcements: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         private void btnClearAllProducts_Click(object sender, EventArgs e)
         {
@@ -378,6 +407,31 @@ namespace HouseMateLink
             }
             panelComplaint.AutoScrollMinSize = new Size(panelComplaint.Width, panelComplaint.Controls[panelComplaint.Controls.Count - 1].Bottom + 10);
             tbCreateComplaint.Clear();
+            SaveComplaintsToJson(myBuilding.GetComplaints());
+        }
+        private void SaveComplaintsToJson(List<Complaint> complaints)
+        {
+            string filePath = "complaints.json";
+            bool isFileCreated = !File.Exists(filePath);
+
+            try
+            {
+                string jsonString = JsonSerializer.Serialize(complaints, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(filePath, jsonString);
+
+                if (isFileCreated)
+                {
+                    MessageBox.Show("File created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("File updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving complainst: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

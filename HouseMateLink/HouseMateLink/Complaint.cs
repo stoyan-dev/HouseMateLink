@@ -1,27 +1,26 @@
-﻿using System.Diagnostics.Eventing.Reader;
-using System.Runtime.CompilerServices;
-
-namespace HouseMateLink
+﻿namespace HouseMateLink
 {
     public class Complaint
     {
-        public int ComplaintID { get; }
-        private const int duration = 7;
-        public DateTime CreatedAt { get; set; }
-        public string Description { get; set; }
-        public bool isExpired
-        { get
-           {
-            return (DateTime.Now - this.CreatedAt).TotalDays > 7;
-           }
+        private static int complaintCounter = 0; 
+        public int ComplaintID { get; } 
+        private const int Duration = 7; 
+        public DateTime CreatedAt { get; set; } 
+        public string Description { get; set; } 
+
+        public bool IsExpired
+        {
+            get
+            {
+                return (DateTime.Now - this.CreatedAt).TotalDays > Duration;
+            }
         }
 
         public Complaint(string description)
         {
-            ComplaintID += 1;
+            ComplaintID = ++complaintCounter; 
             this.Description = description;
-            CreatedAt = DateTime.Today;
+            this.CreatedAt = DateTime.Today; 
         }
-       
     }
 }
