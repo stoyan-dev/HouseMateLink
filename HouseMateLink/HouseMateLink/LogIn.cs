@@ -10,13 +10,6 @@ namespace HouseMateLink
         {
             InitializeComponent();
             Initialization();
-            string filePath = "user.json";
-
-            if (File.Exists(filePath))
-            {
-                string jsonString = File.ReadAllText(filePath);
-                List<User> users = JsonSerializer.Deserialize<List<User>>(jsonString);
-            }
         }
 
         private void label1_Click(object sender, EventArgs e)
