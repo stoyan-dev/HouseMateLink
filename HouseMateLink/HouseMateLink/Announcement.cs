@@ -22,7 +22,7 @@ namespace HouseMateLink
         {
             AnnouncementID = ++announcementCounter;
             this.Description = description;
-            CreatedAt = DateTime.Today;
+            CreatedAt = createdAt;
         }
 
         public Announcement(string description) : this(description, DateTime.Today)

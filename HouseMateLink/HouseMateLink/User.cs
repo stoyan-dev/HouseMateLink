@@ -12,7 +12,7 @@ namespace HouseMateLink
         public int RoomNumber { get; set; }
         public string Photo { get; set; }
         private int userID = 0;
-
+        private List<Announcement> announcements;
 
         public User(string username, string password, string name, Role role, int roomNumber, string photo)
         {
@@ -23,6 +23,21 @@ namespace HouseMateLink
             Role = role;
             RoomNumber = roomNumber;
             Photo = photo;
+            announcements = new List<Announcement>();
+        }
+
+        public void CreateAnnouncement(string announcementText)
+        {
+            if (!string.IsNullOrEmpty(announcementText))
+            {
+                Announcement newAnnouncement = new Announcement(announcementText, DateTime.Today);
+                announcements.Add(newAnnouncement);
+            }
+        }
+
+        public List<Announcement> GetAnnouncements()
+        {
+            return announcements;
         }
     }
 }

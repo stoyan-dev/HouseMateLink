@@ -85,18 +85,6 @@ namespace HouseMateLink
             return complaints;
         }
 
-        public void CreateAnnouncement(string announcementText)
-        {
-            if (!string.IsNullOrEmpty(announcementText))
-            {
-                Announcement newAnnouncement = new Announcement(announcementText, DateTime.Now);
-                announcements.Add(newAnnouncement);
-            }
-        }
-
-        public List<Announcement> GetAnnouncements()
-        {
-            return announcements;
-        }
+        
     }
 }

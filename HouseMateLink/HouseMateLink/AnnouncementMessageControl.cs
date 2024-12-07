@@ -7,13 +7,14 @@ namespace HouseMateLink
     {
         private Label lblAnnouncementText;
         private Label lblAnnouncementDate;
-        public AnnouncementMessageControl(string announcementText, DateTime createdAt)
+        private Label lblUserName;
+        public AnnouncementMessageControl(string announcementText, DateTime createdAt, string userName)
         {
             InitializeComponent();
-            InitializeAnnouncementControl(announcementText, createdAt);
+            InitializeAnnouncementControl(announcementText, createdAt, userName);
         }
 
-        private void InitializeAnnouncementControl(string announcementText, DateTime createdAt)
+        private void InitializeAnnouncementControl(string announcementText, DateTime createdAt, string userName)
         {
             this.BackColor = Color.Gold; 
             this.Padding = new Padding(10); 
@@ -36,8 +37,18 @@ namespace HouseMateLink
                 ForeColor = Color.Gray
             };
 
+            lblUserName = new Label
+            {
+                Text = $"Created by: {userName}",
+                AutoSize = true,
+                Location = new Point(10, 60),
+                Font = new Font("Arial", 8, FontStyle.Italic),
+                ForeColor = Color.Gray 
+            };
+
             this.Controls.Add(lblAnnouncementText);
             this.Controls.Add(lblAnnouncementDate);
+            this.Controls.Add(lblUserName);
         }
     }
 }

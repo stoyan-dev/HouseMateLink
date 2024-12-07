@@ -29,6 +29,7 @@ namespace HouseMateLink
         {
             InitializeComponent();
             dateTimePicker = new DateTimePicker();
+            currentUser = user;
             myBuilding = b;
             isAdmin = a;
             Initialization();
@@ -297,11 +298,11 @@ namespace HouseMateLink
                 return;
             }
 
-            myBuilding.CreateAnnouncement(message);
+            currentUser.CreateAnnouncement(message);
             panelAnnouncements.Controls.Clear();
-            foreach(Announcement announcement in myBuilding.GetAnnouncements())
+            foreach(Announcement announcement in currentUser.GetAnnouncements())
             {
-                AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(announcement.Description, announcement.CreatedAt);
+                AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(announcement.Description, announcement.CreatedAt,currentUser.Name);
                 newAnnouncement.Size = new Size(400, 80);
                 int newX = 10;
                 int newY = 10;
