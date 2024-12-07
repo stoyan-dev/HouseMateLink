@@ -57,8 +57,8 @@
             tabAnnouncements = new TabPage();
             grbAnnouncements = new GroupBox();
             panelAnnouncements = new Panel();
-            btnCreateAnnouncement = new Button();
             tbAnnouncement = new TextBox();
+            btnCreateAnnouncement = new Button();
             tabComplaints = new TabPage();
             grbComplaints = new GroupBox();
             panelComplaint = new Panel();
@@ -82,7 +82,6 @@
             tabCalendar.SuspendLayout();
             tabAnnouncements.SuspendLayout();
             grbAnnouncements.SuspendLayout();
-            panelAnnouncements.SuspendLayout();
             tabComplaints.SuspendLayout();
             grbComplaints.SuspendLayout();
             tabHouseRules.SuspendLayout();
@@ -399,6 +398,8 @@
             // grbAnnouncements
             // 
             grbAnnouncements.BackColor = Color.DeepSkyBlue;
+            grbAnnouncements.Controls.Add(btnCreateAnnouncement);
+            grbAnnouncements.Controls.Add(tbAnnouncement);
             grbAnnouncements.Controls.Add(panelAnnouncements);
             grbAnnouncements.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grbAnnouncements.Location = new Point(3, 3);
@@ -412,32 +413,30 @@
             // panelAnnouncements
             // 
             panelAnnouncements.BackColor = Color.GhostWhite;
-            panelAnnouncements.Controls.Add(tbAnnouncement);
-            panelAnnouncements.Controls.Add(btnCreateAnnouncement);
             panelAnnouncements.Location = new Point(6, 30);
             panelAnnouncements.Name = "panelAnnouncements";
-            panelAnnouncements.Size = new Size(602, 361);
+            panelAnnouncements.Size = new Size(602, 290);
             panelAnnouncements.TabIndex = 5;
+            // 
+            // tbAnnouncement
+            // 
+            tbAnnouncement.Location = new Point(6, 336);
+            tbAnnouncement.Multiline = true;
+            tbAnnouncement.Name = "tbAnnouncement";
+            tbAnnouncement.Size = new Size(433, 55);
+            tbAnnouncement.TabIndex = 1;
             // 
             // btnCreateAnnouncement
             // 
             btnCreateAnnouncement.BackColor = Color.Gold;
             btnCreateAnnouncement.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCreateAnnouncement.Location = new Point(225, 305);
+            btnCreateAnnouncement.Location = new Point(454, 336);
             btnCreateAnnouncement.Name = "btnCreateAnnouncement";
             btnCreateAnnouncement.Size = new Size(141, 41);
             btnCreateAnnouncement.TabIndex = 4;
             btnCreateAnnouncement.Text = "Create";
             btnCreateAnnouncement.UseVisualStyleBackColor = false;
             btnCreateAnnouncement.Click += btnCreateAnnouncement_Click;
-            // 
-            // tbAnnouncement
-            // 
-            tbAnnouncement.Location = new Point(30, 259);
-            tbAnnouncement.Multiline = true;
-            tbAnnouncement.Name = "tbAnnouncement";
-            tbAnnouncement.Size = new Size(548, 40);
-            tbAnnouncement.TabIndex = 1;
             // 
             // tabComplaints
             // 
@@ -615,8 +614,7 @@
             tabCalendar.ResumeLayout(false);
             tabAnnouncements.ResumeLayout(false);
             grbAnnouncements.ResumeLayout(false);
-            panelAnnouncements.ResumeLayout(false);
-            panelAnnouncements.PerformLayout();
+            grbAnnouncements.PerformLayout();
             tabComplaints.ResumeLayout(false);
             grbComplaints.ResumeLayout(false);
             grbComplaints.PerformLayout();
