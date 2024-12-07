@@ -141,7 +141,7 @@ namespace HouseMateLink
             }
             else
             {
-                ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant();
+                ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant(myBuilding);
                 profileOverviewTenant.Show();
                 this.Hide();
             }

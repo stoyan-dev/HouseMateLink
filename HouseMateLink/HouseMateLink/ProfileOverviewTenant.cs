@@ -1,20 +1,73 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Text.Json;
 
 namespace HouseMateLink
 {
     public partial class ProfileOverviewTenant : Form
     {
-        public ProfileOverviewTenant()
+        private Building myBuilding;
+        public ProfileOverviewTenant(Building b)
         {
             InitializeComponent();
+            myBuilding = b;
+            PopulateUserSummariesPanel();
+        }
+
+        private List<User> LoadUsersFromJson()
+        {
+            string filePath = "users.json";
+            if (!File.Exists(filePath))
+            {
+                return new List<User>(); // Return an empty list if the file doesn't exist
+            }
+
+            try
+            {
+                string jsonString = File.ReadAllText(filePath);
+                return JsonSerializer.Deserialize<List<User>>(jsonString) ?? new List<User>();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error reading user data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new List<User>();
+            }
+        }
+
+        private void PopulateUserSummariesPanel()
+        {
+            UserInfoSummaryPanel.Controls.Clear(); 
+
+            List<User> users = LoadUsersFromJson(); 
+
+            int x = 10, y = 10;
+            foreach (User user in users)
+            {
+                Image userPhoto = null;
+                try
+                {
+                    if (!string.IsNullOrWhiteSpace(user.Photo) && File.Exists(user.Photo))
+                    {
+                        userPhoto = Image.FromFile(user.Photo); 
+                    }
+                    
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error loading photo for {user.Name}: {ex.Message}", "Photo Load Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                UserInfoSummaryControl summaryControl = new UserInfoSummaryControl(user.Name, user.Role, user.RoomNumber, userPhoto)
+                {
+                    Size = new Size(200, 120),
+                    Location = new Point(x, y)
+                };
+
+                y += summaryControl.Height + 10;
+
+                UserInfoSummaryPanel.Controls.Add(summaryControl);
+            }
+
+            UserInfoSummaryPanel.AutoScrollMinSize = new Size(UserInfoSummaryPanel.Width, y); ;
+
         }
     }
 }
