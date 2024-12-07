@@ -56,7 +56,7 @@ namespace HouseMateLink
         private void btnAdduser_Click(object sender, EventArgs e)
         {
             string name = tbAddName.Text;
-            Role role = (Role)cbAddRole.SelectedIndex;
+            Role role = (Role)cbAddRole.SelectedItem;
             int roomNum = (int)nudAddRoom.Value;
             string username = tbAddUsername.Text;
             string password = tbAddPassword.Text;
@@ -85,7 +85,7 @@ namespace HouseMateLink
             pbNewUser.Image = null;
             selectedPhotoFilePathAdd = null;
 
-            List<User> users = building.GetTenants();
+            List<User> users = building.GetUsers();
             string jsonString = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
             try
             {
