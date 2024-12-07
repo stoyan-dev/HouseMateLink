@@ -129,7 +129,7 @@
             grbButtons.Margin = new Padding(2);
             grbButtons.Name = "grbButtons";
             grbButtons.Padding = new Padding(2);
-            grbButtons.Size = new Size(359, 323);
+            grbButtons.Size = new Size(359, 367);
             grbButtons.TabIndex = 3;
             grbButtons.TabStop = false;
             // 
@@ -330,12 +330,12 @@
             // label2
             // 
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.Location = new Point(1, 198);
+            label2.Location = new Point(1, 209);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
             label2.Size = new Size(175, 42);
             label2.TabIndex = 2;
-            label2.Text = "Email: stoyandev@yahoo.com";
+            label2.Text = "Email: HousingBV@yahoo.com";
             // 
             // label1
             // 
