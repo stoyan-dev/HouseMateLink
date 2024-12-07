@@ -89,7 +89,7 @@ namespace HouseMateLink
             string jsonString = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
             try
             {
-                File.WriteAllText("user.json", jsonString);
+                File.WriteAllText("users.json", jsonString);
                 MessageBox.Show("File created successfully!");
             }
             catch (Exception ex)

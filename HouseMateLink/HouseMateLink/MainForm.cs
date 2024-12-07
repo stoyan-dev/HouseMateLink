@@ -216,7 +216,6 @@ namespace HouseMateLink
 
                 string jsonString = JsonSerializer.Serialize(shoppingList, new JsonSerializerOptions { WriteIndented = true });
 
-                // Save JSON to file
                 File.WriteAllText("ShoppingList.json", jsonString);
             }
             catch (Exception ex)
