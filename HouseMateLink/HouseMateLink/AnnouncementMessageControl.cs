@@ -5,42 +5,39 @@ namespace HouseMateLink
 {
     public partial class AnnouncementMessageControl : UserControl
     {
-        public AnnouncementMessageControl(string message)
+        private Label lblAnnouncementText;
+        private Label lblAnnouncementDate;
+        public AnnouncementMessageControl(string announcementText, DateTime createdAt)
         {
             InitializeComponent();
-            CreateAnnouncementLabels(message);
+            InitializeAnnouncementControl(announcementText, createdAt);
         }
 
-        private void CreateAnnouncementLabels(string message)
+        private void InitializeAnnouncementControl(string announcementText, DateTime createdAt)
         {
-            Label lblAnnouncement = new Label
+            this.BackColor = Color.Gold; 
+            this.Padding = new Padding(10); 
+
+            lblAnnouncementText = new Label
             {
-                AutoSize = true,
-                Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold),
-                Location = new System.Drawing.Point(20, 20),
-                Text = message
+                Text = announcementText, 
+                AutoSize = true, 
+                Location = new Point(10, 10), 
+                Font = new Font("Arial", 10, FontStyle.Regular), 
+                ForeColor = Color.Black 
             };
 
-            Label lblDateCreated = new Label
+            lblAnnouncementDate = new Label
             {
-                AutoSize = true,
-                Font = new System.Drawing.Font("Segoe UI", 8F),
-                Location = new System.Drawing.Point(20, 50),
-                Text = DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")  
+                Text = $"Created at: {createdAt.ToShortDateString()}", 
+                AutoSize = true, 
+                Location = new Point(10, 40), 
+                Font = new Font("Arial", 8, FontStyle.Italic), 
+                ForeColor = Color.Gray
             };
 
-            
-            Label lblNothing = new Label
-            {
-                AutoSize = true,
-                Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold),
-                Location = new System.Drawing.Point(15, 80),
-                Text = "Created on:"
-            };
-
-            this.Controls.Add(lblAnnouncement);
-            this.Controls.Add(lblDateCreated);
-            this.Controls.Add(lblNothing);
+            this.Controls.Add(lblAnnouncementText);
+            this.Controls.Add(lblAnnouncementDate);
         }
     }
 }

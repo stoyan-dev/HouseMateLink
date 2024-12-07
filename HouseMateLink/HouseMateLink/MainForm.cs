@@ -15,12 +15,14 @@ namespace HouseMateLink
 {
     public partial class MainForm : Form
     {
+        private Building myBuilding;
         private int itemCounter;
         private bool isAdmin;
-        public MainForm(bool a)
+        public MainForm(bool a,Building b)
         {
             InitializeComponent();
             dateTimePicker = new DateTimePicker();
+            myBuilding = b;
             isAdmin = a;
             Initialization();
             CustomizeTabHeaders();
@@ -263,35 +265,34 @@ namespace HouseMateLink
         private void btnCreateAnnouncement_Click(object sender, EventArgs e)
         {
             string message = tbAnnouncement.Text.Trim();
-            
+
             if (string.IsNullOrEmpty(message))
             {
                 MessageBox.Show("Please enter an announcement.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(message);
-
-            newAnnouncement.Size = new Size(200, 80); 
-
-            int newX = 10;   
-            int newY = 10;  
-
-            if (panelAnnouncements.Controls.Count > 0)
+            myBuilding.CreateAnnouncement(message);
+            panelAnnouncements.Controls.Clear();
+            foreach(Announcement announcement in myBuilding.GetAnnouncements())
             {
-                Control lastControl = panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1];
+                AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(announcement.Description, announcement.CreatedAt);
+                newAnnouncement.Size = new Size(400, 80);
+                int newX = 10;
+                int newY = 10;
 
-                newX = lastControl.Left;
-                newY = lastControl.Bottom + 10;  
+                if (panelAnnouncements.Controls.Count > 0)
+                {
+                    Control lastControl = panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1];
+                    newX = lastControl.Left; 
+                    newY = lastControl.Bottom + 10; 
+                }
+                newAnnouncement.Location = new Point(newX, newY);
+                panelAnnouncements.Controls.Add(newAnnouncement);
             }
-
-            newAnnouncement.Location = new Point(newX, newY);
-
-            panelAnnouncements.Controls.Add(newAnnouncement);
-
-            panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, newAnnouncement.Bottom + 10); 
-
+            panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1].Bottom + 10);
             tbAnnouncement.Clear();
+
         }
 
         private void btnClearAllProducts_Click(object sender, EventArgs e)
@@ -320,6 +321,37 @@ namespace HouseMateLink
         private void grbAnnouncements_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnPostComplaint_Click(object sender, EventArgs e)
+        {
+            string complain = tbCreateComplaint.Text.Trim();
+            if (string.IsNullOrEmpty(complain))
+            {
+                MessageBox.Show("Please enter a complaint.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            myBuilding.CreateComplaint(complain);
+            panelComplaint.Controls.Clear();
+            foreach (Complaint complaint in myBuilding.GetComplaints())
+            {
+                ComplaintMessageControl newComplaint = new ComplaintMessageControl(complaint.Description, complaint.CreatedAt);
+                newComplaint.Size = new Size(400, 80);
+                int newX = 10;
+                int newY = 10;
+
+                if (panelComplaint.Controls.Count > 0)
+                {
+                    Control lastControl = panelComplaint.Controls[panelComplaint.Controls.Count - 1];
+                    newX = lastControl.Left;
+                    newY = lastControl.Bottom + 10; 
+                }
+                newComplaint.Location = new Point(newX, newY);
+                panelComplaint.Controls.Add(newComplaint);
+            }
+            panelComplaint.AutoScrollMinSize = new Size(panelComplaint.Width, panelComplaint.Controls[panelComplaint.Controls.Count - 1].Bottom + 10);
+            tbCreateComplaint.Clear();
         }
     }
 }

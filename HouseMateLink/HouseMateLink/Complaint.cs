@@ -7,7 +7,7 @@ namespace HouseMateLink
     {
         public int ComplaintID { get; }
         private const int duration = 7;
-        private DateTime CreatedAt;
+        public DateTime CreatedAt { get; set; }
         public string Description { get; set; }
         public bool isExpired
         { get

@@ -4,6 +4,9 @@
     <Compile Update="AnnouncementMessageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="ComplaintMessageControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="LogIn.cs">
       <SubType>Form</SubType>
     </Compile>

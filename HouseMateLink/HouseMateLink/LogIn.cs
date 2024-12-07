@@ -27,7 +27,7 @@ namespace HouseMateLink
             }
             else
             {
-                MainForm mainForm = new MainForm(isAdmin);
+                MainForm mainForm = new MainForm(isAdmin, myBuilding);
                 mainForm.Show();
                 this.Hide();
             }

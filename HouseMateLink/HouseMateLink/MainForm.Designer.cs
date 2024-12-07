@@ -61,10 +61,7 @@
             tbAnnouncement = new TextBox();
             tabComplaints = new TabPage();
             grbComplaints = new GroupBox();
-            gbComplaint = new GroupBox();
-            label8 = new Label();
-            lblDatePosted = new Label();
-            lblComplaint = new Label();
+            panelComplaint = new Panel();
             btnPostComplaint = new Button();
             tbCreateComplaint = new TextBox();
             tabHouseRules = new TabPage();
@@ -87,7 +84,6 @@
             grbAnnouncements.SuspendLayout();
             tabComplaints.SuspendLayout();
             grbComplaints.SuspendLayout();
-            gbComplaint.SuspendLayout();
             tabHouseRules.SuspendLayout();
             tabGroceryList.SuspendLayout();
             SuspendLayout();
@@ -100,11 +96,11 @@
             tabHome.Controls.Add(tabComplaints);
             tabHome.Controls.Add(tabHouseRules);
             tabHome.Controls.Add(tabGroceryList);
-            tabHome.Location = new Point(1, 11);
+            tabHome.Location = new Point(1, 14);
             tabHome.Margin = new Padding(2);
             tabHome.Name = "tabHome";
             tabHome.SelectedIndex = 0;
-            tabHome.Size = new Size(628, 439);
+            tabHome.Size = new Size(785, 549);
             tabHome.TabIndex = 0;
             // 
             // tabHomePage
@@ -112,11 +108,11 @@
             tabHomePage.BackColor = Color.DeepSkyBlue;
             tabHomePage.Controls.Add(grbButtons);
             tabHomePage.Controls.Add(grbHome);
-            tabHomePage.Location = new Point(4, 29);
+            tabHomePage.Location = new Point(4, 34);
             tabHomePage.Margin = new Padding(2);
             tabHomePage.Name = "tabHomePage";
             tabHomePage.Padding = new Padding(2);
-            tabHomePage.Size = new Size(620, 406);
+            tabHomePage.Size = new Size(777, 511);
             tabHomePage.TabIndex = 0;
             tabHomePage.Text = "Home Page";
             // 
@@ -129,11 +125,11 @@
             grbButtons.Controls.Add(btnAnnouncements);
             grbButtons.Controls.Add(btnCalendar);
             grbButtons.Controls.Add(btnRules);
-            grbButtons.Location = new Point(234, 22);
+            grbButtons.Location = new Point(292, 28);
             grbButtons.Margin = new Padding(2);
             grbButtons.Name = "grbButtons";
             grbButtons.Padding = new Padding(2);
-            grbButtons.Size = new Size(359, 323);
+            grbButtons.Size = new Size(449, 404);
             grbButtons.TabIndex = 3;
             grbButtons.TabStop = false;
             // 
@@ -141,10 +137,10 @@
             // 
             btnProfileOverview.BackColor = Color.Gold;
             btnProfileOverview.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnProfileOverview.Location = new Point(198, 227);
+            btnProfileOverview.Location = new Point(248, 284);
             btnProfileOverview.Margin = new Padding(2);
             btnProfileOverview.Name = "btnProfileOverview";
-            btnProfileOverview.Size = new Size(141, 66);
+            btnProfileOverview.Size = new Size(176, 82);
             btnProfileOverview.TabIndex = 5;
             btnProfileOverview.Text = "Profile Overview";
             btnProfileOverview.UseVisualStyleBackColor = false;
@@ -154,10 +150,10 @@
             // 
             btnGrocery.BackColor = Color.Gold;
             btnGrocery.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnGrocery.Location = new Point(29, 227);
+            btnGrocery.Location = new Point(36, 284);
             btnGrocery.Margin = new Padding(2);
             btnGrocery.Name = "btnGrocery";
-            btnGrocery.Size = new Size(136, 66);
+            btnGrocery.Size = new Size(170, 82);
             btnGrocery.TabIndex = 4;
             btnGrocery.Text = "Grocery List";
             btnGrocery.UseVisualStyleBackColor = false;
@@ -167,10 +163,10 @@
             // 
             btnComplaints.BackColor = Color.Gold;
             btnComplaints.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnComplaints.Location = new Point(198, 138);
+            btnComplaints.Location = new Point(248, 172);
             btnComplaints.Margin = new Padding(2);
             btnComplaints.Name = "btnComplaints";
-            btnComplaints.Size = new Size(141, 65);
+            btnComplaints.Size = new Size(176, 81);
             btnComplaints.TabIndex = 3;
             btnComplaints.Text = "Complaints";
             btnComplaints.UseVisualStyleBackColor = false;
@@ -180,10 +176,10 @@
             // 
             btnAnnouncements.BackColor = Color.Gold;
             btnAnnouncements.Font = new Font("Times New Roman", 14F, FontStyle.Italic);
-            btnAnnouncements.Location = new Point(29, 138);
+            btnAnnouncements.Location = new Point(36, 172);
             btnAnnouncements.Margin = new Padding(2);
             btnAnnouncements.Name = "btnAnnouncements";
-            btnAnnouncements.Size = new Size(136, 65);
+            btnAnnouncements.Size = new Size(170, 81);
             btnAnnouncements.TabIndex = 2;
             btnAnnouncements.Text = "Announcements";
             btnAnnouncements.UseVisualStyleBackColor = false;
@@ -193,10 +189,10 @@
             // 
             btnCalendar.BackColor = Color.Gold;
             btnCalendar.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnCalendar.Location = new Point(198, 35);
+            btnCalendar.Location = new Point(248, 44);
             btnCalendar.Margin = new Padding(2);
             btnCalendar.Name = "btnCalendar";
-            btnCalendar.Size = new Size(141, 70);
+            btnCalendar.Size = new Size(176, 88);
             btnCalendar.TabIndex = 1;
             btnCalendar.Text = "Calendar";
             btnCalendar.UseVisualStyleBackColor = false;
@@ -206,10 +202,10 @@
             // 
             btnRules.BackColor = Color.Gold;
             btnRules.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnRules.Location = new Point(29, 35);
+            btnRules.Location = new Point(36, 44);
             btnRules.Margin = new Padding(2);
             btnRules.Name = "btnRules";
-            btnRules.Size = new Size(136, 70);
+            btnRules.Size = new Size(170, 88);
             btnRules.TabIndex = 0;
             btnRules.Text = "House Rules";
             btnRules.UseVisualStyleBackColor = false;
@@ -224,11 +220,11 @@
             grbHome.Controls.Add(label1);
             grbHome.Controls.Add(btnLogOut);
             grbHome.Font = new Font("Times New Roman", 10F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            grbHome.Location = new Point(26, 22);
+            grbHome.Location = new Point(32, 28);
             grbHome.Margin = new Padding(2);
             grbHome.Name = "grbHome";
             grbHome.Padding = new Padding(2);
-            grbHome.Size = new Size(185, 323);
+            grbHome.Size = new Size(231, 404);
             grbHome.TabIndex = 2;
             grbHome.TabStop = false;
             grbHome.Text = "Student Housing B.V.";
@@ -245,9 +241,11 @@
             gbProfile.Controls.Add(label6);
             gbProfile.Controls.Add(pictureBox1);
             gbProfile.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbProfile.Location = new Point(5, 22);
+            gbProfile.Location = new Point(6, 28);
+            gbProfile.Margin = new Padding(4);
             gbProfile.Name = "gbProfile";
-            gbProfile.Size = new Size(180, 136);
+            gbProfile.Padding = new Padding(4);
+            gbProfile.Size = new Size(225, 170);
             gbProfile.TabIndex = 4;
             gbProfile.TabStop = false;
             gbProfile.Text = "Your profile";
@@ -255,82 +253,89 @@
             // lblUserRoom
             // 
             lblUserRoom.AutoSize = true;
-            lblUserRoom.Location = new Point(102, 117);
+            lblUserRoom.Location = new Point(128, 146);
+            lblUserRoom.Margin = new Padding(4, 0, 4, 0);
             lblUserRoom.Name = "lblUserRoom";
-            lblUserRoom.Size = new Size(16, 17);
+            lblUserRoom.Size = new Size(19, 20);
             lblUserRoom.TabIndex = 6;
             lblUserRoom.Text = "..";
             // 
             // lblUserRole
             // 
             lblUserRole.AutoSize = true;
-            lblUserRole.Location = new Point(102, 82);
+            lblUserRole.Location = new Point(128, 102);
+            lblUserRole.Margin = new Padding(4, 0, 4, 0);
             lblUserRole.Name = "lblUserRole";
-            lblUserRole.Size = new Size(16, 17);
+            lblUserRole.Size = new Size(19, 20);
             lblUserRole.TabIndex = 5;
             lblUserRole.Text = "..";
             // 
             // lblUserName
             // 
             lblUserName.AutoSize = true;
-            lblUserName.Location = new Point(102, 36);
+            lblUserName.Location = new Point(128, 45);
+            lblUserName.Margin = new Padding(4, 0, 4, 0);
             lblUserName.Name = "lblUserName";
-            lblUserName.Size = new Size(16, 17);
+            lblUserName.Size = new Size(19, 20);
             lblUserName.TabIndex = 4;
             lblUserName.Text = "..";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(94, 66);
+            label4.Location = new Point(118, 82);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(44, 17);
+            label4.Size = new Size(50, 20);
             label4.TabIndex = 3;
             label4.Text = "Role:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(94, 98);
+            label5.Location = new Point(118, 122);
+            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(52, 17);
+            label5.Size = new Size(62, 20);
             label5.TabIndex = 2;
             label5.Text = "Room:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(94, 20);
+            label6.Location = new Point(118, 25);
+            label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(51, 17);
+            label6.Size = new Size(59, 20);
             label6.TabIndex = 1;
             label6.Text = "Name:";
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(6, 36);
+            pictureBox1.Location = new Point(8, 45);
+            pictureBox1.Margin = new Padding(4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(75, 76);
+            pictureBox1.Size = new Size(94, 95);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // label3
             // 
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label3.Location = new Point(5, 208);
+            label3.Location = new Point(6, 260);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(175, 30);
+            label3.Size = new Size(219, 38);
             label3.TabIndex = 3;
             label3.Text = "Phone: 0123456789";
             // 
             // label2
             // 
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.Location = new Point(5, 162);
+            label2.Location = new Point(6, 202);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(175, 42);
+            label2.Size = new Size(219, 52);
             label2.TabIndex = 2;
             label2.Text = "Email: stoyandev@yahoo.com";
             // 
@@ -338,10 +343,10 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(5, 138);
+            label1.Location = new Point(6, 172);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(85, 25);
+            label1.Size = new Size(98, 30);
             label1.TabIndex = 1;
             label1.Text = "Contact:";
             // 
@@ -350,10 +355,10 @@
             btnLogOut.BackColor = Color.Gold;
             btnLogOut.Font = new Font("Times New Roman", 10F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             btnLogOut.ForeColor = SystemColors.ActiveCaptionText;
-            btnLogOut.Location = new Point(27, 253);
+            btnLogOut.Location = new Point(34, 316);
             btnLogOut.Margin = new Padding(2);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(111, 57);
+            btnLogOut.Size = new Size(139, 71);
             btnLogOut.TabIndex = 0;
             btnLogOut.TabStop = false;
             btnLogOut.Text = "Log Out";
@@ -364,11 +369,11 @@
             // 
             tabCalendar.BackColor = Color.DeepSkyBlue;
             tabCalendar.Controls.Add(monthCalendar1);
-            tabCalendar.Location = new Point(4, 29);
+            tabCalendar.Location = new Point(4, 34);
             tabCalendar.Margin = new Padding(2);
             tabCalendar.Name = "tabCalendar";
             tabCalendar.Padding = new Padding(2);
-            tabCalendar.Size = new Size(620, 406);
+            tabCalendar.Size = new Size(777, 511);
             tabCalendar.TabIndex = 1;
             tabCalendar.Text = "Calendar";
             // 
@@ -376,7 +381,8 @@
             // 
             monthCalendar1.BackColor = Color.DeepSkyBlue;
             monthCalendar1.Font = new Font("Segoe UI", 12F);
-            monthCalendar1.Location = new Point(13, 32);
+            monthCalendar1.Location = new Point(16, 40);
+            monthCalendar1.Margin = new Padding(11);
             monthCalendar1.Name = "monthCalendar1";
             monthCalendar1.TabIndex = 0;
             monthCalendar1.TrailingForeColor = Color.Gold;
@@ -385,10 +391,11 @@
             // 
             tabAnnouncements.BackColor = Color.DeepSkyBlue;
             tabAnnouncements.Controls.Add(grbAnnouncements);
-            tabAnnouncements.Location = new Point(4, 29);
+            tabAnnouncements.Location = new Point(4, 34);
+            tabAnnouncements.Margin = new Padding(4);
             tabAnnouncements.Name = "tabAnnouncements";
-            tabAnnouncements.Padding = new Padding(3);
-            tabAnnouncements.Size = new Size(620, 406);
+            tabAnnouncements.Padding = new Padding(4);
+            tabAnnouncements.Size = new Size(777, 511);
             tabAnnouncements.TabIndex = 2;
             tabAnnouncements.Text = "Announcements";
             // 
@@ -399,9 +406,11 @@
             grbAnnouncements.Controls.Add(btnCreateAnnouncement);
             grbAnnouncements.Controls.Add(tbAnnouncement);
             grbAnnouncements.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grbAnnouncements.Location = new Point(3, 3);
+            grbAnnouncements.Location = new Point(4, 4);
+            grbAnnouncements.Margin = new Padding(4);
             grbAnnouncements.Name = "grbAnnouncements";
-            grbAnnouncements.Size = new Size(614, 397);
+            grbAnnouncements.Padding = new Padding(4);
+            grbAnnouncements.Size = new Size(768, 496);
             grbAnnouncements.TabIndex = 1;
             grbAnnouncements.TabStop = false;
             grbAnnouncements.Text = "Announcements";
@@ -409,18 +418,21 @@
             // 
             // panelAnnouncements
             // 
-            panelAnnouncements.Location = new Point(6, 30);
+            panelAnnouncements.BackColor = Color.GhostWhite;
+            panelAnnouncements.Location = new Point(8, 38);
+            panelAnnouncements.Margin = new Padding(4);
             panelAnnouncements.Name = "panelAnnouncements";
-            panelAnnouncements.Size = new Size(602, 268);
+            panelAnnouncements.Size = new Size(752, 335);
             panelAnnouncements.TabIndex = 5;
             // 
             // btnCreateAnnouncement
             // 
             btnCreateAnnouncement.BackColor = Color.Gold;
             btnCreateAnnouncement.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCreateAnnouncement.Location = new Point(219, 350);
+            btnCreateAnnouncement.Location = new Point(274, 438);
+            btnCreateAnnouncement.Margin = new Padding(4);
             btnCreateAnnouncement.Name = "btnCreateAnnouncement";
-            btnCreateAnnouncement.Size = new Size(141, 41);
+            btnCreateAnnouncement.Size = new Size(176, 51);
             btnCreateAnnouncement.TabIndex = 4;
             btnCreateAnnouncement.Text = "Create";
             btnCreateAnnouncement.UseVisualStyleBackColor = false;
@@ -428,96 +440,68 @@
             // 
             // tbAnnouncement
             // 
-            tbAnnouncement.Location = new Point(20, 304);
+            tbAnnouncement.Location = new Point(25, 380);
+            tbAnnouncement.Margin = new Padding(4);
             tbAnnouncement.Multiline = true;
             tbAnnouncement.Name = "tbAnnouncement";
-            tbAnnouncement.Size = new Size(548, 40);
+            tbAnnouncement.Size = new Size(684, 49);
             tbAnnouncement.TabIndex = 1;
             // 
             // tabComplaints
             // 
             tabComplaints.BackColor = Color.DeepSkyBlue;
             tabComplaints.Controls.Add(grbComplaints);
-            tabComplaints.Location = new Point(4, 29);
+            tabComplaints.Location = new Point(4, 34);
+            tabComplaints.Margin = new Padding(4);
             tabComplaints.Name = "tabComplaints";
-            tabComplaints.Padding = new Padding(3);
-            tabComplaints.Size = new Size(620, 406);
+            tabComplaints.Padding = new Padding(4);
+            tabComplaints.Size = new Size(777, 511);
             tabComplaints.TabIndex = 3;
             tabComplaints.Text = "Complaints";
             // 
             // grbComplaints
             // 
             grbComplaints.BackColor = Color.GhostWhite;
-            grbComplaints.Controls.Add(gbComplaint);
+            grbComplaints.Controls.Add(panelComplaint);
             grbComplaints.Controls.Add(btnPostComplaint);
             grbComplaints.Controls.Add(tbCreateComplaint);
             grbComplaints.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
-            grbComplaints.Location = new Point(16, 20);
+            grbComplaints.Location = new Point(20, 25);
+            grbComplaints.Margin = new Padding(4);
             grbComplaints.Name = "grbComplaints";
-            grbComplaints.Size = new Size(585, 383);
+            grbComplaints.Padding = new Padding(4);
+            grbComplaints.Size = new Size(731, 479);
             grbComplaints.TabIndex = 0;
             grbComplaints.TabStop = false;
             grbComplaints.Text = "Complaints";
             // 
-            // gbComplaint
+            // panelComplaint
             // 
-            gbComplaint.Controls.Add(label8);
-            gbComplaint.Controls.Add(lblDatePosted);
-            gbComplaint.Controls.Add(lblComplaint);
-            gbComplaint.Location = new Point(6, 52);
-            gbComplaint.Name = "gbComplaint";
-            gbComplaint.Size = new Size(225, 126);
-            gbComplaint.TabIndex = 7;
-            gbComplaint.TabStop = false;
-            gbComplaint.Text = "Complaint";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold);
-            label8.Location = new Point(111, 90);
-            label8.Name = "label8";
-            label8.Size = new Size(17, 17);
-            label8.TabIndex = 2;
-            label8.Text = "...";
-            // 
-            // lblDatePosted
-            // 
-            lblDatePosted.AutoSize = true;
-            lblDatePosted.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold);
-            lblDatePosted.Location = new Point(20, 90);
-            lblDatePosted.Name = "lblDatePosted";
-            lblDatePosted.Size = new Size(73, 17);
-            lblDatePosted.TabIndex = 1;
-            lblDatePosted.Text = "Posted on:";
-            // 
-            // lblComplaint
-            // 
-            lblComplaint.AutoSize = true;
-            lblComplaint.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold);
-            lblComplaint.Location = new Point(20, 52);
-            lblComplaint.Name = "lblComplaint";
-            lblComplaint.Size = new Size(17, 17);
-            lblComplaint.TabIndex = 0;
-            lblComplaint.Text = "...";
+            panelComplaint.Location = new Point(8, 36);
+            panelComplaint.Name = "panelComplaint";
+            panelComplaint.Size = new Size(715, 347);
+            panelComplaint.TabIndex = 6;
             // 
             // btnPostComplaint
             // 
             btnPostComplaint.BackColor = Color.Gold;
             btnPostComplaint.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPostComplaint.Location = new Point(418, 331);
+            btnPostComplaint.Location = new Point(522, 414);
+            btnPostComplaint.Margin = new Padding(4);
             btnPostComplaint.Name = "btnPostComplaint";
-            btnPostComplaint.Size = new Size(161, 35);
+            btnPostComplaint.Size = new Size(201, 44);
             btnPostComplaint.TabIndex = 5;
             btnPostComplaint.Text = "Post";
             btnPostComplaint.UseVisualStyleBackColor = false;
+            btnPostComplaint.Click += btnPostComplaint_Click;
             // 
             // tbCreateComplaint
             // 
-            tbCreateComplaint.Location = new Point(6, 312);
+            tbCreateComplaint.Location = new Point(8, 390);
+            tbCreateComplaint.Margin = new Padding(4);
             tbCreateComplaint.Multiline = true;
             tbCreateComplaint.Name = "tbCreateComplaint";
-            tbCreateComplaint.Size = new Size(394, 54);
+            tbCreateComplaint.Size = new Size(492, 66);
             tbCreateComplaint.TabIndex = 2;
             // 
             // tabHouseRules
@@ -525,19 +509,20 @@
             tabHouseRules.BackColor = Color.DeepSkyBlue;
             tabHouseRules.Controls.Add(btnEditRules);
             tabHouseRules.Controls.Add(rulesTextBox);
-            tabHouseRules.Location = new Point(4, 29);
+            tabHouseRules.Location = new Point(4, 34);
             tabHouseRules.Margin = new Padding(2);
             tabHouseRules.Name = "tabHouseRules";
-            tabHouseRules.Size = new Size(620, 406);
+            tabHouseRules.Size = new Size(777, 511);
             tabHouseRules.TabIndex = 4;
             tabHouseRules.Text = "House Rules";
             // 
             // btnEditRules
             // 
             btnEditRules.BackColor = Color.Gold;
-            btnEditRules.Location = new Point(251, 356);
+            btnEditRules.Location = new Point(314, 445);
+            btnEditRules.Margin = new Padding(4);
             btnEditRules.Name = "btnEditRules";
-            btnEditRules.Size = new Size(105, 32);
+            btnEditRules.Size = new Size(131, 40);
             btnEditRules.TabIndex = 5;
             btnEditRules.Text = "Edit Rules";
             btnEditRules.UseVisualStyleBackColor = false;
@@ -546,11 +531,12 @@
             // rulesTextBox
             // 
             rulesTextBox.Font = new Font("Courier New", 10F);
-            rulesTextBox.Location = new Point(24, 22);
+            rulesTextBox.Location = new Point(30, 28);
+            rulesTextBox.Margin = new Padding(4);
             rulesTextBox.Multiline = true;
             rulesTextBox.Name = "rulesTextBox";
             rulesTextBox.ScrollBars = ScrollBars.Vertical;
-            rulesTextBox.Size = new Size(574, 316);
+            rulesTextBox.Size = new Size(716, 394);
             rulesTextBox.TabIndex = 3;
             // 
             // tabGroceryList
@@ -561,10 +547,10 @@
             tabGroceryList.Controls.Add(lbShoppingList);
             tabGroceryList.Controls.Add(btnAddToTheList);
             tabGroceryList.Controls.Add(tbAddGroceries);
-            tabGroceryList.Location = new Point(4, 29);
+            tabGroceryList.Location = new Point(4, 34);
             tabGroceryList.Margin = new Padding(2);
             tabGroceryList.Name = "tabGroceryList";
-            tabGroceryList.Size = new Size(620, 406);
+            tabGroceryList.Size = new Size(777, 511);
             tabGroceryList.TabIndex = 5;
             tabGroceryList.Text = "Grocery List";
             // 
@@ -572,9 +558,10 @@
             // 
             btnClearAllProducts.BackColor = Color.Gold;
             btnClearAllProducts.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnClearAllProducts.Location = new Point(303, 342);
+            btnClearAllProducts.Location = new Point(379, 428);
+            btnClearAllProducts.Margin = new Padding(4);
             btnClearAllProducts.Name = "btnClearAllProducts";
-            btnClearAllProducts.Size = new Size(180, 29);
+            btnClearAllProducts.Size = new Size(225, 36);
             btnClearAllProducts.TabIndex = 5;
             btnClearAllProducts.Text = "Clear all products";
             btnClearAllProducts.UseVisualStyleBackColor = false;
@@ -584,9 +571,10 @@
             // 
             btnDeleteSelectedProduct.BackColor = Color.Gold;
             btnDeleteSelectedProduct.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnDeleteSelectedProduct.Location = new Point(109, 342);
+            btnDeleteSelectedProduct.Location = new Point(136, 428);
+            btnDeleteSelectedProduct.Margin = new Padding(4);
             btnDeleteSelectedProduct.Name = "btnDeleteSelectedProduct";
-            btnDeleteSelectedProduct.Size = new Size(180, 29);
+            btnDeleteSelectedProduct.Size = new Size(225, 36);
             btnDeleteSelectedProduct.TabIndex = 4;
             btnDeleteSelectedProduct.Text = "Delete selected product";
             btnDeleteSelectedProduct.UseVisualStyleBackColor = false;
@@ -596,18 +584,21 @@
             // 
             lbShoppingList.BackColor = Color.White;
             lbShoppingList.FormattingEnabled = true;
-            lbShoppingList.Location = new Point(109, 114);
+            lbShoppingList.ItemHeight = 25;
+            lbShoppingList.Location = new Point(136, 142);
+            lbShoppingList.Margin = new Padding(4);
             lbShoppingList.Name = "lbShoppingList";
-            lbShoppingList.Size = new Size(374, 204);
+            lbShoppingList.Size = new Size(466, 254);
             lbShoppingList.TabIndex = 3;
             // 
             // btnAddToTheList
             // 
             btnAddToTheList.BackColor = Color.Gold;
             btnAddToTheList.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnAddToTheList.Location = new Point(366, 38);
+            btnAddToTheList.Location = new Point(458, 48);
+            btnAddToTheList.Margin = new Padding(4);
             btnAddToTheList.Name = "btnAddToTheList";
-            btnAddToTheList.Size = new Size(128, 29);
+            btnAddToTheList.Size = new Size(160, 36);
             btnAddToTheList.TabIndex = 1;
             btnAddToTheList.Text = "Add";
             btnAddToTheList.UseVisualStyleBackColor = false;
@@ -616,17 +607,18 @@
             // tbAddGroceries
             // 
             tbAddGroceries.BackColor = Color.White;
-            tbAddGroceries.Location = new Point(81, 40);
+            tbAddGroceries.Location = new Point(101, 50);
+            tbAddGroceries.Margin = new Padding(4);
             tbAddGroceries.Name = "tbAddGroceries";
-            tbAddGroceries.Size = new Size(192, 27);
+            tbAddGroceries.Size = new Size(239, 31);
             tbAddGroceries.TabIndex = 0;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(640, 453);
+            ClientSize = new Size(800, 566);
             Controls.Add(tabHome);
             Margin = new Padding(2);
             Name = "MainForm";
@@ -646,14 +638,13 @@
             tabComplaints.ResumeLayout(false);
             grbComplaints.ResumeLayout(false);
             grbComplaints.PerformLayout();
-            gbComplaint.ResumeLayout(false);
-            gbComplaint.PerformLayout();
             tabHouseRules.ResumeLayout(false);
             tabHouseRules.PerformLayout();
             tabGroceryList.ResumeLayout(false);
             tabGroceryList.PerformLayout();
             ResumeLayout(false);
         }
+
         //kati e mrusen top
 
         #endregion
@@ -688,10 +679,6 @@
         private GroupBox grbComplaints;
         private Button btnPostComplaint;
         private TextBox tbCreateComplaint;
-        private GroupBox gbComplaint;
-        private Label label8;
-        private Label lblDatePosted;
-        private Label lblComplaint;
         private Button btnEditRules;
         private TextBox rulesTextBox;
         private MonthCalendar monthCalendar1;
@@ -704,5 +691,6 @@
         private Panel panelAnnouncements;
         private Button btnCreateAnnouncement;
         private TextBox tbAnnouncement;
+        private Panel panelComplaint;
     }
 }
