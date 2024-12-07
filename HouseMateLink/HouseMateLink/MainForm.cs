@@ -25,7 +25,7 @@ namespace HouseMateLink
             isAdmin = a;
 
         }
-        public MainForm(bool a, User user)
+        public MainForm(bool a, User user, Building b)
         {
             InitializeComponent();
             dateTimePicker = new DateTimePicker();
@@ -47,8 +47,6 @@ namespace HouseMateLink
             }
             else
             {
-                // Display a default image if the user's photo is not found
-               // pbUser.Image = Properties.Resources.default_user; // Replace with your default image
                 pbUser.SizeMode = PictureBoxSizeMode.Zoom;
             }
 
@@ -57,7 +55,7 @@ namespace HouseMateLink
         private void Initialization()
         {
             itemCounter = 1;
-            dateTimePicker.Value = DateTime.Now;  // Now safe to access the control
+            dateTimePicker.Value = DateTime.Now; 
             dateTimePicker.Visible = false;
             LoadHouseRules();
 
@@ -67,8 +65,8 @@ namespace HouseMateLink
         }
         private void CustomizeTabHeaders()
         {
-            tabHome.DrawMode = TabDrawMode.OwnerDrawFixed; // Enable custom drawing
-            tabHome.DrawItem += TabControl1_DrawTabHeaders; // Attach event handler
+            tabHome.DrawMode = TabDrawMode.OwnerDrawFixed; 
+            tabHome.DrawItem += TabControl1_DrawTabHeaders; 
         }
 
         private void TabControl1_DrawTabHeaders(object sender, DrawItemEventArgs e)

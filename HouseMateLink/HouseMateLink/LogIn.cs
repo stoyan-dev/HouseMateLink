@@ -29,7 +29,7 @@ namespace HouseMateLink
             }
             else
             {
-                MainForm mainForm = new MainForm(isAdmin,loggedInUser);
+                MainForm mainForm = new MainForm(isAdmin,loggedInUser,myBuilding);
                 mainForm.Show();
                 this.Hide();
             }
