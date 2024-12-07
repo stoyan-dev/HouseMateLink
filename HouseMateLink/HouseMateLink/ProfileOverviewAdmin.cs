@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,8 +15,8 @@ namespace HouseMateLink
     {
         private Building building;
         private User user;
-        string selectedPhotoFilePathEdit = null;
-        string selectedPhotoFilePathAdd = null;
+        private string selectedPhotoFilePathEdit = null;
+        private string selectedPhotoFilePathAdd = null;
 
         public ProfileOverviewAdmin()
         {
@@ -59,9 +60,44 @@ namespace HouseMateLink
             int roomNum = (int)nudAddRoom.Value;
             string username = tbAddUsername.Text;
             string password = tbAddPassword.Text;
+            string photoFile = selectedPhotoFilePathAdd;
 
-            user = new User();
-            building.AddUser();
+
+            if (string.IsNullOrWhiteSpace(name) ||
+                string.IsNullOrWhiteSpace(username) ||
+                string.IsNullOrWhiteSpace(password) ||
+                string.IsNullOrWhiteSpace(photoFile))
+            {
+                MessageBox.Show("All fields must be filled out, including selecting a photo.", "Validation Error");
+                return;
+            }
+
+
+            building.CreateAddNewUser(username, password, name, role, roomNum, photoFile);
+
+            MessageBox.Show("New user added successfully!");
+
+
+            tbAddName.Clear();
+            nudAddRoom.Value = 0;
+            tbAddUsername.Clear();
+            tbAddPassword.Clear();
+            pbNewUser.Image = null;
+            selectedPhotoFilePathAdd = null;
+
+            List<User> users = building.GetTenants();
+            string jsonString = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+            try
+            {
+                File.WriteAllText("user.json", jsonString);
+                MessageBox.Show("File created successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error writing to file: {ex.Message}");
+            }
+
         }
     }
-}
+    }
+
