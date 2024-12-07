@@ -163,6 +163,8 @@ namespace HouseMateLink
                 itemCounter++;
 
                 tbAddGroceries.Text = string.Empty;
+
+                SaveShoppingListToJson();
             }
             else
             {
@@ -170,16 +172,18 @@ namespace HouseMateLink
             }
         }
 
-        private void btnClearTheLastProduct_Click(object sender, EventArgs e)
+        private void btnClearSelectedProduct_Click(object sender, EventArgs e)
         {
-            if (lbShoppingList.Items.Count > 0)
+            if (lbShoppingList.SelectedIndex != -1)
             {
-                lbShoppingList.Items.RemoveAt(0);
+                lbShoppingList.Items.RemoveAt(lbShoppingList.SelectedIndex);
+
                 RenumberShoppingList();
+                SaveShoppingListToJson();
             }
             else
             {
-                MessageBox.Show("The shopping list is already empty.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please select a product to delete.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -200,6 +204,26 @@ namespace HouseMateLink
             itemCounter = lbShoppingList.Items.Count + 1;
         }
 
+        private void SaveShoppingListToJson()
+        {
+            try
+            {
+                string[] shoppingList = new string[lbShoppingList.Items.Count];
+                for (int i = 0; i < lbShoppingList.Items.Count; i++)
+                {
+                    shoppingList[i] = lbShoppingList.Items[i].ToString();
+                }
+
+                string jsonString = JsonSerializer.Serialize(shoppingList, new JsonSerializerOptions { WriteIndented = true });
+
+                // Save JSON to file
+                File.WriteAllText("ShoppingList.json", jsonString);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving to file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void btnCreateAnnouncement_Click(object sender, EventArgs e)
         {

@@ -72,9 +72,8 @@
             rulesTextBox = new TextBox();
             tabGroceryList = new TabPage();
             btnClearAllProducts = new Button();
-            btnClearTheLastProduct = new Button();
+            btnDeleteSelectedProduct = new Button();
             lbShoppingList = new ListBox();
-            lblInfo = new Label();
             btnAddToTheList = new Button();
             tbAddGroceries = new TextBox();
             tabHome.SuspendLayout();
@@ -558,9 +557,8 @@
             // 
             tabGroceryList.BackColor = Color.DeepSkyBlue;
             tabGroceryList.Controls.Add(btnClearAllProducts);
-            tabGroceryList.Controls.Add(btnClearTheLastProduct);
+            tabGroceryList.Controls.Add(btnDeleteSelectedProduct);
             tabGroceryList.Controls.Add(lbShoppingList);
-            tabGroceryList.Controls.Add(lblInfo);
             tabGroceryList.Controls.Add(btnAddToTheList);
             tabGroceryList.Controls.Add(tbAddGroceries);
             tabGroceryList.Location = new Point(4, 29);
@@ -582,42 +580,32 @@
             btnClearAllProducts.UseVisualStyleBackColor = false;
             btnClearAllProducts.Click += btnClearAllProducts_Click;
             // 
-            // btnClearTheLastProduct
+            // btnDeleteSelectedProduct
             // 
-            btnClearTheLastProduct.BackColor = Color.Gold;
-            btnClearTheLastProduct.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnClearTheLastProduct.Location = new Point(109, 342);
-            btnClearTheLastProduct.Name = "btnClearTheLastProduct";
-            btnClearTheLastProduct.Size = new Size(180, 29);
-            btnClearTheLastProduct.TabIndex = 4;
-            btnClearTheLastProduct.Text = "Clear the last product";
-            btnClearTheLastProduct.UseVisualStyleBackColor = false;
-            btnClearTheLastProduct.Click += btnClearTheLastProduct_Click;
+            btnDeleteSelectedProduct.BackColor = Color.Gold;
+            btnDeleteSelectedProduct.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            btnDeleteSelectedProduct.Location = new Point(109, 342);
+            btnDeleteSelectedProduct.Name = "btnDeleteSelectedProduct";
+            btnDeleteSelectedProduct.Size = new Size(180, 29);
+            btnDeleteSelectedProduct.TabIndex = 4;
+            btnDeleteSelectedProduct.Text = "Delete selected product";
+            btnDeleteSelectedProduct.UseVisualStyleBackColor = false;
+            btnDeleteSelectedProduct.Click += btnClearSelectedProduct_Click;
             // 
             // lbShoppingList
             // 
-            lbShoppingList.BackColor = Color.Gold;
+            lbShoppingList.BackColor = Color.White;
             lbShoppingList.FormattingEnabled = true;
             lbShoppingList.Location = new Point(109, 114);
             lbShoppingList.Name = "lbShoppingList";
             lbShoppingList.Size = new Size(374, 204);
             lbShoppingList.TabIndex = 3;
             // 
-            // lblInfo
-            // 
-            lblInfo.AutoSize = true;
-            lblInfo.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblInfo.Location = new Point(69, 71);
-            lblInfo.Name = "lblInfo";
-            lblInfo.Size = new Size(451, 23);
-            lblInfo.TabIndex = 2;
-            lblInfo.Text = "Here you can add the necessary groceries for the house";
-            // 
             // btnAddToTheList
             // 
             btnAddToTheList.BackColor = Color.Gold;
             btnAddToTheList.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnAddToTheList.Location = new Point(366, 25);
+            btnAddToTheList.Location = new Point(366, 38);
             btnAddToTheList.Name = "btnAddToTheList";
             btnAddToTheList.Size = new Size(128, 29);
             btnAddToTheList.TabIndex = 1;
@@ -627,8 +615,8 @@
             // 
             // tbAddGroceries
             // 
-            tbAddGroceries.BackColor = Color.Gold;
-            tbAddGroceries.Location = new Point(81, 27);
+            tbAddGroceries.BackColor = Color.White;
+            tbAddGroceries.Location = new Point(81, 40);
             tbAddGroceries.Name = "tbAddGroceries";
             tbAddGroceries.Size = new Size(192, 27);
             tbAddGroceries.TabIndex = 0;
@@ -707,10 +695,9 @@
         private TextBox rulesTextBox;
         private MonthCalendar monthCalendar1;
         private ListBox lbShoppingList;
-        private Label lblInfo;
         private Button btnAddToTheList;
         private TextBox tbAddGroceries;
-        private Button btnClearTheLastProduct;
+        private Button btnDeleteSelectedProduct;
         private Button btnClearAllProducts;
         private GroupBox grbAnnouncements;
         private Panel panelAnnouncements;
