@@ -18,7 +18,14 @@ namespace HouseMateLink
         private Building myBuilding;
         private int itemCounter;
         private bool isAdmin;
-        public MainForm(bool a,Building b)
+        private User currentUser;
+        public MainForm(bool a )
+        {
+            InitializeComponent();
+            isAdmin = a;
+
+        }
+        public MainForm(bool a, User user)
         {
             InitializeComponent();
             dateTimePicker = new DateTimePicker();
@@ -26,6 +33,24 @@ namespace HouseMateLink
             isAdmin = a;
             Initialization();
             CustomizeTabHeaders();
+
+            currentUser = user;
+
+            lblUserName.Text = currentUser.Name;
+            lblUserRole.Text = currentUser.Role.ToString();
+            lblUserRoom.Text = currentUser.RoomNumber.ToString();
+
+            if (!string.IsNullOrEmpty(currentUser.Photo) && File.Exists(currentUser.Photo))
+            {
+               pbUser.Image = Image.FromFile(currentUser.Photo);
+                pbUser.SizeMode = PictureBoxSizeMode.Zoom; 
+            }
+            else
+            {
+                // Display a default image if the user's photo is not found
+               // pbUser.Image = Properties.Resources.default_user; // Replace with your default image
+                pbUser.SizeMode = PictureBoxSizeMode.Zoom;
+            }
 
         }
 
@@ -38,6 +63,7 @@ namespace HouseMateLink
 
             btnEditRules.Visible = isAdmin;
             rulesTextBox.ReadOnly = true;
+            
         }
         private void CustomizeTabHeaders()
         {
@@ -74,6 +100,7 @@ namespace HouseMateLink
                 e.Graphics.DrawString(tabControl.TabPages[e.Index].Text, e.Font, textBrush, tabBounds, stringFormat);
             }
         }
+
 
         private void grbHome_Enter(object sender, EventArgs e)
         {

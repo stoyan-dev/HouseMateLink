@@ -47,7 +47,7 @@
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            pictureBox1 = new PictureBox();
+            pbUser = new PictureBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -78,7 +78,7 @@
             grbButtons.SuspendLayout();
             grbHome.SuspendLayout();
             gbProfile.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbUser).BeginInit();
             tabCalendar.SuspendLayout();
             tabAnnouncements.SuspendLayout();
             grbAnnouncements.SuspendLayout();
@@ -239,7 +239,7 @@
             gbProfile.Controls.Add(label4);
             gbProfile.Controls.Add(label5);
             gbProfile.Controls.Add(label6);
-            gbProfile.Controls.Add(pictureBox1);
+            gbProfile.Controls.Add(pbUser);
             gbProfile.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbProfile.Location = new Point(6, 28);
             gbProfile.Margin = new Padding(4);
@@ -310,14 +310,13 @@
             label6.TabIndex = 1;
             label6.Text = "Name:";
             // 
-            // pictureBox1
+            // pbUser
             // 
-            pictureBox1.Location = new Point(8, 45);
-            pictureBox1.Margin = new Padding(4);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(94, 95);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            pbUser.Location = new Point(6, 36);
+            pbUser.Name = "pbUser";
+            pbUser.Size = new Size(75, 76);
+            pbUser.TabIndex = 0;
+            pbUser.TabStop = false;
             // 
             // label3
             // 
@@ -558,8 +557,7 @@
             // 
             btnClearAllProducts.BackColor = Color.Gold;
             btnClearAllProducts.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnClearAllProducts.Location = new Point(379, 428);
-            btnClearAllProducts.Margin = new Padding(4);
+            btnClearAllProducts.Location = new Point(326, 342);
             btnClearAllProducts.Name = "btnClearAllProducts";
             btnClearAllProducts.Size = new Size(225, 36);
             btnClearAllProducts.TabIndex = 5;
@@ -630,7 +628,7 @@
             grbHome.PerformLayout();
             gbProfile.ResumeLayout(false);
             gbProfile.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbUser).EndInit();
             tabCalendar.ResumeLayout(false);
             tabAnnouncements.ResumeLayout(false);
             grbAnnouncements.ResumeLayout(false);
@@ -675,7 +673,7 @@
         private Label label4;
         private Label label5;
         private Label label6;
-        private PictureBox pictureBox1;
+        private PictureBox pbUser;
         private GroupBox grbComplaints;
         private Button btnPostComplaint;
         private TextBox tbCreateComplaint;

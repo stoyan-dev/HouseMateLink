@@ -21,29 +21,31 @@ namespace HouseMateLink
         {
             List<User> users = LoadUsersFromJson("users.json");
 
-            if (!ValidateUser(users))
+            User loggedInUser = ValidateUser(users);
+
+            if (loggedInUser == null)
             {
                 MessageBox.Show("Incorrect username or password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                MainForm mainForm = new MainForm(isAdmin, myBuilding);
+                MainForm mainForm = new MainForm(isAdmin,loggedInUser);
                 mainForm.Show();
                 this.Hide();
             }
         }
 
-        private bool ValidateUser(List<User> users)
+        private User ValidateUser(List<User> users)
         {
             foreach (User user in users)
             {
                 if (user.Username == tbUsername.Text && user.Password == tbPassword.Text)
                 {
                     isAdmin = user.Role == Role.ADMIN;
-                    return true;
+                    return user;
                 }
             }
-            return false;
+            return null;
         }
 
         private List<User> LoadUsersFromJson(string filePath)
@@ -67,6 +69,7 @@ namespace HouseMateLink
                 return new List<User>();
             }
         }
+
 
         private void Initialization()
         {
