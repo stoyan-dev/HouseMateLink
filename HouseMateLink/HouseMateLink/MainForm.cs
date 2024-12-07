@@ -23,6 +23,7 @@ namespace HouseMateLink
             dateTimePicker = new DateTimePicker();
             isAdmin = a;
             Initialization();
+            CustomizeTabHeaders();
 
         }
 
@@ -35,6 +36,41 @@ namespace HouseMateLink
 
             btnEditRules.Visible = isAdmin;
             rulesTextBox.ReadOnly = true;
+        }
+        private void CustomizeTabHeaders()
+        {
+            tabHome.DrawMode = TabDrawMode.OwnerDrawFixed; // Enable custom drawing
+            tabHome.DrawItem += TabControl1_DrawTabHeaders; // Attach event handler
+        }
+
+        private void TabControl1_DrawTabHeaders(object sender, DrawItemEventArgs e)
+        {
+            TabControl tabControl = sender as TabControl;
+
+            if (tabControl == null)
+                return;
+
+            // Get the rectangle for the current tab
+            Rectangle tabBounds = tabControl.GetTabRect(e.Index);
+
+            // Set the background color (Gold for all tabs)
+            Color backgroundColor = e.State == DrawItemState.Selected ? Color.DarkGoldenrod : Color.Gold;
+            Color textColor = Color.Black;
+
+            using (SolidBrush backgroundBrush = new SolidBrush(backgroundColor))
+            using (SolidBrush textBrush = new SolidBrush(textColor))
+            {
+                // Fill the background for the tab header
+                e.Graphics.FillRectangle(backgroundBrush, tabBounds);
+
+                // Draw the tab text
+                StringFormat stringFormat = new StringFormat
+                {
+                    Alignment = StringAlignment.Center,
+                    LineAlignment = StringAlignment.Center
+                };
+                e.Graphics.DrawString(tabControl.TabPages[e.Index].Text, e.Font, textBrush, tabBounds, stringFormat);
+            }
         }
 
         private void grbHome_Enter(object sender, EventArgs e)
