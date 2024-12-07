@@ -536,7 +536,7 @@
             // btnEditRules
             // 
             btnEditRules.BackColor = Color.Gold;
-            btnEditRules.Location = new Point(256, 354);
+            btnEditRules.Location = new Point(251, 356);
             btnEditRules.Name = "btnEditRules";
             btnEditRules.Size = new Size(105, 32);
             btnEditRules.TabIndex = 5;

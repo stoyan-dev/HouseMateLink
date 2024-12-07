@@ -5,8 +5,10 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.ApplicationServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace HouseMateLink
@@ -98,7 +100,6 @@ namespace HouseMateLink
 
         private void LoadHouseRules()
         {
-            // Default rules to load initially
             string defaultRules = $"House Rules:{Environment.NewLine}{Environment.NewLine}" +
                                   $"1. Respect each other's space.{Environment.NewLine}" +
                                   $"2. Always clean up after yourself in shared spaces like the kitchen, living room, and bathroom.{Environment.NewLine}" +
@@ -111,26 +112,44 @@ namespace HouseMateLink
 
             rulesTextBox.Text = defaultRules;
 
-            rulesTextBox.ReadOnly = true; 
-            btnEditRules.Text = "Edit Rules"; 
+            rulesTextBox.ReadOnly = true;
+            btnEditRules.Text = "Edit Rules";
         }
 
         private void btnEditRules_Click(object sender, EventArgs e)
         {
-            if (rulesTextBox.ReadOnly) 
+            if (rulesTextBox.ReadOnly)
             {
-                rulesTextBox.ReadOnly = false; 
-                btnEditRules.Text = "Save Rules"; 
+                rulesTextBox.ReadOnly = false;
+                btnEditRules.Text = "Save Rules";
             }
-            else 
+            else
             {
                 string updatedRules = rulesTextBox.Text;
 
-                
+                string[] rulesArray = updatedRules.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+                SaveToJsonFile(rulesArray);
                 MessageBox.Show("Rules saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                rulesTextBox.ReadOnly = true; 
-                btnEditRules.Text = "Edit Rules"; 
+                rulesTextBox.ReadOnly = true;
+                btnEditRules.Text = "Edit Rules";
+            }
+        }
+
+        private void SaveToJsonFile(string[] rulesArray)
+        {
+            try
+            {
+                string jsonString = JsonSerializer.Serialize(rulesArray, new JsonSerializerOptions { WriteIndented = true });
+
+                File.WriteAllText("rules.json", jsonString);
+
+                MessageBox.Show("File created successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error writing to file: {ex.Message}");
             }
         }
 
