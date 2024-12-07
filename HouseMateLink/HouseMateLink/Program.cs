@@ -11,7 +11,7 @@ namespace HouseMateLink
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm(true,new User("k","k","k",Role.TENANT,1,"k"),new Building("My Building")));
+            Application.Run(new ProfileOverviewAdmin());
         }
     }
 }

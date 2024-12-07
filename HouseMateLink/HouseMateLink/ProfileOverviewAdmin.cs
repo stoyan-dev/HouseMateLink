@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Text.Json;
 
 namespace HouseMateLink
 {
@@ -39,19 +30,19 @@ namespace HouseMateLink
             }
         }
 
-        private void btnEditPhoto_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    selectedPhotoFilePathEdit = openFileDialog.FileName;
-                    pbUser.Image = Image.FromFile(selectedPhotoFilePathEdit);
-                    pbUser.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
-            }
-        }
+        //private void btnEditPhoto_Click(object sender, EventArgs e)
+        //{
+        //    using (OpenFileDialog openFileDialog = new OpenFileDialog())
+        //    {
+        //        openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png";
+        //        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        //        {
+        //            selectedPhotoFilePathEdit = openFileDialog.FileName;
+        //            pbUser.Image = Image.FromFile(selectedPhotoFilePathEdit);
+        //            pbUser.SizeMode = PictureBoxSizeMode.StretchImage;
+        //        }
+        //    }
+        //}
 
         private void btnAdduser_Click(object sender, EventArgs e)
         {
@@ -62,7 +53,6 @@ namespace HouseMateLink
             string password = tbAddPassword.Text;
             string photoFile = selectedPhotoFilePathAdd;
 
-
             if (string.IsNullOrWhiteSpace(name) ||
                 string.IsNullOrWhiteSpace(username) ||
                 string.IsNullOrWhiteSpace(password) ||
@@ -72,11 +62,9 @@ namespace HouseMateLink
                 return;
             }
 
-
             building.CreateAddNewUser(username, password, name, role, roomNum, photoFile);
 
             MessageBox.Show("New user added successfully!");
-
 
             tbAddName.Clear();
             nudAddRoom.Value = 0;
@@ -87,6 +75,7 @@ namespace HouseMateLink
 
             List<User> users = building.GetUsers();
             string jsonString = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+
             try
             {
                 File.WriteAllText("users.json", jsonString);
@@ -97,7 +86,24 @@ namespace HouseMateLink
                 MessageBox.Show($"Error writing to file: {ex.Message}");
             }
 
+            User newUser = building.GetUsers().LastOrDefault(user => user.Username == username);  
+
+            if (newUser != null)
+            {
+                Image userPhoto = Image.FromFile(newUser.Photo); 
+
+                UserInfoControl userInfoControl = new UserInfoControl(newUser.Name, newUser.Role.ToString(), newUser.RoomNumber.ToString(), newUser.Username, newUser.Password, userPhoto,RemoveUser);
+
+                userInfoControl.Size = new Size(400, 150);
+                userInfoControl.Location = new Point(10, 10 + (UserInfoPanel.Controls.Count * 160));  
+                UserInfoPanel.Controls.Add(userInfoControl);
+            }
+        }
+
+        private void RemoveUser(UserInfoControl userInfoControl)
+        {      
+            UserInfoPanel.Controls.Remove(userInfoControl);
         }
     }
-    }
+}
 
