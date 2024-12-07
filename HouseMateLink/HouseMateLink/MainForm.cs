@@ -71,13 +71,13 @@ namespace HouseMateLink
             {
                 ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin();
                 profileOverviewAdmin.Show();
-                this.Close();
+                this.Hide();
             }
             else
             {
                 ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant();
                 profileOverviewTenant.Show();
-                this.Close();
+                this.Hide();
             }
         }
 
@@ -90,8 +90,9 @@ namespace HouseMateLink
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            Form logIn = new Form();
-            logIn.Show();
+            logIn logInForm = new logIn();
+            this.Hide();
+            logInForm.ShowDialog();
             this.Close();
         }
 
