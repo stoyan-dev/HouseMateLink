@@ -15,12 +15,10 @@
 
         private void InitializeUserInfoSummary(string name, Role role, int room, Image photo)
         {
-            this.Size = new Size(200, 250);
             this.BackColor = Color.White;
             this.Padding = new Padding(10);
             this.BorderStyle = BorderStyle.FixedSingle;
 
-            // Set the photo size and position
             pbPhoto = new PictureBox
             {
                 Size = new Size(100, 100),
@@ -30,40 +28,36 @@
                 BorderStyle = BorderStyle.FixedSingle
             };
 
-            // Set the name label
             lblName = new Label
             {
                 Text = name,
                 Font = new Font("Arial", 12, FontStyle.Bold),
-                AutoSize = true,  // AutoSize set to true to adjust based on the text size
+                AutoSize = true,  
                 TextAlign = ContentAlignment.MiddleCenter,
-                Location = new Point(10, 120),  // Position below the photo
-                Width = 180 // Ensure the label has enough width to accommodate the text
+                Location = new Point(10, 120),  
+                Width = 180 
             };
 
-            // Set the role label
             lblRole = new Label
             {
                 Text = $"Role: {role}",
                 Font = new Font("Arial", 10),
-                AutoSize = true,  // AutoSize set to true to adjust based on the text size
+                AutoSize = false,
                 TextAlign = ContentAlignment.MiddleCenter,
-                Location = new Point(10, 160),  // Position below the name
-                Width = 180 // Ensure the label has enough width to accommodate the text
+                Location = new Point(10, 160),
+                Width = 180
             };
 
-            // Set the room label
             lblRoom = new Label
             {
                 Text = $"Room: {room}",
                 Font = new Font("Arial", 10),
-                AutoSize = true,  // AutoSize set to true to adjust based on the text size
+                AutoSize = false,
                 TextAlign = ContentAlignment.MiddleCenter,
-                Location = new Point(10, 190),  // Position below the role
-                Width = 180 // Ensure the label has enough width to accommodate the text
+                Location = new Point(10, 190),  
+                Width = 180 
             };
 
-            // Add the controls to the UserControl
             this.Controls.Add(pbPhoto);
             this.Controls.Add(lblName);
             this.Controls.Add(lblRole);

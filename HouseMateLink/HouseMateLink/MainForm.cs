@@ -391,7 +391,7 @@ namespace HouseMateLink
             panelComplaint.Controls.Clear();
             foreach (Complaint complaint in myBuilding.GetComplaints())
             {
-                ComplaintMessageControl newComplaint = new ComplaintMessageControl(complaint.Description, complaint.CreatedAt);
+                ComplaintMessageControl newComplaint = new ComplaintMessageControl(complaint.Description, complaint.CreatedAt,ArchiveComplaint);
                 newComplaint.Size = new Size(400, 80);
                 int newX = 10;
                 int newY = 10;
@@ -409,6 +409,12 @@ namespace HouseMateLink
             tbCreateComplaint.Clear();
             SaveComplaintsToJson(myBuilding.GetComplaints());
         }
+
+        private void ArchiveComplaint(ComplaintMessageControl complaintMessageControl)
+        {
+            panelComplaint.Controls.Remove(complaintMessageControl);
+        }
+
         private void SaveComplaintsToJson(List<Complaint> complaints)
         {
             string filePath = "complaints.json";
