@@ -30,7 +30,7 @@
 
             lblName = new Label
             {
-                Text = name,
+                Text = $"Name: {name}",
                 Font = new Font("Arial", 12, FontStyle.Bold),
                 AutoSize = true,  
                 TextAlign = ContentAlignment.MiddleCenter,

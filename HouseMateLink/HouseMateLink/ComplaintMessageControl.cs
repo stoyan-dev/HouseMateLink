@@ -52,8 +52,8 @@ namespace HouseMateLink
             btnArchive = new Button
             {
                 Text = "Archive",
-                Location = new Point(10, 55),
-                Size = new Size(90, 20),
+                Location = new Point(10, 70),
+                Size = new Size(85, 50),
                 BackColor = Color.GhostWhite
             };
 

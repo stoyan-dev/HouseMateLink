@@ -58,7 +58,7 @@ namespace HouseMateLink
 
                 UserInfoSummaryControl summaryControl = new UserInfoSummaryControl(user.Name, user.Role, user.RoomNumber, userPhoto)
                 {
-                    Size = new Size(200, 120),
+                    Size = new Size(200, 250),
                     Location = new Point(x, y)
                 };
 

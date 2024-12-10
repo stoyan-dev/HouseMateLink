@@ -392,7 +392,7 @@ namespace HouseMateLink
             foreach (Complaint complaint in myBuilding.GetComplaints())
             {
                 ComplaintMessageControl newComplaint = new ComplaintMessageControl(complaint.Description, complaint.CreatedAt,ArchiveComplaint);
-                newComplaint.Size = new Size(400, 80);
+                newComplaint.Size = new Size(400, 100);
                 int newX = 10;
                 int newY = 10;
 
