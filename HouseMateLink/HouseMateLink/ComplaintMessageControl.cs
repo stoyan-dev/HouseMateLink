@@ -14,11 +14,13 @@ namespace HouseMateLink
     {
         private Label lblComplaintText;
         private Label lblComplaintDate;
+        private Button btnArchive;
+        private Action<ComplaintMessageControl> onArchiveButtonClick;
 
-        
-        public ComplaintMessageControl(string complaintText, DateTime createdAt)
+        public ComplaintMessageControl(string complaintText, DateTime createdAt, Action<ComplaintMessageControl> onArchiveButtonClick)
         {
-            InitializeComponent();  
+            InitializeComponent(); 
+            this.onArchiveButtonClick=onArchiveButtonClick;
             InitializeComplaintControl(complaintText, createdAt); 
         }
 
@@ -46,9 +48,26 @@ namespace HouseMateLink
                 Font = new Font("Arial", 8, FontStyle.Italic),  
                 ForeColor = Color.Gray   
             };
+
+            btnArchive = new Button
+            {
+                Text = "Archive",
+                Location = new Point(10, 55),
+                Size = new Size(90, 20),
+                BackColor = Color.GhostWhite
+            };
+
+            btnArchive.Click += BtnArchive_Click;
+
             this.Controls.Add(lblComplaintText);
             this.Controls.Add(lblComplaintDate);
+            this.Controls.Add(btnArchive);
 
+        }
+
+        private void BtnArchive_Click(object sender, EventArgs e)
+        {
+            onArchiveButtonClick(this);
         }
     }
 }

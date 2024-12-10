@@ -9,6 +9,7 @@ namespace HouseMateLink
         {
             InitializeComponent();
             myBuilding = b;
+            //LoadUsersFromJson();
             PopulateUserSummariesPanel();
         }
 
@@ -17,7 +18,7 @@ namespace HouseMateLink
             string filePath = "users.json";
             if (!File.Exists(filePath))
             {
-                return new List<User>(); // Return an empty list if the file doesn't exist
+                return new List<User>();
             }
 
             try
@@ -34,7 +35,7 @@ namespace HouseMateLink
 
         private void PopulateUserSummariesPanel()
         {
-            UserInfoSummaryPanel.Controls.Clear(); 
+            UserInfoSummaryPanel.Controls.Clear();
 
             List<User> users = LoadUsersFromJson(); 
 
@@ -46,9 +47,9 @@ namespace HouseMateLink
                 {
                     if (!string.IsNullOrWhiteSpace(user.Photo) && File.Exists(user.Photo))
                     {
-                        userPhoto = Image.FromFile(user.Photo); 
+                        userPhoto = Image.FromFile(user.Photo);
                     }
-                    
+
                 }
                 catch (Exception ex)
                 {
