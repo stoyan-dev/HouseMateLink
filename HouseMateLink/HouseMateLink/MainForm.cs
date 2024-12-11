@@ -34,6 +34,7 @@ namespace HouseMateLink
             isAdmin = a;
             Initialization();
             CustomizeTabHeaders();
+            LoadShoppingListFromJson();
 
             currentUser = user;
 
@@ -287,6 +288,35 @@ namespace HouseMateLink
                 MessageBox.Show($"Error saving to file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void LoadShoppingListFromJson()
+        {
+            try
+            {
+  
+                if (File.Exists("ShoppingList.json"))
+                {
+                    string jsonString = File.ReadAllText("ShoppingList.json");
+
+                    string[] shoppingList = JsonSerializer.Deserialize<string[]>(jsonString);
+
+                    lbShoppingList.Items.Clear();
+
+                    foreach (var item in shoppingList)
+                    {
+                        lbShoppingList.Items.Add(item);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Shopping list file not found.", "Info");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading from file: {ex.Message}", "Error");
+            }
+        }
+
 
         private void btnCreateAnnouncement_Click(object sender, EventArgs e)
         {
@@ -304,7 +334,7 @@ namespace HouseMateLink
             foreach(Announcement announcement in currentUser.GetAnnouncements())
             {
                 AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(announcement.Description, announcement.CreatedAt,currentUser.Name, ArchiveAnnouncement);
-                newAnnouncement.Size = new Size(400, 150);
+                newAnnouncement.Size = new Size(400, 125);
                 int newX = 10;
                 int newY = 10;
 
@@ -398,7 +428,7 @@ namespace HouseMateLink
             foreach (Complaint complaint in myBuilding.GetComplaints())
             {
                 ComplaintMessageControl newComplaint = new ComplaintMessageControl(complaint.Description, complaint.CreatedAt,ArchiveComplaint);
-                newComplaint.Size = new Size(400, 120);
+                newComplaint.Size = new Size(400, 110);
                 int newX = 10;
                 int newY = 10;
 

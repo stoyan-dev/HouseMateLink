@@ -36,6 +36,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Name = "AnnouncementMessageControl";
             Size = new Size(237, 150);
+            Load += AnnouncementMessageControl_Load;
             ResumeLayout(false);
         }
 
