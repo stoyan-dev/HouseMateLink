@@ -56,9 +56,9 @@
             monthCalendar1 = new MonthCalendar();
             tabAnnouncements = new TabPage();
             grbAnnouncements = new GroupBox();
-            panelAnnouncements = new Panel();
-            tbAnnouncement = new TextBox();
             btnCreateAnnouncement = new Button();
+            tbAnnouncement = new TextBox();
+            panelAnnouncements = new Panel();
             tabComplaints = new TabPage();
             grbComplaints = new GroupBox();
             panelComplaint = new Panel();
@@ -100,7 +100,7 @@
             tabHome.Margin = new Padding(2);
             tabHome.Name = "tabHome";
             tabHome.SelectedIndex = 0;
-            tabHome.Size = new Size(628, 439);
+            tabHome.Size = new Size(915, 547);
             tabHome.TabIndex = 0;
             // 
             // tabHomePage
@@ -112,7 +112,7 @@
             tabHomePage.Margin = new Padding(2);
             tabHomePage.Name = "tabHomePage";
             tabHomePage.Padding = new Padding(2);
-            tabHomePage.Size = new Size(620, 406);
+            tabHomePage.Size = new Size(907, 514);
             tabHomePage.TabIndex = 0;
             tabHomePage.Text = "Home Page";
             // 
@@ -125,22 +125,22 @@
             grbButtons.Controls.Add(btnAnnouncements);
             grbButtons.Controls.Add(btnCalendar);
             grbButtons.Controls.Add(btnRules);
-            grbButtons.Location = new Point(234, 22);
+            grbButtons.Location = new Point(525, 22);
             grbButtons.Margin = new Padding(2);
             grbButtons.Name = "grbButtons";
             grbButtons.Padding = new Padding(2);
-            grbButtons.Size = new Size(359, 367);
+            grbButtons.Size = new Size(357, 474);
             grbButtons.TabIndex = 3;
             grbButtons.TabStop = false;
             // 
             // btnProfileOverview
             // 
             btnProfileOverview.BackColor = Color.Gold;
-            btnProfileOverview.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnProfileOverview.Location = new Point(198, 227);
+            btnProfileOverview.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnProfileOverview.Location = new Point(14, 95);
             btnProfileOverview.Margin = new Padding(2);
             btnProfileOverview.Name = "btnProfileOverview";
-            btnProfileOverview.Size = new Size(141, 66);
+            btnProfileOverview.Size = new Size(325, 59);
             btnProfileOverview.TabIndex = 5;
             btnProfileOverview.Text = "Profile Overview";
             btnProfileOverview.UseVisualStyleBackColor = false;
@@ -149,11 +149,11 @@
             // btnGrocery
             // 
             btnGrocery.BackColor = Color.Gold;
-            btnGrocery.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnGrocery.Location = new Point(29, 227);
+            btnGrocery.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGrocery.Location = new Point(14, 328);
             btnGrocery.Margin = new Padding(2);
             btnGrocery.Name = "btnGrocery";
-            btnGrocery.Size = new Size(136, 66);
+            btnGrocery.Size = new Size(325, 59);
             btnGrocery.TabIndex = 4;
             btnGrocery.Text = "Grocery List";
             btnGrocery.UseVisualStyleBackColor = false;
@@ -162,11 +162,11 @@
             // btnComplaints
             // 
             btnComplaints.BackColor = Color.Gold;
-            btnComplaints.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnComplaints.Location = new Point(198, 138);
+            btnComplaints.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnComplaints.Location = new Point(14, 173);
             btnComplaints.Margin = new Padding(2);
             btnComplaints.Name = "btnComplaints";
-            btnComplaints.Size = new Size(141, 65);
+            btnComplaints.Size = new Size(325, 59);
             btnComplaints.TabIndex = 3;
             btnComplaints.Text = "Complaints";
             btnComplaints.UseVisualStyleBackColor = false;
@@ -175,11 +175,11 @@
             // btnAnnouncements
             // 
             btnAnnouncements.BackColor = Color.Gold;
-            btnAnnouncements.Font = new Font("Times New Roman", 14F, FontStyle.Italic);
-            btnAnnouncements.Location = new Point(29, 138);
+            btnAnnouncements.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAnnouncements.Location = new Point(14, 251);
             btnAnnouncements.Margin = new Padding(2);
             btnAnnouncements.Name = "btnAnnouncements";
-            btnAnnouncements.Size = new Size(136, 65);
+            btnAnnouncements.Size = new Size(325, 59);
             btnAnnouncements.TabIndex = 2;
             btnAnnouncements.Text = "Announcements";
             btnAnnouncements.UseVisualStyleBackColor = false;
@@ -188,11 +188,11 @@
             // btnCalendar
             // 
             btnCalendar.BackColor = Color.Gold;
-            btnCalendar.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnCalendar.Location = new Point(198, 35);
+            btnCalendar.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCalendar.Location = new Point(14, 400);
             btnCalendar.Margin = new Padding(2);
             btnCalendar.Name = "btnCalendar";
-            btnCalendar.Size = new Size(141, 70);
+            btnCalendar.Size = new Size(325, 59);
             btnCalendar.TabIndex = 1;
             btnCalendar.Text = "Calendar";
             btnCalendar.UseVisualStyleBackColor = false;
@@ -201,11 +201,12 @@
             // btnRules
             // 
             btnRules.BackColor = Color.Gold;
-            btnRules.Font = new Font("Times New Roman", 14F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnRules.Location = new Point(29, 35);
+            btnRules.FlatAppearance.BorderColor = Color.Black;
+            btnRules.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRules.Location = new Point(14, 22);
             btnRules.Margin = new Padding(2);
             btnRules.Name = "btnRules";
-            btnRules.Size = new Size(136, 70);
+            btnRules.Size = new Size(325, 59);
             btnRules.TabIndex = 0;
             btnRules.Text = "House Rules";
             btnRules.UseVisualStyleBackColor = false;
@@ -219,12 +220,12 @@
             grbHome.Controls.Add(label2);
             grbHome.Controls.Add(label1);
             grbHome.Controls.Add(btnLogOut);
-            grbHome.Font = new Font("Times New Roman", 10F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            grbHome.Font = new Font("Times New Roman", 14F, FontStyle.Bold | FontStyle.Italic);
             grbHome.Location = new Point(26, 22);
             grbHome.Margin = new Padding(2);
             grbHome.Name = "grbHome";
             grbHome.Padding = new Padding(2);
-            grbHome.Size = new Size(180, 367);
+            grbHome.Size = new Size(480, 474);
             grbHome.TabIndex = 2;
             grbHome.TabStop = false;
             grbHome.Text = "Student Housing B.V.";
@@ -240,10 +241,10 @@
             gbProfile.Controls.Add(label5);
             gbProfile.Controls.Add(label6);
             gbProfile.Controls.Add(pbUser);
-            gbProfile.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            gbProfile.Location = new Point(5, 22);
+            gbProfile.Font = new Font("Times New Roman", 11F, FontStyle.Bold);
+            gbProfile.Location = new Point(17, 39);
             gbProfile.Name = "gbProfile";
-            gbProfile.Size = new Size(180, 173);
+            gbProfile.Size = new Size(447, 261);
             gbProfile.TabIndex = 4;
             gbProfile.TabStop = false;
             gbProfile.Text = "Your profile";
@@ -251,76 +252,76 @@
             // lblUserRoom
             // 
             lblUserRoom.AutoSize = true;
-            lblUserRoom.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblUserRoom.Location = new Point(114, 142);
+            lblUserRoom.Font = new Font("Times New Roman", 13F);
+            lblUserRoom.Location = new Point(229, 212);
             lblUserRoom.Name = "lblUserRoom";
-            lblUserRoom.Size = new Size(16, 17);
+            lblUserRoom.Size = new Size(24, 25);
             lblUserRoom.TabIndex = 6;
             lblUserRoom.Text = "..";
             // 
             // lblUserRole
             // 
             lblUserRole.AutoSize = true;
-            lblUserRole.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblUserRole.Location = new Point(102, 83);
+            lblUserRole.Font = new Font("Times New Roman", 13F);
+            lblUserRole.Location = new Point(229, 134);
             lblUserRole.Name = "lblUserRole";
-            lblUserRole.Size = new Size(16, 17);
+            lblUserRole.Size = new Size(24, 25);
             lblUserRole.TabIndex = 5;
             lblUserRole.Text = "..";
             // 
             // lblUserName
             // 
             lblUserName.AutoSize = true;
-            lblUserName.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblUserName.Location = new Point(114, 30);
+            lblUserName.Font = new Font("Times New Roman", 13F);
+            lblUserName.Location = new Point(229, 56);
             lblUserName.Name = "lblUserName";
-            lblUserName.Size = new Size(16, 17);
+            lblUserName.Size = new Size(24, 25);
             lblUserName.TabIndex = 4;
             lblUserName.Text = "..";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
-            label4.Location = new Point(102, 66);
+            label4.Font = new Font("Times New Roman", 14F, FontStyle.Bold);
+            label4.Location = new Point(229, 105);
             label4.Name = "label4";
-            label4.Size = new Size(44, 17);
+            label4.Size = new Size(67, 26);
             label4.TabIndex = 3;
             label4.Text = "Role:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
-            label5.Location = new Point(94, 115);
+            label5.Font = new Font("Times New Roman", 14F, FontStyle.Bold);
+            label5.Location = new Point(229, 186);
             label5.Name = "label5";
-            label5.Size = new Size(52, 17);
+            label5.Size = new Size(80, 26);
             label5.TabIndex = 2;
             label5.Text = "Room:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
-            label6.Location = new Point(102, 13);
+            label6.Font = new Font("Times New Roman", 14F, FontStyle.Bold);
+            label6.Location = new Point(229, 29);
             label6.Name = "label6";
-            label6.Size = new Size(51, 17);
+            label6.Size = new Size(79, 26);
             label6.TabIndex = 1;
             label6.Text = "Name:";
             // 
             // pbUser
             // 
-            pbUser.Location = new Point(5, 29);
+            pbUser.Location = new Point(17, 29);
             pbUser.Margin = new Padding(2);
             pbUser.Name = "pbUser";
-            pbUser.Size = new Size(68, 103);
+            pbUser.Size = new Size(197, 210);
             pbUser.TabIndex = 0;
             pbUser.TabStop = false;
             // 
             // label3
             // 
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label3.Location = new Point(1, 251);
+            label3.Font = new Font("Segoe UI", 10F, FontStyle.Italic);
+            label3.Location = new Point(17, 388);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
             label3.Size = new Size(175, 30);
@@ -329,11 +330,11 @@
             // 
             // label2
             // 
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.Location = new Point(1, 209);
+            label2.Font = new Font("Segoe UI", 10F, FontStyle.Italic);
+            label2.Location = new Point(17, 338);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(175, 42);
+            label2.Size = new Size(198, 59);
             label2.TabIndex = 2;
             label2.Text = "Email: HousingBV@yahoo.com";
             // 
@@ -341,7 +342,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 11F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(5, 138);
+            label1.Location = new Point(17, 303);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(85, 25);
@@ -351,12 +352,12 @@
             // btnLogOut
             // 
             btnLogOut.BackColor = Color.Gold;
-            btnLogOut.Font = new Font("Times New Roman", 10F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            btnLogOut.Font = new Font("Times New Roman", 13F, FontStyle.Bold | FontStyle.Italic);
             btnLogOut.ForeColor = SystemColors.ActiveCaptionText;
-            btnLogOut.Location = new Point(24, 295);
+            btnLogOut.Location = new Point(17, 429);
             btnLogOut.Margin = new Padding(2);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(111, 57);
+            btnLogOut.Size = new Size(134, 41);
             btnLogOut.TabIndex = 0;
             btnLogOut.TabStop = false;
             btnLogOut.Text = "Log Out";
@@ -371,7 +372,7 @@
             tabCalendar.Margin = new Padding(2);
             tabCalendar.Name = "tabCalendar";
             tabCalendar.Padding = new Padding(2);
-            tabCalendar.Size = new Size(620, 406);
+            tabCalendar.Size = new Size(1008, 406);
             tabCalendar.TabIndex = 1;
             tabCalendar.Text = "Calendar";
             // 
@@ -391,7 +392,7 @@
             tabAnnouncements.Location = new Point(4, 29);
             tabAnnouncements.Name = "tabAnnouncements";
             tabAnnouncements.Padding = new Padding(3);
-            tabAnnouncements.Size = new Size(620, 406);
+            tabAnnouncements.Size = new Size(1008, 406);
             tabAnnouncements.TabIndex = 2;
             tabAnnouncements.Text = "Announcements";
             // 
@@ -410,22 +411,6 @@
             grbAnnouncements.Text = "Announcements";
             grbAnnouncements.Enter += grbAnnouncements_Enter;
             // 
-            // panelAnnouncements
-            // 
-            panelAnnouncements.BackColor = Color.GhostWhite;
-            panelAnnouncements.Location = new Point(6, 30);
-            panelAnnouncements.Name = "panelAnnouncements";
-            panelAnnouncements.Size = new Size(602, 290);
-            panelAnnouncements.TabIndex = 5;
-            // 
-            // tbAnnouncement
-            // 
-            tbAnnouncement.Location = new Point(6, 336);
-            tbAnnouncement.Multiline = true;
-            tbAnnouncement.Name = "tbAnnouncement";
-            tbAnnouncement.Size = new Size(433, 55);
-            tbAnnouncement.TabIndex = 1;
-            // 
             // btnCreateAnnouncement
             // 
             btnCreateAnnouncement.BackColor = Color.Gold;
@@ -438,6 +423,22 @@
             btnCreateAnnouncement.UseVisualStyleBackColor = false;
             btnCreateAnnouncement.Click += btnCreateAnnouncement_Click;
             // 
+            // tbAnnouncement
+            // 
+            tbAnnouncement.Location = new Point(6, 336);
+            tbAnnouncement.Multiline = true;
+            tbAnnouncement.Name = "tbAnnouncement";
+            tbAnnouncement.Size = new Size(433, 55);
+            tbAnnouncement.TabIndex = 1;
+            // 
+            // panelAnnouncements
+            // 
+            panelAnnouncements.BackColor = Color.GhostWhite;
+            panelAnnouncements.Location = new Point(6, 30);
+            panelAnnouncements.Name = "panelAnnouncements";
+            panelAnnouncements.Size = new Size(602, 290);
+            panelAnnouncements.TabIndex = 5;
+            // 
             // tabComplaints
             // 
             tabComplaints.BackColor = Color.DeepSkyBlue;
@@ -445,7 +446,7 @@
             tabComplaints.Location = new Point(4, 29);
             tabComplaints.Name = "tabComplaints";
             tabComplaints.Padding = new Padding(3);
-            tabComplaints.Size = new Size(620, 406);
+            tabComplaints.Size = new Size(1008, 406);
             tabComplaints.TabIndex = 3;
             tabComplaints.Text = "Complaints";
             // 
@@ -499,7 +500,7 @@
             tabHouseRules.Location = new Point(4, 29);
             tabHouseRules.Margin = new Padding(2);
             tabHouseRules.Name = "tabHouseRules";
-            tabHouseRules.Size = new Size(620, 406);
+            tabHouseRules.Size = new Size(1008, 406);
             tabHouseRules.TabIndex = 4;
             tabHouseRules.Text = "House Rules";
             // 
@@ -535,7 +536,7 @@
             tabGroceryList.Location = new Point(4, 29);
             tabGroceryList.Margin = new Padding(2);
             tabGroceryList.Name = "tabGroceryList";
-            tabGroceryList.Size = new Size(620, 406);
+            tabGroceryList.Size = new Size(1008, 406);
             tabGroceryList.TabIndex = 5;
             tabGroceryList.Text = "Grocery List";
             // 
@@ -598,7 +599,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(640, 453);
+            ClientSize = new Size(927, 562);
             Controls.Add(tabHome);
             Margin = new Padding(2);
             Name = "MainForm";
