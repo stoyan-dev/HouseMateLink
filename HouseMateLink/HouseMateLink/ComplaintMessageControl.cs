@@ -19,9 +19,9 @@ namespace HouseMateLink
 
         public ComplaintMessageControl(string complaintText, DateTime createdAt, Action<ComplaintMessageControl> onArchiveButtonClick)
         {
-            InitializeComponent(); 
-            this.onArchiveButtonClick=onArchiveButtonClick;
-            InitializeComplaintControl(complaintText, createdAt); 
+            InitializeComponent();
+            this.onArchiveButtonClick = onArchiveButtonClick;
+            InitializeComplaintControl(complaintText, createdAt);
         }
 
         private void InitializeComplaintControl(string complaintText, DateTime createdAt)
@@ -33,27 +33,27 @@ namespace HouseMateLink
 
             lblComplaintText = new Label
             {
-                Text = complaintText, 
-                AutoSize = true,        
-                Location = new Point(10, 10), 
-                Font = new Font("Arial", 10, FontStyle.Regular),  
-                ForeColor = Color.Black   
+                Text = complaintText,
+                AutoSize = true,
+                Location = new Point(10, 10),
+                Font = new Font("Arial", 10, FontStyle.Regular),
+                ForeColor = Color.Black
             };
 
             lblComplaintDate = new Label
             {
-                Text = $"Created at: {createdAt.ToShortDateString()}", 
-                AutoSize = true,        
-                Location = new Point(10, 40),  
-                Font = new Font("Arial", 8, FontStyle.Italic),  
-                ForeColor = Color.Gray   
+                Text = $"Created at: {createdAt.ToShortDateString()}",
+                AutoSize = true,
+                Location = new Point(10, 40),
+                Font = new Font("Arial", 8, FontStyle.Italic),
+                ForeColor = Color.Gray
             };
 
             btnArchive = new Button
             {
                 Text = "Archive",
                 Location = new Point(10, 70),
-                Size = new Size(85, 50),
+                Size = new Size(100, 30),
                 BackColor = Color.GhostWhite
             };
 
@@ -68,6 +68,11 @@ namespace HouseMateLink
         private void BtnArchive_Click(object sender, EventArgs e)
         {
             onArchiveButtonClick(this);
+        }
+
+        private void ComplaintMessageControl_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

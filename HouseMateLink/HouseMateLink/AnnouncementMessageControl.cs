@@ -8,9 +8,12 @@ namespace HouseMateLink
         private Label lblAnnouncementText;
         private Label lblAnnouncementDate;
         private Label lblUserName;
-        public AnnouncementMessageControl(string announcementText, DateTime createdAt, string userName)
+        private Button btnArchive;
+        private Action<AnnouncementMessageControl> onArchiveButtonClick;
+        public AnnouncementMessageControl(string announcementText, DateTime createdAt, string userName, Action<AnnouncementMessageControl> onArchiveButtonClick)
         {
             InitializeComponent();
+            this.onArchiveButtonClick = onArchiveButtonClick;
             InitializeAnnouncementControl(announcementText, createdAt, userName);
         }
 
@@ -46,9 +49,24 @@ namespace HouseMateLink
                 ForeColor = Color.Gray 
             };
 
+            btnArchive = new Button
+            {
+                Text = "Archive",
+                Location = new Point(10, 80),
+                Size = new Size(100, 30),
+                BackColor = Color.GhostWhite
+            };
+
+            btnArchive.Click += BtnArchive_Click;
+
             this.Controls.Add(lblAnnouncementText);
             this.Controls.Add(lblAnnouncementDate);
             this.Controls.Add(lblUserName);
+            this.Controls.Add(btnArchive);
+        }
+        private void BtnArchive_Click(object sender, EventArgs e)
+        {
+            onArchiveButtonClick(this);
         }
     }
 }

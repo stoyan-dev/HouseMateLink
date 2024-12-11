@@ -303,8 +303,8 @@ namespace HouseMateLink
             panelAnnouncements.Controls.Clear();
             foreach(Announcement announcement in currentUser.GetAnnouncements())
             {
-                AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(announcement.Description, announcement.CreatedAt,currentUser.Name);
-                newAnnouncement.Size = new Size(400, 80);
+                AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(announcement.Description, announcement.CreatedAt,currentUser.Name, ArchiveAnnouncement);
+                newAnnouncement.Size = new Size(400, 150);
                 int newX = 10;
                 int newY = 10;
 
@@ -323,6 +323,12 @@ namespace HouseMateLink
 
 
         }
+
+        private void ArchiveAnnouncement(AnnouncementMessageControl announcementMessageControl)
+        {
+            panelAnnouncements.Controls.Remove(announcementMessageControl);
+        }
+
         private void SaveAnnouncementsToJson(List<Announcement> announcements)
         {
             string filePath = "announcements.json";
@@ -392,7 +398,7 @@ namespace HouseMateLink
             foreach (Complaint complaint in myBuilding.GetComplaints())
             {
                 ComplaintMessageControl newComplaint = new ComplaintMessageControl(complaint.Description, complaint.CreatedAt,ArchiveComplaint);
-                newComplaint.Size = new Size(400, 100);
+                newComplaint.Size = new Size(400, 120);
                 int newX = 10;
                 int newY = 10;
 
