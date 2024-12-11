@@ -372,7 +372,7 @@
             tabCalendar.Margin = new Padding(2);
             tabCalendar.Name = "tabCalendar";
             tabCalendar.Padding = new Padding(2);
-            tabCalendar.Size = new Size(1008, 406);
+            tabCalendar.Size = new Size(907, 514);
             tabCalendar.TabIndex = 1;
             tabCalendar.Text = "Calendar";
             // 
@@ -392,7 +392,7 @@
             tabAnnouncements.Location = new Point(4, 29);
             tabAnnouncements.Name = "tabAnnouncements";
             tabAnnouncements.Padding = new Padding(3);
-            tabAnnouncements.Size = new Size(1008, 406);
+            tabAnnouncements.Size = new Size(907, 514);
             tabAnnouncements.TabIndex = 2;
             tabAnnouncements.Text = "Announcements";
             // 
@@ -402,10 +402,10 @@
             grbAnnouncements.Controls.Add(btnCreateAnnouncement);
             grbAnnouncements.Controls.Add(tbAnnouncement);
             grbAnnouncements.Controls.Add(panelAnnouncements);
-            grbAnnouncements.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grbAnnouncements.Location = new Point(3, 3);
+            grbAnnouncements.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            grbAnnouncements.Location = new Point(7, 16);
             grbAnnouncements.Name = "grbAnnouncements";
-            grbAnnouncements.Size = new Size(614, 397);
+            grbAnnouncements.Size = new Size(885, 483);
             grbAnnouncements.TabIndex = 1;
             grbAnnouncements.TabStop = false;
             grbAnnouncements.Text = "Announcements";
@@ -414,10 +414,10 @@
             // btnCreateAnnouncement
             // 
             btnCreateAnnouncement.BackColor = Color.Gold;
-            btnCreateAnnouncement.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCreateAnnouncement.Location = new Point(454, 336);
+            btnCreateAnnouncement.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCreateAnnouncement.Location = new Point(709, 433);
             btnCreateAnnouncement.Name = "btnCreateAnnouncement";
-            btnCreateAnnouncement.Size = new Size(141, 41);
+            btnCreateAnnouncement.Size = new Size(153, 44);
             btnCreateAnnouncement.TabIndex = 4;
             btnCreateAnnouncement.Text = "Create";
             btnCreateAnnouncement.UseVisualStyleBackColor = false;
@@ -425,18 +425,18 @@
             // 
             // tbAnnouncement
             // 
-            tbAnnouncement.Location = new Point(6, 336);
+            tbAnnouncement.Location = new Point(22, 405);
             tbAnnouncement.Multiline = true;
             tbAnnouncement.Name = "tbAnnouncement";
-            tbAnnouncement.Size = new Size(433, 55);
+            tbAnnouncement.Size = new Size(681, 72);
             tbAnnouncement.TabIndex = 1;
             // 
             // panelAnnouncements
             // 
             panelAnnouncements.BackColor = Color.GhostWhite;
-            panelAnnouncements.Location = new Point(6, 30);
+            panelAnnouncements.Location = new Point(22, 39);
             panelAnnouncements.Name = "panelAnnouncements";
-            panelAnnouncements.Size = new Size(602, 290);
+            panelAnnouncements.Size = new Size(840, 346);
             panelAnnouncements.TabIndex = 5;
             // 
             // tabComplaints
@@ -446,39 +446,40 @@
             tabComplaints.Location = new Point(4, 29);
             tabComplaints.Name = "tabComplaints";
             tabComplaints.Padding = new Padding(3);
-            tabComplaints.Size = new Size(1008, 406);
+            tabComplaints.Size = new Size(907, 514);
             tabComplaints.TabIndex = 3;
             tabComplaints.Text = "Complaints";
             // 
             // grbComplaints
             // 
-            grbComplaints.BackColor = Color.GhostWhite;
+            grbComplaints.BackColor = Color.DeepSkyBlue;
             grbComplaints.Controls.Add(panelComplaint);
             grbComplaints.Controls.Add(btnPostComplaint);
             grbComplaints.Controls.Add(tbCreateComplaint);
-            grbComplaints.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
-            grbComplaints.Location = new Point(16, 20);
+            grbComplaints.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            grbComplaints.Location = new Point(7, 17);
             grbComplaints.Name = "grbComplaints";
-            grbComplaints.Size = new Size(585, 383);
+            grbComplaints.Size = new Size(885, 481);
             grbComplaints.TabIndex = 0;
             grbComplaints.TabStop = false;
             grbComplaints.Text = "Complaints";
             // 
             // panelComplaint
             // 
-            panelComplaint.Location = new Point(6, 29);
+            panelComplaint.BackColor = Color.GhostWhite;
+            panelComplaint.Location = new Point(19, 47);
             panelComplaint.Margin = new Padding(2);
             panelComplaint.Name = "panelComplaint";
-            panelComplaint.Size = new Size(572, 278);
+            panelComplaint.Size = new Size(842, 332);
             panelComplaint.TabIndex = 6;
             // 
             // btnPostComplaint
             // 
             btnPostComplaint.BackColor = Color.Gold;
-            btnPostComplaint.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPostComplaint.Location = new Point(418, 331);
+            btnPostComplaint.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPostComplaint.Location = new Point(706, 429);
             btnPostComplaint.Name = "btnPostComplaint";
-            btnPostComplaint.Size = new Size(161, 35);
+            btnPostComplaint.Size = new Size(155, 43);
             btnPostComplaint.TabIndex = 5;
             btnPostComplaint.Text = "Post";
             btnPostComplaint.UseVisualStyleBackColor = false;
@@ -486,10 +487,10 @@
             // 
             // tbCreateComplaint
             // 
-            tbCreateComplaint.Location = new Point(6, 312);
+            tbCreateComplaint.Location = new Point(19, 399);
             tbCreateComplaint.Multiline = true;
             tbCreateComplaint.Name = "tbCreateComplaint";
-            tbCreateComplaint.Size = new Size(394, 54);
+            tbCreateComplaint.Size = new Size(681, 73);
             tbCreateComplaint.TabIndex = 2;
             // 
             // tabHouseRules
@@ -500,16 +501,17 @@
             tabHouseRules.Location = new Point(4, 29);
             tabHouseRules.Margin = new Padding(2);
             tabHouseRules.Name = "tabHouseRules";
-            tabHouseRules.Size = new Size(1008, 406);
+            tabHouseRules.Size = new Size(907, 514);
             tabHouseRules.TabIndex = 4;
             tabHouseRules.Text = "House Rules";
             // 
             // btnEditRules
             // 
             btnEditRules.BackColor = Color.Gold;
-            btnEditRules.Location = new Point(251, 356);
+            btnEditRules.Font = new Font("Segoe UI", 11F);
+            btnEditRules.Location = new Point(348, 451);
             btnEditRules.Name = "btnEditRules";
-            btnEditRules.Size = new Size(105, 32);
+            btnEditRules.Size = new Size(147, 43);
             btnEditRules.TabIndex = 5;
             btnEditRules.Text = "Edit Rules";
             btnEditRules.UseVisualStyleBackColor = false;
@@ -522,7 +524,7 @@
             rulesTextBox.Multiline = true;
             rulesTextBox.Name = "rulesTextBox";
             rulesTextBox.ScrollBars = ScrollBars.Vertical;
-            rulesTextBox.Size = new Size(574, 316);
+            rulesTextBox.Size = new Size(861, 412);
             rulesTextBox.TabIndex = 3;
             // 
             // tabGroceryList
@@ -536,18 +538,18 @@
             tabGroceryList.Location = new Point(4, 29);
             tabGroceryList.Margin = new Padding(2);
             tabGroceryList.Name = "tabGroceryList";
-            tabGroceryList.Size = new Size(1008, 406);
+            tabGroceryList.Size = new Size(907, 514);
             tabGroceryList.TabIndex = 5;
             tabGroceryList.Text = "Grocery List";
             // 
             // btnClearAllProducts
             // 
             btnClearAllProducts.BackColor = Color.Gold;
-            btnClearAllProducts.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnClearAllProducts.Location = new Point(314, 342);
+            btnClearAllProducts.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnClearAllProducts.Location = new Point(440, 443);
             btnClearAllProducts.Margin = new Padding(2);
             btnClearAllProducts.Name = "btnClearAllProducts";
-            btnClearAllProducts.Size = new Size(180, 29);
+            btnClearAllProducts.Size = new Size(211, 39);
             btnClearAllProducts.TabIndex = 5;
             btnClearAllProducts.Text = "Clear all products";
             btnClearAllProducts.UseVisualStyleBackColor = false;
@@ -556,10 +558,10 @@
             // btnDeleteSelectedProduct
             // 
             btnDeleteSelectedProduct.BackColor = Color.Gold;
-            btnDeleteSelectedProduct.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnDeleteSelectedProduct.Location = new Point(109, 342);
+            btnDeleteSelectedProduct.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnDeleteSelectedProduct.Location = new Point(173, 445);
             btnDeleteSelectedProduct.Name = "btnDeleteSelectedProduct";
-            btnDeleteSelectedProduct.Size = new Size(180, 29);
+            btnDeleteSelectedProduct.Size = new Size(211, 37);
             btnDeleteSelectedProduct.TabIndex = 4;
             btnDeleteSelectedProduct.Text = "Delete selected product";
             btnDeleteSelectedProduct.UseVisualStyleBackColor = false;
@@ -568,19 +570,21 @@
             // lbShoppingList
             // 
             lbShoppingList.BackColor = Color.White;
+            lbShoppingList.Font = new Font("Segoe UI", 12F);
             lbShoppingList.FormattingEnabled = true;
+            lbShoppingList.ItemHeight = 28;
             lbShoppingList.Location = new Point(109, 114);
             lbShoppingList.Name = "lbShoppingList";
-            lbShoppingList.Size = new Size(374, 204);
+            lbShoppingList.Size = new Size(640, 284);
             lbShoppingList.TabIndex = 3;
             // 
             // btnAddToTheList
             // 
             btnAddToTheList.BackColor = Color.Gold;
-            btnAddToTheList.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
-            btnAddToTheList.Location = new Point(366, 38);
+            btnAddToTheList.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnAddToTheList.Location = new Point(542, 44);
             btnAddToTheList.Name = "btnAddToTheList";
-            btnAddToTheList.Size = new Size(128, 29);
+            btnAddToTheList.Size = new Size(172, 40);
             btnAddToTheList.TabIndex = 1;
             btnAddToTheList.Text = "Add";
             btnAddToTheList.UseVisualStyleBackColor = false;
@@ -589,9 +593,10 @@
             // tbAddGroceries
             // 
             tbAddGroceries.BackColor = Color.White;
-            tbAddGroceries.Location = new Point(81, 40);
+            tbAddGroceries.Font = new Font("Segoe UI", 12F);
+            tbAddGroceries.Location = new Point(133, 50);
             tbAddGroceries.Name = "tbAddGroceries";
-            tbAddGroceries.Size = new Size(192, 27);
+            tbAddGroceries.Size = new Size(384, 34);
             tbAddGroceries.TabIndex = 0;
             // 
             // MainForm
