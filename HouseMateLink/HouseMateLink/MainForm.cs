@@ -78,20 +78,16 @@ namespace HouseMateLink
             if (tabControl == null)
                 return;
 
-            // Get the rectangle for the current tab
             Rectangle tabBounds = tabControl.GetTabRect(e.Index);
 
-            // Set the background color (Gold for all tabs)
             Color backgroundColor = e.State == DrawItemState.Selected ? Color.DarkGoldenrod : Color.Gold;
             Color textColor = Color.Black;
 
             using (SolidBrush backgroundBrush = new SolidBrush(backgroundColor))
             using (SolidBrush textBrush = new SolidBrush(textColor))
             {
-                // Fill the background for the tab header
                 e.Graphics.FillRectangle(backgroundBrush, tabBounds);
 
-                // Draw the tab text
                 StringFormat stringFormat = new StringFormat
                 {
                     Alignment = StringAlignment.Center,
@@ -148,12 +144,7 @@ namespace HouseMateLink
             }
         }
 
-        //private void rbEvent_CheckedChanged(object sender, EventArgs e)
-        //{
-        //  dateTimePicker.Visible = rbEvent.Checked;
-
-
-        //}
+    
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
