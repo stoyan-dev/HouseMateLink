@@ -26,6 +26,17 @@ namespace HouseMateLink
             announcements = new List<Announcement>();
         }
 
+        public User(string username, string password, string name, Role role, int roomNumber)
+        {
+            UserID++;
+            Username = username;
+            Password = password;
+            Name = name;
+            Role = role;
+            RoomNumber = roomNumber;
+            announcements = new List<Announcement>();
+        }
+
         public void CreateAnnouncement(string announcementText)
         {
             if (!string.IsNullOrEmpty(announcementText))
