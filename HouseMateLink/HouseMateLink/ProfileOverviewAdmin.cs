@@ -8,12 +8,14 @@ namespace HouseMateLink
         private User user;
         private string selectedPhotoFilePathEdit = null;
         private string selectedPhotoFilePathAdd = null;
+        private bool isAdmin;
 
-        public ProfileOverviewAdmin()
+        public ProfileOverviewAdmin(bool a)
         {
             InitializeComponent();
             building = new Building("");
             cbAddRole.DataSource = Role.GetValues(typeof(Role));
+            isAdmin = a;
         }
 
         private void btnSelectPhoto_Click(object sender, EventArgs e)
@@ -86,23 +88,30 @@ namespace HouseMateLink
                 MessageBox.Show($"Error writing to file: {ex.Message}");
             }
 
-            User newUser = building.GetUsers().LastOrDefault(user => user.Username == username);  
+            User newUser = building.GetUsers().LastOrDefault(user => user.Username == username);
 
             if (newUser != null)
             {
-                Image userPhoto = Image.FromFile(newUser.Photo); 
+                Image userPhoto = Image.FromFile(newUser.Photo);
 
-                UserInfoControl userInfoControl = new UserInfoControl(newUser.Name, newUser.Role.ToString(), newUser.RoomNumber.ToString(), newUser.Username, newUser.Password, userPhoto,RemoveUser);
+                UserInfoControl userInfoControl = new UserInfoControl(newUser.Name, newUser.Role.ToString(), newUser.RoomNumber.ToString(), newUser.Username, newUser.Password, userPhoto, RemoveUser);
 
                 userInfoControl.Size = new Size(400, 150);
-                userInfoControl.Location = new Point(10, 10 + (UserInfoPanel.Controls.Count * 160));  
+                userInfoControl.Location = new Point(10, 10 + (UserInfoPanel.Controls.Count * 160));
                 UserInfoPanel.Controls.Add(userInfoControl);
             }
         }
 
         private void RemoveUser(UserInfoControl userInfoControl)
-        {      
+        {
             UserInfoPanel.Controls.Remove(userInfoControl);
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            MainForm from = new MainForm(isAdmin);
+            from.Show();
+            this.Hide();
         }
     }
 }

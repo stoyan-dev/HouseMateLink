@@ -136,7 +136,7 @@ namespace HouseMateLink
         {
             if (isAdmin)
             {
-                ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin();
+                ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin(isAdmin);
                 profileOverviewAdmin.Show();
                 this.Hide();
             }

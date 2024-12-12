@@ -44,6 +44,7 @@
             label2 = new Label();
             label3 = new Label();
             UserInfoPanel = new Panel();
+            btnBack = new Button();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudAddRoom).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbNewUser).BeginInit();
@@ -232,12 +233,26 @@
             UserInfoPanel.Size = new Size(940, 739);
             UserInfoPanel.TabIndex = 10;
             // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.Gold;
+            btnBack.FlatAppearance.BorderColor = Color.Black;
+            btnBack.Font = new Font("Times New Roman", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBack.Location = new Point(59, 51);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(166, 41);
+            btnBack.TabIndex = 11;
+            btnBack.Text = "Home";
+            btnBack.UseVisualStyleBackColor = false;
+            btnBack.Click += btnBack_Click;
+            // 
             // ProfileOverviewAdmin
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DeepSkyBlue;
             ClientSize = new Size(1448, 906);
+            Controls.Add(btnBack);
             Controls.Add(UserInfoPanel);
             Controls.Add(groupBox2);
             Controls.Add(label1);
@@ -270,5 +285,6 @@
         private Label label11;
         private Button btnSelectPhotoAdd;
         private Panel UserInfoPanel;
+        private Button btnBack;
     }
 }
