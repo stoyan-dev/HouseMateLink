@@ -10,6 +10,8 @@ namespace HouseMateLink
         {
             InitializeComponent();
             Initialization();
+            tbPassword.UseSystemPasswordChar = true;
+            this.Controls.Add(tbPassword);
         }
 
         private void label1_Click(object sender, EventArgs e)
