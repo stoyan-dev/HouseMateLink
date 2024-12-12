@@ -1,4 +1,5 @@
 ﻿using System.Security.Policy;
+using System.Text.Json.Serialization;
 
 namespace HouseMateLink
 {
@@ -14,6 +15,7 @@ namespace HouseMateLink
      
         private List<Announcement> announcements;
 
+        [JsonConstructor ]
         public User(string username, string password, string name, Role role, int roomNumber, string photo)
         {
             UserID++;
