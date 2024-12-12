@@ -8,19 +8,19 @@ namespace HouseMateLink
         public string Username { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
-        public bool IsAdmin {get; set; }
+        public Role Role {get; set; }
         public int RoomNumber { get; set; }
         public string Photo { get; set; }
      
         private List<Announcement> announcements;
 
-        public User(string username, string password, string name, bool isAdmin, int roomNumber, string photo)
+        public User(string username, string password, string name, Role role, int roomNumber, string photo)
         {
             UserID++;
             Username = username;
             Password = password;
             Name = name;
-            IsAdmin = isAdmin;
+            Role = role;
             RoomNumber = roomNumber;
             Photo = photo;
             announcements = new List<Announcement>();

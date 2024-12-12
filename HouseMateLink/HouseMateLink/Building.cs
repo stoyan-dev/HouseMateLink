@@ -21,6 +21,7 @@ namespace HouseMateLink
             announcements = new List<Announcement>();
             tenants = new List<User>();
             this.Name = name;
+            
         }
 
         public void CreateAddNewUser(string username, string password, string name, Role role, int roomNumber, string photo)
