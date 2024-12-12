@@ -18,6 +18,7 @@ namespace HouseMateLink
         private Building myBuilding;
         private int itemCounter;
         private bool isAdmin;
+        private int bit;
         private User currentUser;
         public MainForm(bool a)
         {
@@ -44,8 +45,8 @@ namespace HouseMateLink
 
             if (!string.IsNullOrEmpty(currentUser.Photo) && File.Exists(currentUser.Photo))
             {
-               pbUser.Image = Image.FromFile(currentUser.Photo);
-                pbUser.SizeMode = PictureBoxSizeMode.Zoom; 
+                pbUser.Image = Image.FromFile(currentUser.Photo);
+                pbUser.SizeMode = PictureBoxSizeMode.Zoom;
             }
             else
             {
@@ -57,18 +58,23 @@ namespace HouseMateLink
         private void Initialization()
         {
             itemCounter = 1;
-            dateTimePicker.Value = DateTime.Now; 
+            dateTimePicker.Value = DateTime.Now;
             dateTimePicker.Visible = false;
             LoadHouseRules();
 
             btnEditRules.Visible = isAdmin;
             rulesTextBox.ReadOnly = true;
-            
+            if (bit == 1) isAdmin = true;
+            if(bit ==0) isAdmin = false;
+
+            tabHome.Appearance = TabAppearance.FlatButtons;
+            tabHome.ItemSize = new Size(0, 1);
+            tabHome.SizeMode = TabSizeMode.Fixed;
         }
         private void CustomizeTabHeaders()
         {
-            tabHome.DrawMode = TabDrawMode.OwnerDrawFixed; 
-            tabHome.DrawItem += TabControl1_DrawTabHeaders; 
+            tabHome.DrawMode = TabDrawMode.OwnerDrawFixed;
+            tabHome.DrawItem += TabControl1_DrawTabHeaders;
         }
 
         private void TabControl1_DrawTabHeaders(object sender, DrawItemEventArgs e)
@@ -144,7 +150,7 @@ namespace HouseMateLink
             }
         }
 
-    
+
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
@@ -283,7 +289,7 @@ namespace HouseMateLink
         {
             try
             {
-  
+
                 if (File.Exists("ShoppingList.json"))
                 {
                     string jsonString = File.ReadAllText("ShoppingList.json");
@@ -322,9 +328,9 @@ namespace HouseMateLink
             currentUser.CreateAnnouncement(message);
             //SaveAnnouncementToJson();
             panelAnnouncements.Controls.Clear();
-            foreach(Announcement announcement in currentUser.GetAnnouncements())
+            foreach (Announcement announcement in currentUser.GetAnnouncements())
             {
-                AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(announcement.Description, announcement.CreatedAt,currentUser.Name, ArchiveAnnouncement);
+                AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(announcement.Description, announcement.CreatedAt, currentUser.Name, ArchiveAnnouncement);
                 newAnnouncement.Size = new Size(400, 125);
                 int newX = 10;
                 int newY = 10;
@@ -332,8 +338,8 @@ namespace HouseMateLink
                 if (panelAnnouncements.Controls.Count > 0)
                 {
                     Control lastControl = panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1];
-                    newX = lastControl.Left; 
-                    newY = lastControl.Bottom + 10; 
+                    newX = lastControl.Left;
+                    newY = lastControl.Bottom + 10;
                 }
                 newAnnouncement.Location = new Point(newX, newY);
                 panelAnnouncements.Controls.Add(newAnnouncement);
@@ -353,7 +359,7 @@ namespace HouseMateLink
         private void SaveAnnouncementsToJson(List<Announcement> announcements)
         {
             string filePath = "announcements.json";
-            bool isFileCreated = !File.Exists(filePath); 
+            bool isFileCreated = !File.Exists(filePath);
 
             try
             {
@@ -418,7 +424,7 @@ namespace HouseMateLink
             panelComplaint.Controls.Clear();
             foreach (Complaint complaint in myBuilding.GetComplaints())
             {
-                ComplaintMessageControl newComplaint = new ComplaintMessageControl(complaint.Description, complaint.CreatedAt,ArchiveComplaint);
+                ComplaintMessageControl newComplaint = new ComplaintMessageControl(complaint.Description, complaint.CreatedAt, ArchiveComplaint);
                 newComplaint.Size = new Size(400, 110);
                 int newX = 10;
                 int newY = 10;
@@ -427,7 +433,7 @@ namespace HouseMateLink
                 {
                     Control lastControl = panelComplaint.Controls[panelComplaint.Controls.Count - 1];
                     newX = lastControl.Left;
-                    newY = lastControl.Bottom + 10; 
+                    newY = lastControl.Bottom + 10;
                 }
                 newComplaint.Location = new Point(newX, newY);
                 panelComplaint.Controls.Add(newComplaint);
@@ -465,6 +471,11 @@ namespace HouseMateLink
             {
                 MessageBox.Show($"Error saving complainst: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void tabHomePage_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }
