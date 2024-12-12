@@ -65,7 +65,7 @@ namespace HouseMateLink
             btnEditRules.Visible = isAdmin;
             rulesTextBox.ReadOnly = true;
             if (bit == 1) isAdmin = true;
-            if(bit ==0) isAdmin = false;
+            if (bit == 0) isAdmin = false;
 
             tabHome.Appearance = TabAppearance.FlatButtons;
             tabHome.ItemSize = new Size(0, 1);
@@ -475,7 +475,30 @@ namespace HouseMateLink
 
         private void tabHomePage_Click(object sender, EventArgs e)
         {
-           
+
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            tabHome.SelectedIndex = 0;
+        }
+
+        private void btnHomeComplaints_Click(object sender, EventArgs e)
+        {
+            tabHome.SelectedIndex = 0;
+
+        }
+
+        private void btnHomeRules_Click(object sender, EventArgs e)
+        {
+            tabHome.SelectedIndex = 0;
+
+        }
+
+        private void btnHomeGrocery_Click(object sender, EventArgs e)
+        {
+            tabHome.SelectedIndex = 0;
+
         }
     }
 }
