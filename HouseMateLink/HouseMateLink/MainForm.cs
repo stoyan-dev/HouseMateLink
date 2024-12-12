@@ -64,9 +64,11 @@ namespace HouseMateLink
 
             btnEditRules.Visible = isAdmin;
             rulesTextBox.ReadOnly = true;
+
             if (bit == 1) isAdmin = true;
             if (bit == 0) isAdmin = false;
 
+            //to hide the tab control headers
             tabHome.Appearance = TabAppearance.FlatButtons;
             tabHome.ItemSize = new Size(0, 1);
             tabHome.SizeMode = TabSizeMode.Fixed;
@@ -79,30 +81,8 @@ namespace HouseMateLink
 
         private void TabControl1_DrawTabHeaders(object sender, DrawItemEventArgs e)
         {
-            TabControl tabControl = sender as TabControl;
-
-            if (tabControl == null)
-                return;
-
-            Rectangle tabBounds = tabControl.GetTabRect(e.Index);
-
-            Color backgroundColor = e.State == DrawItemState.Selected ? Color.DarkGoldenrod : Color.Gold;
-            Color textColor = Color.Black;
-
-            using (SolidBrush backgroundBrush = new SolidBrush(backgroundColor))
-            using (SolidBrush textBrush = new SolidBrush(textColor))
-            {
-                e.Graphics.FillRectangle(backgroundBrush, tabBounds);
-
-                StringFormat stringFormat = new StringFormat
-                {
-                    Alignment = StringAlignment.Center,
-                    LineAlignment = StringAlignment.Center
-                };
-                e.Graphics.DrawString(tabControl.TabPages[e.Index].Text, e.Font, textBrush, tabBounds, stringFormat);
-            }
+            
         }
-
 
         private void grbHome_Enter(object sender, EventArgs e)
         {
@@ -150,8 +130,6 @@ namespace HouseMateLink
             }
         }
 
-
-
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             logIn logInForm = new logIn();
@@ -161,19 +139,8 @@ namespace HouseMateLink
         }
 
         private void LoadHouseRules()
-        {
-            string defaultRules = $"House Rules:{Environment.NewLine}{Environment.NewLine}" +
-                                  $"1. Respect each other's space.{Environment.NewLine}" +
-                                  $"2. Always clean up after yourself in shared spaces like the kitchen, living room, and bathroom.{Environment.NewLine}" +
-                                  $"3. Maintain silence between 10 PM and 8 AM on weekdays to ensure everyone can study or rest.{Environment.NewLine}" +
-                                  $"4. Follow the rotating schedule for shared chores like taking out the trash and cleaning common areas.{Environment.NewLine}" +
-                                  $"5. Turn off lights, water taps, and electronics when not in use to save energy and reduce bills.{Environment.NewLine}" +
-                                  $"6. The use of illegal drugs or substances is strictly prohibited within the housing premises.{Environment.NewLine}" +
-                                  $"7. Smoking is prohibited inside the building. Use designated smoking areas outside.{Environment.NewLine}" +
-                                  $"8. Guests must respect the house rules and not disturb others.";
-
-            rulesTextBox.Text = defaultRules;
-
+        {  
+            rulesTextBox.Text = myBuilding.LoadHouseRules();
             rulesTextBox.ReadOnly = true;
             btnEditRules.Text = "Edit Rules";
         }
