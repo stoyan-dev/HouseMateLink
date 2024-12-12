@@ -19,7 +19,7 @@ namespace HouseMateLink
         private int itemCounter;
         private bool isAdmin;
         private User currentUser;
-        public MainForm(bool a )
+        public MainForm(bool a)
         {
             InitializeComponent();
             isAdmin = a;
@@ -138,7 +138,7 @@ namespace HouseMateLink
             }
             else
             {
-                ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant(myBuilding);
+                ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant(myBuilding, isAdmin);
                 profileOverviewTenant.Show();
                 this.Hide();
             }

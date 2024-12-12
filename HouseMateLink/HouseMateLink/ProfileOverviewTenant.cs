@@ -5,10 +5,12 @@ namespace HouseMateLink
     public partial class ProfileOverviewTenant : Form
     {
         private Building myBuilding;
-        public ProfileOverviewTenant(Building b)
+        private bool isAdmin;
+        public ProfileOverviewTenant(Building b, bool a)
         {
             InitializeComponent();
             myBuilding = b;
+            isAdmin = a;
             //LoadUsersFromJson();
             PopulateUserSummariesPanel();
         }
@@ -37,7 +39,7 @@ namespace HouseMateLink
         {
             UserInfoSummaryPanel.Controls.Clear();
 
-            List<User> users = LoadUsersFromJson(); 
+            List<User> users = LoadUsersFromJson();
 
             int x = 10, y = 10;
             foreach (User user in users)
@@ -69,6 +71,13 @@ namespace HouseMateLink
 
             UserInfoSummaryPanel.AutoScrollMinSize = new Size(UserInfoSummaryPanel.Width, y); ;
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MainForm form = new MainForm(isAdmin);
+            form.Show();
+            this.Hide();
         }
     }
 }

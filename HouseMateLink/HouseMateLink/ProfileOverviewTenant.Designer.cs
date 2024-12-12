@@ -30,6 +30,7 @@
         {
             label1 = new Label();
             UserInfoSummaryPanel = new Panel();
+            button1 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -51,15 +52,28 @@
             UserInfoSummaryPanel.Size = new Size(1284, 713);
             UserInfoSummaryPanel.TabIndex = 1;
             // 
+            // button1
+            // 
+            button1.BackColor = Color.Gold;
+            button1.Font = new Font("Times New Roman", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Location = new Point(58, 52);
+            button1.Name = "button1";
+            button1.Size = new Size(153, 42);
+            button1.TabIndex = 2;
+            button1.Text = "Home";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
             // ProfileOverviewTenant
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DeepSkyBlue;
             ClientSize = new Size(1430, 878);
+            Controls.Add(button1);
             Controls.Add(UserInfoSummaryPanel);
             Controls.Add(label1);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "ProfileOverviewTenant";
             Text = "ProfileOverviewTenant";
             ResumeLayout(false);
@@ -70,5 +84,6 @@
 
         private Label label1;
         private Panel UserInfoSummaryPanel;
+        private Button button1;
     }
 }
