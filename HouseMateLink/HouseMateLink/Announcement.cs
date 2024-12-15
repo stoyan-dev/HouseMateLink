@@ -4,7 +4,7 @@ namespace HouseMateLink
 {
     public class Announcement
     {
-        public int AnnouncementID { get; }
+        public int AnnouncementID { get; set; }
         public DateTime CreatedAt { get; set; }
         public string Description { get; set; }
         public bool IsArchived { get; set; }
