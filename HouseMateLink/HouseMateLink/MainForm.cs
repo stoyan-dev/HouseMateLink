@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -22,18 +23,14 @@ namespace HouseMateLink
         private int bit;
         private User currentUser;
 
-        [JsonConstructor]
         public MainForm(bool a)
         {
             InitializeComponent();
             isAdmin = a;
-          
-
         }
         public MainForm(bool a, User user, Building b)
         {
             InitializeComponent();
-            dateTimePicker = new DateTimePicker();
             currentUser = user;
             myBuilding = b;
             isAdmin = a;
@@ -50,7 +47,6 @@ namespace HouseMateLink
         private void Initialization()
         {
             itemCounter = 1;
-            dateTimePicker.Value = DateTime.Now;
             dateTimePicker.Visible = false;
             LoadHouseRules();
 
@@ -289,7 +285,7 @@ namespace HouseMateLink
             panelAnnouncements.Controls.Clear();
             foreach (Announcement announcement in currentUser.GetAnnouncements())
             {
-                AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(announcement.Description, announcement.CreatedAt, currentUser.Name, ArchiveAnnouncement);
+                AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(announcement.Description, announcement.CreatedAt, currentUser.Name, ArchiveAnnouncement, isAdmin);
                 newAnnouncement.Size = new Size(400, 125);
                 int newX = 10;
                 int newY = 10;
@@ -373,6 +369,7 @@ namespace HouseMateLink
         private void btnPostComplaint_Click(object sender, EventArgs e)
         {
             string complain = tbCreateComplaint.Text.Trim();
+
             if (string.IsNullOrEmpty(complain))
             {
                 MessageBox.Show("Please enter a complaint.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -383,7 +380,7 @@ namespace HouseMateLink
             panelComplaint.Controls.Clear();
             foreach (Complaint complaint in myBuilding.GetComplaints())
             {
-                ComplaintMessageControl newComplaint = new ComplaintMessageControl(complaint.Description, complaint.CreatedAt, ArchiveComplaint);
+                ComplaintMessageControl newComplaint = new ComplaintMessageControl(complaint.Description, complaint.CreatedAt, ArchiveComplaint, isAdmin);
                 newComplaint.Size = new Size(400, 110);
                 int newX = 10;
                 int newY = 10;

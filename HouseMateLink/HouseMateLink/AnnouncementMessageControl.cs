@@ -10,11 +10,13 @@ namespace HouseMateLink
         private Label lblUserName;
         private Button btnArchive;
         private Action<AnnouncementMessageControl> onArchiveButtonClick;
-        public AnnouncementMessageControl(string announcementText, DateTime createdAt, string userName, Action<AnnouncementMessageControl> onArchiveButtonClick)
+        private bool isAdmin;
+        public AnnouncementMessageControl(string announcementText, DateTime createdAt, string userName, Action<AnnouncementMessageControl> onArchiveButtonClick, bool isAdmin)
         {
             InitializeComponent();
             this.onArchiveButtonClick = onArchiveButtonClick;
             InitializeAnnouncementControl(announcementText, createdAt, userName);
+            this.isAdmin = isAdmin;
         }
 
         private void InitializeAnnouncementControl(string announcementText, DateTime createdAt, string userName)
@@ -57,7 +59,15 @@ namespace HouseMateLink
                 BackColor = Color.GhostWhite
             };
 
-            btnArchive.Click += BtnArchive_Click;
+            if(!isAdmin)
+            {
+                btnArchive.Visible = false; 
+            }
+            else
+            {
+
+                btnArchive.Click += BtnArchive_Click;
+            }
 
             this.Controls.Add(lblAnnouncementText);
             this.Controls.Add(lblAnnouncementDate);
