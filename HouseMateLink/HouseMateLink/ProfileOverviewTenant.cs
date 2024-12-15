@@ -75,7 +75,7 @@ namespace HouseMateLink
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MainForm form = new MainForm(isAdmin);
+            MainForm form = new MainForm(!isAdmin);
             form.Show();
             this.Hide();
         }

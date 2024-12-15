@@ -50,7 +50,7 @@ namespace HouseMateLink
         {
             string name = tbAddName.Text;
             Role role = (Role)cbAddRole.SelectedItem;
-            int roomNum = (int)nudAddRoom.Value;
+            int roomNum = (int)cbRoom.SelectedIndex;
             string username = tbAddUsername.Text;
             string password = tbAddPassword.Text;
             string photoFile = selectedPhotoFilePathAdd;
@@ -69,7 +69,7 @@ namespace HouseMateLink
             MessageBox.Show("New user added successfully!");
 
             tbAddName.Clear();
-            nudAddRoom.Value = 0;
+            //cbRoom.Text
             tbAddUsername.Clear();
             tbAddPassword.Clear();
             pbNewUser.Image = null;
@@ -112,6 +112,20 @@ namespace HouseMateLink
             MainForm from = new MainForm(isAdmin);
             from.Show();
             this.Hide();
+        }
+
+        private void cbAddRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbAddRole.SelectedIndex == 0)
+            {
+                label3.Visible = true;
+                cbRoom.Visible = true;
+            }
+            else
+            {
+                label3.Visible = false;
+                cbRoom.Visible = false;
+            }
         }
     }
 }
