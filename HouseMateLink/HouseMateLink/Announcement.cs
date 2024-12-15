@@ -9,11 +9,12 @@ namespace HouseMateLink
         public string Description { get; set; }
 
 
-        public Announcement(string description, DateTime createdAt)
+        public Announcement(int announcementId,string description, DateTime createdAt)
         {
-            AnnouncementID++;
+           this.AnnouncementID = announcementId;
             this.Description = description;
-            CreatedAt = createdAt;
-        }    
+            this.CreatedAt = createdAt;
+        }
+        public Announcement() { }
     }
 }

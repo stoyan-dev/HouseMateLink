@@ -78,11 +78,7 @@ namespace HouseMateLink
 
         public void CreateComplaint(string complaintText)
         {
-            if (!string.IsNullOrEmpty(complaintText))
-            {
-                Complaint newComplaint = new Complaint(complaintText);
-                complaints.Add(newComplaint);
-            }
+           
         }
 
         public List<Complaint> GetComplaints()

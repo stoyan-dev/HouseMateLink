@@ -4,15 +4,17 @@
     {
         public int ComplaintID { get; } 
         public DateTime CreatedAt { get; set; } 
-        public string Description { get; set; } 
+        public string Description { get; set; }
+        public bool IsArchived {  get; set; }
 
-       
-
-        public Complaint(string description)
+        public Complaint(int complaintId,string description,DateTime createdAt, bool isArchived)
         {
-            ComplaintID ++; 
+            this.ComplaintID = complaintId;
             this.Description = description;
-            this.CreatedAt = DateTime.Today; 
+            this.CreatedAt = createdAt; 
+            this.IsArchived = isArchived;
         }
+
+        public Complaint() { }
     }
 }

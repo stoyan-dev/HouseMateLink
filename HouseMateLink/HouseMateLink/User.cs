@@ -43,11 +43,8 @@ namespace HouseMateLink
 
         public void CreateAnnouncement(string announcementText)
         {
-            if (!string.IsNullOrEmpty(announcementText))
-            {
-                Announcement newAnnouncement = new Announcement(announcementText, DateTime.Today);
-                announcements.Add(newAnnouncement);
-            }
+            
+            
         }
 
         public List<Announcement> GetAnnouncements()

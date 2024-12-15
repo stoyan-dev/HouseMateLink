@@ -54,7 +54,7 @@
             btnLogOut = new Button();
             tabCalendar = new TabPage();
             lsbxTasks = new ListBox();
-            monthCalendar1 = new MonthCalendar();
+            MyCalendar = new MonthCalendar();
             tabAnnouncements = new TabPage();
             btnHome = new Button();
             grbAnnouncements = new GroupBox();
@@ -382,7 +382,7 @@
             // 
             tabCalendar.BackColor = Color.DeepSkyBlue;
             tabCalendar.Controls.Add(lsbxTasks);
-            tabCalendar.Controls.Add(monthCalendar1);
+            tabCalendar.Controls.Add(MyCalendar);
             tabCalendar.Location = new Point(4, 34);
             tabCalendar.Margin = new Padding(2);
             tabCalendar.Name = "tabCalendar";
@@ -400,15 +400,15 @@
             lsbxTasks.Size = new Size(466, 529);
             lsbxTasks.TabIndex = 1;
             // 
-            // monthCalendar1
+            // MyCalendar
             // 
-            monthCalendar1.BackColor = Color.DeepSkyBlue;
-            monthCalendar1.Font = new Font("Segoe UI", 12F);
-            monthCalendar1.Location = new Point(96, 162);
-            monthCalendar1.Margin = new Padding(11);
-            monthCalendar1.Name = "monthCalendar1";
-            monthCalendar1.TabIndex = 0;
-            monthCalendar1.TrailingForeColor = Color.Gold;
+            MyCalendar.BackColor = Color.DeepSkyBlue;
+            MyCalendar.Font = new Font("Segoe UI", 12F);
+            MyCalendar.Location = new Point(96, 162);
+            MyCalendar.Margin = new Padding(11);
+            MyCalendar.Name = "MyCalendar";
+            MyCalendar.TabIndex = 0;
+            MyCalendar.TrailingForeColor = Color.Gold;
             // 
             // tabAnnouncements
             // 
@@ -765,7 +765,7 @@
         private TextBox tbCreateComplaint;
         private Button btnEditRules;
         private TextBox rulesTextBox;
-        private MonthCalendar monthCalendar1;
+        private MonthCalendar MyCalendar;
         private ListBox lbShoppingList;
         private Button btnAddToTheList;
         private TextBox tbAddGroceries;
