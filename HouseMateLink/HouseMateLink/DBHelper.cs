@@ -146,7 +146,7 @@ namespace HouseMateLink
                 while (dr.Read())
                 {
                     Role role = (Role)Convert.ToInt32(dr[3]);
-                    users.Add(new User(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), role, Convert.ToInt32(dr[4])));
+                    //users.Add(new User(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), role, Convert.ToInt32(dr[4])));
                 }
 
                 conn.Close();

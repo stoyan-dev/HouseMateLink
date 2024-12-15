@@ -9,6 +9,7 @@ namespace HouseMateLink
     public class Building
     {
         public string Name { get; set; }
+        public int amountOfRooms { get; set; }
 
         private List<User> users;
         private List<Complaint> complaints;
@@ -16,13 +17,14 @@ namespace HouseMateLink
         private List<User> tenants;
         private int taskIndex = 0;
 
-        public Building(string name)
+        public Building(string name, int amountOfRooms)
         {
             users = new List<User>();
             complaints = new List<Complaint>();
             announcements = new List<Announcement>();
             tenants = new List<User>();
             this.Name = name;
+            this.amountOfRooms = 6;
             
         }
 
