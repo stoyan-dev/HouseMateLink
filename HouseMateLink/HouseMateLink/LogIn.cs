@@ -19,7 +19,7 @@ namespace HouseMateLink
 
         private void btnLogIn_Click(object sender, EventArgs e)
         {
-            List<User> users = LoadUsersFromJson("users.json");
+            //List<User> users = LoadUsersFromJson("users.json");
 
             User loggedInUser = myBuilding.ValidateUser(tbUsername.Text,tbPassword.Text,isAdmin);
 

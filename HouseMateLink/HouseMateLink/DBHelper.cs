@@ -158,9 +158,67 @@ namespace HouseMateLink
                 return null;
             }
         }
+        public void AddComplaintToDB(Complaint complaint)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+                    string queryAddComplaint = @"insert into COMPLAINT (ComplaintDescription, CreatedAt, isArchived)
+                                                  values(@ComplaintDescription, @CreatedAt,@isArchived)";
+                    using (SqlCommand addComplaint = new SqlCommand(queryAddComplaint, conn)) 
+                    {
+                        addComplaint.Parameters.AddWithValue("@ComplaintDescription", complaint.Description);
+                        addComplaint.Parameters.AddWithValue("@CreatedAt", complaint.CreatedAt);
+                        addComplaint.Parameters.AddWithValue("@isArchived", complaint.isArchived);
 
+                        addComplaint.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
 
+        public List<Complaint> LoadUnarchivedComplaints()
+        {
+            List<Complaint>unarchivedComplaints = new List<Complaint>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                { 
+                    conn.Open();
+                    string loadComplaints = @"select ComplaintID, ComplaintDescription, CreatedAt
+                                              from COMPLAINT
+                                              where IsArchived = @IsArchived";
+                    using (SqlCommand loadComplaint = new SqlCommand(loadComplaints,conn))
+                    {
+                        loadComplaint.Parameters.AddWithValue("@IsArchived", 1);
 
+                        using (SqlDataReader reader = loadComplaint.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                unarchivedComplaints.Add(new Complaint(reader["ComplaintID"],reader["ComplaintDescription"].ToString(), reader.GetBoolean(reader.GetOrdinal("IsArchived"))));
+                      
+                            }
+                        }
+                    }
+                }
+                return unarchivedComplaints;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+                return null;
+                
+            }
+            
+        }
 
 
     }
