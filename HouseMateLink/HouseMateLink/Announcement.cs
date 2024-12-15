@@ -10,11 +10,11 @@ namespace HouseMateLink
         public bool IsArchived { get; set; }
 
 
-        public Announcement(int announcementId,string description, DateTime createdAt, bool isArchived)
+        public Announcement(int announcementId,string description, bool isArchived)
         {
             this.AnnouncementID = announcementId;
             this.Description = description;
-            this.CreatedAt = createdAt;
+            this.CreatedAt = DateTime.Today;
             IsArchived = isArchived;
         }
         public Announcement() { }

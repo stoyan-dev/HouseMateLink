@@ -11,7 +11,7 @@
         {
             this.ComplaintID = complaintId;
             this.Description = description;
-            this.CreatedAt = createdAt; 
+            this.CreatedAt = DateTime.Today; 
             this.IsArchived = isArchived;
         }
 
