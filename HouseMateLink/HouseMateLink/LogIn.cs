@@ -10,8 +10,6 @@ namespace HouseMateLink
         {
             InitializeComponent();
             Initialization();
-            tbPassword.UseSystemPasswordChar = true;
-            this.Controls.Add(tbPassword);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -23,7 +21,7 @@ namespace HouseMateLink
         {
             List<User> users = LoadUsersFromJson("users.json");
 
-            User loggedInUser = ValidateUser(users);
+            User loggedInUser = myBuilding.ValidateUser(tbUsername.Text,tbPassword.Text,isAdmin);
 
             if (loggedInUser == null)
             {
@@ -77,6 +75,8 @@ namespace HouseMateLink
         {
             myBuilding = new Building("Student Housing B.V.");
             isAdmin = false;
+            tbPassword.UseSystemPasswordChar = true;
+            this.Controls.Add(tbPassword);
         }
     }
 }

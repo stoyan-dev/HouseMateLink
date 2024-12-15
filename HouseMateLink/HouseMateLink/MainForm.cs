@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic.ApplicationServices;
@@ -20,10 +21,13 @@ namespace HouseMateLink
         private bool isAdmin;
         private int bit;
         private User currentUser;
+
+        [JsonConstructor]
         public MainForm(bool a)
         {
             InitializeComponent();
             isAdmin = a;
+          
 
         }
         public MainForm(bool a, User user, Building b)
@@ -39,19 +43,7 @@ namespace HouseMateLink
 
             currentUser = user;
 
-            lblUserName.Text = currentUser.Name;
-            lblUserRole.Text = currentUser.Role.ToString();
-            lblUserRoom.Text = currentUser.RoomNumber.ToString();
-
-            if (!string.IsNullOrEmpty(currentUser.Photo) && File.Exists(currentUser.Photo))
-            {
-                pbUser.Image = Image.FromFile(currentUser.Photo);
-                pbUser.SizeMode = PictureBoxSizeMode.Zoom;
-            }
-            else
-            {
-                pbUser.SizeMode = PictureBoxSizeMode.Zoom;
-            }
+            RefreshProfile();
 
         }
 
@@ -466,6 +458,23 @@ namespace HouseMateLink
         {
             tabHome.SelectedIndex = 0;
 
+        }
+
+        private void RefreshProfile()
+        {
+            lblUserName.Text = currentUser.Name;
+            lblUserRole.Text = currentUser.Role.ToString();
+            lblUserRoom.Text = currentUser.RoomNumber.ToString();
+
+            if (!string.IsNullOrEmpty(currentUser.Photo) && File.Exists(currentUser.Photo))
+            {
+                pbUser.Image = Image.FromFile(currentUser.Photo);
+                pbUser.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+            else
+            {
+                pbUser.SizeMode = PictureBoxSizeMode.Zoom;
+            }
         }
     }
 }

@@ -39,6 +39,8 @@ namespace HouseMateLink
             announcements = new List<Announcement>();
         }
 
+        public User() { }
+
         public void CreateAnnouncement(string announcementText)
         {
             if (!string.IsNullOrEmpty(announcementText))
