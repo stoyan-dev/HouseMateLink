@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -171,7 +172,7 @@ namespace HouseMateLink
                     {
                         addComplaint.Parameters.AddWithValue("@ComplaintDescription", complaint.Description);
                         addComplaint.Parameters.AddWithValue("@CreatedAt", complaint.CreatedAt);
-                        addComplaint.Parameters.AddWithValue("@isArchived", complaint.isArchived);
+                        addComplaint.Parameters.AddWithValue("@isArchived", complaint.IsArchived);
 
                         addComplaint.ExecuteNonQuery();
                     }
@@ -191,7 +192,7 @@ namespace HouseMateLink
                 using (SqlConnection conn = new SqlConnection(connStr))
                 { 
                     conn.Open();
-                    string loadComplaints = @"select ComplaintID, ComplaintDescription, CreatedAt
+                    string loadComplaints = @"select ComplaintDescription, CreatedAt
                                               from COMPLAINT
                                               where IsArchived = @IsArchived";
                     using (SqlCommand loadComplaint = new SqlCommand(loadComplaints,conn))
@@ -202,8 +203,8 @@ namespace HouseMateLink
                         {
                             while (reader.Read())
                             {
-                                unarchivedComplaints.Add(new Complaint(reader["ComplaintID"],reader["ComplaintDescription"].ToString(), reader.GetBoolean(reader.GetOrdinal("IsArchived"))));
-                      
+                                unarchivedComplaints.Add(new Complaint((int)reader["ComplaintID"]), reader["ComplaintDescription"], reader.GetDateTime(reader.GetOrdinal("CreatedAt")), reader.GetBoolean(reader.GetOrdinal("IsArchived")));
+                
                             }
                         }
                     }
@@ -219,7 +220,39 @@ namespace HouseMateLink
             }
             
         }
+        public void ChangeStatusOfComplaint(int complaintID, bool isArchived)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+                    string changeStatus = @"
+                UPDATE COMPLAINT 
+                SET IsArchived = @IsArchived 
+                WHERE ComplaintID = @ComplaintID";
 
+                    using (SqlCommand changeStatusDB = new SqlCommand(changeStatus, conn))
+                    {
+
+                        changeStatusDB.Parameters.Add("@IsArchived", SqlDbType.Bit).Value = isArchived;
+                        changeStatusDB.Parameters.Add("@ComplaintID", SqlDbType.Int).Value = complaintID;
+
+
+                        changeStatusDB.ExecuteNonQuery();
+
+                    }
+                }
+             
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
 
     }
+
+
 }
+
