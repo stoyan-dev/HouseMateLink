@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 using Microsoft.Data.SqlClient;
 
 namespace HouseMateLink
@@ -45,7 +40,7 @@ namespace HouseMateLink
                 addAdminCmd.ExecuteNonQuery();
                 conn.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             { MessageBox.Show($"InitDB Error: {ex}"); }
         }
 
@@ -67,7 +62,7 @@ namespace HouseMateLink
                 addTenantCmd.ExecuteNonQuery();
                 conn.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             { MessageBox.Show($"AddTenantToDB Error: {ex}"); }
         }
 
@@ -86,7 +81,7 @@ namespace HouseMateLink
                 removeTenantCmd.ExecuteNonQuery();
                 conn.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             { MessageBox.Show($"RemoveTenantFromDB Error: {ex}"); }
         }
 
@@ -153,8 +148,8 @@ namespace HouseMateLink
                 conn.Close();
                 return users;
             }
-            catch(Exception ex)
-            { 
+            catch (Exception ex)
+            {
                 MessageBox.Show($"GetUsersFromDB Error: {ex}");
                 return null;
             }
@@ -168,7 +163,7 @@ namespace HouseMateLink
                     conn.Open();
                     string queryAddComplaint = @"insert into COMPLAINT (ComplaintDescription, CreatedAt, isArchived)
                                                   values(@ComplaintDescription, @CreatedAt,@isArchived)";
-                    using (SqlCommand addComplaint = new SqlCommand(queryAddComplaint, conn)) 
+                    using (SqlCommand addComplaint = new SqlCommand(queryAddComplaint, conn))
                     {
                         addComplaint.Parameters.AddWithValue("@ComplaintDescription", complaint.Description);
                         addComplaint.Parameters.AddWithValue("@CreatedAt", complaint.CreatedAt);
@@ -186,16 +181,16 @@ namespace HouseMateLink
 
         public List<Complaint> LoadUnarchivedComplaints()
         {
-            List<Complaint>unarchivedComplaints = new List<Complaint>();
+            List<Complaint> unarchivedComplaints = new List<Complaint>();
             try
             {
                 using (SqlConnection conn = new SqlConnection(connStr))
-                { 
+                {
                     conn.Open();
                     string loadComplaints = @"select ComplaintDescription, CreatedAt
                                               from COMPLAINT
                                               where IsArchived = @IsArchived";
-                    using (SqlCommand loadComplaint = new SqlCommand(loadComplaints,conn))
+                    using (SqlCommand loadComplaint = new SqlCommand(loadComplaints, conn))
                     {
                         loadComplaint.Parameters.AddWithValue("@IsArchived", 1);
 
@@ -204,7 +199,7 @@ namespace HouseMateLink
                             while (reader.Read())
                             {
                                 unarchivedComplaints.Add(new Complaint((int)reader["ComplaintID"]), reader["ComplaintDescription"], reader.GetDateTime(reader.GetOrdinal("CreatedAt")), reader.GetBoolean(reader.GetOrdinal("IsArchived")));
-                
+
                             }
                         }
                     }
@@ -216,9 +211,9 @@ namespace HouseMateLink
             {
                 MessageBox.Show($"Error: {ex.Message}");
                 return null;
-                
+
             }
-            
+
         }
         public void ChangeStatusOfComplaint(int complaintID, bool isArchived)
         {
@@ -243,11 +238,92 @@ namespace HouseMateLink
 
                     }
                 }
-             
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+        public void AddAnnouncement(Announcement announcement)
+        {
+            try
+            {
+                using SqlConnection connection = new SqlConnection(connStr);
+                string sql = """ 
+                            INSERT INTO Announcement (AnnouncementID, AnnouncementDescription, CreatedAt, IsArchived)
+                            VALUES (@Id, @Description, @Date, @IsArchived)
+                            """;
+                using SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@Id", announcement.AnnouncementID);
+                command.Parameters.AddWithValue("@Description", announcement.Description);
+                command.Parameters.AddWithValue("@Date", announcement.CreatedAt);
+                command.Parameters.AddWithValue("@IsArchived", announcement.IsArchived);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public List<Announcement> LoadAnnouncement()
+        {
+            List<Announcement> announcements = new List<Announcement>();
+            try
+            {
+                using SqlConnection connection = new SqlConnection(connStr);
+                string sql = """
+                          SELECT * FROM Announcement
+                          WHERE IsArchived=@IsArchived
+                          """;
+                using SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@IsArchived", 1);
+
+                connection.Open();
+                using SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    announcements.Add(new Announcement
+                    {
+                        AnnouncementID = reader.GetInt32(0),
+                        Description = reader.GetString(1),
+                        CreatedAt = reader.GetDateTime(2),
+                        IsArchived = reader.GetBoolean(3),
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return announcements;
+        }
+
+        public void ChangeAnnouncementStatus(int id)
+        {
+            try
+            {
+                using SqlConnection connection = new SqlConnection(connStr);
+                string sql = """
+                       UPDATE Announcement 
+                       SET IsArchived=@IsArchived
+                       WHERE AnnouncementID=@Id
+                       """;
+                using SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@IsArchived", 0);
+                command.Parameters.AddWithValue("@Id", id);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

@@ -111,7 +111,7 @@ namespace HouseMateLink
                 command.Parameters.AddWithValue("@Username", username);
                 command.Parameters.AddWithValue("Password", password);
 
-                SqlDataReader reader = command.ExecuteReader();
+                using SqlDataReader reader = command.ExecuteReader();
                 while(reader.Read())
                 {
                     newUser = new User
