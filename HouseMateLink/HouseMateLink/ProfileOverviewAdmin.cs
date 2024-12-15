@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Microsoft.Data.SqlClient;
 
 namespace HouseMateLink
 {
@@ -9,13 +10,16 @@ namespace HouseMateLink
         private string selectedPhotoFilePathEdit = null;
         private string selectedPhotoFilePathAdd = null;
         private bool isAdmin;
+        private string connStr = "Server=mssqlstud.fhict.local;Database=dbi550238;User Id=dbi550238;Password=12345;";
+
 
         public ProfileOverviewAdmin(bool a)
         {
             InitializeComponent();
-            building = new Building("");
+            building = new Building("",6);
             cbAddRole.DataSource = Role.GetValues(typeof(Role));
             isAdmin = a;
+            ManageAvailableRooms(6);
         }
 
         private void btnSelectPhoto_Click(object sender, EventArgs e)
@@ -69,7 +73,7 @@ namespace HouseMateLink
             MessageBox.Show("New user added successfully!");
 
             tbAddName.Clear();
-            //cbRoom.Text
+            cbRoom.Text = cbRoom.Items[0].ToString();
             tbAddUsername.Clear();
             tbAddPassword.Clear();
             pbNewUser.Image = null;
@@ -127,6 +131,61 @@ namespace HouseMateLink
                 cbRoom.Visible = false;
             }
         }
+
+        private void ManageAvailableRooms(int amountOfRooms)
+        {
+
+            List<int> allRooms = new List<int>();
+            for (int i = 1; i <= amountOfRooms; i++)
+            {
+                allRooms.Add(i); 
+            }
+
+            List<int> takenRooms = new List<int>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    string queryUserRoom = @"SELECT RoomNumber FROM User";
+
+                    using (SqlCommand cmd = new SqlCommand(queryUserRoom, conn))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int roomNumber = reader.GetInt32(0);
+                                takenRooms.Add(roomNumber);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+
+            List<int> availableRooms = new List<int>();
+
+         
+            foreach (int room in allRooms)
+            {
+                if (!takenRooms.Contains(room))
+                { 
+                    availableRooms.Add(room);
+                }
+            }
+
+            cbRoom.DataSource = availableRooms;
+        }
+
+
+
     }
 }
+
 

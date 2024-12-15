@@ -75,7 +75,7 @@ namespace HouseMateLink
 
         private void Initialization()
         {
-            myBuilding = new Building("Student Housing B.V.");
+            myBuilding = new Building("Student Housing B.V.",6);
             isAdmin = false;
         }
     }
