@@ -122,7 +122,7 @@ namespace HouseMateLink
                 conn.Close();
             }
             catch (Exception ex)
-            { MessageBox.Show($"RemoveTenantFromDB Error: {ex}"); }
+            { MessageBox.Show($"RemoveAdminFromDB Error: {ex}"); }
         }
 
         public List<User>? GetUsersFromDB()
