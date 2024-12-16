@@ -11,7 +11,7 @@ namespace HouseMateLink
         public bool IsArchived { get; set; }
 
 
-        public Announcement(string username, string description, bool isArchived)
+        public Announcement(string username, string description,bool isArchived)
         {
             this.Username = username;
             this.Description = description;

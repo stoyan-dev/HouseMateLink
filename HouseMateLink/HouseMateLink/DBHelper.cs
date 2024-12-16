@@ -33,7 +33,7 @@ namespace HouseMateLink
         }
 
 
-        public List<User> LoadUsersFromDBForAdmin()
+        public List<User>? LoadUsersFromDBForAdmin()
         {
             List<User> users = new List<User>();
 
@@ -61,7 +61,7 @@ namespace HouseMateLink
                 return null;
             }
         }
-        public List<User> LoadUsersFromDBForTenant()
+        public List<User>? LoadUsersFromDBForTenant()
         {
             List<User> users = new List<User>();
 
@@ -114,7 +114,7 @@ namespace HouseMateLink
             }
         }
 
-        public List<Complaint> LoadUnarchivedComplaints()
+        public List<Complaint>? LoadUnarchivedComplaints()
         {
             List<Complaint> unarchivedComplaints = new List<Complaint>();
             try
@@ -133,7 +133,7 @@ namespace HouseMateLink
                         {
                             while (reader.Read())
                             {
-                                unarchivedComplaints.Add(new Complaint(reader["ComplaintDescription"].ToString(), reader.GetDateTime(reader.GetOrdinal("CreatedAt")), reader.GetBoolean(reader.GetOrdinal("IsArchived"))));
+                                unarchivedComplaints.Add(new Complaint(reader["ComplaintDescription"].ToString(), reader.GetDateTime(reader.GetOrdinal("CreatedAt"))));
 
                             }
                         }
@@ -207,7 +207,7 @@ namespace HouseMateLink
 
        
 
-        public User ValidateUser(User user)
+        public User? ValidateUser(User user)
         {
             try
             {
@@ -222,7 +222,7 @@ namespace HouseMateLink
                 {
                     return new User
                     {
-                        username: reader.GetString(1),
+                        Username= reader.GetString(1),
                         Password = reader.GetString(2),
                         Name = reader.GetString(3),
                         Role = (Role)Enum.Parse(typeof(Role), reader["Role"].ToString()),
@@ -246,13 +246,14 @@ namespace HouseMateLink
             {
                 using SqlConnection connection = new SqlConnection(connStr);
                 string sql = """ 
-                            INSERT INTO ANNOUNCEMENT (Description, CreatedAt, IsArchived)
-                            VALUES (@Id, @Description, @Date, @IsArchived)
+                            INSERT INTO ANNOUNCEMENT (Username, Description, CreatedAt, IsArchived)
+                            VALUES (@username, @Description, @Date, @IsArchived)
                             """;
                 using SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@Username", announcement.Username);
                 command.Parameters.AddWithValue("@Description", announcement.Description);
                 command.Parameters.AddWithValue("@Date", announcement.CreatedAt);
-                command.Parameters.AddWithValue("@IsArchived", announcement.IsArchived);
+                command.Parameters.AddWithValue("@IsArchived", announcement.IsArchived ? 1 : 0);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -270,7 +271,9 @@ namespace HouseMateLink
             try
             {
                 using SqlConnection connection = new SqlConnection(connStr);
-                string sql = "SELECT u.Username, Description, CreatedAt FROM ANNOUNCEMENT WHERE IsArchived = @IsArchived";
+                string sql = @"select Username, CreatedAt, Description
+                               from ANNOUNCEMENT
+                               where IsArchived = @IsArchived";
 
                 using SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@IsArchived", 1);  
@@ -281,8 +284,9 @@ namespace HouseMateLink
                 {
                     announcements.Add(new Announcement(
                         reader["Username"].ToString(),
-                        reader["Description"].ToString(),
-                        reader.GetDateTime(reader.GetOrdinal("CreatedAt")) 
+                        reader.GetDateTime(reader.GetOrdinal("CreatedAt")),
+                        reader["Description"].ToString()
+                        
                     ));
                 }
             }
