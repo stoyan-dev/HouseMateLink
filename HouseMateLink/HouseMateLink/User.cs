@@ -36,15 +36,15 @@ namespace HouseMateLink
         }
         public User() { }
 
-        public void CreateAnnouncement(string announcementText)
-        {
+        //public void CreateAnnouncement(string announcementText)
+        //{
             
             
-        }
+        //}
 
-        public List<Announcement> GetAnnouncements()
-        {
-            return announcements;
-        }
+        //public List<Announcement> GetAnnouncements()
+        //{
+        //    return announcements;
+        //}
     }
 }

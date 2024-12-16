@@ -49,6 +49,7 @@ namespace HouseMateLink
             itemCounter = 1;
             dateTimePicker.Visible = false;
             LoadHouseRules();
+            LoadAnnouncements();
             myDBHelper = new DBHelper();
 
             btnEditRules.Visible = isAdmin;
@@ -278,28 +279,11 @@ namespace HouseMateLink
                 return;
             }
 
-            currentUser.CreateAnnouncement(message);
+            Announcement announcement = new Announcement(currentUser.Username, message,false);
+            myDBHelper.AddAnnouncement(announcement);
+            LoadAnnouncements();
             //SaveAnnouncementToJson();
-            panelAnnouncements.Controls.Clear();
-            foreach (Announcement announcement in currentUser.GetAnnouncements())
-            {
-                AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(announcement.Description, announcement.CreatedAt, currentUser.Name, ArchiveAnnouncement, isAdmin);
-                newAnnouncement.Size = new Size(400, 125);
-                int newX = 10;
-                int newY = 10;
-
-                if (panelAnnouncements.Controls.Count > 0)
-                {
-                    Control lastControl = panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1];
-                    newX = lastControl.Left;
-                    newY = lastControl.Bottom + 10;
-                }
-                newAnnouncement.Location = new Point(newX, newY);
-                panelAnnouncements.Controls.Add(newAnnouncement);
-            }
-            panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1].Bottom + 10);
-            tbAnnouncement.Clear();
-            SaveAnnouncementsToJson(currentUser.GetAnnouncements());
+            //SaveAnnouncementsToJson(currentUser.GetAnnouncements());
 
 
         }
@@ -453,6 +437,29 @@ namespace HouseMateLink
         {
             tabHome.SelectedIndex = 0;
 
+        }
+
+        private void LoadAnnouncements()
+        {
+            panelAnnouncements.Controls.Clear();
+            foreach (Announcement a in myDBHelper.LoadUnarchivedAnnouncement())
+            {
+                AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(a.Description, a.CreatedAt, currentUser.Name, ArchiveAnnouncement, isAdmin);
+                newAnnouncement.Size = new Size(400, 125);
+                int newX = 10;
+                int newY = 10;
+
+                if (panelAnnouncements.Controls.Count > 0)
+                {
+                    Control lastControl = panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1];
+                    newX = lastControl.Left;
+                    newY = lastControl.Bottom + 10;
+                }
+                newAnnouncement.Location = new Point(newX, newY);
+                panelAnnouncements.Controls.Add(newAnnouncement);
+            }
+            panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1].Bottom + 10);
+            tbAnnouncement.Clear();
         }
 
         private void RefreshProfile()
