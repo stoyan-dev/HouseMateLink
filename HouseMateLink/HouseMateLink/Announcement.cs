@@ -11,21 +11,22 @@ namespace HouseMateLink
         public bool IsArchived { get; set; }
 
 
-        public Announcement(string username, DateTime createdAt, string description, bool isArchived)
-        {
-            this.Username = username;
-            this.Description = description;
-            this.CreatedAt = createdAt;
-            this.IsArchived = isArchived;
-        }
-
-        public Announcement(string username, string description)
+        public Announcement(string username, string description, bool isArchived)
         {
             this.Username = username;
             this.Description = description;
             this.CreatedAt = DateTime.Today;
-            //this.IsArchived = isArchived;
+            this.IsArchived = isArchived;
         }
+        public Announcement(string username, DateTime createdAt, string description)
+        {
+            this.Username = username;
+            this.Description = description;
+            this.CreatedAt = createdAt;
+            this.IsArchived = false;
+        }
+
+        
         //public Announcement() { }
     }
 }

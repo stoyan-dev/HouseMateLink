@@ -7,18 +7,19 @@
         public string Description { get; set; }
         public bool IsArchived {  get; set; }
 
+        //used to save data to the database
         public Complaint(string description, bool isArchived)
         {
             this.Description = description;
             this.CreatedAt = DateTime.Today; 
             this.IsArchived = isArchived;
         }
-
-        public Complaint(string description, DateTime createdAt, bool isArchived)
+        //reads and creates objects from database
+        public Complaint(string description, DateTime createdAt)
         {
             this.Description = description;
             this.CreatedAt = createdAt;
-            this.IsArchived = isArchived;
+            this.IsArchived = false;
         }
 
         //public Complaint() { }

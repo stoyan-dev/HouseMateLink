@@ -14,38 +14,27 @@ namespace HouseMateLink
      
         private List<Announcement> announcements;
 
-        [JsonConstructor ]
+        //[JsonConstructor ]
         public User(string username, string password, string name, Role role, int roomNumber, string photo)
         {
-            Username = username;
-            Password = password;
-            Name = name;
-            Role = role;
-            RoomNumber = roomNumber;
-            Photo = photo;
-            announcements = new List<Announcement>();
+           this.Username = username;
+           this.Password = password;
+           this.Name = name;
+           this.Role = role;
+           this.RoomNumber = roomNumber;
+           this.Photo = photo;
+           this.announcements = new List<Announcement>();
         }
-
-        //public User(string username, string password, string name, Role role, string photo)
-        //{
-        //    UserID++;
-        //    Username = username;
-        //    Password = password;
-        //    Name = name;
-        //    Role = role;
-        //    Photo = photo;
-        //    announcements = new List<Announcement>();
-        //}
 
         public User(string name, Role role, int roomNumber, string photo)
         {
-            Name = name;
-            Role = role;
-            RoomNumber = roomNumber;
-            Photo = photo;
-            announcements = new List<Announcement>();
+            this.Name = name;
+            this.Role = role;
+            this.RoomNumber = roomNumber;
+            this.Photo = photo;
+            this.announcements = new List<Announcement>();
         }
-        //public User() { }
+        public User() { }
 
         public void CreateAnnouncement(string announcementText)
         {
