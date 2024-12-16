@@ -8,9 +8,9 @@ public class Task
     public bool IsDone { get; set; }
     public TaskTypeEnum TaskType { get; set; }  
 
-    public Task(int userId, DateTime taskDate, bool isDone, TaskTypeEnum taskType)
+    public Task(int id,int userId, DateTime taskDate, bool isDone, TaskTypeEnum taskType)
     {
-        TaskID += 1;
+        this.TaskID = id;   
         UserID = userId;
         TaskDate = taskDate;
         IsDone = isDone;
