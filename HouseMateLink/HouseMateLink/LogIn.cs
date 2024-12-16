@@ -37,27 +37,27 @@ namespace HouseMateLink
             }
         }
 
-        private List<User> LoadUsersFromJson(string filePath)
-        {
-            try
-            {
-                if (File.Exists(filePath))
-                {
-                    string jsonString = File.ReadAllText(filePath);
-                    return JsonSerializer.Deserialize<List<User>>(jsonString);
-                }
-                else
-                {
-                    MessageBox.Show("User file not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return new List<User>();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error reading user file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return new List<User>();
-            }
-        }
+        //private List<User> LoadUsersFromJson(string filePath)
+        //{
+        //    try
+        //    {
+        //        if (File.Exists(filePath))
+        //        {
+        //            string jsonString = File.ReadAllText(filePath);
+        //            return JsonSerializer.Deserialize<List<User>>(jsonString);
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("User file not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //            return new List<User>();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"Error reading user file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        return new List<User>();
+        //    }
+        //}
 
 
         public void CheckRole(User user)
@@ -69,6 +69,7 @@ namespace HouseMateLink
         private void Initialization()
         {
             myBuilding = new Building("Student Housing B.V.",6);
+            myDBHelper = new DBHelper();
             isAdmin = false;
             tbPassword.UseSystemPasswordChar = true;
             this.Controls.Add(tbPassword);
