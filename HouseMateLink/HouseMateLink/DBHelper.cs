@@ -1,11 +1,13 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace HouseMateLink
 {
     public class DBHelper
     {
-        string connStr = "Server=mssqlstud.fhict.local;Database=dbi550238;User Id=dbi550238;Password=12345;";
+        string connStr = "Server=mssqlstud.fhict.local;Database=dbi550238;User Id=dbi550238;Password=12345; Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadOnly;";
+
         SqlConnection conn;
 
         public DBHelper()
@@ -13,147 +15,32 @@ namespace HouseMateLink
             conn = new SqlConnection(connStr);
         }
 
-        public void InitDB()
+        public void AddUser(User user)
         {
-            //Delete all the data from the tables
             try
             {
-                string deleteAllSql = """
-                   TRUNCATE TABLE ANNOUNCEMENT;
-                   TRUNCATE TABLE COMPLAINT
-                   TRUNCATE TABLE EVENT;
-                   TRUNCATE TABLE TASK;
-                   TRUNCATE TABLE USER;
-                """;
-                SqlCommand deleteAllCmd = new SqlCommand(deleteAllSql, conn);
-                conn.Open();
-                deleteAllCmd.ExecuteNonQuery();
-                conn.Close();
+                using SqlConnection connection=new SqlConnection(connStr);
+                string sql= """ 
+                           INSERT INTO [USER] (Username, Password, Name, Role, RoomNumber, Photo)
+                           VALUES (@Id, @Username, @Password, @Name, @Role, @RoomNumber, @Photo)
+                           """;
+                using SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@Username", user.Username);
+                command.Parameters.AddWithValue("@Password", user.Password);
+                command.Parameters.AddWithValue("@Name", user.Name);
+                command.Parameters.AddWithValue("@Role", user.Role);
+                command.Parameters.AddWithValue("@RoomNumber", user.RoomNumber);
+                command.Parameters.AddWithValue("@Photo", user.Photo);
 
-                //Add only the admin account
-                string addAdminSql = """
-                    INSERT INTO USER (Username, Password, Name, IsAdmin, RoomNumber) 
-                    VALUES('admin', 'admin123','Robert', 1, 0);
-                """;
-                SqlCommand addAdminCmd = new SqlCommand(addAdminSql, conn);
-                conn.Open();
-                addAdminCmd.ExecuteNonQuery();
-                conn.Close();
+                connection.Open();
+                command.ExecuteNonQuery();
             }
-            catch (Exception ex)
-            { MessageBox.Show($"InitDB Error: {ex}"); }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        public void AddTenantToDB(User u)
-        {
-            //Add tenant to database
-            try
-            {
-                string addTenantSql = """
-                    INSERT INTO USER (Username, Password, Name, IsAdmin, RoomNumber)
-                    VALUES(@username, @password, @name, 0, @roomnr);
-                """;
-                SqlCommand addTenantCmd = new SqlCommand(addTenantSql, conn);
-                addTenantCmd.Parameters.AddWithValue("username", u.Username);
-                addTenantCmd.Parameters.AddWithValue("password", u.Password);
-                addTenantCmd.Parameters.AddWithValue("name", u.Name);
-                addTenantCmd.Parameters.AddWithValue("roomnr", u.RoomNumber);
-                conn.Open();
-                addTenantCmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (Exception ex)
-            { MessageBox.Show($"AddTenantToDB Error: {ex}"); }
-        }
-
-        public void RemoveTenantFromDB(User u)
-        {
-            //Remove tenant from database
-            try
-            {
-                string removeTenantSql = """
-                    DELETE FROM USER
-                    WHERE UserID = @id;
-                """;
-                SqlCommand removeTenantCmd = new SqlCommand(removeTenantSql, conn);
-                removeTenantCmd.Parameters.AddWithValue("id", u.UserID);
-                conn.Open();
-                removeTenantCmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (Exception ex)
-            { MessageBox.Show($"RemoveTenantFromDB Error: {ex}"); }
-        }
-
-        public void AddAdminToDB(User u)
-        {
-            //Add admin to database
-            try
-            {
-                string addAdminSql = """
-                    INSERT INTO USER (Username, Password, Name, IsAdmin, RoomNumber)
-                    VALUES(@username, @password, @name, 1, 0);
-                """;
-                SqlCommand addAdminCmd = new SqlCommand(addAdminSql, conn);
-                addAdminCmd.Parameters.AddWithValue("username", u.Username);
-                addAdminCmd.Parameters.AddWithValue("password", u.Password);
-                addAdminCmd.Parameters.AddWithValue("name", u.Name);
-                conn.Open();
-                addAdminCmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (Exception ex)
-            { MessageBox.Show($"AddAdminToDB Error: {ex}"); }
-        }
-
-        public void RemoveAdminFromDB(User u)
-        {
-            //Remove admin from database
-            try
-            {
-                string removeAdminSql = """
-                    DELETE FROM USER
-                    WHERE UserID = @id;
-                """;
-                SqlCommand removeAdminCmd = new SqlCommand(removeAdminSql, conn);
-                removeAdminCmd.Parameters.AddWithValue("id", u.UserID);
-                conn.Open();
-                removeAdminCmd.ExecuteNonQuery();
-                conn.Close();
-            }
-            catch (Exception ex)
-            { MessageBox.Show($"RemoveAdminFromDB Error: {ex}"); }
-        }
-
-        public List<User>? GetUsersFromDB()
-        {
-            //Get the info of all users from the database
-            try
-            {
-                string getUserSql = """
-                    SELECT Username, Password, Name, IsAdmin, RoomNumber
-                    FROM USER
-                """;
-                SqlCommand getUserCmd = new SqlCommand(getUserSql, conn);
-                conn.Open();
-                SqlDataReader dr = getUserCmd.ExecuteReader();
-
-                List<User> users = new List<User>();
-                while (dr.Read())
-                {
-                    Role role = (Role)Convert.ToInt32(dr[3]);
-                    //users.Add(new User(dr[0].ToString(), dr[1].ToString(), dr[2].ToString(), role, Convert.ToInt32(dr[4])));
-                }
-
-                conn.Close();
-                return users;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"GetUsersFromDB Error: {ex}");
-                return null;
-            }
-        }
         public void AddComplaintToDB(Complaint complaint)
         {
             try
@@ -161,7 +48,7 @@ namespace HouseMateLink
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
                     conn.Open();
-                    string queryAddComplaint = @"insert into COMPLAINT (ComplaintDescription, CreatedAt, isArchived)
+                    string queryAddComplaint = @"insert into COMPLAINT (Description, CreatedAt, isArchived)
                                                   values(@ComplaintDescription, @CreatedAt,@isArchived)";
                     using (SqlCommand addComplaint = new SqlCommand(queryAddComplaint, conn))
                     {
@@ -179,6 +66,39 @@ namespace HouseMateLink
             }
         }
 
+        public User ValidateUser(User user)
+        {
+            try
+            {
+                using SqlConnection connection = new SqlConnection(connStr);
+                string sql = "SELECT * FROM USER where Username = @Username AND Password = @Password";
+                using SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@Username", user.Username);
+                command.Parameters.AddWithValue("Password", user.Password);
+
+                using SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    return new User
+                    {
+                        Username = reader.GetString(1),
+                        Password = reader.GetString(2),
+                        Name = reader.GetString(3),
+                        Role = (Role)Enum.Parse(typeof(Role), reader["Role"].ToString()),
+                        RoomNumber = reader.GetInt32(5),
+                        Photo = reader.GetString(6)
+                    };
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+
+        }
+
         public List<Complaint> LoadUnarchivedComplaints()
         {
             List<Complaint> unarchivedComplaints = new List<Complaint>();
@@ -187,7 +107,7 @@ namespace HouseMateLink
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
                     conn.Open();
-                    string loadComplaints = @"select ComplaintDescription, CreatedAt
+                    string loadComplaints = @"select Description, CreatedAt
                                               from COMPLAINT
                                               where IsArchived = @IsArchived";
                     using (SqlCommand loadComplaint = new SqlCommand(loadComplaints, conn))
@@ -198,8 +118,14 @@ namespace HouseMateLink
                         {
                             while (reader.Read())
                             {
-                                unarchivedComplaints.Add(new Complaint((int)reader["ComplaintID"]), reader["ComplaintDescription"], reader.GetDateTime(reader.GetOrdinal("CreatedAt")), reader.GetBoolean(reader.GetOrdinal("IsArchived")));
-
+                                unarchivedComplaints.Add(
+                                    new Complaint(
+                                        (int)reader["ComplaintID"],
+                                        reader["Description"].ToString(),
+                                        reader.GetDateTime(reader.GetOrdinal("CreatedAt")),
+                                        reader.GetBoolean(reader.GetOrdinal("IsArchived"))
+                                    )
+                                );
                             }
                         }
                     }
@@ -252,11 +178,10 @@ namespace HouseMateLink
             {
                 using SqlConnection connection = new SqlConnection(connStr);
                 string sql = """ 
-                            INSERT INTO Announcement (AnnouncementID, AnnouncementDescription, CreatedAt, IsArchived)
+                            INSERT INTO ANNOUNCEMENT (Description, CreatedAt, IsArchived)
                             VALUES (@Id, @Description, @Date, @IsArchived)
                             """;
                 using SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@Id", announcement.AnnouncementID);
                 command.Parameters.AddWithValue("@Description", announcement.Description);
                 command.Parameters.AddWithValue("@Date", announcement.CreatedAt);
                 command.Parameters.AddWithValue("@IsArchived", announcement.IsArchived);
@@ -278,7 +203,7 @@ namespace HouseMateLink
             {
                 using SqlConnection connection = new SqlConnection(connStr);
                 string sql = """
-                          SELECT * FROM Announcement
+                          SELECT * FROM ANNOUNCEMENT
                           WHERE IsArchived=@IsArchived
                           """;
                 using SqlCommand command = new SqlCommand(sql, connection);
@@ -310,7 +235,7 @@ namespace HouseMateLink
             {
                 using SqlConnection connection = new SqlConnection(connStr);
                 string sql = """
-                       UPDATE Announcement 
+                       UPDATE ANNOUNCEMENT 
                        SET IsArchived=@IsArchived
                        WHERE AnnouncementID=@Id
                        """;

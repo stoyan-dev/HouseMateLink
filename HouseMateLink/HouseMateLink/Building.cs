@@ -100,37 +100,10 @@ namespace HouseMateLink
             return defaultRules;
         }
         
-        public User ValidateUser(string username, string password, bool isAdmin)
-        {
-            User newUser = null;
-            try
-            {
-                using SqlConnection connection = new SqlConnection("Server=mssqlstud.fhict.local;Database=dbi550238;User Id=dbi550238;Password=12345;");
-                string sql = "SELECT * FROM Users where Username = @Username AND Password = @Password";
-                using SqlCommand command = new SqlCommand(sql,connection);
-                command.Parameters.AddWithValue("@Username", username);
-                command.Parameters.AddWithValue("Password", password);
-
-                using SqlDataReader reader = command.ExecuteReader();
-                while(reader.Read())
-                {
-                    newUser = new User
-                    {
-                        Username = reader.GetString(1),
-                        Password = reader.GetString(2),
-                        Name = reader.GetString(3),
-                        Role = (Role)Enum.Parse(typeof(Role), reader.GetString(4)),
-                        RoomNumber = reader.GetInt32(5),
-                        Photo=reader.GetString(6)
-                    };
-                }
-                isAdmin = newUser.Role == Role.ADMIN;
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            return newUser;
-        }
+        //public User ValidateUser(string username, string password, bool isAdmin)
+        //{
+        //    User newUser = null;
+           
+        //}
     }
 }
