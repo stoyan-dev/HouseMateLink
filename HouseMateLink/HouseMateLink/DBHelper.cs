@@ -14,33 +14,81 @@ namespace HouseMateLink
         {
             conn = new SqlConnection(connStr);
         }
-
-        public void AddUser(User user)
+        public void RemoveUserFromDB(User user)
         {
             try
             {
-                using SqlConnection connection=new SqlConnection(connStr);
-                string sql= """ 
-                           INSERT INTO [USER] (Username, Password, Name, Role, RoomNumber, Photo)
-                           VALUES (@Id, @Username, @Password, @Name, @Role, @RoomNumber, @Photo)
-                           """;
-                using SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@Username", user.Username);
-                command.Parameters.AddWithValue("@Password", user.Password);
-                command.Parameters.AddWithValue("@Name", user.Name);
-                command.Parameters.AddWithValue("@Role", user.Role);
-                command.Parameters.AddWithValue("@RoomNumber", user.RoomNumber);
-                command.Parameters.AddWithValue("@Photo", user.Photo);
-
-                connection.Open();
-                command.ExecuteNonQuery();
+                string removeUserSql = """
+                    DELETE FROM USER
+                    WHERE UserID = @id;
+                """;
+                SqlCommand removeTenantCmd = new SqlCommand(removeUserSql, conn);
+                removeTenantCmd.Parameters.AddWithValue("@UserID", user.UserID);
+                conn.Open();
+                removeTenantCmd.ExecuteNonQuery();
+                conn.Close();
             }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            catch (Exception ex)
+            { MessageBox.Show($"RemoveTenantFromDB Error: {ex.Message}"); }
         }
 
+
+        public List<User> LoadUsersFromDBForAdmin()
+        {
+            List<User> users = new List<User>();
+
+            try
+            {
+                string getUserSql = """
+                    SELECT Username, Password, Name, Role, RoomNumber, Photo
+                    FROM USER
+                """;
+                SqlCommand getUsers = new SqlCommand(getUserSql, conn);
+                conn.Open();
+                SqlDataReader dr = getUsers.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    users.Add(new User(dr["Username"].ToString(), dr["Password"].ToString(), dr["Name"].ToString(), (Role)dr["Role"], (int)dr["RoomNumber"], dr["Photo"].ToString()));
+                }
+
+                conn.Close();
+                return users;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"GetUsersFromDB Error: {ex}");
+                return null;
+            }
+        }
+        public List<User> LoadUsersFromDBForTenant()
+        {
+            List<User> users = new List<User>();
+
+            try
+            {
+                string getUserSql = """
+                    SELECT Name, Role, RoomNumber, Photo
+                    FROM USER
+                """;
+                SqlCommand getUsers = new SqlCommand(getUserSql, conn);
+                conn.Open();
+                SqlDataReader dr = getUsers.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    users.Add(new User(dr["Name"].ToString(), (Role)dr["Role"], (int)dr["RoomNumber"], dr["Photo"].ToString()));
+                }
+
+                conn.Close();
+                return users;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"GetUsersFromDB Error: {ex}");
+                return null;
+            }
+        }
         public void AddComplaintToDB(Complaint complaint)
         {
             try
@@ -49,12 +97,12 @@ namespace HouseMateLink
                 {
                     conn.Open();
                     string queryAddComplaint = @"insert into COMPLAINT (Description, CreatedAt, isArchived)
-                                                  values(@ComplaintDescription, @CreatedAt,@isArchived)";
+                                                  values(@Description, @CreatedAt,@isArchived)";
                     using (SqlCommand addComplaint = new SqlCommand(queryAddComplaint, conn))
                     {
-                        addComplaint.Parameters.AddWithValue("@ComplaintDescription", complaint.Description);
+                        addComplaint.Parameters.AddWithValue("@Description", complaint.Description);
                         addComplaint.Parameters.AddWithValue("@CreatedAt", complaint.CreatedAt);
-                        addComplaint.Parameters.AddWithValue("@isArchived", complaint.IsArchived);
+                        addComplaint.Parameters.AddWithValue("@isArchived", complaint.IsArchived ? 1 : 0);
 
                         addComplaint.ExecuteNonQuery();
                     }
@@ -66,39 +114,6 @@ namespace HouseMateLink
             }
         }
 
-        public User ValidateUser(User user)
-        {
-            try
-            {
-                using SqlConnection connection = new SqlConnection(connStr);
-                string sql = "SELECT * FROM USER where Username = @Username AND Password = @Password";
-                using SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@Username", user.Username);
-                command.Parameters.AddWithValue("Password", user.Password);
-
-                using SqlDataReader reader = command.ExecuteReader();
-                if (reader.Read())
-                {
-                    return new User
-                    {
-                        Username = reader.GetString(1),
-                        Password = reader.GetString(2),
-                        Name = reader.GetString(3),
-                        Role = (Role)Enum.Parse(typeof(Role), reader["Role"].ToString()),
-                        RoomNumber = reader.GetInt32(5),
-                        Photo = reader.GetString(6)
-                    };
-                }
-                return null;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return null;
-            }
-
-        }
-
         public List<Complaint> LoadUnarchivedComplaints()
         {
             List<Complaint> unarchivedComplaints = new List<Complaint>();
@@ -107,7 +122,7 @@ namespace HouseMateLink
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
                     conn.Open();
-                    string loadComplaints = @"select Description, CreatedAt
+                    string loadComplaints = @"select ComplaintDescription, CreatedAt
                                               from COMPLAINT
                                               where IsArchived = @IsArchived";
                     using (SqlCommand loadComplaint = new SqlCommand(loadComplaints, conn))
@@ -118,14 +133,8 @@ namespace HouseMateLink
                         {
                             while (reader.Read())
                             {
-                                unarchivedComplaints.Add(
-                                    new Complaint(
-                                        (int)reader["ComplaintID"],
-                                        reader["Description"].ToString(),
-                                        reader.GetDateTime(reader.GetOrdinal("CreatedAt")),
-                                        reader.GetBoolean(reader.GetOrdinal("IsArchived"))
-                                    )
-                                );
+                                unarchivedComplaints.Add(new Complaint((int)reader["ComplaintID"], reader["ComplaintDescription"].ToString(), reader.GetDateTime(reader.GetOrdinal("CreatedAt")), reader.GetBoolean(reader.GetOrdinal("IsArchived"))));
+
                             }
                         }
                     }
@@ -171,6 +180,66 @@ namespace HouseMateLink
                 MessageBox.Show($"Error: {ex.Message}");
             }
         }
+        public void AddUser(User user)
+        {
+            try
+            {
+                using SqlConnection connection=new SqlConnection(connStr);
+                string sql= """ 
+                           INSERT INTO [USER] (Username, Password, Name, Role, RoomNumber, Photo)
+                           VALUES (@Id, @Username, @Password, @Name, @Role, @RoomNumber, @Photo)
+                           """;
+                using SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@Username", user.Username);
+                command.Parameters.AddWithValue("@Password", user.Password);
+                command.Parameters.AddWithValue("@Name", user.Name);
+                command.Parameters.AddWithValue("@Role", user.Role);
+                command.Parameters.AddWithValue("@RoomNumber", user.RoomNumber);
+                command.Parameters.AddWithValue("@Photo", user.Photo);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+       
+
+        public User ValidateUser(User user)
+        {
+            try
+            {
+                using SqlConnection connection = new SqlConnection(connStr);
+                string sql = "SELECT * FROM USER where Username = @Username AND Password = @Password";
+                using SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@Username", user.Username);
+                command.Parameters.AddWithValue("Password", user.Password);
+
+                using SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    return new User
+                    {
+                        Username = reader.GetString(1),
+                        Password = reader.GetString(2),
+                        Name = reader.GetString(3),
+                        Role = (Role)Enum.Parse(typeof(Role), reader["Role"].ToString()),
+                        RoomNumber = reader.GetInt32(5),
+                        Photo = reader.GetString(6)
+                    };
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+
+        }
 
         public void AddAnnouncement(Announcement announcement)
         {
@@ -196,7 +265,7 @@ namespace HouseMateLink
             }
         }
 
-        public List<Announcement> LoadAnnouncement()
+        public List<Announcement> LoadUnarchivedAnnouncement()
         {
             List<Announcement> announcements = new List<Announcement>();
             try

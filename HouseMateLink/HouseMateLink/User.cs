@@ -28,17 +28,26 @@ namespace HouseMateLink
             announcements = new List<Announcement>();
         }
 
-        public User(string username, string password, string name, Role role, string photo)
+        //public User(string username, string password, string name, Role role, string photo)
+        //{
+        //    UserID++;
+        //    Username = username;
+        //    Password = password;
+        //    Name = name;
+        //    Role = role;
+        //    Photo = photo;
+        //    announcements = new List<Announcement>();
+        //}
+
+        public User(string name, Role role, int roomNumber, string photo)
         {
             UserID++;
-            Username = username;
-            Password = password;
             Name = name;
             Role = role;
+            RoomNumber = roomNumber;
             Photo = photo;
             announcements = new List<Announcement>();
         }
-
         public User() { }
 
         public void CreateAnnouncement(string announcementText)
