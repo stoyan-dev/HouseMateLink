@@ -2,18 +2,15 @@
 
 public class Task
 {
-    public int TaskID { get; }
-    public int UserID { get; set; }
+    //public int TaskID { get; }
+    public string Username { get; set; }
     public DateTime TaskDate { get; set; }
-    public bool IsDone { get; set; }
     public TaskTypeEnum TaskType { get; set; }  
 
-    public Task(int id,int userId, DateTime taskDate, bool isDone, TaskTypeEnum taskType)
-    {
-        this.TaskID = id;   
-        UserID = userId;
-        TaskDate = taskDate;
-        IsDone = isDone;
-        TaskType = taskType;
+    public Task(string username, DateTime taskDate, TaskTypeEnum taskType)
+    {  
+        this.Username = username;
+        this.TaskDate = taskDate;
+        this.TaskType = taskType;
     }
 }

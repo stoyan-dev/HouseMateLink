@@ -4,21 +4,28 @@ namespace HouseMateLink
 {
     public class Announcement
     {
-        public int AnnouncementID { get; set; }
-        public int UserID { get; set; }
+        //public int AnnouncementID { get; set; }
+        public string Username { get; set; }
         public DateTime CreatedAt { get; set; }
         public string Description { get; set; }
         public bool IsArchived { get; set; }
 
 
-        public Announcement(int announcementId,int userId, string description, bool isArchived)
+        public Announcement(string username, DateTime createdAt, string description, bool isArchived)
         {
-            this.AnnouncementID = announcementId;
-            this.UserID = userId;
+            this.Username = username;
+            this.Description = description;
+            this.CreatedAt = createdAt;
+            this.IsArchived = isArchived;
+        }
+
+        public Announcement(string username, string description)
+        {
+            this.Username = username;
             this.Description = description;
             this.CreatedAt = DateTime.Today;
-            IsArchived = isArchived;
+            //this.IsArchived = isArchived;
         }
-        public Announcement() { }
+        //public Announcement() { }
     }
 }

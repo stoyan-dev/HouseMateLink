@@ -5,7 +5,6 @@ namespace HouseMateLink
 {
     public class User
     {
-        public int UserID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
@@ -18,7 +17,6 @@ namespace HouseMateLink
         [JsonConstructor ]
         public User(string username, string password, string name, Role role, int roomNumber, string photo)
         {
-            UserID++;
             Username = username;
             Password = password;
             Name = name;
@@ -41,14 +39,13 @@ namespace HouseMateLink
 
         public User(string name, Role role, int roomNumber, string photo)
         {
-            UserID++;
             Name = name;
             Role = role;
             RoomNumber = roomNumber;
             Photo = photo;
             announcements = new List<Announcement>();
         }
-        public User() { }
+        //public User() { }
 
         public void CreateAnnouncement(string announcementText)
         {

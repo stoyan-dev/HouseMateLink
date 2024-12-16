@@ -20,10 +20,10 @@ namespace HouseMateLink
             {
                 string removeUserSql = """
                     DELETE FROM USER
-                    WHERE UserID = @id;
+                    WHERE Username = @Username;
                 """;
                 SqlCommand removeTenantCmd = new SqlCommand(removeUserSql, conn);
-                removeTenantCmd.Parameters.AddWithValue("@UserID", user.UserID);
+                removeTenantCmd.Parameters.AddWithValue("@Username", user.Username);
                 conn.Open();
                 removeTenantCmd.ExecuteNonQuery();
                 conn.Close();
@@ -133,7 +133,7 @@ namespace HouseMateLink
                         {
                             while (reader.Read())
                             {
-                                unarchivedComplaints.Add(new Complaint((int)reader["ComplaintID"], reader["ComplaintDescription"].ToString(), reader.GetDateTime(reader.GetOrdinal("CreatedAt")), reader.GetBoolean(reader.GetOrdinal("IsArchived"))));
+                                unarchivedComplaints.Add(new Complaint(reader["ComplaintDescription"].ToString(), reader.GetDateTime(reader.GetOrdinal("CreatedAt")), reader.GetBoolean(reader.GetOrdinal("IsArchived"))));
 
                             }
                         }
@@ -146,7 +146,6 @@ namespace HouseMateLink
             {
                 MessageBox.Show($"Error: {ex.Message}");
                 return null;
-
             }
 
         }
@@ -223,7 +222,7 @@ namespace HouseMateLink
                 {
                     return new User
                     {
-                        Username = reader.GetString(1),
+                        username: reader.GetString(1),
                         Password = reader.GetString(2),
                         Name = reader.GetString(3),
                         Role = (Role)Enum.Parse(typeof(Role), reader["Role"].ToString()),
@@ -271,31 +270,27 @@ namespace HouseMateLink
             try
             {
                 using SqlConnection connection = new SqlConnection(connStr);
-                string sql = """
-                          SELECT * FROM ANNOUNCEMENT
-                          WHERE IsArchived=@IsArchived
-                          """;
+                string sql = "SELECT u.Username, Description, CreatedAt FROM ANNOUNCEMENT WHERE IsArchived = @IsArchived";
+
                 using SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@IsArchived", 1);
+                command.Parameters.AddWithValue("@IsArchived", 1);  
 
                 connection.Open();
                 using SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    announcements.Add(new Announcement
-                    {
-                        AnnouncementID = reader.GetInt32(0),
-                        Description = reader.GetString(1),
-                        CreatedAt = reader.GetDateTime(2),
-                        IsArchived = reader.GetBoolean(3),
-                    });
+                    announcements.Add(new Announcement(
+                        reader["Username"].ToString(),
+                        reader["Description"].ToString(),
+                        reader.GetDateTime(reader.GetOrdinal("CreatedAt")) 
+                    ));
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Error: {ex.Message}");
             }
-            return announcements;
+            return announcements; 
         }
 
         public void ChangeAnnouncementStatus(int id)
