@@ -5,6 +5,7 @@ namespace HouseMateLink
     public partial class logIn : Form
     {
         private Building myBuilding;
+        private DBHelper myDBHelper;
         private bool isAdmin;
         public logIn()
         {
@@ -21,7 +22,7 @@ namespace HouseMateLink
         {
             //List<User> users = LoadUsersFromJson("users.json");
 
-            User loggedInUser = myBuilding.ValidateUser(tbUsername.Text,tbPassword.Text,isAdmin);
+            User loggedInUser = myDBHelper.ValidateUser(tbUsername.Text,tbPassword.Text);
 
             if (loggedInUser == null)
             {
@@ -29,23 +30,11 @@ namespace HouseMateLink
             }
             else
             {
+                CheckRole(loggedInUser);
                 MainForm mainForm = new MainForm(isAdmin,loggedInUser,myBuilding);
                 mainForm.Show();
                 this.Hide();
             }
-        }
-
-        private User ValidateUser(List<User> users)
-        {
-            foreach (User user in users)
-            {
-                if (user.Username == tbUsername.Text && user.Password == tbPassword.Text)
-                {
-                    isAdmin = user.Role == Role.ADMIN;
-                    return user;
-                }
-            }
-            return null;
         }
 
         private List<User> LoadUsersFromJson(string filePath)
@@ -70,6 +59,12 @@ namespace HouseMateLink
             }
         }
 
+
+        public void CheckRole(User user)
+        {
+            if(user.Role==Role.ADMIN) isAdmin = true;
+            if (user.Role == Role.TENANT) isAdmin = false;
+        }
 
         private void Initialization()
         {

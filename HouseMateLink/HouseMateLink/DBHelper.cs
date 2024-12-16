@@ -207,15 +207,15 @@ namespace HouseMateLink
 
        
 
-        public User? ValidateUser(User user)
+        public User? ValidateUser(string username, string password)
         {
             try
             {
                 using SqlConnection connection = new SqlConnection(connStr);
                 string sql = "SELECT * FROM USER where Username = @Username AND Password = @Password";
                 using SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@Username", user.Username);
-                command.Parameters.AddWithValue("Password", user.Password);
+                command.Parameters.AddWithValue("@Username", username);
+                command.Parameters.AddWithValue("Password", password);
 
                 using SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())

@@ -18,9 +18,9 @@ namespace HouseMateLink
     public partial class MainForm : Form
     {
         private Building myBuilding;
+        private DBHelper myDBHelper;
         private int itemCounter;
         private bool isAdmin;
-        private int bit;
         private User currentUser;
 
         public MainForm(bool a)
@@ -49,12 +49,10 @@ namespace HouseMateLink
             itemCounter = 1;
             dateTimePicker.Visible = false;
             LoadHouseRules();
+            myDBHelper = new DBHelper();
 
             btnEditRules.Visible = isAdmin;
             rulesTextBox.ReadOnly = true;
-
-            if (bit == 1) isAdmin = true;
-            if (bit == 0) isAdmin = false;
 
             //to hide the tab control headers
             tabHome.Appearance = TabAppearance.FlatButtons;
