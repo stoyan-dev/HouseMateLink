@@ -78,7 +78,7 @@ namespace HouseMateLink
 
             if (user.Role == Role.ADMIN)
             {
-                user.RoomNumber = 2;
+                user.RoomNumber = 0;
             }
             //building.CreateAddNewUser(username, password, name, role, roomNum, photoFile);
 
