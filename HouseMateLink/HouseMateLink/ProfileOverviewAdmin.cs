@@ -1,11 +1,13 @@
 ﻿using System.Text.Json;
 using Microsoft.Data.SqlClient;
+using Microsoft.VisualBasic;
 
 namespace HouseMateLink
 {
     public partial class ProfileOverviewAdmin : Form
     {
         private Building building;
+        private DBHelper myDBHelper;
         private User user;
         private string selectedPhotoFilePathEdit = null;
         private string selectedPhotoFilePathAdd = null;
@@ -19,6 +21,7 @@ namespace HouseMateLink
             building = new Building("",6);
             cbAddRole.DataSource = Role.GetValues(typeof(Role));
             isAdmin = a;
+            myDBHelper = new DBHelper();
             ManageAvailableRooms(6);
         }
 
@@ -68,7 +71,9 @@ namespace HouseMateLink
                 return;
             }
 
-            building.CreateAddNewUser(username, password, name, role, roomNum, photoFile);
+            User user= new User(username,password, name,role,roomNum,photoFile);
+            myDBHelper.AddUser(user);
+            //building.CreateAddNewUser(username, password, name, role, roomNum, photoFile);
 
             MessageBox.Show("New user added successfully!");
 
@@ -79,7 +84,8 @@ namespace HouseMateLink
             pbNewUser.Image = null;
             selectedPhotoFilePathAdd = null;
 
-            List<User> users = building.GetUsers();
+            //List<User> users = building.GetUsers();
+            List<User> users = myDBHelper.LoadUsersFromDBForAdmin();
             string jsonString = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
 
             try
@@ -92,23 +98,27 @@ namespace HouseMateLink
                 MessageBox.Show($"Error writing to file: {ex.Message}");
             }
 
-            User newUser = building.GetUsers().LastOrDefault(user => user.Username == username);
-
-            if (newUser != null)
+            foreach (User newUser in users)
             {
-                Image userPhoto = Image.FromFile(newUser.Photo);
 
-                UserInfoControl userInfoControl = new UserInfoControl(newUser.Name, newUser.Role.ToString(), newUser.RoomNumber.ToString(), newUser.Username, newUser.Password, userPhoto, RemoveUser);
+                if (newUser != null)
+                {
+                    Image userPhoto = Image.FromFile(newUser.Photo);
 
-                userInfoControl.Size = new Size(400, 150);
-                userInfoControl.Location = new Point(10, 10 + (UserInfoPanel.Controls.Count * 160));
-                UserInfoPanel.Controls.Add(userInfoControl);
+                    UserInfoControl userInfoControl = new UserInfoControl(newUser.Name, newUser.Role.ToString(), newUser.RoomNumber.ToString(), newUser.Username, newUser.Password, userPhoto, userInfoControl => RemoveUser(userInfoControl, newUser));
+
+                    userInfoControl.Size = new Size(400, 150);
+                    userInfoControl.Location = new Point(10, 10 + (UserInfoPanel.Controls.Count * 160));
+                    UserInfoPanel.Controls.Add(userInfoControl);
+                }
             }
         }
 
-        private void RemoveUser(UserInfoControl userInfoControl)
+        private void RemoveUser(UserInfoControl userInfoControl, User user)
         {
             UserInfoPanel.Controls.Remove(userInfoControl);
+            myDBHelper.RemoveUserFromDB(user);
+
         }
 
         private void btnBack_Click(object sender, EventArgs e)

@@ -27,6 +27,7 @@ namespace HouseMateLink
         {
             InitializeComponent();
             isAdmin = a;
+            RefreshProfile();
         }
         public MainForm(bool a, User user, Building b)
         {

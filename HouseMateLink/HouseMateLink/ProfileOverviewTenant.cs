@@ -5,12 +5,14 @@ namespace HouseMateLink
     public partial class ProfileOverviewTenant : Form
     {
         private Building myBuilding;
+        private DBHelper myDBHelper;
         private bool isAdmin;
         public ProfileOverviewTenant(Building b, bool a)
         {
             InitializeComponent();
             myBuilding = b;
             isAdmin = a;
+            myDBHelper = new DBHelper();
             //LoadUsersFromJson();
             PopulateUserSummariesPanel();
         }
@@ -39,7 +41,8 @@ namespace HouseMateLink
         {
             UserInfoSummaryPanel.Controls.Clear();
 
-            List<User> users = LoadUsersFromJson();
+            //List<User> users = LoadUsersFromJson();
+            List<User> users = myDBHelper.LoadUsersFromDBForTenant();
 
             int x = 10, y = 10;
             foreach (User user in users)
