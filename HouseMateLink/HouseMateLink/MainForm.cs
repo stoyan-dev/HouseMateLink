@@ -478,9 +478,18 @@ namespace HouseMateLink
 
         private void RefreshProfile()
         {
-            lblUserName.Text = currentUser.Name;
-            lblUserRole.Text = currentUser.Role.ToString();
-            lblUserRoom.Text = currentUser.RoomNumber.ToString();
+            if (currentUser.Role == Role.TENANT)
+            {
+                lblUserName.Text = currentUser.Name;
+                lblUserRole.Text = currentUser.Role.ToString();
+                lblUserRoom.Text = currentUser.RoomNumber.ToString();
+            }
+            else if (currentUser.Role == Role.ADMIN)
+            {
+                label5.Visible = false;
+                lblUserRoom.Visible = false;
+
+            }
 
             if (!string.IsNullOrEmpty(currentUser.Photo) && File.Exists(currentUser.Photo))
             {
