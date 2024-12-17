@@ -4,7 +4,7 @@ namespace HouseMateLink
 {
     public class Announcement
     {
-        //public int AnnouncementID { get; set; }
+        public int AnnouncementID { get; set; }
         public string Username { get; set; }
         public DateTime CreatedAt { get; set; }
         public string Description { get; set; }
