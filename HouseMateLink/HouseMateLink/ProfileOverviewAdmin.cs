@@ -10,7 +10,7 @@ namespace HouseMateLink
         private string selectedPhotoFilePathEdit = null;
         private string selectedPhotoFilePathAdd = null;
         private bool isAdmin;
-        private string connStr = "Server=mssqlstud.fhict.local;Database=dbi550238;User Id=dbi550238;Password=12345;";
+        private string connStr = "Server=mssqlstud.fhict.local;Database=dbi550238;User Id=dbi550238;Password=12345;TrustServerCertificate=True";
 
 
         public ProfileOverviewAdmin(bool a)
