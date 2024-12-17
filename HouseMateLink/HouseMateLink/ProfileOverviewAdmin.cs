@@ -22,6 +22,7 @@ namespace HouseMateLink
             cbAddRole.DataSource = Role.GetValues(typeof(Role));
             isAdmin = a;
             myDBHelper = new DBHelper();
+            cbRoom.Items.Clear();
             ManageAvailableRooms(6);
         }
 
@@ -57,7 +58,7 @@ namespace HouseMateLink
         {
             string name = tbAddName.Text;
             Role role = (Role)cbAddRole.SelectedItem;
-            int roomNum = (int)cbRoom.SelectedIndex;
+            int roomNum = (int)cbRoom.SelectedItem;
             string username = tbAddUsername.Text;
             string password = tbAddPassword.Text;
             string photoFile = selectedPhotoFilePathAdd;
@@ -75,6 +76,7 @@ namespace HouseMateLink
             myDBHelper.AddUser(user);
             //building.CreateAddNewUser(username, password, name, role, roomNum, photoFile);
 
+
             MessageBox.Show("New user added successfully!");
 
             tbAddName.Clear();
@@ -86,17 +88,17 @@ namespace HouseMateLink
 
             //List<User> users = building.GetUsers();
             List<User> users = myDBHelper.LoadUsersFromDBForAdmin();
-            string jsonString = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+           // string jsonString = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
 
-            try
-            {
-                File.WriteAllText("users.json", jsonString);
-                MessageBox.Show("File created successfully!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error writing to file: {ex.Message}");
-            }
+            //try
+            //{
+            //    File.WriteAllText("users.json", jsonString);
+            //    MessageBox.Show("File created successfully!");
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Error writing to file: {ex.Message}");
+            //}
 
             foreach (User newUser in users)
             {

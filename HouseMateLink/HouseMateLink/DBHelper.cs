@@ -40,7 +40,7 @@ namespace HouseMateLink
             try
             {
                 string getUserSql = """
-                    SELECT Username, [Password], [Name], Role, RoomNumber, Photo
+                    SELECT Username, [Password], [Name], [Role], RoomNumber, Photo
                     FROM [USER]
                 """;
                 SqlCommand getUsers = new SqlCommand(getUserSql, conn);
@@ -68,7 +68,7 @@ namespace HouseMateLink
             try
             {
                 string getUserSql = """
-                    SELECT [Name], Role, RoomNumber, Photo
+                    SELECT [Name], [Role], RoomNumber, Photo
                     FROM [USER]
                 """;
                 SqlCommand getUsers = new SqlCommand(getUserSql, conn);
@@ -186,14 +186,14 @@ namespace HouseMateLink
             {
                 using SqlConnection connection=new SqlConnection(connStr);
                 string sql= """ 
-                           INSERT INTO [USER] (Username, [Password], [Name], Role, RoomNumber, Photo)
-                           VALUES (@Id, @Username, @Password, @Name, @Role, @RoomNumber, @Photo)
+                           INSERT INTO [USER] (Username, [Password], [Name], [Role], RoomNumber, Photo)
+                           VALUES (@Username, @Password, @Name, @Role, @RoomNumber, @Photo)
                            """;
                 using SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@Username", user.Username);
                 command.Parameters.AddWithValue("@Password", user.Password);
                 command.Parameters.AddWithValue("@Name", user.Name);
-                command.Parameters.AddWithValue("@Role", user.Role);
+                command.Parameters.AddWithValue("@Role", user.Role.ToString());
                 command.Parameters.AddWithValue("@RoomNumber", user.RoomNumber);
                 command.Parameters.AddWithValue("@Photo", user.Photo);
 
