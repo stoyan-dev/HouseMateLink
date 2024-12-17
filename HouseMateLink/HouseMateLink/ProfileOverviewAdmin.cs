@@ -149,7 +149,7 @@ namespace HouseMateLink
                 {
                     conn.Open();
 
-                    string queryUserRoom = @"SELECT RoomNumber FROM User";
+                    string queryUserRoom = @"SELECT RoomNumber FROM [USER]";
 
                     using (SqlCommand cmd = new SqlCommand(queryUserRoom, conn))
                     {

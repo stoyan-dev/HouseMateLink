@@ -6,7 +6,7 @@ namespace HouseMateLink
 {
     public class DBHelper
     {
-        string connStr = "Server=mssqlstud.fhict.local;Database=dbi550238;User Id=dbi550238;Password=12345; Encrypt=True;TrustServerCertificate=True;ApplicationIntent=ReadOnly;";
+        string connStr = "Server=mssqlstud.fhict.local;Database=dbi550238;User Id=dbi550238;Password=12345; Encrypt=True;TrustServerCertificate=True;";
 
         SqlConnection conn;
 
@@ -19,7 +19,7 @@ namespace HouseMateLink
             try
             {
                 string removeUserSql = """
-                    DELETE FROM USER
+                    DELETE FROM [USER]
                     WHERE Username = @Username;
                 """;
                 SqlCommand removeTenantCmd = new SqlCommand(removeUserSql, conn);
@@ -40,8 +40,8 @@ namespace HouseMateLink
             try
             {
                 string getUserSql = """
-                    SELECT Username, Password, Name, Role, RoomNumber, Photo
-                    FROM USER
+                    SELECT Username, [Password], [Name], Role, RoomNumber, Photo
+                    FROM [USER]
                 """;
                 SqlCommand getUsers = new SqlCommand(getUserSql, conn);
                 conn.Open();
@@ -68,8 +68,8 @@ namespace HouseMateLink
             try
             {
                 string getUserSql = """
-                    SELECT Name, Role, RoomNumber, Photo
-                    FROM USER
+                    SELECT [Name], Role, RoomNumber, Photo
+                    FROM [USER]
                 """;
                 SqlCommand getUsers = new SqlCommand(getUserSql, conn);
                 conn.Open();
@@ -186,7 +186,7 @@ namespace HouseMateLink
             {
                 using SqlConnection connection=new SqlConnection(connStr);
                 string sql= """ 
-                           INSERT INTO [USER] (Username, Password, Name, Role, RoomNumber, Photo)
+                           INSERT INTO [USER] (Username, [Password], [Name], Role, RoomNumber, Photo)
                            VALUES (@Id, @Username, @Password, @Name, @Role, @RoomNumber, @Photo)
                            """;
                 using SqlCommand command = new SqlCommand(sql, connection);
@@ -213,7 +213,7 @@ namespace HouseMateLink
             try
             {
                 using SqlConnection connection = new SqlConnection(connStr);
-                string sql = "SELECT * FROM USER where Username = @Username AND Password = @Password";
+                string sql = "SELECT * FROM [USER] where Username = @Username AND [Password] = @Password";
                 using SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@Username", username);
                 command.Parameters.AddWithValue("Password", password);
