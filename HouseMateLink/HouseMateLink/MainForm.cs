@@ -486,6 +486,8 @@ namespace HouseMateLink
             }
             else if (currentUser.Role == Role.ADMIN)
             {
+                lblUserName.Text = currentUser.Name;
+                lblUserRole.Text = currentUser.Role.ToString();
                 label5.Visible = false;
                 lblUserRoom.Visible = false;
 
