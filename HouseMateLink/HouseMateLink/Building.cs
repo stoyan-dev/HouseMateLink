@@ -99,11 +99,8 @@ namespace HouseMateLink
                                  $"8. Guests must respect the house rules and not disturb others.";
             return defaultRules;
         }
+
         
-        //public User ValidateUser(string username, string password, bool isAdmin)
-        //{
-        //    User newUser = null;
-           
-        //}
+
     }
 }

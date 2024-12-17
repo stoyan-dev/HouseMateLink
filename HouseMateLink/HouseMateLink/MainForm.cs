@@ -288,9 +288,10 @@ namespace HouseMateLink
 
         }
 
-        private void ArchiveAnnouncement(AnnouncementMessageControl announcementMessageControl)
+        private void ArchiveAnnouncement(AnnouncementMessageControl announcementMessageControl, int id)
         {
             panelAnnouncements.Controls.Remove(announcementMessageControl);
+            myDBHelper.ChangeAnnouncementStatus(id);
         }
 
         private void SaveAnnouncementsToJson(List<Announcement> announcements)
@@ -358,32 +359,16 @@ namespace HouseMateLink
                 return;
             }
 
-            myBuilding.CreateComplaint(complain);
-            panelComplaint.Controls.Clear();
-            foreach (Complaint complaint in myBuilding.GetComplaints())
-            {
-                ComplaintMessageControl newComplaint = new ComplaintMessageControl(complaint.Description, complaint.CreatedAt, ArchiveComplaint, isAdmin);
-                newComplaint.Size = new Size(400, 110);
-                int newX = 10;
-                int newY = 10;
-
-                if (panelComplaint.Controls.Count > 0)
-                {
-                    Control lastControl = panelComplaint.Controls[panelComplaint.Controls.Count - 1];
-                    newX = lastControl.Left;
-                    newY = lastControl.Bottom + 10;
-                }
-                newComplaint.Location = new Point(newX, newY);
-                panelComplaint.Controls.Add(newComplaint);
-            }
-            panelComplaint.AutoScrollMinSize = new Size(panelComplaint.Width, panelComplaint.Controls[panelComplaint.Controls.Count - 1].Bottom + 10);
-            tbCreateComplaint.Clear();
-            SaveComplaintsToJson(myBuilding.GetComplaints());
+            Complaint complaint=new Complaint(complain, false);
+            myDBHelper.AddComplaintToDB(complaint);
+            LoadComplaint();
+           // SaveComplaintsToJson(myBuilding.GetComplaints());
         }
 
-        private void ArchiveComplaint(ComplaintMessageControl complaintMessageControl)
+        private void ArchiveComplaint(ComplaintMessageControl complaintMessageControl, int id)
         {
             panelComplaint.Controls.Remove(complaintMessageControl);
+            myDBHelper.ChangeStatusOfComplaint(id);
         }
 
         private void SaveComplaintsToJson(List<Complaint> complaints)
@@ -444,7 +429,7 @@ namespace HouseMateLink
             panelAnnouncements.Controls.Clear();
             foreach (Announcement a in myDBHelper.LoadUnarchivedAnnouncement())
             {
-                AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(a.Description, a.CreatedAt, currentUser.Name, ArchiveAnnouncement, isAdmin);
+                AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(a.Description, a.CreatedAt, currentUser.Name, announcementMessageControl => ArchiveAnnouncement(announcementMessageControl, a.AnnouncementID), isAdmin);
                 newAnnouncement.Size = new Size(400, 125);
                 int newX = 10;
                 int newY = 10;
@@ -460,6 +445,29 @@ namespace HouseMateLink
             }
             panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1].Bottom + 10);
             tbAnnouncement.Clear();
+        }
+
+        private void LoadComplaint()
+        {
+            panelComplaint.Controls.Clear();
+            foreach (Complaint c in myDBHelper.LoadUnarchivedComplaints())
+            {
+                ComplaintMessageControl newComplaint = new ComplaintMessageControl(c.Description, c.CreatedAt, complaintMessageControl => ArchiveComplaint(complaintMessageControl, c.ComplaintID), isAdmin);
+                newComplaint.Size = new Size(400, 110);
+                int newX = 10;
+                int newY = 10;
+
+                if (panelComplaint.Controls.Count > 0)
+                {
+                    Control lastControl = panelComplaint.Controls[panelComplaint.Controls.Count - 1];
+                    newX = lastControl.Left;
+                    newY = lastControl.Bottom + 10;
+                }
+                newComplaint.Location = new Point(newX, newY);
+                panelComplaint.Controls.Add(newComplaint);
+            }
+            panelComplaint.AutoScrollMinSize = new Size(panelComplaint.Width, panelComplaint.Controls[panelComplaint.Controls.Count - 1].Bottom + 10);
+            tbCreateComplaint.Clear();
         }
 
         private void RefreshProfile()

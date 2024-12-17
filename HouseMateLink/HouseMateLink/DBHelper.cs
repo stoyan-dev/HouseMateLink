@@ -149,7 +149,7 @@ namespace HouseMateLink
             }
 
         }
-        public void ChangeStatusOfComplaint(int complaintID, bool isArchived)
+        public void ChangeStatusOfComplaint(int complaintID /* bool isArchived*/)
         {
             try
             {
@@ -164,7 +164,8 @@ namespace HouseMateLink
                     using (SqlCommand changeStatusDB = new SqlCommand(changeStatus, conn))
                     {
 
-                        changeStatusDB.Parameters.Add("@IsArchived", SqlDbType.Bit).Value = isArchived;
+                        // changeStatusDB.Parameters.Add("@IsArchived", SqlDbType.Bit).Value = isArchived;
+                        changeStatusDB.Parameters.AddWithValue("@IsArchived", 0);
                         changeStatusDB.Parameters.Add("@ComplaintID", SqlDbType.Int).Value = complaintID;
 
 

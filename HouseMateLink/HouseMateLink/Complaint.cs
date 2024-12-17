@@ -2,7 +2,7 @@
 {
     public class Complaint
     {
-        //public int ComplaintID { get; } 
+        public int ComplaintID { get; } 
         public DateTime CreatedAt { get; set; } 
         public string Description { get; set; }
         public bool IsArchived {  get; set; }
