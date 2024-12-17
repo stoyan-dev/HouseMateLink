@@ -206,40 +206,50 @@ namespace HouseMateLink
             }
         }
 
-       
+
 
         public User? ValidateUser(string username, string password)
         {
             try
             {
                 using SqlConnection connection = new SqlConnection(connStr);
-                string sql = "SELECT * FROM [USER] where Username = @Username AND [Password] = @Password";
+                string sql = "SELECT Username, [Password], [Name], [Role], RoomNumber, Photo FROM [USER] WHERE Username = @Username AND [Password] = @Password";
+
                 using SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@Username", username);
-                command.Parameters.AddWithValue("Password", password);
+                command.Parameters.AddWithValue("@Password", password);
 
+                connection.Open();
                 using SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
+                    var roleValue = reader["Role"]?.ToString(); 
+                    Role role = Role.TENANT; 
+                    if (!string.IsNullOrEmpty(roleValue))
+                    {
+                        role = Enum.TryParse(roleValue, out Role parsedRole) ? parsedRole : Role.TENANT;
+                    }
+
                     return new User
                     {
-                        Username= reader.GetString(1),
-                        Password = reader.GetString(2),
-                        Name = reader.GetString(3),
-                        Role = (Role)Enum.Parse(typeof(Role), reader["Role"].ToString()),
-                        RoomNumber = reader.GetInt32(5),
-                        Photo = reader.GetString(6)
+                        Username = reader["Username"]?.ToString() ?? string.Empty,
+                        Password = reader["Password"]?.ToString() ?? string.Empty, 
+                        Name = reader["Name"]?.ToString() ?? string.Empty, 
+                        Role = role,
+                        RoomNumber = reader["RoomNumber"] != DBNull.Value ? Convert.ToInt32(reader["RoomNumber"]) : 0,
+                        Photo = reader["Photo"] != DBNull.Value ? reader["Photo"].ToString() : string.Empty 
                     };
                 }
                 return null;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Error: {ex.Message}", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-
         }
+
+
 
         public void AddAnnouncement(Announcement announcement)
         {

@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
+﻿using System.Diagnostics.Eventing.Reader;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.VisualBasic.ApplicationServices;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace HouseMateLink
 {
@@ -27,7 +15,8 @@ namespace HouseMateLink
         {
             InitializeComponent();
             isAdmin = a;
-            RefreshProfile();
+           // RefreshProfile();
+            InitializeDBHelper();
         }
         public MainForm(bool a, User user, Building b)
         {
@@ -38,20 +27,28 @@ namespace HouseMateLink
             Initialization();
             CustomizeTabHeaders();
             LoadShoppingListFromJson();
+            InitializeDBHelper();
 
             currentUser = user;
 
             RefreshProfile();
 
         }
+        private void InitializeDBHelper()
+        {
+            if (myDBHelper == null)
+            {
+                myDBHelper = new DBHelper();
+            }
+        }
 
         private void Initialization()
         {
             itemCounter = 1;
-            dateTimePicker.Visible = false;
+            //dateTimePicker.Visible = false;
             LoadHouseRules();
             LoadAnnouncements();
-            myDBHelper = new DBHelper();
+            //myDBHelper = new DBHelper();
 
             btnEditRules.Visible = isAdmin;
             rulesTextBox.ReadOnly = true;
@@ -69,7 +66,7 @@ namespace HouseMateLink
 
         private void TabControl1_DrawTabHeaders(object sender, DrawItemEventArgs e)
         {
-            
+
         }
 
         private void grbHome_Enter(object sender, EventArgs e)
@@ -106,7 +103,7 @@ namespace HouseMateLink
         {
             if (isAdmin)
             {
-                ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin(isAdmin);
+                ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin(isAdmin,currentUser);
                 profileOverviewAdmin.Show();
                 this.Hide();
             }
@@ -127,7 +124,7 @@ namespace HouseMateLink
         }
 
         private void LoadHouseRules()
-        {  
+        {
             rulesTextBox.Text = myBuilding.LoadHouseRules();
             rulesTextBox.ReadOnly = true;
             btnEditRules.Text = "Edit Rules";
@@ -280,7 +277,7 @@ namespace HouseMateLink
                 return;
             }
 
-            Announcement announcement = new Announcement(currentUser.Username, message,false);
+            Announcement announcement = new Announcement(currentUser.Username, message, false);
             myDBHelper.AddAnnouncement(announcement);
             LoadAnnouncements();
             //SaveAnnouncementToJson();
@@ -360,10 +357,10 @@ namespace HouseMateLink
                 return;
             }
 
-            Complaint complaint=new Complaint(complain, false);
+            Complaint complaint = new Complaint(complain, false);
             myDBHelper.AddComplaintToDB(complaint);
             LoadComplaint();
-           // SaveComplaintsToJson(myBuilding.GetComplaints());
+            // SaveComplaintsToJson(myBuilding.GetComplaints());
         }
 
         private void ArchiveComplaint(ComplaintMessageControl complaintMessageControl, int id)
@@ -428,30 +425,38 @@ namespace HouseMateLink
         private void LoadAnnouncements()
         {
             panelAnnouncements.Controls.Clear();
-            foreach (Announcement a in myDBHelper.LoadUnarchivedAnnouncement())
+            List<Announcement> announcements = myDBHelper?.LoadUnarchivedAnnouncement();
+            if (announcements != null && announcements.Any())
             {
-                AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(a.Description, a.CreatedAt, currentUser.Name, announcementMessageControl => ArchiveAnnouncement(announcementMessageControl, a.AnnouncementID), isAdmin);
-                newAnnouncement.Size = new Size(400, 125);
-                int newX = 10;
-                int newY = 10;
-
-                if (panelAnnouncements.Controls.Count > 0)
+                foreach (Announcement a in announcements)
                 {
-                    Control lastControl = panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1];
-                    newX = lastControl.Left;
-                    newY = lastControl.Bottom + 10;
+                    AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(a.Description, a.CreatedAt, currentUser.Name, announcementMessageControl => ArchiveAnnouncement(announcementMessageControl, a.AnnouncementID), isAdmin);
+                    newAnnouncement.Size = new Size(400, 125);
+                    int newX = 10;
+                    int newY = 10;
+
+                    if (panelAnnouncements.Controls.Count > 0)
+                    {
+                        Control lastControl = panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1];
+                        newX = lastControl.Left;
+                        newY = lastControl.Bottom + 10;
+                    }
+                    newAnnouncement.Location = new Point(newX, newY);
+                    panelAnnouncements.Controls.Add(newAnnouncement);
                 }
-                newAnnouncement.Location = new Point(newX, newY);
-                panelAnnouncements.Controls.Add(newAnnouncement);
+                panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1].Bottom + 10);
+                tbAnnouncement.Clear();
             }
-            panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1].Bottom + 10);
-            tbAnnouncement.Clear();
+            else
+            {
+                MessageBox.Show("No announcements in the database.");
+            }
         }
 
         private void LoadComplaint()
         {
             panelComplaint.Controls.Clear();
-            foreach (Complaint c in myDBHelper.LoadUnarchivedComplaints())
+            foreach (Complaint c in myDBHelper?.LoadUnarchivedComplaints())
             {
                 ComplaintMessageControl newComplaint = new ComplaintMessageControl(c.Description, c.CreatedAt, complaintMessageControl => ArchiveComplaint(complaintMessageControl, c.ComplaintID), isAdmin);
                 newComplaint.Size = new Size(400, 110);

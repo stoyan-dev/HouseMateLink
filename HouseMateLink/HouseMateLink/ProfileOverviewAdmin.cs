@@ -8,14 +8,14 @@ namespace HouseMateLink
     {
         private Building building;
         private DBHelper myDBHelper;
-        private User user;
+        private User currentUser;
         private string selectedPhotoFilePathEdit = null;
         private string selectedPhotoFilePathAdd = null;
         private bool isAdmin;
         private string connStr = "Server=mssqlstud.fhict.local;Database=dbi550238;User Id=dbi550238;Password=12345;TrustServerCertificate=True";
 
 
-        public ProfileOverviewAdmin(bool a)
+        public ProfileOverviewAdmin(bool a, User user)
         {
             InitializeComponent();
             building = new Building("",6);
@@ -23,6 +23,7 @@ namespace HouseMateLink
             isAdmin = a;
             myDBHelper = new DBHelper();
             cbRoom.Items.Clear();
+            currentUser = user;
             ManageAvailableRooms(6);
         }
 
@@ -125,7 +126,7 @@ namespace HouseMateLink
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            MainForm from = new MainForm(isAdmin);
+            MainForm from = new MainForm(isAdmin,currentUser,building);
             from.Show();
             this.Hide();
         }

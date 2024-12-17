@@ -8,7 +8,7 @@ namespace HouseMateLink
 {
     public enum Role
     {
-        TENANT=0,
-        ADMIN=1
+        TENANT,
+        ADMIN
     }
 }
