@@ -43,6 +43,7 @@ namespace HouseMateLink
                 string getUserSql = """
                     SELECT Username, [Password], [Name], [Role], RoomNumber, Photo
                     FROM [USER]
+                    where RoomNumber <> 0
                 """;
                 SqlCommand getUsers = new SqlCommand(getUserSql, conn);
                 conn.Open();
@@ -71,6 +72,7 @@ namespace HouseMateLink
                 string getUserSql = """
                     SELECT [Name], [Role], RoomNumber, Photo
                     FROM [USER]
+                    where RoomNumber <> 0
                 """;
                 SqlCommand getUsers = new SqlCommand(getUserSql, conn);
                 conn.Open();
