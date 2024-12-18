@@ -1,6 +1,5 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace HouseMateLink
 {
@@ -102,7 +101,7 @@ namespace HouseMateLink
                     {
                         addComplaint.Parameters.AddWithValue("@Description", complaint.Description);
                         addComplaint.Parameters.AddWithValue("@CreatedAt", complaint.CreatedAt);
-                        addComplaint.Parameters.AddWithValue("@isArchived", complaint.IsArchived ? true : false);
+                        addComplaint.Parameters.AddWithValue("@isArchived", complaint.IsArchived);
 
                         addComplaint.ExecuteNonQuery();
                     }
@@ -184,8 +183,8 @@ namespace HouseMateLink
         {
             try
             {
-                using SqlConnection connection=new SqlConnection(connStr);
-                string sql= """ 
+                using SqlConnection connection = new SqlConnection(connStr);
+                string sql = """ 
                            INSERT INTO [USER] (Username, [Password], [Name], [Role], RoomNumber, Photo)
                            VALUES (@Username, @Password, @Name, @Role, @RoomNumber, @Photo)
                            """;
@@ -200,7 +199,7 @@ namespace HouseMateLink
                 connection.Open();
                 command.ExecuteNonQuery();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -223,8 +222,8 @@ namespace HouseMateLink
                 using SqlDataReader reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    var roleValue = reader["Role"]?.ToString(); 
-                    Role role = Role.TENANT; 
+                    var roleValue = reader["Role"]?.ToString();
+                    Role role = Role.TENANT;
                     if (!string.IsNullOrEmpty(roleValue))
                     {
                         role = Enum.TryParse(roleValue, out Role parsedRole) ? parsedRole : Role.TENANT;
@@ -233,11 +232,11 @@ namespace HouseMateLink
                     return new User
                     {
                         Username = reader["Username"]?.ToString() ?? string.Empty,
-                        Password = reader["Password"]?.ToString() ?? string.Empty, 
-                        Name = reader["Name"]?.ToString() ?? string.Empty, 
+                        Password = reader["Password"]?.ToString() ?? string.Empty,
+                        Name = reader["Name"]?.ToString() ?? string.Empty,
                         Role = role,
                         RoomNumber = reader["RoomNumber"] != DBNull.Value ? Convert.ToInt32(reader["RoomNumber"]) : 0,
-                        Photo = reader["Photo"] != DBNull.Value ? reader["Photo"].ToString() : string.Empty 
+                        Photo = reader["Photo"] != DBNull.Value ? reader["Photo"].ToString() : string.Empty
                     };
                 }
                 return null;
@@ -264,7 +263,7 @@ namespace HouseMateLink
                 command.Parameters.AddWithValue("@Username", announcement.Username);
                 command.Parameters.AddWithValue("@Description", announcement.Description);
                 command.Parameters.AddWithValue("@Date", announcement.CreatedAt);
-                command.Parameters.AddWithValue("@IsArchived", announcement.IsArchived ? false : true);
+                command.Parameters.AddWithValue("@IsArchived", announcement.IsArchived);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -282,12 +281,12 @@ namespace HouseMateLink
             try
             {
                 using SqlConnection connection = new SqlConnection(connStr);
-                string sql = @"select Username, CreatedAt, Description
-                               from ANNOUNCEMENT
-                               where IsArchived = @IsArchived";
+                string sql = @"SELECT Username, Description, CreatedAt
+                       FROM ANNOUNCEMENT
+                       WHERE IsArchived = @IsArchived";
 
                 using SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@IsArchived", false);  
+                command.Parameters.AddWithValue("@IsArchived", false);
 
                 connection.Open();
                 using SqlDataReader reader = command.ExecuteReader();
@@ -295,18 +294,19 @@ namespace HouseMateLink
                 {
                     announcements.Add(new Announcement(
                         reader["Username"].ToString(),
-                        reader.GetDateTime(reader.GetOrdinal("CreatedAt")),
-                        reader["Description"].ToString()
-                        
+                        reader["Description"].ToString(),
+                        reader.GetDateTime(reader.GetOrdinal("CreatedAt"))
                     ));
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}");
+                MessageBox.Show($"Error loading announcements: {ex.Message}");
             }
-            return announcements; 
+            return announcements;
         }
+
+
 
         public void ChangeAnnouncementStatus(int id)
         {

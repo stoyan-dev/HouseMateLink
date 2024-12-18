@@ -32,6 +32,8 @@ namespace HouseMateLink
             currentUser = user;
 
             RefreshProfile();
+            LoadAnnouncements();
+            LoadComplaint();
 
         }
         private void InitializeDBHelper()
@@ -426,7 +428,7 @@ namespace HouseMateLink
         {
             panelAnnouncements.Controls.Clear();
             List<Announcement> announcements = myDBHelper?.LoadUnarchivedAnnouncement();
-            if (announcements != null && announcements.Any())
+            if (announcements != null && announcements.Count > 0)
             {
                 foreach (Announcement a in announcements)
                 {
@@ -446,18 +448,14 @@ namespace HouseMateLink
                 }
                 panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1].Bottom + 10);
                 tbAnnouncement.Clear();
-            }
-            else
-            {
-                MessageBox.Show("No announcements in the database.");
-            }
+            }   
         }
 
         private void LoadComplaint()
         {
             panelComplaint.Controls.Clear();
             List<Complaint> complaints = myDBHelper?.LoadUnarchivedComplaints();
-            if (complaints != null && complaints.Any())
+            if (complaints != null && complaints.Count > 0)
             {
                 foreach (Complaint c in complaints)
                 {
