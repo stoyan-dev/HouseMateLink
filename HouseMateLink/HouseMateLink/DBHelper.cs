@@ -18,10 +18,12 @@ namespace HouseMateLink
             try
             {
                 string removeUserSql = """
-                    DELETE FROM [USER]
-                    WHERE Username = @Username;
+                    update [USER]
+                    set RoomNumber = @RoomNumber
+                    where Username = @Username
                 """;
                 SqlCommand removeTenantCmd = new SqlCommand(removeUserSql, conn);
+                removeTenantCmd.Parameters.AddWithValue("@RoomNumber", 0);
                 removeTenantCmd.Parameters.AddWithValue("@Username", user.Username);
                 conn.Open();
                 removeTenantCmd.ExecuteNonQuery();

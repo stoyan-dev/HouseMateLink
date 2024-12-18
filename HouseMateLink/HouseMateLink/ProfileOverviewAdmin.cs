@@ -101,7 +101,6 @@ namespace HouseMateLink
                     catch (Exception ex)
                     {
                         Console.WriteLine($"Failed to load photo for {newUser.Name}. Error: {ex.Message}");
-                        //userPhoto = Properties.Resources.DefaultUserPhoto;
                     }
 
                     UserInfoControl userInfoControl = new UserInfoControl(
