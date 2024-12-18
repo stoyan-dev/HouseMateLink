@@ -7,11 +7,13 @@ namespace HouseMateLink
         private Building myBuilding;
         private DBHelper myDBHelper;
         private bool isAdmin;
-        public ProfileOverviewTenant(Building b, bool a)
+        private User currentUser;
+        public ProfileOverviewTenant(Building b, bool a, User user)
         {
             InitializeComponent();
             myBuilding = b;
             isAdmin = a;
+            this.currentUser = user;
             myDBHelper = new DBHelper();
             //LoadUsersFromJson();
             PopulateUserSummariesPanel();
@@ -45,40 +47,43 @@ namespace HouseMateLink
             List<User> users = myDBHelper.LoadUsersFromDBForTenant();
 
             int x = 10, y = 10;
-            foreach (User user in users)
+            if (users!=null)
             {
-                Image userPhoto = null;
-                try
+                foreach (User user in users)
                 {
-                    if (!string.IsNullOrWhiteSpace(user.Photo) && File.Exists(user.Photo))
+                    Image userPhoto = null;
+                    try
                     {
-                        userPhoto = Image.FromFile(user.Photo);
+                        if (!string.IsNullOrWhiteSpace(user.Photo) && File.Exists(user.Photo))
+                        {
+                            userPhoto = Image.FromFile(user.Photo);
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error loading photo for {user.Name}: {ex.Message}", "Photo Load Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
 
+                    UserInfoSummaryControl summaryControl = new UserInfoSummaryControl(user.Name, user.Role, user.RoomNumber, userPhoto)
+                    {
+                        Size = new Size(200, 250),
+                        Location = new Point(x, y)
+                    };
+
+                    y += summaryControl.Height + 10;
+
+                    UserInfoSummaryPanel.Controls.Add(summaryControl);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error loading photo for {user.Name}: {ex.Message}", "Photo Load Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
 
-                UserInfoSummaryControl summaryControl = new UserInfoSummaryControl(user.Name, user.Role, user.RoomNumber, userPhoto)
-                {
-                    Size = new Size(200, 250),
-                    Location = new Point(x, y)
-                };
+                UserInfoSummaryPanel.AutoScrollMinSize = new Size(UserInfoSummaryPanel.Width, y); ;
 
-                y += summaryControl.Height + 10;
-
-                UserInfoSummaryPanel.Controls.Add(summaryControl);
             }
-
-            UserInfoSummaryPanel.AutoScrollMinSize = new Size(UserInfoSummaryPanel.Width, y); ;
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MainForm form = new MainForm(!isAdmin);
+            MainForm form = new MainForm(isAdmin, this.currentUser, myBuilding);
             form.Show();
             this.Hide();
         }

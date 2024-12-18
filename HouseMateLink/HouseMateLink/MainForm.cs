@@ -10,14 +10,6 @@ namespace HouseMateLink
         private int itemCounter;
         private bool isAdmin;
         private User currentUser;
-
-        public MainForm(bool a)
-        {
-            InitializeComponent();
-            isAdmin = a;
-           // RefreshProfile();
-            InitializeDBHelper();
-        }
         public MainForm(bool a, User user, Building b)
         {
             InitializeComponent();
@@ -111,7 +103,7 @@ namespace HouseMateLink
             }
             else
             {
-                ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant(myBuilding, isAdmin);
+                ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant(myBuilding,this.isAdmin,currentUser);
                 profileOverviewTenant.Show();
                 this.Hide();
             }
@@ -288,10 +280,10 @@ namespace HouseMateLink
 
         }
 
-        private void ArchiveAnnouncement(AnnouncementMessageControl announcementMessageControl, int id)
+        private void ArchiveAnnouncement(AnnouncementMessageControl announcementMessageControl)
         {
             panelAnnouncements.Controls.Remove(announcementMessageControl);
-            myDBHelper.ChangeAnnouncementStatus(id);
+            //myDBHelper.ChangeAnnouncementStatus(id);
         }
 
         private void SaveAnnouncementsToJson(List<Announcement> announcements)

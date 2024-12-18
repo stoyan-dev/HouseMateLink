@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace HouseMateLink
@@ -10,16 +11,18 @@ namespace HouseMateLink
         private Label lblUserName;
         private Button btnArchive;
         private Action<AnnouncementMessageControl> onArchiveButtonClick;
-        private bool isAdmin;
-        public AnnouncementMessageControl(string announcementText, DateTime createdAt, string userName, Action<AnnouncementMessageControl> onArchiveButtonClick, bool isAdmin)
+        private DBHelper myDBHelper;
+        private int id;
+        public AnnouncementMessageControl(string announcementText, DateTime createdAt, User user, Action<AnnouncementMessageControl> onArchiveButtonClick, int id)
         {
             InitializeComponent();
             this.onArchiveButtonClick = onArchiveButtonClick;
-            InitializeAnnouncementControl(announcementText, createdAt, userName);
-            this.isAdmin = isAdmin;
+            InitializeAnnouncementControl(announcementText, createdAt, user);
+            myDBHelper = new DBHelper();
+            this.id= id;
         }
 
-        private void InitializeAnnouncementControl(string announcementText, DateTime createdAt, string userName)
+        private void InitializeAnnouncementControl(string announcementText, DateTime createdAt, User user)
         {
             this.BackColor = Color.Gold;
             this.Padding = new Padding(10);
@@ -44,7 +47,7 @@ namespace HouseMateLink
 
             lblUserName = new Label
             {
-                Text = $"Created by: {userName}",
+                Text = $"Created by: {user.Name}",
                 AutoSize = true,
                 Location = new Point(10, 60),
                 Font = new Font("Arial", 8, FontStyle.Italic),
@@ -59,15 +62,17 @@ namespace HouseMateLink
                 BackColor = Color.GhostWhite
             };
 
-            if(!isAdmin)
+            if (user.Role==Role.TENANT)
             {
-                btnArchive.Visible = false; 
+                btnArchive.Visible = false;
+                Debug.WriteLine("Admin is false: Archive button hidden.");
             }
             else
             {
-
                 btnArchive.Click += BtnArchive_Click;
+                Debug.WriteLine("Admin is true: Archive button shown and event bound.");
             }
+
 
             this.Controls.Add(lblAnnouncementText);
             this.Controls.Add(lblAnnouncementDate);
@@ -77,6 +82,7 @@ namespace HouseMateLink
         private void BtnArchive_Click(object sender, EventArgs e)
         {
             onArchiveButtonClick(this);
+            myDBHelper.ChangeAnnouncementStatus(this.id);
         }
 
         private void AnnouncementMessageControl_Load(object sender, EventArgs e)

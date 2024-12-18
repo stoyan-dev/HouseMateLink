@@ -16,17 +16,15 @@ namespace HouseMateLink
         private Label lblComplaintDate;
         private Button btnArchive;
         private Action<ComplaintMessageControl> onArchiveButtonClick;
-        private bool isAdmin;
 
-        public ComplaintMessageControl(string complaintText, DateTime createdAt, Action<ComplaintMessageControl> onArchiveButtonClick, bool isAdmin)
+        public ComplaintMessageControl(string complaintText, DateTime createdAt, Action<ComplaintMessageControl> onArchiveButtonClick, User user)
         {
             InitializeComponent();
             this.onArchiveButtonClick = onArchiveButtonClick;
-            InitializeComplaintControl(complaintText, createdAt);
-            this.isAdmin = isAdmin;
+            InitializeComplaintControl(complaintText, createdAt, user);
         }
 
-        private void InitializeComplaintControl(string complaintText, DateTime createdAt)
+        private void InitializeComplaintControl(string complaintText, DateTime createdAt, User user)
         {
 
             this.BackColor = Color.Gold;
@@ -59,7 +57,7 @@ namespace HouseMateLink
                 BackColor = Color.GhostWhite
             };
 
-            if (!isAdmin)
+            if (user.Role==Role.TENANT)
             {
                 btnArchive.Visible = false;
             }
