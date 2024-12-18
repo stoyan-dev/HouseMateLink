@@ -61,12 +61,15 @@ namespace HouseMateLink
             }
 
             User user = new User(username, password, name, role, roomNum, photoFile);
-            myDBHelper.AddUser(user);
 
             if (user.Role == Role.ADMIN)
             {
                 user.RoomNumber = 0;
             }
+
+            myDBHelper.AddUser(user);
+
+            
 
             MessageBox.Show("New user added successfully!");
 
