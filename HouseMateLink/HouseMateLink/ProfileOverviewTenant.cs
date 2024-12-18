@@ -19,25 +19,25 @@ namespace HouseMateLink
             PopulateUserSummariesPanel();
         }
 
-        private List<User> LoadUsersFromJson()
-        {
-            string filePath = "users.json";
-            if (!File.Exists(filePath))
-            {
-                return new List<User>();
-            }
+        //private List<User> LoadUsersFromJson()
+        //{
+        //    string filePath = "users.json";
+        //    if (!File.Exists(filePath))
+        //    {
+        //        return new List<User>();
+        //    }
 
-            try
-            {
-                string jsonString = File.ReadAllText(filePath);
-                return JsonSerializer.Deserialize<List<User>>(jsonString) ?? new List<User>();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error reading user data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return new List<User>();
-            }
-        }
+        //    try
+        //    {
+        //        string jsonString = File.ReadAllText(filePath);
+        //        return JsonSerializer.Deserialize<List<User>>(jsonString) ?? new List<User>();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"Error reading user data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        return new List<User>();
+        //    }
+        //}
 
         private void PopulateUserSummariesPanel()
         {
@@ -47,7 +47,7 @@ namespace HouseMateLink
             List<User> users = myDBHelper.LoadUsersFromDBForTenant();
 
             int x = 10, y = 10;
-            if (users!=null)
+            if (users != null)
             {
                 foreach (User user in users)
                 {
@@ -86,6 +86,11 @@ namespace HouseMateLink
             MainForm form = new MainForm(isAdmin, this.currentUser, myBuilding);
             form.Show();
             this.Hide();
+        }
+
+        private void UserInfoSummaryPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

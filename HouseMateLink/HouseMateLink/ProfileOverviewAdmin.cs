@@ -14,7 +14,6 @@ namespace HouseMateLink
         private bool isAdmin;
         private string connStr = "Server=mssqlstud.fhict.local;Database=dbi550238;User Id=dbi550238;Password=12345;TrustServerCertificate=True";
 
-
         public ProfileOverviewAdmin(bool a, User user)
         {
             InitializeComponent();
@@ -25,6 +24,8 @@ namespace HouseMateLink
             cbRoom.Items.Clear();
             currentUser = user;
             ManageAvailableRooms(6);
+            UserInfoPanel.AutoScroll = true;
+            PopulateUserInfoPanel();
         }
 
         private void btnSelectPhoto_Click(object sender, EventArgs e)
@@ -40,20 +41,6 @@ namespace HouseMateLink
                 }
             }
         }
-
-        //private void btnEditPhoto_Click(object sender, EventArgs e)
-        //{
-        //    using (OpenFileDialog openFileDialog = new OpenFileDialog())
-        //    {
-        //        openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png";
-        //        if (openFileDialog.ShowDialog() == DialogResult.OK)
-        //        {
-        //            selectedPhotoFilePathEdit = openFileDialog.FileName;
-        //            pbUser.Image = Image.FromFile(selectedPhotoFilePathEdit);
-        //            pbUser.SizeMode = PictureBoxSizeMode.StretchImage;
-        //        }
-        //    }
-        //}
 
         private void btnAdduser_Click(object sender, EventArgs e)
         {
@@ -80,8 +67,6 @@ namespace HouseMateLink
             {
                 user.RoomNumber = 0;
             }
-            //building.CreateAddNewUser(username, password, name, role, roomNum, photoFile);
-
 
             MessageBox.Show("New user added successfully!");
 
@@ -92,41 +77,55 @@ namespace HouseMateLink
             pbNewUser.Image = null;
             selectedPhotoFilePathAdd = null;
 
-            //List<User> users = building.GetUsers();
-            List<User> users = myDBHelper.LoadUsersFromDBForAdmin();
-            // string jsonString = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+            PopulateUserInfoPanel();
+        }
 
-            //try
-            //{
-            //    File.WriteAllText("users.json", jsonString);
-            //    MessageBox.Show("File created successfully!");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Error writing to file: {ex.Message}");
-            //}
+        private void PopulateUserInfoPanel()
+        {
+            UserInfoPanel.Controls.Clear();
+            List<User> users = myDBHelper.LoadUsersFromDBForAdmin();
+            int yPosition = 0;
 
             foreach (User newUser in users)
             {
-
                 if (newUser != null)
                 {
-                    Image userPhoto = Image.FromFile(newUser.Photo);
+                    Image userPhoto = null;
+                    try
+                    {
+                        userPhoto = Image.FromFile(newUser.Photo);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Failed to load photo for {newUser.Name}. Error: {ex.Message}");
+                        //userPhoto = Properties.Resources.DefaultUserPhoto;
+                    }
 
-                    UserInfoControl userInfoControl = new UserInfoControl(newUser.Name, newUser.Role.ToString(), newUser.RoomNumber.ToString(), newUser.Username, newUser.Password, userPhoto, userInfoControl => RemoveUser(userInfoControl, newUser));
+                    UserInfoControl userInfoControl = new UserInfoControl(
+                        newUser.Name,
+                        newUser.Role.ToString(),
+                        newUser.RoomNumber.ToString(),
+                        newUser.Username,
+                        newUser.Password,
+                        userPhoto,
+                        userInfoControl => RemoveUser(userInfoControl, newUser)
+                    );
 
                     userInfoControl.Size = new Size(400, 150);
-                    userInfoControl.Location = new Point(10, 10 + (UserInfoPanel.Controls.Count * 160));
+                    userInfoControl.Location = new Point(10, yPosition);
+                    yPosition += userInfoControl.Height + 10;
+
                     UserInfoPanel.Controls.Add(userInfoControl);
                 }
             }
+
+            UserInfoPanel.AutoScrollMinSize = new Size(UserInfoPanel.Width, yPosition);
         }
 
         private void RemoveUser(UserInfoControl userInfoControl, User user)
         {
             UserInfoPanel.Controls.Remove(userInfoControl);
             myDBHelper.RemoveUserFromDB(user);
-
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -152,7 +151,6 @@ namespace HouseMateLink
 
         private void ManageAvailableRooms(int amountOfRooms)
         {
-
             List<int> allRooms = new List<int>();
             for (int i = 1; i <= amountOfRooms; i++)
             {
@@ -166,7 +164,6 @@ namespace HouseMateLink
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
                     conn.Open();
-
                     string queryUserRoom = @"SELECT RoomNumber FROM [USER]";
 
                     using (SqlCommand cmd = new SqlCommand(queryUserRoom, conn))
@@ -189,7 +186,6 @@ namespace HouseMateLink
 
             List<int> availableRooms = new List<int>();
 
-
             foreach (int room in allRooms)
             {
                 if (!takenRooms.Contains(room))
@@ -203,9 +199,6 @@ namespace HouseMateLink
 
         private void UserInfoPanel_Paint(object sender, PaintEventArgs e)
         {
-
         }
     }
 }
-
-
