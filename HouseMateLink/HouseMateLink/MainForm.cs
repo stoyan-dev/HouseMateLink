@@ -428,55 +428,89 @@ namespace HouseMateLink
         {
             panelAnnouncements.Controls.Clear();
             List<Announcement> announcements = myDBHelper?.LoadUnarchivedAnnouncement();
+
             if (announcements != null && announcements.Count > 0)
             {
+
+                announcements.Reverse();
+
+                int yPosition = 0; 
+
                 foreach (Announcement a in announcements)
                 {
-                    AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(a.Description, a.CreatedAt, currentUser.Name, announcementMessageControl => ArchiveAnnouncement(announcementMessageControl, a.AnnouncementID), isAdmin);
-                    newAnnouncement.Size = new Size(400, 125);
-                    int newX = 10;
-                    int newY = 10;
+                    AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(
+                        a.Description,
+                        a.CreatedAt,
+                        currentUser.Name,
+                        announcementMessageControl => ArchiveAnnouncement(announcementMessageControl, a.AnnouncementID),
+                        isAdmin
+                    );
 
-                    if (panelAnnouncements.Controls.Count > 0)
-                    {
-                        Control lastControl = panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1];
-                        newX = lastControl.Left;
-                        newY = lastControl.Bottom + 10;
-                    }
-                    newAnnouncement.Location = new Point(newX, newY);
+                    newAnnouncement.Size = new Size(400, 125);
+                    newAnnouncement.Location = new Point(10, yPosition); 
                     panelAnnouncements.Controls.Add(newAnnouncement);
+
+                    yPosition += newAnnouncement.Height + 10; 
                 }
-                panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1].Bottom + 10);
+
+                panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, yPosition);
+
+                if (panelAnnouncements.Controls.Count > 0)
+                {
+                    panelAnnouncements.VerticalScroll.Value = 0;
+                    panelAnnouncements.ScrollControlIntoView(panelAnnouncements.Controls[0]); 
+                }
+
                 tbAnnouncement.Clear();
-            }   
+            }
+            else
+            {
+                panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, 0); 
+            }
         }
+
 
         private void LoadComplaint()
         {
             panelComplaint.Controls.Clear();
             List<Complaint> complaints = myDBHelper?.LoadUnarchivedComplaints();
+
             if (complaints != null && complaints.Count > 0)
             {
+                complaints.Reverse();
+                int yPosition = 0;
+
                 foreach (Complaint c in complaints)
                 {
-                    ComplaintMessageControl newComplaint = new ComplaintMessageControl(c.Description, c.CreatedAt, complaintMessageControl => ArchiveComplaint(complaintMessageControl, c.ComplaintID), isAdmin);
-                    newComplaint.Size = new Size(400, 110);
-                    int newX = 10;
-                    int newY = 10;
+                    ComplaintMessageControl newComplaint = new ComplaintMessageControl(
+                        c.Description,
+                        c.CreatedAt,
+                        complaintMessageControl => ArchiveComplaint(complaintMessageControl, c.ComplaintID),
+                        isAdmin
+                    );
 
-                    if (panelComplaint.Controls.Count > 0)
-                    {
-                        Control lastControl = panelComplaint.Controls[panelComplaint.Controls.Count - 1];
-                        newX = lastControl.Left;
-                        newY = lastControl.Bottom + 10;
-                    }
-                    newComplaint.Location = new Point(newX, newY);
+                    newComplaint.Size = new Size(400, 110);
+                    newComplaint.Location = new Point(10, yPosition);
                     panelComplaint.Controls.Add(newComplaint);
+                    yPosition += newComplaint.Height + 10;
                 }
-                panelComplaint.AutoScrollMinSize = new Size(panelComplaint.Width, panelComplaint.Controls[panelComplaint.Controls.Count - 1].Bottom + 10);
+
+                panelComplaint.AutoScrollMinSize = new Size(panelComplaint.Width, yPosition);
+
+                if (panelComplaint.Controls.Count > 0)
+                {
+                    panelComplaint.VerticalScroll.Value = 0;
+                    panelComplaint.ScrollControlIntoView(panelComplaint.Controls[0]);
+                }
+
                 tbCreateComplaint.Clear();
             }
+            else
+            {
+                panelComplaint.AutoScrollMinSize = new Size(panelComplaint.Width, 0);
+            }
         }
+
 
         private void RefreshProfile()
         {
