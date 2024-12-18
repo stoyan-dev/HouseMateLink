@@ -67,6 +67,7 @@
             UserInfoPanel.Name = "UserInfoPanel";
             UserInfoPanel.Size = new Size(750, 591);
             UserInfoPanel.TabIndex = 10;
+            UserInfoPanel.Paint += UserInfoPanel_Paint;
             // 
             // btnBack
             // 

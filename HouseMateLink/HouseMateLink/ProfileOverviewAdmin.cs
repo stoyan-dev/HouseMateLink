@@ -18,7 +18,7 @@ namespace HouseMateLink
         public ProfileOverviewAdmin(bool a, User user)
         {
             InitializeComponent();
-            building = new Building("",6);
+            building = new Building("", 6);
             cbAddRole.DataSource = Role.GetValues(typeof(Role));
             isAdmin = a;
             myDBHelper = new DBHelper();
@@ -73,7 +73,7 @@ namespace HouseMateLink
                 return;
             }
 
-            User user= new User(username,password, name,role,roomNum,photoFile);
+            User user = new User(username, password, name, role, roomNum, photoFile);
             myDBHelper.AddUser(user);
 
             if (user.Role == Role.ADMIN)
@@ -94,7 +94,7 @@ namespace HouseMateLink
 
             //List<User> users = building.GetUsers();
             List<User> users = myDBHelper.LoadUsersFromDBForAdmin();
-           // string jsonString = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
+            // string jsonString = JsonSerializer.Serialize(users, new JsonSerializerOptions { WriteIndented = true });
 
             //try
             //{
@@ -131,7 +131,7 @@ namespace HouseMateLink
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            MainForm from = new MainForm(isAdmin,currentUser,building);
+            MainForm from = new MainForm(isAdmin, currentUser, building);
             from.Show();
             this.Hide();
         }
@@ -156,7 +156,7 @@ namespace HouseMateLink
             List<int> allRooms = new List<int>();
             for (int i = 1; i <= amountOfRooms; i++)
             {
-                allRooms.Add(i); 
+                allRooms.Add(i);
             }
 
             List<int> takenRooms = new List<int>();
@@ -189,11 +189,11 @@ namespace HouseMateLink
 
             List<int> availableRooms = new List<int>();
 
-         
+
             foreach (int room in allRooms)
             {
                 if (!takenRooms.Contains(room))
-                { 
+                {
                     availableRooms.Add(room);
                 }
             }
@@ -201,8 +201,10 @@ namespace HouseMateLink
             cbRoom.DataSource = availableRooms;
         }
 
+        private void UserInfoPanel_Paint(object sender, PaintEventArgs e)
+        {
 
-
+        }
     }
 }
 
