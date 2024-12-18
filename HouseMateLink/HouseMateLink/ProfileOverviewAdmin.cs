@@ -88,47 +88,72 @@ namespace HouseMateLink
         {
             UserInfoPanel.Controls.Clear();
             List<User> users = myDBHelper.LoadUsersFromDBForAdmin();
-            int yPosition = 0;
 
-            foreach (User newUser in users)
+            if (users != null && users.Count > 0)
             {
-                if (newUser != null)
+                int yPositionLeft = 0;
+                int yPositionRight = 0;
+                int columnWidth = UserInfoPanel.Width / 2 - 20;
+
+                for (int i = 0; i < users.Count; i++)
                 {
-                    Image userPhoto = null;
-                    try
+                    User newUser = users[i];
+                    if (newUser != null)
                     {
-                        userPhoto = Image.FromFile(newUser.Photo);
+                        Image userPhoto = null;
+                        try
+                        {
+                            userPhoto = Image.FromFile(newUser.Photo);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Failed to load photo for {newUser.Name}. Error: {ex.Message}");
+                        }
+
+                        UserInfoControl userInfoControl = new UserInfoControl(
+                            newUser.Name,
+                            newUser.Role.ToString(),
+                            newUser.RoomNumber.ToString(),
+                            newUser.Username,
+                            newUser.Password,
+                            userPhoto,
+                            userInfoControl => RemoveUser(userInfoControl, newUser)
+                        );
+
+                        userInfoControl.Size = new Size(columnWidth, 150);
+
+                        if (i % 2 == 0) 
+                        {
+                            userInfoControl.Location = new Point(10, yPositionLeft);
+                            yPositionLeft += userInfoControl.Height + 10;
+                        }
+                        else 
+                        {
+                            userInfoControl.Location = new Point(columnWidth + 20, yPositionRight);
+                            yPositionRight += userInfoControl.Height + 10;
+                        }
+
+                        UserInfoPanel.Controls.Add(userInfoControl);
                     }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Failed to load photo for {newUser.Name}. Error: {ex.Message}");
-                    }
-
-                    UserInfoControl userInfoControl = new UserInfoControl(
-                        newUser.Name,
-                        newUser.Role.ToString(),
-                        newUser.RoomNumber.ToString(),
-                        newUser.Username,
-                        newUser.Password,
-                        userPhoto,
-                        userInfoControl => RemoveUser(userInfoControl, newUser)
-                    );
-
-                    userInfoControl.Size = new Size(400, 150);
-                    userInfoControl.Location = new Point(10, yPosition);
-                    yPosition += userInfoControl.Height + 10;
-
-                    UserInfoPanel.Controls.Add(userInfoControl);
                 }
-            }
 
-            UserInfoPanel.AutoScrollMinSize = new Size(UserInfoPanel.Width, yPosition);
+                UserInfoPanel.AutoScrollMinSize = new Size(
+                    UserInfoPanel.Width,
+                    Math.Max(yPositionLeft, yPositionRight)
+                );
+            }
+            else
+            {
+                UserInfoPanel.AutoScrollMinSize = new Size(UserInfoPanel.Width, 0);
+            }
         }
+
 
         private void RemoveUser(UserInfoControl userInfoControl, User user)
         {
             UserInfoPanel.Controls.Remove(userInfoControl);
             myDBHelper.RemoveUserFromDB(user);
+            ManageAvailableRooms(6);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -198,7 +223,15 @@ namespace HouseMateLink
             }
 
             cbRoom.DataSource = availableRooms;
-            cbRoom.SelectedIndex = 0;
+            if (cbRoom.Items.Count > 0)
+            {
+                cbRoom.SelectedIndex = 0;
+            }
+            else
+            {
+                cbRoom.Text="No rooms";
+            }
+
         }
 
         private void UserInfoPanel_Paint(object sender, PaintEventArgs e)

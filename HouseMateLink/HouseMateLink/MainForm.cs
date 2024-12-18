@@ -421,13 +421,14 @@ namespace HouseMateLink
 
             if (announcements != null && announcements.Count > 0)
             {
-
                 announcements.Reverse();
+                int yPositionLeft = 0;
+                int yPositionRight = 0;
+                int columnWidth = panelAnnouncements.Width / 2 - 20;
 
-                int yPosition = 0; 
-
-                foreach (Announcement a in announcements)
+                for (int i = 0; i < announcements.Count; i++)
                 {
+                    Announcement a = announcements[i];
                     AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(
                         a.Description,
                         a.CreatedAt,
@@ -437,28 +438,41 @@ namespace HouseMateLink
                         a.AnnouncementID
                     );
 
-                    newAnnouncement.Size = new Size(400, 125);
-                    newAnnouncement.Location = new Point(10, yPosition); 
-                    panelAnnouncements.Controls.Add(newAnnouncement);
+                    newAnnouncement.Size = new Size(columnWidth, 125);
 
-                    yPosition += newAnnouncement.Height + 10; 
+                    if (i % 2 == 0) // Left column
+                    {
+                        newAnnouncement.Location = new Point(10, yPositionLeft);
+                        yPositionLeft += newAnnouncement.Height + 10;
+                    }
+                    else // Right column
+                    {
+                        newAnnouncement.Location = new Point(columnWidth + 20, yPositionRight);
+                        yPositionRight += newAnnouncement.Height + 10;
+                    }
+
+                    panelAnnouncements.Controls.Add(newAnnouncement);
                 }
 
-                panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, yPosition);
+                panelAnnouncements.AutoScrollMinSize = new Size(
+                    panelAnnouncements.Width,
+                    Math.Max(yPositionLeft, yPositionRight)
+                );
 
                 if (panelAnnouncements.Controls.Count > 0)
                 {
                     panelAnnouncements.VerticalScroll.Value = 0;
-                    panelAnnouncements.ScrollControlIntoView(panelAnnouncements.Controls[0]); 
+                    panelAnnouncements.ScrollControlIntoView(panelAnnouncements.Controls[0]);
                 }
 
                 tbAnnouncement.Clear();
             }
             else
             {
-                panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, 0); 
+                panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, 0);
             }
         }
+
 
 
         private void LoadComplaint()
@@ -469,10 +483,13 @@ namespace HouseMateLink
             if (complaints != null && complaints.Count > 0)
             {
                 complaints.Reverse();
-                int yPosition = 0;
+                int yPositionLeft = 0;
+                int yPositionRight = 0;
+                int columnWidth = panelComplaint.Width / 2 - 20;
 
-                foreach (Complaint c in complaints)
+                for (int i = 0; i < complaints.Count; i++)
                 {
+                    Complaint c = complaints[i];
                     ComplaintMessageControl newComplaint = new ComplaintMessageControl(
                         c.Description,
                         c.CreatedAt,
@@ -481,13 +498,26 @@ namespace HouseMateLink
                         c.ComplaintID
                     );
 
-                    newComplaint.Size = new Size(400, 110);
-                    newComplaint.Location = new Point(10, yPosition);
+                    newComplaint.Size = new Size(columnWidth, 110);
+
+                    if (i % 2 == 0) 
+                    {
+                        newComplaint.Location = new Point(10, yPositionLeft);
+                        yPositionLeft += newComplaint.Height + 10;
+                    }
+                    else 
+                    {
+                        newComplaint.Location = new Point(columnWidth + 20, yPositionRight);
+                        yPositionRight += newComplaint.Height + 10;
+                    }
+
                     panelComplaint.Controls.Add(newComplaint);
-                    yPosition += newComplaint.Height + 10;
                 }
 
-                panelComplaint.AutoScrollMinSize = new Size(panelComplaint.Width, yPosition);
+                panelComplaint.AutoScrollMinSize = new Size(
+                    panelComplaint.Width,
+                    Math.Max(yPositionLeft, yPositionRight)
+                );
 
                 if (panelComplaint.Controls.Count > 0)
                 {
@@ -502,6 +532,7 @@ namespace HouseMateLink
                 panelComplaint.AutoScrollMinSize = new Size(panelComplaint.Width, 0);
             }
         }
+
 
 
         private void RefreshProfile()

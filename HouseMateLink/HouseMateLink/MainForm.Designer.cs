@@ -477,7 +477,7 @@
             // 
             // panelAnnouncements
             // 
-            panelAnnouncements.BackColor = Color.GhostWhite;
+            panelAnnouncements.BackColor = Color.DeepSkyBlue;
             panelAnnouncements.Location = new Point(28, 48);
             panelAnnouncements.Margin = new Padding(4);
             panelAnnouncements.Name = "panelAnnouncements";
@@ -528,11 +528,11 @@
             // 
             // panelComplaint
             // 
-            panelComplaint.BackColor = Color.GhostWhite;
+            panelComplaint.BackColor = Color.DeepSkyBlue;
             panelComplaint.Location = new Point(24, 59);
             panelComplaint.Margin = new Padding(2);
             panelComplaint.Name = "panelComplaint";
-            panelComplaint.Size = new Size(1052, 415);
+            panelComplaint.Size = new Size(1063, 415);
             panelComplaint.TabIndex = 6;
             // 
             // btnPostComplaint

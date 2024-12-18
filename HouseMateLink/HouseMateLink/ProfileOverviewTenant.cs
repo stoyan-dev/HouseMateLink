@@ -43,14 +43,27 @@ namespace HouseMateLink
         {
             UserInfoSummaryPanel.Controls.Clear();
 
-            //List<User> users = LoadUsersFromJson();
+            // Load the list of users
             List<User> users = myDBHelper.LoadUsersFromDBForTenant();
 
-            int x = 10, y = 10;
-            if (users != null)
+            if (users != null && users.Count > 0)
             {
-                foreach (User user in users)
+                int panelWidth = UserInfoSummaryPanel.Width;
+                int controlWidth = 200;
+                int controlHeight = 250;
+                int padding = 10;
+
+                // Calculate how many columns fit in the panel
+                int columns = panelWidth / (controlWidth + padding);
+                if (columns < 1) columns = 1;
+
+                int x = padding;
+                int y = padding;
+
+                for (int i = 0; i < users.Count; i++)
                 {
+                    User user = users[i];
+
                     Image userPhoto = null;
                     try
                     {
@@ -58,28 +71,52 @@ namespace HouseMateLink
                         {
                             userPhoto = Image.FromFile(user.Photo);
                         }
-
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error loading photo for {user.Name}: {ex.Message}", "Photo Load Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(
+                            $"Error loading photo for {user.Name}: {ex.Message}",
+                            "Photo Load Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
                     }
 
-                    UserInfoSummaryControl summaryControl = new UserInfoSummaryControl(user.Name, user.Role, user.RoomNumber, userPhoto)
+                    UserInfoSummaryControl summaryControl = new UserInfoSummaryControl(
+                        user.Name,
+                        user.Role,
+                        user.RoomNumber,
+                        userPhoto
+                    )
                     {
-                        Size = new Size(200, 250),
+                        Size = new Size(controlWidth, controlHeight),
                         Location = new Point(x, y)
                     };
 
-                    y += summaryControl.Height + 10;
-
                     UserInfoSummaryPanel.Controls.Add(summaryControl);
+
+                    if ((i + 1) % columns == 0) 
+                    {
+                        x = padding;
+                        y += controlHeight + padding;
+                    }
+                    else 
+                    {
+                        x += controlWidth + padding;
+                    }
                 }
 
-                UserInfoSummaryPanel.AutoScrollMinSize = new Size(UserInfoSummaryPanel.Width, y); ;
-
+                UserInfoSummaryPanel.AutoScrollMinSize = new Size(
+                    UserInfoSummaryPanel.Width,
+                    y + controlHeight + padding
+                );
+            }
+            else
+            {
+                UserInfoSummaryPanel.AutoScrollMinSize = new Size(UserInfoSummaryPanel.Width, 0);
             }
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
