@@ -48,7 +48,7 @@ namespace HouseMateLink
 
                 while (dr.Read())
                 {
-                    users.Add(new User(dr["Username"].ToString(), dr["Password"].ToString(), dr["Name"].ToString(), (Role)dr["Role"], (int)dr["RoomNumber"], dr["Photo"].ToString()));
+                    users.Add(new User(dr["Username"].ToString(), dr["Password"].ToString(), dr["Name"].ToString(), Enum.Parse<Role>(dr["Role"].ToString()), (int)dr["RoomNumber"], dr["Photo"].ToString()));
                 }
 
                 conn.Close();
@@ -76,7 +76,7 @@ namespace HouseMateLink
 
                 while (dr.Read())
                 {
-                    users.Add(new User(dr["Name"].ToString(), (Role)dr["Role"], (int)dr["RoomNumber"], dr["Photo"].ToString()));
+                    users.Add(new User(dr["Name"].ToString(), Enum.Parse<Role>(dr["Role"].ToString()), (int)dr["RoomNumber"], dr["Photo"].ToString()));
                 }
 
                 conn.Close();
