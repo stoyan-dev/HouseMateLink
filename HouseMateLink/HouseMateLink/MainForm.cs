@@ -433,9 +433,9 @@ namespace HouseMateLink
                     AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(
                         a.Description,
                         a.CreatedAt,
-                        currentUser.Name,
-                        announcementMessageControl => ArchiveAnnouncement(announcementMessageControl, a.AnnouncementID),
-                        isAdmin
+                         currentUser,
+                        ArchiveAnnouncement,
+                        a.AnnouncementID
                     );
 
                     newAnnouncement.Size = new Size(400, 125);
@@ -478,7 +478,7 @@ namespace HouseMateLink
                         c.Description,
                         c.CreatedAt,
                         complaintMessageControl => ArchiveComplaint(complaintMessageControl, c.ComplaintID),
-                        isAdmin
+                        currentUser
                     );
 
                     newComplaint.Size = new Size(400, 110);
