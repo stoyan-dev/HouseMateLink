@@ -13,16 +13,16 @@ namespace HouseMateLink
         private Action<AnnouncementMessageControl> onArchiveButtonClick;
         private DBHelper myDBHelper;
         private int id;
-        public AnnouncementMessageControl(string announcementText, DateTime createdAt, User user, Action<AnnouncementMessageControl> onArchiveButtonClick, int id)
+        public AnnouncementMessageControl(string announcementText, DateTime createdAt, string username , User user, Action<AnnouncementMessageControl> onArchiveButtonClick, int id)
         {
             InitializeComponent();
             this.onArchiveButtonClick = onArchiveButtonClick;
             this.id = id;
-            InitializeAnnouncementControl(announcementText, createdAt, user);
+            InitializeAnnouncementControl(announcementText, createdAt, username ,user);
             myDBHelper = new DBHelper();
         }
 
-        private void InitializeAnnouncementControl(string announcementText, DateTime createdAt, User user)
+        private void InitializeAnnouncementControl(string announcementText, DateTime createdAt, string username,User user)
         {
             this.BackColor = Color.Gold;
             this.Padding = new Padding(10);
@@ -47,7 +47,7 @@ namespace HouseMateLink
 
             lblUserName = new Label
             {
-                Text = $"Created by: {user.Name}",
+                Text = $"Created by: {username}",
                 AutoSize = true,
                 Location = new Point(10, 60),
                 Font = new Font("Arial", 8, FontStyle.Italic),

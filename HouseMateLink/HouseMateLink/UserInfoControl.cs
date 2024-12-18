@@ -90,7 +90,7 @@ namespace HouseMateLink
             btnRemoveUser = new Button
             {
                 Text = "Remove",
-                Location = new Point(200, 120),
+                Location = new Point(235, 115),
                 Size = new Size(85, 30),
                 BackColor = Color.Gold
             };

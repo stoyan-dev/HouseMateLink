@@ -431,7 +431,8 @@ namespace HouseMateLink
                     AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(
                         a.Description,
                         a.CreatedAt,
-                         currentUser,
+                        a.Username,
+                        currentUser,
                         ArchiveAnnouncement,
                         a.AnnouncementID
                     );
