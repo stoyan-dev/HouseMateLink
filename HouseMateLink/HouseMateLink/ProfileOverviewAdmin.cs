@@ -81,6 +81,7 @@ namespace HouseMateLink
             selectedPhotoFilePathAdd = null;
 
             PopulateUserInfoPanel();
+            ManageAvailableRooms(6);
         }
 
         private void PopulateUserInfoPanel()
@@ -197,6 +198,7 @@ namespace HouseMateLink
             }
 
             cbRoom.DataSource = availableRooms;
+            cbRoom.SelectedIndex = 0;
         }
 
         private void UserInfoPanel_Paint(object sender, PaintEventArgs e)
