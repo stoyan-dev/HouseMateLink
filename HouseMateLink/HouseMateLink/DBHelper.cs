@@ -102,7 +102,7 @@ namespace HouseMateLink
                     {
                         addComplaint.Parameters.AddWithValue("@Description", complaint.Description);
                         addComplaint.Parameters.AddWithValue("@CreatedAt", complaint.CreatedAt);
-                        addComplaint.Parameters.AddWithValue("@isArchived", complaint.IsArchived ? 1 : 0);
+                        addComplaint.Parameters.AddWithValue("@isArchived", complaint.IsArchived ? true : false);
 
                         addComplaint.ExecuteNonQuery();
                     }
@@ -122,18 +122,18 @@ namespace HouseMateLink
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
                     conn.Open();
-                    string loadComplaints = @"select ComplaintDescription, CreatedAt
+                    string loadComplaints = @"select Description, CreatedAt
                                               from COMPLAINT
                                               where IsArchived = @IsArchived";
                     using (SqlCommand loadComplaint = new SqlCommand(loadComplaints, conn))
                     {
-                        loadComplaint.Parameters.AddWithValue("@IsArchived", 1);
+                        loadComplaint.Parameters.AddWithValue("@IsArchived", false);
 
                         using (SqlDataReader reader = loadComplaint.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                unarchivedComplaints.Add(new Complaint(reader["ComplaintDescription"].ToString(), reader.GetDateTime(reader.GetOrdinal("CreatedAt"))));
+                                unarchivedComplaints.Add(new Complaint(reader["Description"].ToString(), reader.GetDateTime(reader.GetOrdinal("CreatedAt"))));
 
                             }
                         }
@@ -165,7 +165,7 @@ namespace HouseMateLink
                     {
 
                         // changeStatusDB.Parameters.Add("@IsArchived", SqlDbType.Bit).Value = isArchived;
-                        changeStatusDB.Parameters.AddWithValue("@IsArchived", 0);
+                        changeStatusDB.Parameters.AddWithValue("@IsArchived", true);
                         changeStatusDB.Parameters.Add("@ComplaintID", SqlDbType.Int).Value = complaintID;
 
 
@@ -264,7 +264,7 @@ namespace HouseMateLink
                 command.Parameters.AddWithValue("@Username", announcement.Username);
                 command.Parameters.AddWithValue("@Description", announcement.Description);
                 command.Parameters.AddWithValue("@Date", announcement.CreatedAt);
-                command.Parameters.AddWithValue("@IsArchived", announcement.IsArchived ? 1 : 0);
+                command.Parameters.AddWithValue("@IsArchived", announcement.IsArchived ? false : true);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -287,7 +287,7 @@ namespace HouseMateLink
                                where IsArchived = @IsArchived";
 
                 using SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@IsArchived", 1);  
+                command.Parameters.AddWithValue("@IsArchived", false);  
 
                 connection.Open();
                 using SqlDataReader reader = command.ExecuteReader();
@@ -319,7 +319,7 @@ namespace HouseMateLink
                        WHERE AnnouncementID=@Id
                        """;
                 using SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@IsArchived", 0);
+                command.Parameters.AddWithValue("@IsArchived", true);
                 command.Parameters.AddWithValue("@Id", id);
 
                 connection.Open();

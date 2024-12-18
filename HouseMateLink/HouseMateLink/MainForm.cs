@@ -456,24 +456,28 @@ namespace HouseMateLink
         private void LoadComplaint()
         {
             panelComplaint.Controls.Clear();
-            foreach (Complaint c in myDBHelper?.LoadUnarchivedComplaints())
+            List<Complaint> complaints = myDBHelper?.LoadUnarchivedComplaints();
+            if (complaints != null && complaints.Any())
             {
-                ComplaintMessageControl newComplaint = new ComplaintMessageControl(c.Description, c.CreatedAt, complaintMessageControl => ArchiveComplaint(complaintMessageControl, c.ComplaintID), isAdmin);
-                newComplaint.Size = new Size(400, 110);
-                int newX = 10;
-                int newY = 10;
-
-                if (panelComplaint.Controls.Count > 0)
+                foreach (Complaint c in complaints)
                 {
-                    Control lastControl = panelComplaint.Controls[panelComplaint.Controls.Count - 1];
-                    newX = lastControl.Left;
-                    newY = lastControl.Bottom + 10;
+                    ComplaintMessageControl newComplaint = new ComplaintMessageControl(c.Description, c.CreatedAt, complaintMessageControl => ArchiveComplaint(complaintMessageControl, c.ComplaintID), isAdmin);
+                    newComplaint.Size = new Size(400, 110);
+                    int newX = 10;
+                    int newY = 10;
+
+                    if (panelComplaint.Controls.Count > 0)
+                    {
+                        Control lastControl = panelComplaint.Controls[panelComplaint.Controls.Count - 1];
+                        newX = lastControl.Left;
+                        newY = lastControl.Bottom + 10;
+                    }
+                    newComplaint.Location = new Point(newX, newY);
+                    panelComplaint.Controls.Add(newComplaint);
                 }
-                newComplaint.Location = new Point(newX, newY);
-                panelComplaint.Controls.Add(newComplaint);
+                panelComplaint.AutoScrollMinSize = new Size(panelComplaint.Width, panelComplaint.Controls[panelComplaint.Controls.Count - 1].Bottom + 10);
+                tbCreateComplaint.Clear();
             }
-            panelComplaint.AutoScrollMinSize = new Size(panelComplaint.Width, panelComplaint.Controls[panelComplaint.Controls.Count - 1].Bottom + 10);
-            tbCreateComplaint.Clear();
         }
 
         private void RefreshProfile()
