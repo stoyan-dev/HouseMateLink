@@ -15,8 +15,9 @@
             this.IsArchived = isArchived;
         }
         //reads and creates objects from database
-        public Complaint(string description, DateTime createdAt)
+        public Complaint(int id,string description, DateTime createdAt)
         {
+            this.ComplaintID = id;
             this.Description = description;
             this.CreatedAt = createdAt;
             this.IsArchived = false;

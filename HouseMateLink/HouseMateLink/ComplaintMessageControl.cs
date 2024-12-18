@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace HouseMateLink
 {
@@ -16,11 +17,15 @@ namespace HouseMateLink
         private Label lblComplaintDate;
         private Button btnArchive;
         private Action<ComplaintMessageControl> onArchiveButtonClick;
+        private int id;
+        private DBHelper myDBHelper;
 
-        public ComplaintMessageControl(string complaintText, DateTime createdAt, Action<ComplaintMessageControl> onArchiveButtonClick, User user)
+        public ComplaintMessageControl(string complaintText, DateTime createdAt, Action<ComplaintMessageControl> onArchiveButtonClick, User user, int id)
         {
             InitializeComponent();
+            this.id = id;
             this.onArchiveButtonClick = onArchiveButtonClick;
+            myDBHelper = new DBHelper();
             InitializeComplaintControl(complaintText, createdAt, user);
         }
 
@@ -53,7 +58,8 @@ namespace HouseMateLink
             {
                 Text = "Archive",
                 Location = new Point(10, 70),
-                Size = new Size(100, 30),
+                Size = new Size(130, 30),
+                Font = new Font("Arial", 12, FontStyle.Italic),
                 BackColor = Color.GhostWhite
             };
 
@@ -74,6 +80,7 @@ namespace HouseMateLink
 
         private void BtnArchive_Click(object sender, EventArgs e)
         {
+            myDBHelper.ChangeStatusOfComplaint(id);
             onArchiveButtonClick(this);
         }
 

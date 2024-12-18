@@ -125,7 +125,7 @@ namespace HouseMateLink
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
                     conn.Open();
-                    string loadComplaints = @"select Description, CreatedAt
+                    string loadComplaints = @"select ComplaintID ,Description, CreatedAt
                                               from COMPLAINT
                                               where IsArchived = @IsArchived";
                     using (SqlCommand loadComplaint = new SqlCommand(loadComplaints, conn))
@@ -136,7 +136,7 @@ namespace HouseMateLink
                         {
                             while (reader.Read())
                             {
-                                unarchivedComplaints.Add(new Complaint(reader["Description"].ToString(), reader.GetDateTime(reader.GetOrdinal("CreatedAt"))));
+                                unarchivedComplaints.Add(new Complaint((int)reader["ComplaintID"] ,reader["Description"].ToString(), reader.GetDateTime(reader.GetOrdinal("CreatedAt"))));
 
                             }
                         }
@@ -285,7 +285,7 @@ namespace HouseMateLink
             try
             {
                 using SqlConnection connection = new SqlConnection(connStr);
-                string sql = @"SELECT Username, Description, CreatedAt
+                string sql = @"SELECT AnnouncementID, Username, Description, CreatedAt
                        FROM ANNOUNCEMENT
                        WHERE IsArchived = @IsArchived";
 
@@ -297,6 +297,7 @@ namespace HouseMateLink
                 while (reader.Read())
                 {
                     announcements.Add(new Announcement(
+                        (int)reader["AnnouncementID"],
                         reader["Username"].ToString(),
                         reader["Description"].ToString(),
                         reader.GetDateTime(reader.GetOrdinal("CreatedAt"))
@@ -323,11 +324,16 @@ namespace HouseMateLink
                        WHERE AnnouncementID=@Id
                        """;
                 using SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@IsArchived", true);
-                command.Parameters.AddWithValue("@Id", id);
+                command.Parameters.Add("@IsArchived", SqlDbType.Bit).Value = true;  
+                command.Parameters.Add("@Id", SqlDbType.Int).Value = id;
 
                 connection.Open();
-                command.ExecuteNonQuery();
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected == 0)
+                {
+                    MessageBox.Show("No rows were updated. Please check the AnnouncementID.");
+                }
+
             }
             catch (Exception ex)
             {

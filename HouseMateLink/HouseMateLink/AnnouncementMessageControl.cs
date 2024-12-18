@@ -17,9 +17,9 @@ namespace HouseMateLink
         {
             InitializeComponent();
             this.onArchiveButtonClick = onArchiveButtonClick;
+            this.id = id;
             InitializeAnnouncementControl(announcementText, createdAt, user);
             myDBHelper = new DBHelper();
-            this.id= id;
         }
 
         private void InitializeAnnouncementControl(string announcementText, DateTime createdAt, User user)
@@ -58,7 +58,8 @@ namespace HouseMateLink
             {
                 Text = "Archive",
                 Location = new Point(10, 80),
-                Size = new Size(100, 30),
+                Size = new Size(130, 35),
+                Font = new Font("Arial", 12, FontStyle.Italic),
                 BackColor = Color.GhostWhite
             };
 
@@ -81,8 +82,8 @@ namespace HouseMateLink
         }
         private void BtnArchive_Click(object sender, EventArgs e)
         {
-            onArchiveButtonClick(this);
             myDBHelper.ChangeAnnouncementStatus(this.id);
+            onArchiveButtonClick(this);
         }
 
         private void AnnouncementMessageControl_Load(object sender, EventArgs e)

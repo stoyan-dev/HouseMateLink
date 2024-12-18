@@ -18,8 +18,9 @@ namespace HouseMateLink
             this.CreatedAt = DateTime.Today;
             this.IsArchived = isArchived;
         }
-        public Announcement(string username, string description, DateTime createdAt)
+        public Announcement(int id,string username, string description, DateTime createdAt)
         {
+            this.AnnouncementID = id; 
             this.Username = username;
             this.Description = description;
             this.CreatedAt = createdAt;

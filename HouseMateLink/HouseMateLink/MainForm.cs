@@ -283,7 +283,6 @@ namespace HouseMateLink
         private void ArchiveAnnouncement(AnnouncementMessageControl announcementMessageControl)
         {
             panelAnnouncements.Controls.Remove(announcementMessageControl);
-            //myDBHelper.ChangeAnnouncementStatus(id);
         }
 
         private void SaveAnnouncementsToJson(List<Announcement> announcements)
@@ -357,10 +356,9 @@ namespace HouseMateLink
             // SaveComplaintsToJson(myBuilding.GetComplaints());
         }
 
-        private void ArchiveComplaint(ComplaintMessageControl complaintMessageControl, int id)
+        private void ArchiveComplaint(ComplaintMessageControl complaintMessageControl)
         {
             panelComplaint.Controls.Remove(complaintMessageControl);
-            myDBHelper.ChangeStatusOfComplaint(id);
         }
 
         private void SaveComplaintsToJson(List<Complaint> complaints)
@@ -477,8 +475,9 @@ namespace HouseMateLink
                     ComplaintMessageControl newComplaint = new ComplaintMessageControl(
                         c.Description,
                         c.CreatedAt,
-                        complaintMessageControl => ArchiveComplaint(complaintMessageControl, c.ComplaintID),
-                        currentUser
+                        ArchiveComplaint,
+                        currentUser,
+                        c.ComplaintID
                     );
 
                     newComplaint.Size = new Size(400, 110);
