@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace HouseMateLink
 {
@@ -16,15 +17,19 @@ namespace HouseMateLink
         private Label lblComplaintDate;
         private Button btnArchive;
         private Action<ComplaintMessageControl> onArchiveButtonClick;
+        private int id;
+        private DBHelper myDBHelper;
 
-        public ComplaintMessageControl(string complaintText, DateTime createdAt, Action<ComplaintMessageControl> onArchiveButtonClick)
+        public ComplaintMessageControl(string complaintText, DateTime createdAt, Action<ComplaintMessageControl> onArchiveButtonClick, User user, int id)
         {
             InitializeComponent();
+            this.id = id;
             this.onArchiveButtonClick = onArchiveButtonClick;
-            InitializeComplaintControl(complaintText, createdAt);
+            myDBHelper = new DBHelper();
+            InitializeComplaintControl(complaintText, createdAt, user);
         }
 
-        private void InitializeComplaintControl(string complaintText, DateTime createdAt)
+        private void InitializeComplaintControl(string complaintText, DateTime createdAt, User user)
         {
 
             this.BackColor = Color.Gold;
@@ -53,11 +58,19 @@ namespace HouseMateLink
             {
                 Text = "Archive",
                 Location = new Point(10, 70),
-                Size = new Size(100, 30),
+                Size = new Size(130, 30),
+                Font = new Font("Arial", 12, FontStyle.Italic),
                 BackColor = Color.GhostWhite
             };
 
-            btnArchive.Click += BtnArchive_Click;
+            if (user.Role==Role.TENANT)
+            {
+                btnArchive.Visible = false;
+            }
+            else
+            {
+                btnArchive.Click += BtnArchive_Click;
+            }
 
             this.Controls.Add(lblComplaintText);
             this.Controls.Add(lblComplaintDate);
@@ -67,6 +80,7 @@ namespace HouseMateLink
 
         private void BtnArchive_Click(object sender, EventArgs e)
         {
+            myDBHelper.ChangeStatusOfComplaint(id);
             onArchiveButtonClick(this);
         }
 

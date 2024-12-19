@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace HouseMateLink
@@ -10,14 +11,18 @@ namespace HouseMateLink
         private Label lblUserName;
         private Button btnArchive;
         private Action<AnnouncementMessageControl> onArchiveButtonClick;
-        public AnnouncementMessageControl(string announcementText, DateTime createdAt, string userName, Action<AnnouncementMessageControl> onArchiveButtonClick)
+        private DBHelper myDBHelper;
+        private int id;
+        public AnnouncementMessageControl(string announcementText, DateTime createdAt, string username , User user, Action<AnnouncementMessageControl> onArchiveButtonClick, int id)
         {
             InitializeComponent();
             this.onArchiveButtonClick = onArchiveButtonClick;
-            InitializeAnnouncementControl(announcementText, createdAt, userName);
+            this.id = id;
+            InitializeAnnouncementControl(announcementText, createdAt, username ,user);
+            myDBHelper = new DBHelper();
         }
 
-        private void InitializeAnnouncementControl(string announcementText, DateTime createdAt, string userName)
+        private void InitializeAnnouncementControl(string announcementText, DateTime createdAt, string username,User user)
         {
             this.BackColor = Color.Gold;
             this.Padding = new Padding(10);
@@ -42,7 +47,7 @@ namespace HouseMateLink
 
             lblUserName = new Label
             {
-                Text = $"Created by: {userName}",
+                Text = $"Created by: {username}",
                 AutoSize = true,
                 Location = new Point(10, 60),
                 Font = new Font("Arial", 8, FontStyle.Italic),
@@ -53,11 +58,22 @@ namespace HouseMateLink
             {
                 Text = "Archive",
                 Location = new Point(10, 80),
-                Size = new Size(100, 30),
+                Size = new Size(130, 35),
+                Font = new Font("Arial", 12, FontStyle.Italic),
                 BackColor = Color.GhostWhite
             };
 
-            btnArchive.Click += BtnArchive_Click;
+            if (user.Role==Role.TENANT)
+            {
+                btnArchive.Visible = false;
+                Debug.WriteLine("Admin is false: Archive button hidden.");
+            }
+            else
+            {
+                btnArchive.Click += BtnArchive_Click;
+                Debug.WriteLine("Admin is true: Archive button shown and event bound.");
+            }
+
 
             this.Controls.Add(lblAnnouncementText);
             this.Controls.Add(lblAnnouncementDate);
@@ -66,6 +82,7 @@ namespace HouseMateLink
         }
         private void BtnArchive_Click(object sender, EventArgs e)
         {
+            myDBHelper.ChangeAnnouncementStatus(this.id);
             onArchiveButtonClick(this);
         }
 

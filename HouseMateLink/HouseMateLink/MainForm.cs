@@ -1,72 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System.Diagnostics.Eventing.Reader;
 using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.VisualBasic.ApplicationServices;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace HouseMateLink
 {
     public partial class MainForm : Form
     {
         private Building myBuilding;
+        private DBHelper myDBHelper;
         private int itemCounter;
         private bool isAdmin;
-        private int bit;
         private User currentUser;
-        public MainForm(bool a)
-        {
-            InitializeComponent();
-            isAdmin = a;
-
-        }
         public MainForm(bool a, User user, Building b)
         {
             InitializeComponent();
-            dateTimePicker = new DateTimePicker();
             currentUser = user;
             myBuilding = b;
             isAdmin = a;
             Initialization();
             CustomizeTabHeaders();
             LoadShoppingListFromJson();
+            InitializeDBHelper();
 
             currentUser = user;
 
-            lblUserName.Text = currentUser.Name;
-            lblUserRole.Text = currentUser.Role.ToString();
-            lblUserRoom.Text = currentUser.RoomNumber.ToString();
+            RefreshProfile();
+            LoadAnnouncements();
+            LoadComplaint();
 
-            if (!string.IsNullOrEmpty(currentUser.Photo) && File.Exists(currentUser.Photo))
+        }
+        private void InitializeDBHelper()
+        {
+            if (myDBHelper == null)
             {
-                pbUser.Image = Image.FromFile(currentUser.Photo);
-                pbUser.SizeMode = PictureBoxSizeMode.Zoom;
+                myDBHelper = new DBHelper();
             }
-            else
-            {
-                pbUser.SizeMode = PictureBoxSizeMode.Zoom;
-            }
-
         }
 
         private void Initialization()
         {
             itemCounter = 1;
-            dateTimePicker.Value = DateTime.Now;
-            dateTimePicker.Visible = false;
+            //dateTimePicker.Visible = false;
             LoadHouseRules();
+            LoadAnnouncements();
+            //myDBHelper = new DBHelper();
 
             btnEditRules.Visible = isAdmin;
             rulesTextBox.ReadOnly = true;
-            if (bit == 1) isAdmin = true;
-            if (bit == 0) isAdmin = false;
 
+            //to hide the tab control headers
             tabHome.Appearance = TabAppearance.FlatButtons;
             tabHome.ItemSize = new Size(0, 1);
             tabHome.SizeMode = TabSizeMode.Fixed;
@@ -79,30 +60,8 @@ namespace HouseMateLink
 
         private void TabControl1_DrawTabHeaders(object sender, DrawItemEventArgs e)
         {
-            TabControl tabControl = sender as TabControl;
 
-            if (tabControl == null)
-                return;
-
-            Rectangle tabBounds = tabControl.GetTabRect(e.Index);
-
-            Color backgroundColor = e.State == DrawItemState.Selected ? Color.DarkGoldenrod : Color.Gold;
-            Color textColor = Color.Black;
-
-            using (SolidBrush backgroundBrush = new SolidBrush(backgroundColor))
-            using (SolidBrush textBrush = new SolidBrush(textColor))
-            {
-                e.Graphics.FillRectangle(backgroundBrush, tabBounds);
-
-                StringFormat stringFormat = new StringFormat
-                {
-                    Alignment = StringAlignment.Center,
-                    LineAlignment = StringAlignment.Center
-                };
-                e.Graphics.DrawString(tabControl.TabPages[e.Index].Text, e.Font, textBrush, tabBounds, stringFormat);
-            }
         }
-
 
         private void grbHome_Enter(object sender, EventArgs e)
         {
@@ -141,19 +100,17 @@ namespace HouseMateLink
         {
             if (isAdmin)
             {
-                ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin(isAdmin);
+                ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin(isAdmin,currentUser);
                 profileOverviewAdmin.Show();
                 this.Hide();
             }
             else
             {
-                ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant(myBuilding, isAdmin);
+                ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant(myBuilding,this.isAdmin,currentUser);
                 profileOverviewTenant.Show();
                 this.Hide();
             }
         }
-
-
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
@@ -165,18 +122,7 @@ namespace HouseMateLink
 
         private void LoadHouseRules()
         {
-            string defaultRules = $"House Rules:{Environment.NewLine}{Environment.NewLine}" +
-                                  $"1. Respect each other's space.{Environment.NewLine}" +
-                                  $"2. Always clean up after yourself in shared spaces like the kitchen, living room, and bathroom.{Environment.NewLine}" +
-                                  $"3. Maintain silence between 10 PM and 8 AM on weekdays to ensure everyone can study or rest.{Environment.NewLine}" +
-                                  $"4. Follow the rotating schedule for shared chores like taking out the trash and cleaning common areas.{Environment.NewLine}" +
-                                  $"5. Turn off lights, water taps, and electronics when not in use to save energy and reduce bills.{Environment.NewLine}" +
-                                  $"6. The use of illegal drugs or substances is strictly prohibited within the housing premises.{Environment.NewLine}" +
-                                  $"7. Smoking is prohibited inside the building. Use designated smoking areas outside.{Environment.NewLine}" +
-                                  $"8. Guests must respect the house rules and not disturb others.";
-
-            rulesTextBox.Text = defaultRules;
-
+            rulesTextBox.Text = myBuilding.LoadHouseRules();
             rulesTextBox.ReadOnly = true;
             btnEditRules.Text = "Edit Rules";
         }
@@ -328,28 +274,11 @@ namespace HouseMateLink
                 return;
             }
 
-            currentUser.CreateAnnouncement(message);
+            Announcement announcement = new Announcement(currentUser.Username, message, false);
+            myDBHelper.AddAnnouncement(announcement);
+            LoadAnnouncements();
             //SaveAnnouncementToJson();
-            panelAnnouncements.Controls.Clear();
-            foreach (Announcement announcement in currentUser.GetAnnouncements())
-            {
-                AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(announcement.Description, announcement.CreatedAt, currentUser.Name, ArchiveAnnouncement);
-                newAnnouncement.Size = new Size(400, 125);
-                int newX = 10;
-                int newY = 10;
-
-                if (panelAnnouncements.Controls.Count > 0)
-                {
-                    Control lastControl = panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1];
-                    newX = lastControl.Left;
-                    newY = lastControl.Bottom + 10;
-                }
-                newAnnouncement.Location = new Point(newX, newY);
-                panelAnnouncements.Controls.Add(newAnnouncement);
-            }
-            panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, panelAnnouncements.Controls[panelAnnouncements.Controls.Count - 1].Bottom + 10);
-            tbAnnouncement.Clear();
-            SaveAnnouncementsToJson(currentUser.GetAnnouncements());
+            //SaveAnnouncementsToJson(currentUser.GetAnnouncements());
 
 
         }
@@ -417,33 +346,17 @@ namespace HouseMateLink
         private void btnPostComplaint_Click(object sender, EventArgs e)
         {
             string complain = tbCreateComplaint.Text.Trim();
+
             if (string.IsNullOrEmpty(complain))
             {
                 MessageBox.Show("Please enter a complaint.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            myBuilding.CreateComplaint(complain);
-            panelComplaint.Controls.Clear();
-            foreach (Complaint complaint in myBuilding.GetComplaints())
-            {
-                ComplaintMessageControl newComplaint = new ComplaintMessageControl(complaint.Description, complaint.CreatedAt, ArchiveComplaint);
-                newComplaint.Size = new Size(400, 110);
-                int newX = 10;
-                int newY = 10;
-
-                if (panelComplaint.Controls.Count > 0)
-                {
-                    Control lastControl = panelComplaint.Controls[panelComplaint.Controls.Count - 1];
-                    newX = lastControl.Left;
-                    newY = lastControl.Bottom + 10;
-                }
-                newComplaint.Location = new Point(newX, newY);
-                panelComplaint.Controls.Add(newComplaint);
-            }
-            panelComplaint.AutoScrollMinSize = new Size(panelComplaint.Width, panelComplaint.Controls[panelComplaint.Controls.Count - 1].Bottom + 10);
-            tbCreateComplaint.Clear();
-            SaveComplaintsToJson(myBuilding.GetComplaints());
+            Complaint complaint = new Complaint(complain, false);
+            myDBHelper.AddComplaintToDB(complaint);
+            LoadComplaint();
+            // SaveComplaintsToJson(myBuilding.GetComplaints());
         }
 
         private void ArchiveComplaint(ComplaintMessageControl complaintMessageControl)
@@ -502,6 +415,155 @@ namespace HouseMateLink
         {
             tabHome.SelectedIndex = 0;
 
+        }
+
+        private void LoadAnnouncements()
+        {
+            panelAnnouncements.Controls.Clear();
+            List<Announcement> announcements = myDBHelper?.LoadUnarchivedAnnouncement();
+
+            if (announcements != null && announcements.Count > 0)
+            {
+                announcements.Reverse();
+                int yPositionLeft = 0;
+                int yPositionRight = 0;
+                int columnWidth = panelAnnouncements.Width / 2 - 20;
+
+                for (int i = 0; i < announcements.Count; i++)
+                {
+                    Announcement a = announcements[i];
+                    AnnouncementMessageControl newAnnouncement = new AnnouncementMessageControl(
+                        a.Description,
+                        a.CreatedAt,
+                        a.Username,
+                        currentUser,
+                        ArchiveAnnouncement,
+                        a.AnnouncementID
+                    );
+
+                    newAnnouncement.Size = new Size(columnWidth, 125);
+
+                    if (i % 2 == 0) // Left column
+                    {
+                        newAnnouncement.Location = new Point(10, yPositionLeft);
+                        yPositionLeft += newAnnouncement.Height + 10;
+                    }
+                    else // Right column
+                    {
+                        newAnnouncement.Location = new Point(columnWidth + 20, yPositionRight);
+                        yPositionRight += newAnnouncement.Height + 10;
+                    }
+
+                    panelAnnouncements.Controls.Add(newAnnouncement);
+                }
+
+                panelAnnouncements.AutoScrollMinSize = new Size(
+                    panelAnnouncements.Width,
+                    Math.Max(yPositionLeft, yPositionRight)
+                );
+
+                if (panelAnnouncements.Controls.Count > 0)
+                {
+                    panelAnnouncements.VerticalScroll.Value = 0;
+                    panelAnnouncements.ScrollControlIntoView(panelAnnouncements.Controls[0]);
+                }
+
+                tbAnnouncement.Clear();
+            }
+            else
+            {
+                panelAnnouncements.AutoScrollMinSize = new Size(panelAnnouncements.Width, 0);
+            }
+        }
+
+
+
+        private void LoadComplaint()
+        {
+            panelComplaint.Controls.Clear();
+            List<Complaint> complaints = myDBHelper?.LoadUnarchivedComplaints();
+
+            if (complaints != null && complaints.Count > 0)
+            {
+                complaints.Reverse();
+                int yPositionLeft = 0;
+                int yPositionRight = 0;
+                int columnWidth = panelComplaint.Width / 2 - 20;
+
+                for (int i = 0; i < complaints.Count; i++)
+                {
+                    Complaint c = complaints[i];
+                    ComplaintMessageControl newComplaint = new ComplaintMessageControl(
+                        c.Description,
+                        c.CreatedAt,
+                        ArchiveComplaint,
+                        currentUser,
+                        c.ComplaintID
+                    );
+
+                    newComplaint.Size = new Size(columnWidth, 110);
+
+                    if (i % 2 == 0) 
+                    {
+                        newComplaint.Location = new Point(10, yPositionLeft);
+                        yPositionLeft += newComplaint.Height + 10;
+                    }
+                    else 
+                    {
+                        newComplaint.Location = new Point(columnWidth + 20, yPositionRight);
+                        yPositionRight += newComplaint.Height + 10;
+                    }
+
+                    panelComplaint.Controls.Add(newComplaint);
+                }
+
+                panelComplaint.AutoScrollMinSize = new Size(
+                    panelComplaint.Width,
+                    Math.Max(yPositionLeft, yPositionRight)
+                );
+
+                if (panelComplaint.Controls.Count > 0)
+                {
+                    panelComplaint.VerticalScroll.Value = 0;
+                    panelComplaint.ScrollControlIntoView(panelComplaint.Controls[0]);
+                }
+
+                tbCreateComplaint.Clear();
+            }
+            else
+            {
+                panelComplaint.AutoScrollMinSize = new Size(panelComplaint.Width, 0);
+            }
+        }
+
+
+
+        private void RefreshProfile()
+        {
+            if (currentUser.Role == Role.TENANT)
+            {
+                lblUserName.Text = currentUser.Name;
+                lblUserRole.Text = currentUser.Role.ToString();
+                lblUserRoom.Text = currentUser.RoomNumber.ToString();
+            }
+            else if (currentUser.Role == Role.ADMIN)
+            {
+                lblUserName.Text = currentUser.Name;
+                lblUserRole.Text = currentUser.Role.ToString();
+                label5.Visible = false;
+                lblUserRoom.Visible = false;
+
+            }
+
+            if (!string.IsNullOrEmpty(currentUser.Photo) && File.Exists(currentUser.Photo))
+            {
+                pbUser.Image = Image.FromFile(currentUser.Photo);
+                pbUser.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+            else
+            {
+                pbUser.SizeMode = PictureBoxSizeMode.Zoom;
+            }
         }
     }
 }

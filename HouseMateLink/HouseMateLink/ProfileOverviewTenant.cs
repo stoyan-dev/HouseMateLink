@@ -5,79 +5,129 @@ namespace HouseMateLink
     public partial class ProfileOverviewTenant : Form
     {
         private Building myBuilding;
+        private DBHelper myDBHelper;
         private bool isAdmin;
-        public ProfileOverviewTenant(Building b, bool a)
+        private User currentUser;
+        public ProfileOverviewTenant(Building b, bool a, User user)
         {
             InitializeComponent();
             myBuilding = b;
             isAdmin = a;
+            this.currentUser = user;
+            myDBHelper = new DBHelper();
             //LoadUsersFromJson();
             PopulateUserSummariesPanel();
         }
 
-        private List<User> LoadUsersFromJson()
-        {
-            string filePath = "users.json";
-            if (!File.Exists(filePath))
-            {
-                return new List<User>();
-            }
+        //private List<User> LoadUsersFromJson()
+        //{
+        //    string filePath = "users.json";
+        //    if (!File.Exists(filePath))
+        //    {
+        //        return new List<User>();
+        //    }
 
-            try
-            {
-                string jsonString = File.ReadAllText(filePath);
-                return JsonSerializer.Deserialize<List<User>>(jsonString) ?? new List<User>();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error reading user data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return new List<User>();
-            }
-        }
+        //    try
+        //    {
+        //        string jsonString = File.ReadAllText(filePath);
+        //        return JsonSerializer.Deserialize<List<User>>(jsonString) ?? new List<User>();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"Error reading user data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //        return new List<User>();
+        //    }
+        //}
 
         private void PopulateUserSummariesPanel()
         {
             UserInfoSummaryPanel.Controls.Clear();
 
-            List<User> users = LoadUsersFromJson();
+            // Load the list of users
+            List<User> users = myDBHelper.LoadUsersFromDBForTenant();
 
-            int x = 10, y = 10;
-            foreach (User user in users)
+            if (users != null && users.Count > 0)
             {
-                Image userPhoto = null;
-                try
+                int panelWidth = UserInfoSummaryPanel.Width;
+                int controlWidth = 200;
+                int controlHeight = 250;
+                int padding = 10;
+
+                // Calculate how many columns fit in the panel
+                int columns = panelWidth / (controlWidth + padding);
+                if (columns < 1) columns = 1;
+
+                int x = padding;
+                int y = padding;
+
+                for (int i = 0; i < users.Count; i++)
                 {
-                    if (!string.IsNullOrWhiteSpace(user.Photo) && File.Exists(user.Photo))
+                    User user = users[i];
+
+                    Image userPhoto = null;
+                    try
                     {
-                        userPhoto = Image.FromFile(user.Photo);
+                        if (!string.IsNullOrWhiteSpace(user.Photo) && File.Exists(user.Photo))
+                        {
+                            userPhoto = Image.FromFile(user.Photo);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(
+                            $"Error loading photo for {user.Name}: {ex.Message}",
+                            "Photo Load Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
                     }
 
+                    UserInfoSummaryControl summaryControl = new UserInfoSummaryControl(
+                        user.Name,
+                        user.Role,
+                        user.RoomNumber,
+                        userPhoto
+                    )
+                    {
+                        Size = new Size(controlWidth, controlHeight),
+                        Location = new Point(x, y)
+                    };
+
+                    UserInfoSummaryPanel.Controls.Add(summaryControl);
+
+                    if ((i + 1) % columns == 0) 
+                    {
+                        x = padding;
+                        y += controlHeight + padding;
+                    }
+                    else 
+                    {
+                        x += controlWidth + padding;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error loading photo for {user.Name}: {ex.Message}", "Photo Load Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
 
-                UserInfoSummaryControl summaryControl = new UserInfoSummaryControl(user.Name, user.Role, user.RoomNumber, userPhoto)
-                {
-                    Size = new Size(200, 250),
-                    Location = new Point(x, y)
-                };
-
-                y += summaryControl.Height + 10;
-
-                UserInfoSummaryPanel.Controls.Add(summaryControl);
+                UserInfoSummaryPanel.AutoScrollMinSize = new Size(
+                    UserInfoSummaryPanel.Width,
+                    y + controlHeight + padding
+                );
             }
-
-            UserInfoSummaryPanel.AutoScrollMinSize = new Size(UserInfoSummaryPanel.Width, y); ;
-
+            else
+            {
+                UserInfoSummaryPanel.AutoScrollMinSize = new Size(UserInfoSummaryPanel.Width, 0);
+            }
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MainForm form = new MainForm(isAdmin);
+            MainForm form = new MainForm(isAdmin, this.currentUser, myBuilding);
             form.Show();
             this.Hide();
+        }
+
+        private void UserInfoSummaryPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

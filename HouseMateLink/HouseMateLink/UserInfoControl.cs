@@ -18,7 +18,7 @@ namespace HouseMateLink
         private Label lblUserRoom;
         private Label lblUsername;
         private Label lblUserPassword;
-        private Button btnRemoveUser;  
+        private Button btnRemoveUser;
 
         private Action<UserInfoControl> onRemoveButtonClick;
 
@@ -36,10 +36,10 @@ namespace HouseMateLink
 
             pbUserPhoto = new PictureBox
             {
-                Image = userPhoto,  
+                Image = userPhoto,
                 SizeMode = PictureBoxSizeMode.Zoom,
                 Size = new Size(80, 80),
-                Location = new Point(10, 10)  
+                Location = new Point(10, 10)
             };
 
             lblUserName = new Label
@@ -80,7 +80,7 @@ namespace HouseMateLink
 
             lblUserPassword = new Label
             {
-                Text = $"Password: {password}",  
+                Text = $"Password: {password}",
                 AutoSize = true,
                 Location = new Point(100, 90),
                 Font = new Font("Arial", 9),
@@ -90,7 +90,7 @@ namespace HouseMateLink
             btnRemoveUser = new Button
             {
                 Text = "Remove",
-                Location = new Point(200, 120),
+                Location = new Point(235, 115),
                 Size = new Size(85, 30),
                 BackColor = Color.Gold
             };
@@ -109,6 +109,11 @@ namespace HouseMateLink
         private void BtnRemoveUser_Click(object sender, EventArgs e)
         {
             onRemoveButtonClick(this);
+        }
+
+        private void UserInfoControl_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

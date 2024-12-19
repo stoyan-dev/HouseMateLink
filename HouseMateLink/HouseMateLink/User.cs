@@ -5,7 +5,6 @@ namespace HouseMateLink
 {
     public class User
     {
-        public int UserID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
@@ -15,42 +14,37 @@ namespace HouseMateLink
      
         private List<Announcement> announcements;
 
-        [JsonConstructor ]
+        //[JsonConstructor ]
         public User(string username, string password, string name, Role role, int roomNumber, string photo)
         {
-            UserID++;
-            Username = username;
-            Password = password;
-            Name = name;
-            Role = role;
-            RoomNumber = roomNumber;
-            Photo = photo;
-            announcements = new List<Announcement>();
+           this.Username = username;
+           this.Password = password;
+           this.Name = name;
+           this.Role = role;
+           this.RoomNumber = roomNumber;
+           this.Photo = photo;
+           this.announcements = new List<Announcement>();
         }
 
-        public User(string username, string password, string name, Role role, int roomNumber)
+        public User(string name, Role role, int roomNumber, string photo)
         {
-            UserID++;
-            Username = username;
-            Password = password;
-            Name = name;
-            Role = role;
-            RoomNumber = roomNumber;
-            announcements = new List<Announcement>();
+            this.Name = name;
+            this.Role = role;
+            this.RoomNumber = roomNumber;
+            this.Photo = photo;
+            this.announcements = new List<Announcement>();
         }
+        public User() { }
 
-        public void CreateAnnouncement(string announcementText)
-        {
-            if (!string.IsNullOrEmpty(announcementText))
-            {
-                Announcement newAnnouncement = new Announcement(announcementText, DateTime.Today);
-                announcements.Add(newAnnouncement);
-            }
-        }
+        //public void CreateAnnouncement(string announcementText)
+        //{
+            
+            
+        //}
 
-        public List<Announcement> GetAnnouncements()
-        {
-            return announcements;
-        }
+        //public List<Announcement> GetAnnouncements()
+        //{
+        //    return announcements;
+        //}
     }
 }

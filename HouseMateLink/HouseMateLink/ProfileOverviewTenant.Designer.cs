@@ -38,27 +38,29 @@
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 28.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Gold;
-            label1.Location = new Point(491, 29);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(393, 23);
             label1.Name = "label1";
-            label1.Size = new Size(421, 65);
+            label1.Size = new Size(348, 52);
             label1.TabIndex = 0;
             label1.Text = "Profile Overview";
             // 
             // UserInfoSummaryPanel
             // 
-            UserInfoSummaryPanel.Location = new Point(44, 139);
+            UserInfoSummaryPanel.Location = new Point(35, 111);
+            UserInfoSummaryPanel.Margin = new Padding(2, 2, 2, 2);
             UserInfoSummaryPanel.Name = "UserInfoSummaryPanel";
-            UserInfoSummaryPanel.Size = new Size(1284, 713);
+            UserInfoSummaryPanel.Size = new Size(1027, 570);
             UserInfoSummaryPanel.TabIndex = 1;
+            UserInfoSummaryPanel.Paint += UserInfoSummaryPanel_Paint;
             // 
             // button1
             // 
             button1.BackColor = Color.Gold;
             button1.Font = new Font("Times New Roman", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(58, 52);
+            button1.Location = new Point(46, 42);
+            button1.Margin = new Padding(2, 2, 2, 2);
             button1.Name = "button1";
-            button1.Size = new Size(153, 42);
+            button1.Size = new Size(122, 34);
             button1.TabIndex = 2;
             button1.Text = "Home";
             button1.UseVisualStyleBackColor = false;
@@ -66,14 +68,13 @@
             // 
             // ProfileOverviewTenant
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DeepSkyBlue;
-            ClientSize = new Size(1430, 878);
+            ClientSize = new Size(1144, 702);
             Controls.Add(button1);
             Controls.Add(UserInfoSummaryPanel);
             Controls.Add(label1);
-            Margin = new Padding(4);
             Name = "ProfileOverviewTenant";
             Text = "ProfileOverviewTenant";
             ResumeLayout(false);
