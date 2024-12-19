@@ -80,6 +80,7 @@
             tbAddGroceries = new TextBox();
             tabTasks = new TabPage();
             btnHomeTasks = new Button();
+            btnTasks = new Button();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
@@ -109,7 +110,7 @@
             tabHome.Margin = new Padding(2);
             tabHome.Name = "tabHome";
             tabHome.SelectedIndex = 0;
-            tabHome.Size = new Size(915, 596);
+            tabHome.Size = new Size(1153, 765);
             tabHome.TabIndex = 0;
             // 
             // tabHomePage
@@ -121,7 +122,7 @@
             tabHomePage.Margin = new Padding(2);
             tabHomePage.Name = "tabHomePage";
             tabHomePage.Padding = new Padding(2);
-            tabHomePage.Size = new Size(907, 563);
+            tabHomePage.Size = new Size(1145, 732);
             tabHomePage.TabIndex = 0;
             tabHomePage.Text = "Home Page";
             tabHomePage.Click += tabHomePage_Click;
@@ -129,17 +130,18 @@
             // grbButtons
             // 
             grbButtons.BackColor = Color.GhostWhite;
+            grbButtons.Controls.Add(btnTasks);
             grbButtons.Controls.Add(btnProfileOverview);
             grbButtons.Controls.Add(btnGrocery);
             grbButtons.Controls.Add(btnComplaints);
             grbButtons.Controls.Add(btnAnnouncements);
             grbButtons.Controls.Add(btnCalendar);
             grbButtons.Controls.Add(btnRules);
-            grbButtons.Location = new Point(524, 40);
+            grbButtons.Location = new Point(722, 26);
             grbButtons.Margin = new Padding(2);
             grbButtons.Name = "grbButtons";
             grbButtons.Padding = new Padding(2);
-            grbButtons.Size = new Size(357, 474);
+            grbButtons.Size = new Size(393, 682);
             grbButtons.TabIndex = 3;
             grbButtons.TabStop = false;
             // 
@@ -230,12 +232,12 @@
             grbHome.Controls.Add(label2);
             grbHome.Controls.Add(label1);
             grbHome.Controls.Add(btnLogOut);
-            grbHome.Font = new Font("Times New Roman", 14F, FontStyle.Bold | FontStyle.Italic);
-            grbHome.Location = new Point(25, 40);
+            grbHome.Font = new Font("Times New Roman", 16F, FontStyle.Bold | FontStyle.Italic);
+            grbHome.Location = new Point(26, 26);
             grbHome.Margin = new Padding(2);
             grbHome.Name = "grbHome";
             grbHome.Padding = new Padding(2);
-            grbHome.Size = new Size(480, 474);
+            grbHome.Size = new Size(674, 682);
             grbHome.TabIndex = 2;
             grbHome.TabStop = false;
             grbHome.Text = "Student Housing B.V.";
@@ -251,10 +253,10 @@
             gbProfile.Controls.Add(label5);
             gbProfile.Controls.Add(label6);
             gbProfile.Controls.Add(pbUser);
-            gbProfile.Font = new Font("Times New Roman", 11F, FontStyle.Bold);
+            gbProfile.Font = new Font("Times New Roman", 14F, FontStyle.Bold);
             gbProfile.Location = new Point(17, 39);
             gbProfile.Name = "gbProfile";
-            gbProfile.Size = new Size(447, 261);
+            gbProfile.Size = new Size(639, 406);
             gbProfile.TabIndex = 4;
             gbProfile.TabStop = false;
             gbProfile.Text = "Your profile";
@@ -262,76 +264,76 @@
             // lblUserRoom
             // 
             lblUserRoom.AutoSize = true;
-            lblUserRoom.Font = new Font("Times New Roman", 13F);
-            lblUserRoom.Location = new Point(229, 212);
+            lblUserRoom.Font = new Font("Times New Roman", 14F);
+            lblUserRoom.Location = new Point(285, 298);
             lblUserRoom.Name = "lblUserRoom";
-            lblUserRoom.Size = new Size(24, 25);
+            lblUserRoom.Size = new Size(24, 27);
             lblUserRoom.TabIndex = 6;
             lblUserRoom.Text = "..";
             // 
             // lblUserRole
             // 
             lblUserRole.AutoSize = true;
-            lblUserRole.Font = new Font("Times New Roman", 13F);
-            lblUserRole.Location = new Point(229, 134);
+            lblUserRole.Font = new Font("Times New Roman", 14F);
+            lblUserRole.Location = new Point(285, 203);
             lblUserRole.Name = "lblUserRole";
-            lblUserRole.Size = new Size(24, 25);
+            lblUserRole.Size = new Size(24, 27);
             lblUserRole.TabIndex = 5;
             lblUserRole.Text = "..";
             // 
             // lblUserName
             // 
             lblUserName.AutoSize = true;
-            lblUserName.Font = new Font("Times New Roman", 13F);
-            lblUserName.Location = new Point(229, 56);
+            lblUserName.Font = new Font("Times New Roman", 14F);
+            lblUserName.Location = new Point(285, 113);
             lblUserName.Name = "lblUserName";
-            lblUserName.Size = new Size(24, 25);
+            lblUserName.Size = new Size(24, 27);
             lblUserName.TabIndex = 4;
             lblUserName.Text = "..";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Times New Roman", 14F, FontStyle.Bold);
-            label4.Location = new Point(229, 105);
+            label4.Font = new Font("Times New Roman", 15F, FontStyle.Bold);
+            label4.Location = new Point(285, 174);
             label4.Name = "label4";
-            label4.Size = new Size(67, 26);
+            label4.Size = new Size(69, 29);
             label4.TabIndex = 3;
             label4.Text = "Role:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Times New Roman", 14F, FontStyle.Bold);
-            label5.Location = new Point(229, 186);
+            label5.Font = new Font("Times New Roman", 15F, FontStyle.Bold);
+            label5.Location = new Point(285, 260);
             label5.Name = "label5";
-            label5.Size = new Size(80, 26);
+            label5.Size = new Size(84, 29);
             label5.TabIndex = 2;
             label5.Text = "Room:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Times New Roman", 14F, FontStyle.Bold);
-            label6.Location = new Point(229, 29);
+            label6.Font = new Font("Times New Roman", 15F, FontStyle.Bold);
+            label6.Location = new Point(285, 84);
             label6.Name = "label6";
-            label6.Size = new Size(79, 26);
+            label6.Size = new Size(83, 29);
             label6.TabIndex = 1;
             label6.Text = "Name:";
             // 
             // pbUser
             // 
-            pbUser.Location = new Point(17, 29);
+            pbUser.Location = new Point(17, 57);
             pbUser.Margin = new Padding(2);
             pbUser.Name = "pbUser";
-            pbUser.Size = new Size(197, 210);
+            pbUser.Size = new Size(236, 286);
             pbUser.TabIndex = 0;
             pbUser.TabStop = false;
             // 
             // label3
             // 
-            label3.Font = new Font("Segoe UI", 10F, FontStyle.Italic);
-            label3.Location = new Point(17, 388);
+            label3.Font = new Font("Segoe UI", 11F, FontStyle.Italic);
+            label3.Location = new Point(34, 566);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
             label3.Size = new Size(175, 30);
@@ -340,8 +342,8 @@
             // 
             // label2
             // 
-            label2.Font = new Font("Segoe UI", 10F, FontStyle.Italic);
-            label2.Location = new Point(17, 338);
+            label2.Font = new Font("Segoe UI", 11F, FontStyle.Italic);
+            label2.Location = new Point(34, 507);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
             label2.Size = new Size(198, 59);
@@ -351,23 +353,23 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 11F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(17, 303);
+            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Italic);
+            label1.Location = new Point(34, 460);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(85, 25);
+            label1.Size = new Size(107, 32);
             label1.TabIndex = 1;
             label1.Text = "Contact:";
             // 
             // btnLogOut
             // 
             btnLogOut.BackColor = Color.Gold;
-            btnLogOut.Font = new Font("Times New Roman", 13F, FontStyle.Bold | FontStyle.Italic);
+            btnLogOut.Font = new Font("Times New Roman", 15F, FontStyle.Bold | FontStyle.Italic);
             btnLogOut.ForeColor = SystemColors.ActiveCaptionText;
-            btnLogOut.Location = new Point(17, 429);
+            btnLogOut.Location = new Point(17, 617);
             btnLogOut.Margin = new Padding(2);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(134, 41);
+            btnLogOut.Size = new Size(155, 48);
             btnLogOut.TabIndex = 0;
             btnLogOut.TabStop = false;
             btnLogOut.Text = "Log Out";
@@ -383,7 +385,7 @@
             tabCalendar.Margin = new Padding(2);
             tabCalendar.Name = "tabCalendar";
             tabCalendar.Padding = new Padding(2);
-            tabCalendar.Size = new Size(907, 563);
+            tabCalendar.Size = new Size(1145, 732);
             tabCalendar.TabIndex = 1;
             tabCalendar.Text = "Calendar";
             // 
@@ -391,7 +393,7 @@
             // 
             lsbxTasks.FormattingEnabled = true;
             lsbxTasks.Location = new Point(496, 54);
-            lsbxTasks.Margin = new Padding(2, 2, 2, 2);
+            lsbxTasks.Margin = new Padding(2);
             lsbxTasks.Name = "lsbxTasks";
             lsbxTasks.Size = new Size(374, 424);
             lsbxTasks.TabIndex = 1;
@@ -412,8 +414,8 @@
             tabAnnouncements.Controls.Add(grbAnnouncements);
             tabAnnouncements.Location = new Point(4, 29);
             tabAnnouncements.Name = "tabAnnouncements";
-            tabAnnouncements.Padding = new Padding(3, 3, 3, 3);
-            tabAnnouncements.Size = new Size(907, 563);
+            tabAnnouncements.Padding = new Padding(3);
+            tabAnnouncements.Size = new Size(1145, 732);
             tabAnnouncements.TabIndex = 2;
             tabAnnouncements.Text = "Announcements";
             // 
@@ -479,7 +481,7 @@
             tabComplaints.Controls.Add(grbComplaints);
             tabComplaints.Location = new Point(4, 29);
             tabComplaints.Name = "tabComplaints";
-            tabComplaints.Padding = new Padding(3, 3, 3, 3);
+            tabComplaints.Padding = new Padding(3);
             tabComplaints.Size = new Size(907, 563);
             tabComplaints.TabIndex = 3;
             tabComplaints.Text = "Complaints";
@@ -693,12 +695,24 @@
             btnHomeTasks.UseVisualStyleBackColor = false;
             btnHomeTasks.Click += btnHomeTasks_Click;
             // 
+            // btnTasks
+            // 
+            btnTasks.BackColor = Color.Gold;
+            btnTasks.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnTasks.Location = new Point(14, 474);
+            btnTasks.Margin = new Padding(2);
+            btnTasks.Name = "btnTasks";
+            btnTasks.Size = new Size(325, 59);
+            btnTasks.TabIndex = 6;
+            btnTasks.Text = "Tasks";
+            btnTasks.UseVisualStyleBackColor = false;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(927, 605);
+            ClientSize = new Size(1149, 772);
             Controls.Add(tabHome);
             Margin = new Padding(2);
             Name = "MainForm";
@@ -780,5 +794,6 @@
         private ListBox lsbxTasks;
         private TabPage tabTasks;
         private Button btnHomeTasks;
+        private Button btnTasks;
     }
 }
