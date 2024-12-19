@@ -116,7 +116,10 @@ namespace HouseMateLink
 
         private void btnCalendar_Click(object sender, EventArgs e)
         {
-            tabHome.SelectedIndex = 1;
+            Calendar calendarForm = new Calendar();
+            calendarForm.FormClosed += (s, args) => this.Show(); // Show MainForm when Calendar is closed
+            calendarForm.Show();
+            this.Hide();
         }
 
         private void btnAnnouncements_Click(object sender, EventArgs e)

@@ -4,8 +4,14 @@
     <Compile Update="AnnouncementMessageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Calendar.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ComplaintMessageControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="EventForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Update="LogIn.cs">
       <SubType>Form</SubType>
@@ -18,6 +24,12 @@
     </Compile>
     <Compile Update="ProfileOverviewTenant.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserControlBlank.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControlDays.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserInfoControl.cs">
       <SubType>UserControl</SubType>

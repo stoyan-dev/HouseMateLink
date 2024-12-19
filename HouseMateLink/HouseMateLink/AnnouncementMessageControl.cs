@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace HouseMateLink
 {
-    public partial class AnnouncementMessageControl : UserControl
+    public partial class AnnouncementMessageControl : System.Windows.Forms.UserControl
     {
         private Label lblAnnouncementText;
         private Label lblAnnouncementDate;

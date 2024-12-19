@@ -1,6 +1,6 @@
 ﻿namespace HouseMateLink
 {
-    public partial class UserInfoSummaryControl : UserControl
+    public partial class UserInfoSummaryControl : System.Windows.Forms.UserControl
     {
         private PictureBox pbPhoto;
         private Label lblName;

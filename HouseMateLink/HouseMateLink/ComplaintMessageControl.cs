@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HouseMateLink
 {
-    public partial class ComplaintMessageControl : UserControl
+    public partial class ComplaintMessageControl : System.Windows.Forms.UserControl
     {
         private Label lblComplaintText;
         private Label lblComplaintDate;

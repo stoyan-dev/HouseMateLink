@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HouseMateLink
 {
-    public partial class UserInfoControl : UserControl
+    public partial class UserInfoControl : System.Windows.Forms.UserControl
     {
         private PictureBox pbUserPhoto;
         private Label lblUserName;
