@@ -100,13 +100,13 @@ namespace HouseMateLink
         {
             if (isAdmin)
             {
-                ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin(isAdmin,currentUser);
+                ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin(isAdmin, currentUser);
                 profileOverviewAdmin.Show();
                 this.Hide();
             }
             else
             {
-                ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant(myBuilding,this.isAdmin,currentUser);
+                ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant(myBuilding, this.isAdmin, currentUser);
                 profileOverviewTenant.Show();
                 this.Hide();
             }
@@ -503,12 +503,12 @@ namespace HouseMateLink
 
                     newComplaint.Size = new Size(columnWidth, 110);
 
-                    if (i % 2 == 0) 
+                    if (i % 2 == 0)
                     {
                         newComplaint.Location = new Point(10, yPositionLeft);
                         yPositionLeft += newComplaint.Height + 10;
                     }
-                    else 
+                    else
                     {
                         newComplaint.Location = new Point(columnWidth + 20, yPositionRight);
                         yPositionRight += newComplaint.Height + 10;
@@ -564,6 +564,11 @@ namespace HouseMateLink
             {
                 pbUser.SizeMode = PictureBoxSizeMode.Zoom;
             }
+        }
+
+        private void btnHomeTasks_Click(object sender, EventArgs e)
+        {
+            tabHome.SelectedIndex = 0;
         }
     }
 }
