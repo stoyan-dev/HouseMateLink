@@ -570,5 +570,10 @@ namespace HouseMateLink
         {
             tabHome.SelectedIndex = 0;
         }
+
+        private void btnTasks_Click(object sender, EventArgs e)
+        {
+            tabHome.SelectedIndex = 6;
+        }
     }
 }

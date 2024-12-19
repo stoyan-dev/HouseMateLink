@@ -33,6 +33,7 @@
             tabHome = new TabControl();
             tabHomePage = new TabPage();
             grbButtons = new GroupBox();
+            btnTasks = new Button();
             btnProfileOverview = new Button();
             btnGrocery = new Button();
             btnComplaints = new Button();
@@ -80,7 +81,6 @@
             tbAddGroceries = new TextBox();
             tabTasks = new TabPage();
             btnHomeTasks = new Button();
-            btnTasks = new Button();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
@@ -141,18 +141,31 @@
             grbButtons.Margin = new Padding(2);
             grbButtons.Name = "grbButtons";
             grbButtons.Padding = new Padding(2);
-            grbButtons.Size = new Size(393, 682);
+            grbButtons.Size = new Size(393, 695);
             grbButtons.TabIndex = 3;
             grbButtons.TabStop = false;
+            // 
+            // btnTasks
+            // 
+            btnTasks.BackColor = Color.Gold;
+            btnTasks.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            btnTasks.Location = new Point(14, 600);
+            btnTasks.Margin = new Padding(2);
+            btnTasks.Name = "btnTasks";
+            btnTasks.Size = new Size(365, 77);
+            btnTasks.TabIndex = 6;
+            btnTasks.Text = "Tasks";
+            btnTasks.UseVisualStyleBackColor = false;
+            btnTasks.Click += btnTasks_Click;
             // 
             // btnProfileOverview
             // 
             btnProfileOverview.BackColor = Color.Gold;
-            btnProfileOverview.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnProfileOverview.Location = new Point(14, 95);
+            btnProfileOverview.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            btnProfileOverview.Location = new Point(14, 24);
             btnProfileOverview.Margin = new Padding(2);
             btnProfileOverview.Name = "btnProfileOverview";
-            btnProfileOverview.Size = new Size(325, 59);
+            btnProfileOverview.Size = new Size(365, 80);
             btnProfileOverview.TabIndex = 5;
             btnProfileOverview.Text = "Profile Overview";
             btnProfileOverview.UseVisualStyleBackColor = false;
@@ -161,11 +174,11 @@
             // btnGrocery
             // 
             btnGrocery.BackColor = Color.Gold;
-            btnGrocery.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnGrocery.Location = new Point(14, 328);
+            btnGrocery.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            btnGrocery.Location = new Point(14, 415);
             btnGrocery.Margin = new Padding(2);
             btnGrocery.Name = "btnGrocery";
-            btnGrocery.Size = new Size(325, 59);
+            btnGrocery.Size = new Size(365, 77);
             btnGrocery.TabIndex = 4;
             btnGrocery.Text = "Grocery List";
             btnGrocery.UseVisualStyleBackColor = false;
@@ -174,11 +187,11 @@
             // btnComplaints
             // 
             btnComplaints.BackColor = Color.Gold;
-            btnComplaints.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnComplaints.Location = new Point(14, 173);
+            btnComplaints.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            btnComplaints.Location = new Point(14, 215);
             btnComplaints.Margin = new Padding(2);
             btnComplaints.Name = "btnComplaints";
-            btnComplaints.Size = new Size(325, 59);
+            btnComplaints.Size = new Size(365, 80);
             btnComplaints.TabIndex = 3;
             btnComplaints.Text = "Complaints";
             btnComplaints.UseVisualStyleBackColor = false;
@@ -187,11 +200,11 @@
             // btnAnnouncements
             // 
             btnAnnouncements.BackColor = Color.Gold;
-            btnAnnouncements.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAnnouncements.Location = new Point(14, 251);
+            btnAnnouncements.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            btnAnnouncements.Location = new Point(14, 315);
             btnAnnouncements.Margin = new Padding(2);
             btnAnnouncements.Name = "btnAnnouncements";
-            btnAnnouncements.Size = new Size(325, 59);
+            btnAnnouncements.Size = new Size(365, 80);
             btnAnnouncements.TabIndex = 2;
             btnAnnouncements.Text = "Announcements";
             btnAnnouncements.UseVisualStyleBackColor = false;
@@ -200,11 +213,11 @@
             // btnCalendar
             // 
             btnCalendar.BackColor = Color.Gold;
-            btnCalendar.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCalendar.Location = new Point(14, 400);
+            btnCalendar.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            btnCalendar.Location = new Point(14, 507);
             btnCalendar.Margin = new Padding(2);
             btnCalendar.Name = "btnCalendar";
-            btnCalendar.Size = new Size(325, 59);
+            btnCalendar.Size = new Size(365, 77);
             btnCalendar.TabIndex = 1;
             btnCalendar.Text = "Calendar";
             btnCalendar.UseVisualStyleBackColor = false;
@@ -214,11 +227,11 @@
             // 
             btnRules.BackColor = Color.Gold;
             btnRules.FlatAppearance.BorderColor = Color.Black;
-            btnRules.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRules.Location = new Point(14, 22);
+            btnRules.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            btnRules.Location = new Point(14, 120);
             btnRules.Margin = new Padding(2);
             btnRules.Name = "btnRules";
-            btnRules.Size = new Size(325, 59);
+            btnRules.Size = new Size(365, 80);
             btnRules.TabIndex = 0;
             btnRules.Text = "House Rules";
             btnRules.UseVisualStyleBackColor = false;
@@ -237,7 +250,7 @@
             grbHome.Margin = new Padding(2);
             grbHome.Name = "grbHome";
             grbHome.Padding = new Padding(2);
-            grbHome.Size = new Size(674, 682);
+            grbHome.Size = new Size(674, 695);
             grbHome.TabIndex = 2;
             grbHome.TabStop = false;
             grbHome.Text = "Student Housing B.V.";
@@ -256,7 +269,7 @@
             gbProfile.Font = new Font("Times New Roman", 14F, FontStyle.Bold);
             gbProfile.Location = new Point(17, 39);
             gbProfile.Name = "gbProfile";
-            gbProfile.Size = new Size(639, 406);
+            gbProfile.Size = new Size(639, 423);
             gbProfile.TabIndex = 4;
             gbProfile.TabStop = false;
             gbProfile.Text = "Your profile";
@@ -265,7 +278,7 @@
             // 
             lblUserRoom.AutoSize = true;
             lblUserRoom.Font = new Font("Times New Roman", 14F);
-            lblUserRoom.Location = new Point(285, 298);
+            lblUserRoom.Location = new Point(296, 320);
             lblUserRoom.Name = "lblUserRoom";
             lblUserRoom.Size = new Size(24, 27);
             lblUserRoom.TabIndex = 6;
@@ -275,7 +288,7 @@
             // 
             lblUserRole.AutoSize = true;
             lblUserRole.Font = new Font("Times New Roman", 14F);
-            lblUserRole.Location = new Point(285, 203);
+            lblUserRole.Location = new Point(296, 219);
             lblUserRole.Name = "lblUserRole";
             lblUserRole.Size = new Size(24, 27);
             lblUserRole.TabIndex = 5;
@@ -285,7 +298,7 @@
             // 
             lblUserName.AutoSize = true;
             lblUserName.Font = new Font("Times New Roman", 14F);
-            lblUserName.Location = new Point(285, 113);
+            lblUserName.Location = new Point(296, 134);
             lblUserName.Name = "lblUserName";
             lblUserName.Size = new Size(24, 27);
             lblUserName.TabIndex = 4;
@@ -295,7 +308,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Times New Roman", 15F, FontStyle.Bold);
-            label4.Location = new Point(285, 174);
+            label4.Location = new Point(296, 176);
             label4.Name = "label4";
             label4.Size = new Size(69, 29);
             label4.TabIndex = 3;
@@ -305,7 +318,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Times New Roman", 15F, FontStyle.Bold);
-            label5.Location = new Point(285, 260);
+            label5.Location = new Point(296, 276);
             label5.Name = "label5";
             label5.Size = new Size(84, 29);
             label5.TabIndex = 2;
@@ -315,7 +328,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Times New Roman", 15F, FontStyle.Bold);
-            label6.Location = new Point(285, 84);
+            label6.Location = new Point(296, 96);
             label6.Name = "label6";
             label6.Size = new Size(83, 29);
             label6.TabIndex = 1;
@@ -323,17 +336,17 @@
             // 
             // pbUser
             // 
-            pbUser.Location = new Point(17, 57);
+            pbUser.Location = new Point(17, 70);
             pbUser.Margin = new Padding(2);
             pbUser.Name = "pbUser";
-            pbUser.Size = new Size(236, 286);
+            pbUser.Size = new Size(235, 312);
             pbUser.TabIndex = 0;
             pbUser.TabStop = false;
             // 
             // label3
             // 
             label3.Font = new Font("Segoe UI", 11F, FontStyle.Italic);
-            label3.Location = new Point(34, 566);
+            label3.Location = new Point(34, 584);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
             label3.Size = new Size(175, 30);
@@ -343,7 +356,7 @@
             // label2
             // 
             label2.Font = new Font("Segoe UI", 11F, FontStyle.Italic);
-            label2.Location = new Point(34, 507);
+            label2.Location = new Point(34, 525);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
             label2.Size = new Size(198, 59);
@@ -354,7 +367,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold | FontStyle.Italic);
-            label1.Location = new Point(34, 460);
+            label1.Location = new Point(34, 480);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(107, 32);
@@ -366,7 +379,7 @@
             btnLogOut.BackColor = Color.Gold;
             btnLogOut.Font = new Font("Times New Roman", 15F, FontStyle.Bold | FontStyle.Italic);
             btnLogOut.ForeColor = SystemColors.ActiveCaptionText;
-            btnLogOut.Location = new Point(17, 617);
+            btnLogOut.Location = new Point(17, 629);
             btnLogOut.Margin = new Padding(2);
             btnLogOut.Name = "btnLogOut";
             btnLogOut.Size = new Size(155, 48);
@@ -423,7 +436,7 @@
             // 
             btnHome.BackColor = Color.Gold;
             btnHome.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnHome.Location = new Point(733, 21);
+            btnHome.Location = new Point(969, 20);
             btnHome.Name = "btnHome";
             btnHome.Size = new Size(159, 43);
             btnHome.TabIndex = 6;
@@ -437,10 +450,10 @@
             grbAnnouncements.Controls.Add(btnCreateAnnouncement);
             grbAnnouncements.Controls.Add(tbAnnouncement);
             grbAnnouncements.Controls.Add(panelAnnouncements);
-            grbAnnouncements.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            grbAnnouncements.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             grbAnnouncements.Location = new Point(7, 70);
             grbAnnouncements.Name = "grbAnnouncements";
-            grbAnnouncements.Size = new Size(885, 483);
+            grbAnnouncements.Size = new Size(1121, 649);
             grbAnnouncements.TabIndex = 1;
             grbAnnouncements.TabStop = false;
             grbAnnouncements.Text = "Announcements";
@@ -450,9 +463,9 @@
             // 
             btnCreateAnnouncement.BackColor = Color.Gold;
             btnCreateAnnouncement.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCreateAnnouncement.Location = new Point(709, 433);
+            btnCreateAnnouncement.Location = new Point(917, 585);
             btnCreateAnnouncement.Name = "btnCreateAnnouncement";
-            btnCreateAnnouncement.Size = new Size(153, 44);
+            btnCreateAnnouncement.Size = new Size(174, 44);
             btnCreateAnnouncement.TabIndex = 4;
             btnCreateAnnouncement.Text = "Create";
             btnCreateAnnouncement.UseVisualStyleBackColor = false;
@@ -460,10 +473,11 @@
             // 
             // tbAnnouncement
             // 
-            tbAnnouncement.Location = new Point(22, 405);
+            tbAnnouncement.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            tbAnnouncement.Location = new Point(22, 527);
             tbAnnouncement.Multiline = true;
             tbAnnouncement.Name = "tbAnnouncement";
-            tbAnnouncement.Size = new Size(681, 72);
+            tbAnnouncement.Size = new Size(871, 102);
             tbAnnouncement.TabIndex = 1;
             // 
             // panelAnnouncements
@@ -471,7 +485,7 @@
             panelAnnouncements.BackColor = Color.DeepSkyBlue;
             panelAnnouncements.Location = new Point(22, 38);
             panelAnnouncements.Name = "panelAnnouncements";
-            panelAnnouncements.Size = new Size(840, 346);
+            panelAnnouncements.Size = new Size(1069, 472);
             panelAnnouncements.TabIndex = 5;
             // 
             // tabComplaints
@@ -482,7 +496,7 @@
             tabComplaints.Location = new Point(4, 29);
             tabComplaints.Name = "tabComplaints";
             tabComplaints.Padding = new Padding(3);
-            tabComplaints.Size = new Size(907, 563);
+            tabComplaints.Size = new Size(1145, 732);
             tabComplaints.TabIndex = 3;
             tabComplaints.Text = "Complaints";
             // 
@@ -490,7 +504,7 @@
             // 
             btnHomeComplaints.BackColor = Color.Gold;
             btnHomeComplaints.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnHomeComplaints.Location = new Point(727, 23);
+            btnHomeComplaints.Location = new Point(963, 23);
             btnHomeComplaints.Name = "btnHomeComplaints";
             btnHomeComplaints.Size = new Size(159, 43);
             btnHomeComplaints.TabIndex = 7;
@@ -504,10 +518,10 @@
             grbComplaints.Controls.Add(panelComplaint);
             grbComplaints.Controls.Add(btnPostComplaint);
             grbComplaints.Controls.Add(tbCreateComplaint);
-            grbComplaints.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            grbComplaints.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             grbComplaints.Location = new Point(7, 72);
             grbComplaints.Name = "grbComplaints";
-            grbComplaints.Size = new Size(885, 481);
+            grbComplaints.Size = new Size(1121, 647);
             grbComplaints.TabIndex = 0;
             grbComplaints.TabStop = false;
             grbComplaints.Text = "Complaints";
@@ -518,16 +532,16 @@
             panelComplaint.Location = new Point(19, 47);
             panelComplaint.Margin = new Padding(2);
             panelComplaint.Name = "panelComplaint";
-            panelComplaint.Size = new Size(850, 332);
+            panelComplaint.Size = new Size(1071, 462);
             panelComplaint.TabIndex = 6;
             // 
             // btnPostComplaint
             // 
             btnPostComplaint.BackColor = Color.Gold;
             btnPostComplaint.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPostComplaint.Location = new Point(706, 429);
+            btnPostComplaint.Location = new Point(922, 584);
             btnPostComplaint.Name = "btnPostComplaint";
-            btnPostComplaint.Size = new Size(155, 43);
+            btnPostComplaint.Size = new Size(168, 43);
             btnPostComplaint.TabIndex = 5;
             btnPostComplaint.Text = "Post";
             btnPostComplaint.UseVisualStyleBackColor = false;
@@ -535,10 +549,11 @@
             // 
             // tbCreateComplaint
             // 
-            tbCreateComplaint.Location = new Point(19, 399);
+            tbCreateComplaint.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            tbCreateComplaint.Location = new Point(19, 527);
             tbCreateComplaint.Multiline = true;
             tbCreateComplaint.Name = "tbCreateComplaint";
-            tbCreateComplaint.Size = new Size(681, 73);
+            tbCreateComplaint.Size = new Size(886, 100);
             tbCreateComplaint.TabIndex = 2;
             // 
             // tabHouseRules
@@ -550,7 +565,7 @@
             tabHouseRules.Location = new Point(4, 29);
             tabHouseRules.Margin = new Padding(2);
             tabHouseRules.Name = "tabHouseRules";
-            tabHouseRules.Size = new Size(907, 563);
+            tabHouseRules.Size = new Size(1145, 732);
             tabHouseRules.TabIndex = 4;
             tabHouseRules.Text = "House Rules";
             // 
@@ -558,7 +573,7 @@
             // 
             btnHomeRules.BackColor = Color.Gold;
             btnHomeRules.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnHomeRules.Location = new Point(732, 12);
+            btnHomeRules.Location = new Point(969, 17);
             btnHomeRules.Name = "btnHomeRules";
             btnHomeRules.Size = new Size(159, 43);
             btnHomeRules.TabIndex = 8;
@@ -569,10 +584,10 @@
             // btnEditRules
             // 
             btnEditRules.BackColor = Color.Gold;
-            btnEditRules.Font = new Font("Segoe UI", 11F);
-            btnEditRules.Location = new Point(354, 504);
+            btnEditRules.Font = new Font("Segoe UI", 14F);
+            btnEditRules.Location = new Point(439, 662);
             btnEditRules.Name = "btnEditRules";
-            btnEditRules.Size = new Size(147, 43);
+            btnEditRules.Size = new Size(199, 43);
             btnEditRules.TabIndex = 5;
             btnEditRules.Text = "Edit Rules";
             btnEditRules.UseVisualStyleBackColor = false;
@@ -580,12 +595,12 @@
             // 
             // rulesTextBox
             // 
-            rulesTextBox.Font = new Font("Courier New", 10F);
+            rulesTextBox.Font = new Font("Courier New", 13F);
             rulesTextBox.Location = new Point(30, 75);
             rulesTextBox.Multiline = true;
             rulesTextBox.Name = "rulesTextBox";
             rulesTextBox.ScrollBars = ScrollBars.Vertical;
-            rulesTextBox.Size = new Size(861, 412);
+            rulesTextBox.Size = new Size(1064, 566);
             rulesTextBox.TabIndex = 3;
             // 
             // tabGroceryList
@@ -600,7 +615,7 @@
             tabGroceryList.Location = new Point(4, 29);
             tabGroceryList.Margin = new Padding(2);
             tabGroceryList.Name = "tabGroceryList";
-            tabGroceryList.Size = new Size(907, 563);
+            tabGroceryList.Size = new Size(1145, 732);
             tabGroceryList.TabIndex = 5;
             tabGroceryList.Text = "Grocery List";
             // 
@@ -608,7 +623,7 @@
             // 
             btnHomeGrocery.BackColor = Color.Gold;
             btnHomeGrocery.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnHomeGrocery.Location = new Point(734, 14);
+            btnHomeGrocery.Location = new Point(949, 17);
             btnHomeGrocery.Name = "btnHomeGrocery";
             btnHomeGrocery.Size = new Size(159, 43);
             btnHomeGrocery.TabIndex = 8;
@@ -620,7 +635,7 @@
             // 
             btnClearAllProducts.BackColor = Color.Gold;
             btnClearAllProducts.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnClearAllProducts.Location = new Point(447, 488);
+            btnClearAllProducts.Location = new Point(579, 665);
             btnClearAllProducts.Margin = new Padding(2);
             btnClearAllProducts.Name = "btnClearAllProducts";
             btnClearAllProducts.Size = new Size(211, 39);
@@ -633,7 +648,7 @@
             // 
             btnDeleteSelectedProduct.BackColor = Color.Gold;
             btnDeleteSelectedProduct.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnDeleteSelectedProduct.Location = new Point(180, 490);
+            btnDeleteSelectedProduct.Location = new Point(285, 665);
             btnDeleteSelectedProduct.Name = "btnDeleteSelectedProduct";
             btnDeleteSelectedProduct.Size = new Size(211, 37);
             btnDeleteSelectedProduct.TabIndex = 4;
@@ -647,16 +662,16 @@
             lbShoppingList.Font = new Font("Segoe UI", 12F);
             lbShoppingList.FormattingEnabled = true;
             lbShoppingList.ItemHeight = 28;
-            lbShoppingList.Location = new Point(116, 159);
+            lbShoppingList.Location = new Point(87, 168);
             lbShoppingList.Name = "lbShoppingList";
-            lbShoppingList.Size = new Size(640, 228);
+            lbShoppingList.Size = new Size(969, 452);
             lbShoppingList.TabIndex = 3;
             // 
             // btnAddToTheList
             // 
             btnAddToTheList.BackColor = Color.Gold;
             btnAddToTheList.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnAddToTheList.Location = new Point(549, 89);
+            btnAddToTheList.Location = new Point(673, 97);
             btnAddToTheList.Name = "btnAddToTheList";
             btnAddToTheList.Size = new Size(172, 40);
             btnAddToTheList.TabIndex = 1;
@@ -668,7 +683,7 @@
             // 
             tbAddGroceries.BackColor = Color.White;
             tbAddGroceries.Font = new Font("Segoe UI", 12F);
-            tbAddGroceries.Location = new Point(140, 95);
+            tbAddGroceries.Location = new Point(212, 97);
             tbAddGroceries.Name = "tbAddGroceries";
             tbAddGroceries.Size = new Size(384, 34);
             tbAddGroceries.TabIndex = 0;
@@ -679,7 +694,7 @@
             tabTasks.Controls.Add(btnHomeTasks);
             tabTasks.Location = new Point(4, 29);
             tabTasks.Name = "tabTasks";
-            tabTasks.Size = new Size(907, 563);
+            tabTasks.Size = new Size(1145, 732);
             tabTasks.TabIndex = 6;
             tabTasks.Text = "Tasks";
             // 
@@ -687,7 +702,7 @@
             // 
             btnHomeTasks.BackColor = Color.Gold;
             btnHomeTasks.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnHomeTasks.Location = new Point(732, 13);
+            btnHomeTasks.Location = new Point(945, 20);
             btnHomeTasks.Name = "btnHomeTasks";
             btnHomeTasks.Size = new Size(159, 43);
             btnHomeTasks.TabIndex = 9;
@@ -695,24 +710,12 @@
             btnHomeTasks.UseVisualStyleBackColor = false;
             btnHomeTasks.Click += btnHomeTasks_Click;
             // 
-            // btnTasks
-            // 
-            btnTasks.BackColor = Color.Gold;
-            btnTasks.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnTasks.Location = new Point(14, 474);
-            btnTasks.Margin = new Padding(2);
-            btnTasks.Name = "btnTasks";
-            btnTasks.Size = new Size(325, 59);
-            btnTasks.TabIndex = 6;
-            btnTasks.Text = "Tasks";
-            btnTasks.UseVisualStyleBackColor = false;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1149, 772);
+            ClientSize = new Size(1145, 771);
             Controls.Add(tabHome);
             Margin = new Padding(2);
             Name = "MainForm";
