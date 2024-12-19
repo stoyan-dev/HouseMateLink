@@ -76,7 +76,7 @@ namespace HouseMateLink
         private void btnCalendar_Click(object sender, EventArgs e)
         {
             Calendar calendarForm = new Calendar();
-            calendarForm.FormClosed += (s, args) => this.Show(); // Show MainForm when Calendar is closed
+            calendarForm.FormClosed += (s, args) => this.Show(); // Show the MainForm when Calendar is closed
             calendarForm.Show();
             this.Hide();
         }
@@ -141,7 +141,7 @@ namespace HouseMateLink
                 string[] rulesArray = updatedRules.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
                 SaveToJsonFile(rulesArray);
-                MessageBox.Show("Rules saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Rules saved successfully!");
 
                 rulesTextBox.ReadOnly = true;
                 btnEditRules.Text = "Edit Rules";
@@ -179,7 +179,7 @@ namespace HouseMateLink
             }
             else
             {
-                MessageBox.Show("Please enter a grocery item before adding.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter a grocery item before adding.");
             }
         }
 
@@ -194,7 +194,7 @@ namespace HouseMateLink
             }
             else
             {
-                MessageBox.Show("Please select a product to delete.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please select a product to delete.");
             }
         }
 
@@ -231,7 +231,7 @@ namespace HouseMateLink
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error saving to file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error saving to file: {ex.Message}");
             }
         }
         private void LoadShoppingListFromJson()
@@ -270,7 +270,7 @@ namespace HouseMateLink
 
             if (string.IsNullOrEmpty(message))
             {
-                MessageBox.Show("Please enter an announcement.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter an announcement.");
                 return;
             }
 
@@ -300,16 +300,16 @@ namespace HouseMateLink
 
                 if (isFileCreated)
                 {
-                    MessageBox.Show("File created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("File created successfully!");
                 }
                 else
                 {
-                    MessageBox.Show("File updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("File updated successfully!");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error saving announcements: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error saving announcements: {ex.Message}");
             }
         }
 
@@ -329,12 +329,12 @@ namespace HouseMateLink
                 {
                     lbShoppingList.Items.Clear();
                     itemCounter = 1;
-                    MessageBox.Show("All items have been cleared.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("All items have been cleared.");
                 }
             }
             else
             {
-                MessageBox.Show("The shopping list is empty.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("The shopping list is empty.");
             }
         }
 
@@ -349,7 +349,7 @@ namespace HouseMateLink
 
             if (string.IsNullOrEmpty(complain))
             {
-                MessageBox.Show("Please enter a complaint.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter a complaint.");
                 return;
             }
 
@@ -376,16 +376,16 @@ namespace HouseMateLink
 
                 if (isFileCreated)
                 {
-                    MessageBox.Show("File created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("File created successfully!");
                 }
                 else
                 {
-                    MessageBox.Show("File updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("File updated successfully!");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error saving complainst: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error saving complainst: {ex.Message}");
             }
         }
 

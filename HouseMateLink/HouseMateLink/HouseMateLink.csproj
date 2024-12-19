@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <Folder Include="images\" />
+    <Folder Include="Managers\" />
   </ItemGroup>
 
 </Project>
