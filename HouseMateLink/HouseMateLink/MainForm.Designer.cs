@@ -81,6 +81,7 @@
             tbAddGroceries = new TextBox();
             tabTasks = new TabPage();
             btnHomeTasks = new Button();
+            grbTasks = new GroupBox();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
@@ -691,6 +692,7 @@
             // tabTasks
             // 
             tabTasks.BackColor = Color.DeepSkyBlue;
+            tabTasks.Controls.Add(grbTasks);
             tabTasks.Controls.Add(btnHomeTasks);
             tabTasks.Location = new Point(4, 29);
             tabTasks.Name = "tabTasks";
@@ -709,6 +711,16 @@
             btnHomeTasks.Text = "Home";
             btnHomeTasks.UseVisualStyleBackColor = false;
             btnHomeTasks.Click += btnHomeTasks_Click;
+            // 
+            // grbTasks
+            // 
+            grbTasks.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            grbTasks.Location = new Point(21, 90);
+            grbTasks.Name = "grbTasks";
+            grbTasks.Size = new Size(1098, 616);
+            grbTasks.TabIndex = 10;
+            grbTasks.TabStop = false;
+            grbTasks.Text = "Tasks";
             // 
             // MainForm
             // 
@@ -798,5 +810,6 @@
         private TabPage tabTasks;
         private Button btnHomeTasks;
         private Button btnTasks;
+        private GroupBox grbTasks;
     }
 }
