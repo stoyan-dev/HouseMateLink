@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Managers\**" />
+    <EmbeddedResource Remove="Managers\**" />
+    <None Remove="Managers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
   </ItemGroup>
 
@@ -29,7 +35,6 @@
 
   <ItemGroup>
     <Folder Include="images\" />
-    <Folder Include="Managers\" />
   </ItemGroup>
 
 </Project>

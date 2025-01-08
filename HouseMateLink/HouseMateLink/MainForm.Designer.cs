@@ -80,8 +80,10 @@
             btnAddToTheList = new Button();
             tbAddGroceries = new TextBox();
             tabTasks = new TabPage();
-            btnHomeTasks = new Button();
             grbTasks = new GroupBox();
+            btnHomeTasks = new Button();
+            tbPrice = new TextBox();
+            nudQuantity = new NumericUpDown();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
@@ -96,6 +98,7 @@
             tabHouseRules.SuspendLayout();
             tabGroceryList.SuspendLayout();
             tabTasks.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudQuantity).BeginInit();
             SuspendLayout();
             // 
             // tabHome
@@ -607,6 +610,8 @@
             // tabGroceryList
             // 
             tabGroceryList.BackColor = Color.DeepSkyBlue;
+            tabGroceryList.Controls.Add(nudQuantity);
+            tabGroceryList.Controls.Add(tbPrice);
             tabGroceryList.Controls.Add(btnHomeGrocery);
             tabGroceryList.Controls.Add(btnClearAllProducts);
             tabGroceryList.Controls.Add(btnDeleteSelectedProduct);
@@ -672,7 +677,7 @@
             // 
             btnAddToTheList.BackColor = Color.Gold;
             btnAddToTheList.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnAddToTheList.Location = new Point(673, 97);
+            btnAddToTheList.Location = new Point(791, 91);
             btnAddToTheList.Name = "btnAddToTheList";
             btnAddToTheList.Size = new Size(172, 40);
             btnAddToTheList.TabIndex = 1;
@@ -684,7 +689,7 @@
             // 
             tbAddGroceries.BackColor = Color.White;
             tbAddGroceries.Font = new Font("Segoe UI", 12F);
-            tbAddGroceries.Location = new Point(212, 97);
+            tbAddGroceries.Location = new Point(87, 97);
             tbAddGroceries.Name = "tbAddGroceries";
             tbAddGroceries.Size = new Size(384, 34);
             tbAddGroceries.TabIndex = 0;
@@ -700,6 +705,16 @@
             tabTasks.TabIndex = 6;
             tabTasks.Text = "Tasks";
             // 
+            // grbTasks
+            // 
+            grbTasks.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            grbTasks.Location = new Point(21, 90);
+            grbTasks.Name = "grbTasks";
+            grbTasks.Size = new Size(1098, 616);
+            grbTasks.TabIndex = 10;
+            grbTasks.TabStop = false;
+            grbTasks.Text = "Tasks";
+            // 
             // btnHomeTasks
             // 
             btnHomeTasks.BackColor = Color.Gold;
@@ -712,15 +727,21 @@
             btnHomeTasks.UseVisualStyleBackColor = false;
             btnHomeTasks.Click += btnHomeTasks_Click;
             // 
-            // grbTasks
+            // tbPrice
             // 
-            grbTasks.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            grbTasks.Location = new Point(21, 90);
-            grbTasks.Name = "grbTasks";
-            grbTasks.Size = new Size(1098, 616);
-            grbTasks.TabIndex = 10;
-            grbTasks.TabStop = false;
-            grbTasks.Text = "Tasks";
+            tbPrice.BackColor = Color.White;
+            tbPrice.Font = new Font("Segoe UI", 12F);
+            tbPrice.Location = new Point(498, 97);
+            tbPrice.Name = "tbPrice";
+            tbPrice.Size = new Size(104, 34);
+            tbPrice.TabIndex = 9;
+            // 
+            // nudQuantity
+            // 
+            nudQuantity.Location = new Point(620, 104);
+            nudQuantity.Name = "nudQuantity";
+            nudQuantity.Size = new Size(113, 27);
+            nudQuantity.TabIndex = 10;
             // 
             // MainForm
             // 
@@ -752,6 +773,7 @@
             tabGroceryList.ResumeLayout(false);
             tabGroceryList.PerformLayout();
             tabTasks.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)nudQuantity).EndInit();
             ResumeLayout(false);
         }
 
@@ -811,5 +833,7 @@
         private Button btnHomeTasks;
         private Button btnTasks;
         private GroupBox grbTasks;
+        private NumericUpDown nudQuantity;
+        private TextBox tbPrice;
     }
 }

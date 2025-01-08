@@ -167,19 +167,30 @@ namespace HouseMateLink
         private void btnAddToTheList_Click(object sender, EventArgs e)
         {
             string groceryItem = tbAddGroceries.Text.Trim();
+            int quantity = (int)nudQuantity.Value;
+            string priceText = tbPrice.Text.Trim();
 
-            if (!string.IsNullOrEmpty(groceryItem))
+            if (!string.IsNullOrEmpty(groceryItem) && quantity > 0 && !string.IsNullOrEmpty(priceText))
             {
-                lbShoppingList.Items.Add($"{itemCounter}. {groceryItem}");
-                itemCounter++;
+                if (decimal.TryParse(priceText, out decimal price))
+                {
+                    lbShoppingList.Items.Add($"{itemCounter}. {groceryItem}, Quantity: {quantity}, Price: ${price:F2}");
+                    itemCounter++;
 
-                tbAddGroceries.Text = string.Empty;
+                    tbAddGroceries.Text = string.Empty;
+                    nudQuantity.Value = 0;
+                    tbPrice.Text = string.Empty;
 
-                SaveShoppingListToJson();
+                    SaveShoppingListToJson();
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a valid price.");
+                }
             }
             else
             {
-                MessageBox.Show("Please enter a grocery item before adding.");
+                MessageBox.Show("Please fill in all fields (Item, Quantity, and Price) before adding.");
             }
         }
 
@@ -219,10 +230,19 @@ namespace HouseMateLink
         {
             try
             {
-                string[] shoppingList = new string[lbShoppingList.Items.Count];
-                for (int i = 0; i < lbShoppingList.Items.Count; i++)
+                var shoppingList = new List<object>();
+                foreach (var item in lbShoppingList.Items)
                 {
-                    shoppingList[i] = lbShoppingList.Items[i].ToString();
+                    string[] parts = item.ToString().Split(new[] { ", Quantity:", ", Price:" }, StringSplitOptions.None);
+                    if (parts.Length == 3)
+                    {
+                        shoppingList.Add(new
+                        {
+                            Name = parts[0].Substring(parts[0].IndexOf(".") + 2).Trim(),
+                            Quantity = int.Parse(parts[1].Trim()),
+                            Price = decimal.Parse(parts[2].Trim().Replace("$", ""))
+                        });
+                    }
                 }
 
                 string jsonString = JsonSerializer.Serialize(shoppingList, new JsonSerializerOptions { WriteIndented = true });
@@ -231,25 +251,30 @@ namespace HouseMateLink
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error saving to file: {ex.Message}");
+                MessageBox.Show(ex.Message);
             }
         }
+
+
         private void LoadShoppingListFromJson()
         {
             try
             {
-
                 if (File.Exists("ShoppingList.json"))
                 {
                     string jsonString = File.ReadAllText("ShoppingList.json");
 
-                    string[] shoppingList = JsonSerializer.Deserialize<string[]>(jsonString);
+                    var shoppingList = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(jsonString);
 
                     lbShoppingList.Items.Clear();
 
-                    foreach (var item in shoppingList)
+                    if (shoppingList != null)
                     {
-                        lbShoppingList.Items.Add(item);
+                        foreach (var item in shoppingList)
+                        {
+                            lbShoppingList.Items.Add($"{itemCounter}. {item["Name"]}, Quantity: {item["Quantity"]}, Price: ${item["Price"]}");
+                            itemCounter++;
+                        }
                     }
                 }
                 else
@@ -259,7 +284,7 @@ namespace HouseMateLink
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading from file: {ex.Message}", "Error");
+                MessageBox.Show(ex.Message);
             }
         }
 
