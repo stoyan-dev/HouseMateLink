@@ -170,28 +170,40 @@ namespace HouseMateLink
             int quantity = (int)nudQuantity.Value;
             string priceText = tbPrice.Text.Trim();
 
-            if (!string.IsNullOrEmpty(groceryItem) && quantity > 0 && !string.IsNullOrEmpty(priceText))
+            if (string.IsNullOrEmpty(groceryItem))
             {
-                if (decimal.TryParse(priceText, out decimal price))
-                {
-                    lbShoppingList.Items.Add($"{itemCounter}. {groceryItem}, Quantity: {quantity}, Price: ${price:F2}");
-                    itemCounter++;
-
-                    tbAddGroceries.Text = string.Empty;
-                    nudQuantity.Value = 0;
-                    tbPrice.Text = string.Empty;
-
-                    SaveShoppingListToJson();
-                }
-                else
-                {
-                    MessageBox.Show("Please enter a valid price.");
-                }
+                MessageBox.Show("Please enter the name of the grocery item.");
+                return;
             }
-            else
+
+            if (quantity < 1)
             {
-                MessageBox.Show("Please fill in all fields (Item, Quantity, and Price) before adding.");
+                MessageBox.Show("Quantity must be at least 1.");
+                return;
             }
+
+            if (string.IsNullOrEmpty(priceText))
+            {
+                MessageBox.Show("Please enter the price of the item.");
+                return;
+            }
+
+            if (!decimal.TryParse(priceText, out decimal price) || price < 0)
+            {
+                MessageBox.Show("Price must be a valid non-negative number.");
+                return;
+            }
+
+            
+            lbShoppingList.Items.Add($"{itemCounter}. {groceryItem}, Quantity: {quantity}, Price: ${price:F2}");
+            itemCounter++;
+
+            
+            tbAddGroceries.Text = string.Empty;
+            nudQuantity.Value = 1; 
+            tbPrice.Text = string.Empty;
+
+            SaveShoppingListToJson();
         }
 
         private void btnClearSelectedProduct_Click(object sender, EventArgs e)
@@ -205,7 +217,7 @@ namespace HouseMateLink
             }
             else
             {
-                MessageBox.Show("Please select a product to delete.");
+                MessageBox.Show("Select a product to delete!");
             }
         }
 
@@ -560,8 +572,6 @@ namespace HouseMateLink
                 panelComplaint.AutoScrollMinSize = new Size(panelComplaint.Width, 0);
             }
         }
-
-
 
         private void RefreshProfile()
         {

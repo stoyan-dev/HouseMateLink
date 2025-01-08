@@ -109,9 +109,6 @@ namespace HouseMateLink
 
         }
 
-
-
-
         private void btnPrevious_Click(object sender, EventArgs e)
         {
 
@@ -126,8 +123,6 @@ namespace HouseMateLink
             }
             static_month = month;
             static_year = year;
-
-
 
 
             string monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
@@ -156,9 +151,6 @@ namespace HouseMateLink
                 ucdays.days(i);
                 flpDayHolder.Controls.Add(ucdays);
             }
-
-
-
         }
 
     }

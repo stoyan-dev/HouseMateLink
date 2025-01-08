@@ -73,6 +73,8 @@
             btnEditRules = new Button();
             rulesTextBox = new TextBox();
             tabGroceryList = new TabPage();
+            nudQuantity = new NumericUpDown();
+            tbPrice = new TextBox();
             btnHomeGrocery = new Button();
             btnClearAllProducts = new Button();
             btnDeleteSelectedProduct = new Button();
@@ -82,8 +84,9 @@
             tabTasks = new TabPage();
             grbTasks = new GroupBox();
             btnHomeTasks = new Button();
-            tbPrice = new TextBox();
-            nudQuantity = new NumericUpDown();
+            lblProduct = new Label();
+            lblPrice = new Label();
+            lblQantity = new Label();
             tabHome.SuspendLayout();
             tabHomePage.SuspendLayout();
             grbButtons.SuspendLayout();
@@ -97,8 +100,8 @@
             grbComplaints.SuspendLayout();
             tabHouseRules.SuspendLayout();
             tabGroceryList.SuspendLayout();
-            tabTasks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudQuantity).BeginInit();
+            tabTasks.SuspendLayout();
             SuspendLayout();
             // 
             // tabHome
@@ -610,6 +613,9 @@
             // tabGroceryList
             // 
             tabGroceryList.BackColor = Color.DeepSkyBlue;
+            tabGroceryList.Controls.Add(lblQantity);
+            tabGroceryList.Controls.Add(lblPrice);
+            tabGroceryList.Controls.Add(lblProduct);
             tabGroceryList.Controls.Add(nudQuantity);
             tabGroceryList.Controls.Add(tbPrice);
             tabGroceryList.Controls.Add(btnHomeGrocery);
@@ -624,6 +630,23 @@
             tabGroceryList.Size = new Size(1145, 732);
             tabGroceryList.TabIndex = 5;
             tabGroceryList.Text = "Grocery List";
+            // 
+            // nudQuantity
+            // 
+            nudQuantity.Font = new Font("Segoe UI", 12F);
+            nudQuantity.Location = new Point(628, 97);
+            nudQuantity.Name = "nudQuantity";
+            nudQuantity.Size = new Size(113, 34);
+            nudQuantity.TabIndex = 10;
+            // 
+            // tbPrice
+            // 
+            tbPrice.BackColor = Color.White;
+            tbPrice.Font = new Font("Segoe UI", 12F);
+            tbPrice.Location = new Point(498, 97);
+            tbPrice.Name = "tbPrice";
+            tbPrice.Size = new Size(104, 34);
+            tbPrice.TabIndex = 9;
             // 
             // btnHomeGrocery
             // 
@@ -727,21 +750,35 @@
             btnHomeTasks.UseVisualStyleBackColor = false;
             btnHomeTasks.Click += btnHomeTasks_Click;
             // 
-            // tbPrice
+            // lblProduct
             // 
-            tbPrice.BackColor = Color.White;
-            tbPrice.Font = new Font("Segoe UI", 12F);
-            tbPrice.Location = new Point(498, 97);
-            tbPrice.Name = "tbPrice";
-            tbPrice.Size = new Size(104, 34);
-            tbPrice.TabIndex = 9;
+            lblProduct.AutoSize = true;
+            lblProduct.Font = new Font("Times New Roman", 13F, FontStyle.Bold);
+            lblProduct.Location = new Point(87, 69);
+            lblProduct.Name = "lblProduct";
+            lblProduct.Size = new Size(94, 25);
+            lblProduct.TabIndex = 11;
+            lblProduct.Text = "Product:";
             // 
-            // nudQuantity
+            // lblPrice
             // 
-            nudQuantity.Location = new Point(620, 104);
-            nudQuantity.Name = "nudQuantity";
-            nudQuantity.Size = new Size(113, 27);
-            nudQuantity.TabIndex = 10;
+            lblPrice.AutoSize = true;
+            lblPrice.Font = new Font("Times New Roman", 13F, FontStyle.Bold);
+            lblPrice.Location = new Point(498, 69);
+            lblPrice.Name = "lblPrice";
+            lblPrice.Size = new Size(68, 25);
+            lblPrice.TabIndex = 14;
+            lblPrice.Text = "Price:";
+            // 
+            // lblQantity
+            // 
+            lblQantity.AutoSize = true;
+            lblQantity.Font = new Font("Times New Roman", 13F, FontStyle.Bold);
+            lblQantity.Location = new Point(628, 69);
+            lblQantity.Name = "lblQantity";
+            lblQantity.Size = new Size(101, 25);
+            lblQantity.TabIndex = 15;
+            lblQantity.Text = "Quantity:";
             // 
             // MainForm
             // 
@@ -772,8 +809,8 @@
             tabHouseRules.PerformLayout();
             tabGroceryList.ResumeLayout(false);
             tabGroceryList.PerformLayout();
-            tabTasks.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)nudQuantity).EndInit();
+            tabTasks.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -835,5 +872,8 @@
         private GroupBox grbTasks;
         private NumericUpDown nudQuantity;
         private TextBox tbPrice;
+        private Label lblQantity;
+        private Label lblPrice;
+        private Label lblProduct;
     }
 }
