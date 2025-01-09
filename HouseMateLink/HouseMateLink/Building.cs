@@ -15,7 +15,7 @@ namespace HouseMateLink
         private List<Complaint> complaints;
         private List<Announcement> announcements;
         private List<User> tenants;
-        private int taskIndex = 0;
+        private int currentTenantIndex = 0;
 
         public Building(string name, int amountOfRooms)
         {
@@ -58,23 +58,43 @@ namespace HouseMateLink
             return tenants;
         }
 
-        public List<User> AssignWeeklyTasks()
+        public List<Task> GenerateWeeklyTasks(DateTime weekStart, List<User> tenants)
         {
-            List<User> assignedTenants = new List<User>();
+            List<Task> weeklyTasks = new List<Task>();
             int count = tenants.Count;
+            int tasksToAssign = 5; 
 
-            if (count == 0) return assignedTenants;
+            TaskTypeEnum[] taskTypes = (TaskTypeEnum[])Enum.GetValues(typeof(TaskTypeEnum));
 
-            int tasksToAssign = Math.Min(5, count);
+            DateTime currentDay = weekStart;
+
             for (int i = 0; i < tasksToAssign; i++)
             {
-                assignedTenants.Add(tenants[(taskIndex + i) % count]);
+                User tenant = tenants[(currentTenantIndex + i) % count];
+                TaskTypeEnum taskType = taskTypes[i % taskTypes.Length];
+                Task task = new Task(tenant.Name, currentDay, taskType);
+                weeklyTasks.Add(task);
+                currentDay = currentDay.AddDays(1); 
             }
 
-            taskIndex = (taskIndex + tasksToAssign) % count;
-
-            return assignedTenants;
+            return weeklyTasks;
         }
+
+        public void MoveToNextWeek(List<User> tenants)
+        {
+            currentTenantIndex = (currentTenantIndex + 5) % tenants.Count;
+        }
+
+        public void MoveToPreviousWeek(List<User> tenants)
+        {
+            currentTenantIndex = (currentTenantIndex - 5 + tenants.Count) % tenants.Count;
+
+            if (currentTenantIndex < 0)
+            {
+                currentTenantIndex += tenants.Count;
+            }
+        }
+
 
         public void CreateComplaint(string complaintText)
         {

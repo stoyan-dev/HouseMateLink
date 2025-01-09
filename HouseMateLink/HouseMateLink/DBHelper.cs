@@ -210,7 +210,6 @@ namespace HouseMateLink
         }
 
 
-
         public User? ValidateUser(string username, string password)
         {
             try
@@ -251,9 +250,6 @@ namespace HouseMateLink
                 return null;
             }
         }
-
-
-
         public void AddAnnouncement(Announcement announcement)
         {
             try
@@ -311,8 +307,6 @@ namespace HouseMateLink
             return announcements;
         }
 
-
-
         public void ChangeAnnouncementStatus(int id)
         {
             try
@@ -339,6 +333,62 @@ namespace HouseMateLink
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+
+        public void AddTaskToDB(Task t)
+        {
+            try
+            {
+                using SqlConnection connection = new SqlConnection(connStr);
+                string sql = """ 
+                            INSERT INTO TASK (Username,TaskDate, TaskType)
+                            VALUES (@username, @taskdate, @tasktype)
+                            """;
+                using SqlCommand command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@username", t.Username);
+                command.Parameters.AddWithValue("@taskdate", t.TaskDate);
+                command.Parameters.AddWithValue("@tasktype", t.TaskType.ToString());
+
+                connection.Open();
+                int rowsAffected = command.ExecuteNonQuery();
+                if (rowsAffected == 0)
+                {
+                    MessageBox.Show("No rows were updated. Please check the TaskID.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public List<Task> LoadTasksFromDB()
+        {
+            List<Task> tasks = new List<Task>();
+            try
+            {
+                using SqlConnection connection = new SqlConnection(connStr);
+                string sql = @"SELECT Username, TaskDate, TaskType FROM TASK";
+
+                using SqlCommand command = new SqlCommand(sql, connection);
+
+                connection.Open();
+                using SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    tasks.Add(new Task(
+                        reader["Username"].ToString(),
+                        Convert.ToDateTime(reader["TaskDate"]),
+                        (TaskTypeEnum)reader["TaskType"])
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading tasks: {ex.Message}");
+            }
+            return tasks;
         }
 
     }

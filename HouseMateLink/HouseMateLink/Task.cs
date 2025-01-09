@@ -13,4 +13,9 @@ public class Task
         this.TaskDate = taskDate;
         this.TaskType = taskType;
     }
+
+    public string GetInfo()
+    {
+        return $"{this.TaskType} - {this.Username} ({this.TaskDate:dddd, dd MMM yyyy})";
+    }
 }

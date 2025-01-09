@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Eventing.Reader;
 using System.Text.Json;
+using System.Windows.Forms;
 
 namespace HouseMateLink
 {
@@ -10,6 +11,8 @@ namespace HouseMateLink
         private int itemCounter;
         private bool isAdmin;
         private User currentUser;
+        private DateTime weekStart;
+        private int taskIndex = 0;
         public MainForm(bool a, User user, Building b)
         {
             InitializeComponent();
@@ -26,6 +29,9 @@ namespace HouseMateLink
             RefreshProfile();
             LoadAnnouncements();
             LoadComplaint();
+
+            weekStart = GetWeekStart(DateTime.Now);
+            LoadTasks();
 
         }
         private void InitializeDBHelper()
@@ -167,43 +173,20 @@ namespace HouseMateLink
         private void btnAddToTheList_Click(object sender, EventArgs e)
         {
             string groceryItem = tbAddGroceries.Text.Trim();
-            int quantity = (int)nudQuantity.Value;
-            string priceText = tbPrice.Text.Trim();
 
-            if (string.IsNullOrEmpty(groceryItem))
+            if (!string.IsNullOrEmpty(groceryItem))
             {
-                MessageBox.Show("Please enter the name of the grocery item.");
-                return;
-            }
+                lbShoppingList.Items.Add($"{itemCounter}. {groceryItem}");
+                itemCounter++;
 
-            if (quantity < 1)
+                tbAddGroceries.Text = string.Empty;
+
+                SaveShoppingListToJson();
+            }
+            else
             {
-                MessageBox.Show("Quantity must be at least 1.");
-                return;
+                MessageBox.Show("Please enter a grocery item before adding.");
             }
-
-            if (string.IsNullOrEmpty(priceText))
-            {
-                MessageBox.Show("Please enter the price of the item.");
-                return;
-            }
-
-            if (!decimal.TryParse(priceText, out decimal price) || price < 0)
-            {
-                MessageBox.Show("Price must be a valid non-negative number.");
-                return;
-            }
-
-            
-            lbShoppingList.Items.Add($"{itemCounter}. {groceryItem}, Quantity: {quantity}, Price: ${price:F2}");
-            itemCounter++;
-
-            
-            tbAddGroceries.Text = string.Empty;
-            nudQuantity.Value = 1; 
-            tbPrice.Text = string.Empty;
-
-            SaveShoppingListToJson();
         }
 
         private void btnClearSelectedProduct_Click(object sender, EventArgs e)
@@ -217,7 +200,7 @@ namespace HouseMateLink
             }
             else
             {
-                MessageBox.Show("Select a product to delete!");
+                MessageBox.Show("Please select a product to delete.");
             }
         }
 
@@ -242,19 +225,10 @@ namespace HouseMateLink
         {
             try
             {
-                var shoppingList = new List<object>();
-                foreach (var item in lbShoppingList.Items)
+                string[] shoppingList = new string[lbShoppingList.Items.Count];
+                for (int i = 0; i < lbShoppingList.Items.Count; i++)
                 {
-                    string[] parts = item.ToString().Split(new[] { ", Quantity:", ", Price:" }, StringSplitOptions.None);
-                    if (parts.Length == 3)
-                    {
-                        shoppingList.Add(new
-                        {
-                            Name = parts[0].Substring(parts[0].IndexOf(".") + 2).Trim(),
-                            Quantity = int.Parse(parts[1].Trim()),
-                            Price = decimal.Parse(parts[2].Trim().Replace("$", ""))
-                        });
-                    }
+                    shoppingList[i] = lbShoppingList.Items[i].ToString();
                 }
 
                 string jsonString = JsonSerializer.Serialize(shoppingList, new JsonSerializerOptions { WriteIndented = true });
@@ -263,30 +237,25 @@ namespace HouseMateLink
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Error saving to file: {ex.Message}");
             }
         }
-
-
         private void LoadShoppingListFromJson()
         {
             try
             {
+
                 if (File.Exists("ShoppingList.json"))
                 {
                     string jsonString = File.ReadAllText("ShoppingList.json");
 
-                    var shoppingList = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(jsonString);
+                    string[] shoppingList = JsonSerializer.Deserialize<string[]>(jsonString);
 
                     lbShoppingList.Items.Clear();
 
-                    if (shoppingList != null)
+                    foreach (var item in shoppingList)
                     {
-                        foreach (var item in shoppingList)
-                        {
-                            lbShoppingList.Items.Add($"{itemCounter}. {item["Name"]}, Quantity: {item["Quantity"]}, Price: ${item["Price"]}");
-                            itemCounter++;
-                        }
+                        lbShoppingList.Items.Add(item);
                     }
                 }
                 else
@@ -296,7 +265,7 @@ namespace HouseMateLink
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Error loading from file: {ex.Message}", "Error");
             }
         }
 
@@ -514,7 +483,6 @@ namespace HouseMateLink
         }
 
 
-
         private void LoadComplaint()
         {
             panelComplaint.Controls.Clear();
@@ -573,6 +541,27 @@ namespace HouseMateLink
             }
         }
 
+        private void LoadTasks()
+        {
+            List<User> tenants = myDBHelper.LoadUsersFromDBForTenant();
+            List<Task> thisWeekTasks = myBuilding.GenerateWeeklyTasks(weekStart, tenants);
+
+            lbTasks.Items.Clear();
+            foreach (Task t in thisWeekTasks)
+            {
+                lbTasks.Items.Add(t.GetInfo());
+            }
+
+            lblWeekTasks.Text = $"Tasks for week starting: {weekStart:dd-MM-yyyy}";
+        }
+
+        public DateTime GetWeekStart(DateTime date)
+        {
+            int daysToSubtract = ((int)date.DayOfWeek + 6) % 7;
+            return date.AddDays(-daysToSubtract).Date;
+        }
+
+
         private void RefreshProfile()
         {
             if (currentUser.Role == Role.TENANT)
@@ -609,6 +598,22 @@ namespace HouseMateLink
         private void btnTasks_Click(object sender, EventArgs e)
         {
             tabHome.SelectedIndex = 6;
+        }
+
+        private void btnNextWeek_Click(object sender, EventArgs e)
+        {
+            weekStart = weekStart.AddDays(7);
+            List<User> tenants = myDBHelper.LoadUsersFromDBForTenant();
+            myBuilding.MoveToNextWeek(tenants);
+            LoadTasks();
+        }
+
+        private void btnPreviousWeek_Click(object sender, EventArgs e)
+        {
+            weekStart = weekStart.AddDays(-7);
+            List<User> tenants = myDBHelper.LoadUsersFromDBForTenant();
+            myBuilding.MoveToPreviousWeek(tenants);
+            LoadTasks();
         }
     }
 }
