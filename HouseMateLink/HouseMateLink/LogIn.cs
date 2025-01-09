@@ -7,6 +7,12 @@ namespace HouseMateLink
         private Building myBuilding;
         private DBHelper myDBHelper;
         private bool isAdmin;
+
+        private void logIn_Form_Closing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
         public logIn()
         {
             InitializeComponent();

@@ -92,6 +92,35 @@ namespace HouseMateLink
                 return null;
             }
         }
+        public List<User>? LoadTenants()
+        {
+            List<User> users = new List<User>();
+
+            try
+            {
+                string getUserSql = """
+                    SELECT [Name], [Role], RoomNumber, Photo
+                    FROM [USER]
+                    where RoomNumber <> 0 and Role = 'TENANT'
+                """;
+                SqlCommand getUsers = new SqlCommand(getUserSql, conn);
+                conn.Open();
+                SqlDataReader dr = getUsers.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    users.Add(new User(dr["Name"].ToString(), Enum.Parse<Role>(dr["Role"].ToString()), (int)dr["RoomNumber"], dr["Photo"].ToString()));
+                }
+
+                conn.Close();
+                return users;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"GetTenantsFromDB Error: {ex}");
+                return null;
+            }
+        }
         public void AddComplaintToDB(Complaint complaint)
         {
             try

@@ -173,10 +173,14 @@ namespace HouseMateLink
         private void btnAddToTheList_Click(object sender, EventArgs e)
         {
             string groceryItem = tbAddGroceries.Text.Trim();
+            int quantity = (int)numericUpDown1.Value;
+            double price = (double)numericUpDown2.Value;
 
             if (!string.IsNullOrEmpty(groceryItem))
             {
-                lbShoppingList.Items.Add($"{itemCounter}. {groceryItem}");
+                lbShoppingList.Items.Add($"{itemCounter}. {groceryItem} | Quantity: {quantity} | Price: {price}€");
+                lbShoppingList.Items.Add("");
+
                 itemCounter++;
 
                 tbAddGroceries.Text = string.Empty;
@@ -185,7 +189,7 @@ namespace HouseMateLink
             }
             else
             {
-                MessageBox.Show("Please enter a grocery item before adding.");
+                MessageBox.Show("Please enter a grocery item.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -543,7 +547,7 @@ namespace HouseMateLink
 
         private void LoadTasks()
         {
-            List<User> tenants = myDBHelper.LoadUsersFromDBForTenant();
+            List<User> tenants = myDBHelper.LoadTenants();
             List<Task> thisWeekTasks = myBuilding.GenerateWeeklyTasks(weekStart, tenants);
 
             lbTasks.Items.Clear();
@@ -603,7 +607,7 @@ namespace HouseMateLink
         private void btnNextWeek_Click(object sender, EventArgs e)
         {
             weekStart = weekStart.AddDays(7);
-            List<User> tenants = myDBHelper.LoadUsersFromDBForTenant();
+            List<User> tenants = myDBHelper.LoadTenants();
             myBuilding.MoveToNextWeek(tenants);
             LoadTasks();
         }
@@ -611,9 +615,19 @@ namespace HouseMateLink
         private void btnPreviousWeek_Click(object sender, EventArgs e)
         {
             weekStart = weekStart.AddDays(-7);
-            List<User> tenants = myDBHelper.LoadUsersFromDBForTenant();
+            List<User> tenants = myDBHelper.LoadTenants();
             myBuilding.MoveToPreviousWeek(tenants);
             LoadTasks();
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbAddGroceries_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
