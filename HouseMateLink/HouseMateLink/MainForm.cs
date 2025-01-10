@@ -590,16 +590,30 @@ namespace HouseMateLink
                 lblUserRoom.Visible = false;
 
             }
-
-            if (!string.IsNullOrEmpty(currentUser.Photo) && File.Exists(currentUser.Photo))
+            if (!string.IsNullOrWhiteSpace(currentUser.Photo))
             {
-                pbUser.Image = Image.FromFile(currentUser.Photo);
-                pbUser.SizeMode = PictureBoxSizeMode.Zoom;
+                try
+                {
+                    byte[] photoBytes = Convert.FromBase64String(currentUser.Photo);
+
+                    using (MemoryStream ms = new MemoryStream(photoBytes))
+                    {
+                        pbUser.Image = Image.FromStream(ms);
+                    }
+
+                    pbUser.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error loading photo for {currentUser.Name}: {ex.Message}");
+                    pbUser.SizeMode = PictureBoxSizeMode.Zoom;
+                }
             }
             else
             {
                 pbUser.SizeMode = PictureBoxSizeMode.Zoom;
             }
+
         }
 
         private void btnHomeTasks_Click(object sender, EventArgs e)

@@ -42,17 +42,32 @@ namespace HouseMateLink
             try
             {
                 string getUserSql = """
-                    SELECT Username, [Password], [Name], [Role], RoomNumber, Photo
-                    FROM [USER]
-                    where RoomNumber <> 0 or [Role]='ADMIN'
-                """;
+            SELECT Username, [Password], [Name], [Role], RoomNumber, Photo
+            FROM [USER]
+            WHERE RoomNumber <> 0 OR [Role] = 'ADMIN'
+        """;
                 SqlCommand getUsers = new SqlCommand(getUserSql, conn);
                 conn.Open();
                 SqlDataReader dr = getUsers.ExecuteReader();
 
                 while (dr.Read())
                 {
-                    users.Add(new User(dr["Username"].ToString(), dr["Password"].ToString(), dr["Name"].ToString(), Enum.Parse<Role>(dr["Role"].ToString()), (int)dr["RoomNumber"], dr["Photo"].ToString()));
+                    
+                    string? photoBase64 = null;
+                    if (dr["Photo"] != DBNull.Value)
+                    {
+                        byte[] photoBytes = (byte[])dr["Photo"];
+                        photoBase64 = Convert.ToBase64String(photoBytes); 
+                    }
+
+                    users.Add(new User(
+                        dr["Username"].ToString(),
+                        dr["Password"].ToString(),
+                        dr["Name"].ToString(),
+                        Enum.Parse<Role>(dr["Role"].ToString()),
+                        Convert.ToInt32(dr["RoomNumber"]),
+                        photoBase64 
+                    ));
                 }
 
                 conn.Close();
@@ -60,10 +75,11 @@ namespace HouseMateLink
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"GetUsersFromDB Error: {ex}");
+                MessageBox.Show($"GetUsersFromDB Error: {ex.Message}");
                 return null;
             }
         }
+
         public List<User>? LoadUsersFromDBForTenant()
         {
             List<User> users = new List<User>();
@@ -81,12 +97,12 @@ namespace HouseMateLink
 
                 while (dr.Read())
                 {
-                    users.Add(new User(dr["Name"].ToString(), Enum.Parse<Role>(dr["Role"].ToString()), (int)dr["RoomNumber"], dr["Photo"].ToString()));
+                    users.Add(new User(dr["Name"].ToString(), Enum.Parse<Role>(dr["Role"].ToString()), (int)dr["RoomNumber"], Convert.ToBase64String((byte[])dr["Photo"])));
                 }
 
-                conn.Close();
                 return users;
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show($"GetUsersFromDB Error: {ex}");
@@ -110,7 +126,7 @@ namespace HouseMateLink
 
                 while (dr.Read())
                 {
-                    users.Add(new User(dr["Name"].ToString(), Enum.Parse<Role>(dr["Role"].ToString()), (int)dr["RoomNumber"], dr["Photo"].ToString()));
+                    users.Add(new User(dr["Name"].ToString(), Enum.Parse<Role>(dr["Role"].ToString()), (int)dr["RoomNumber"], Convert.ToBase64String((byte[])dr["Photo"])));
                 }
 
                 conn.Close();
@@ -228,7 +244,39 @@ namespace HouseMateLink
                 command.Parameters.AddWithValue("@Name", user.Name);
                 command.Parameters.AddWithValue("@Role", user.Role.ToString());
                 command.Parameters.AddWithValue("@RoomNumber", user.RoomNumber);
-                command.Parameters.AddWithValue("@Photo", user.Photo);
+
+                if (!string.IsNullOrWhiteSpace(user.Photo))
+                {
+                    byte[] photoBytes;
+
+                    if (user.Photo.Trim().Length % 4 == 0 && user.Photo.Contains("="))
+                    {
+                        try
+                        {
+                            photoBytes = Convert.FromBase64String(user.Photo);
+                        }
+                        catch
+                        {
+                            throw new InvalidOperationException("Photo is not a valid Base64 string.");
+                        }
+                    }
+                    else if (File.Exists(user.Photo))
+                    {
+                        photoBytes = File.ReadAllBytes(user.Photo);
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Invalid photo data. Provide a valid Base64 string or file path.");
+                    }
+                    command.Parameters.AddWithValue("@Photo", photoBytes);
+                }
+                else
+                {
+                    // Handle null or empty photo
+                    command.Parameters.AddWithValue("@Photo", DBNull.Value);
+                }
+
+
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -269,7 +317,8 @@ namespace HouseMateLink
                         Name = reader["Name"]?.ToString() ?? string.Empty,
                         Role = role,
                         RoomNumber = reader["RoomNumber"] != DBNull.Value ? Convert.ToInt32(reader["RoomNumber"]) : 0,
-                        Photo = reader["Photo"] != DBNull.Value ? reader["Photo"].ToString() : string.Empty
+                        Photo = Convert.ToBase64String((byte[])reader["Photo"])
+
                     };
                 }
                 return null;
