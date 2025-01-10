@@ -88,7 +88,7 @@ namespace HouseMateLink
         private void btnCalendar_Click(object sender, EventArgs e)
         {
             Calendar calendarForm = new Calendar();
-            calendarForm.FormClosed += (s, args) => this.Show(); // Show the MainForm when Calendar is closed
+            calendarForm.FormClosed += (s, args) => this.Show(); 
             calendarForm.Show();
             this.Hide();
         }
