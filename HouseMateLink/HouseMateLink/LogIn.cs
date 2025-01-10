@@ -19,6 +19,11 @@ namespace HouseMateLink
             Initialization();
         }
 
+        private void logIn_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 

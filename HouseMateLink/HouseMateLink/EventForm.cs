@@ -18,6 +18,11 @@ namespace Copy
             dbHelper = new DBHelper();
         }
 
+        private void EventForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void EventForm_Load(object sender, EventArgs e)
         {
             tbDate.Text = $"{UserControlDays.static_day:D2}/{Calendar.static_month:D2}/{Calendar.static_year}";

@@ -19,6 +19,11 @@ namespace HouseMateLink
             PopulateUserSummariesPanel();
         }
 
+        private void ProfileOverviewTenant_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
         //private List<User> LoadUsersFromJson()
         //{
         //    string filePath = "users.json";
@@ -38,7 +43,7 @@ namespace HouseMateLink
         //        return new List<User>();
         //    }
         //}
-              
+
         private void PopulateUserSummariesPanel()
         {
             UserInfoSummaryPanel.Controls.Clear();

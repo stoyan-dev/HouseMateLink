@@ -28,6 +28,11 @@ namespace HouseMateLink
             PopulateUserInfoPanel();
         }
 
+        private void ProfileOverviewAdmin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void btnSelectPhoto_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())

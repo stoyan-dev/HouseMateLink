@@ -34,6 +34,12 @@ namespace HouseMateLink
             LoadTasks();
 
         }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void InitializeDBHelper()
         {
             if (myDBHelper == null)
