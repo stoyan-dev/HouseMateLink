@@ -74,7 +74,7 @@ namespace HouseMateLink
                 TaskTypeEnum taskType = taskTypes[i % taskTypes.Length];
                 Task task = new Task(tenant.Name, currentDay, taskType);
                 weeklyTasks.Add(task);
-                currentDay = currentDay.AddDays(1); 
+                currentDay = currentDay.AddDays(1);
             }
 
             return weeklyTasks;

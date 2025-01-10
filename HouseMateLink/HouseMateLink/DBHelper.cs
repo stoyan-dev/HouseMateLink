@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HouseMateLink
 {
@@ -41,17 +42,32 @@ namespace HouseMateLink
             try
             {
                 string getUserSql = """
-                    SELECT Username, [Password], [Name], [Role], RoomNumber, Photo
-                    FROM [USER]
-                    where RoomNumber <> 0 or [Role]='ADMIN'
-                """;
+            SELECT Username, [Password], [Name], [Role], RoomNumber, Photo
+            FROM [USER]
+            WHERE RoomNumber <> 0 OR [Role] = 'ADMIN'
+        """;
                 SqlCommand getUsers = new SqlCommand(getUserSql, conn);
                 conn.Open();
                 SqlDataReader dr = getUsers.ExecuteReader();
 
                 while (dr.Read())
                 {
-                    users.Add(new User(dr["Username"].ToString(), dr["Password"].ToString(), dr["Name"].ToString(), Enum.Parse<Role>(dr["Role"].ToString()), (int)dr["RoomNumber"], dr["Photo"].ToString()));
+                    
+                    string? photoBase64 = null;
+                    if (dr["Photo"] != DBNull.Value)
+                    {
+                        byte[] photoBytes = (byte[])dr["Photo"];
+                        photoBase64 = Convert.ToBase64String(photoBytes); 
+                    }
+
+                    users.Add(new User(
+                        dr["Username"].ToString(),
+                        dr["Password"].ToString(),
+                        dr["Name"].ToString(),
+                        Enum.Parse<Role>(dr["Role"].ToString()),
+                        Convert.ToInt32(dr["RoomNumber"]),
+                        photoBase64 
+                    ));
                 }
 
                 conn.Close();
@@ -59,10 +75,11 @@ namespace HouseMateLink
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"GetUsersFromDB Error: {ex}");
+                MessageBox.Show($"GetUsersFromDB Error: {ex.Message}");
                 return null;
             }
         }
+
         public List<User>? LoadUsersFromDBForTenant()
         {
             List<User> users = new List<User>();
@@ -80,12 +97,12 @@ namespace HouseMateLink
 
                 while (dr.Read())
                 {
-                    users.Add(new User(dr["Name"].ToString(), Enum.Parse<Role>(dr["Role"].ToString()), (int)dr["RoomNumber"], dr["Photo"].ToString()));
+                    users.Add(new User(dr["Name"].ToString(), Enum.Parse<Role>(dr["Role"].ToString()), (int)dr["RoomNumber"], Convert.ToBase64String((byte[])dr["Photo"])));
                 }
 
-                conn.Close();
                 return users;
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show($"GetUsersFromDB Error: {ex}");
@@ -109,7 +126,7 @@ namespace HouseMateLink
 
                 while (dr.Read())
                 {
-                    users.Add(new User(dr["Name"].ToString(), Enum.Parse<Role>(dr["Role"].ToString()), (int)dr["RoomNumber"], dr["Photo"].ToString()));
+                    users.Add(new User(dr["Name"].ToString(), Enum.Parse<Role>(dr["Role"].ToString()), (int)dr["RoomNumber"], Convert.ToBase64String((byte[])dr["Photo"])));
                 }
 
                 conn.Close();
@@ -227,7 +244,39 @@ namespace HouseMateLink
                 command.Parameters.AddWithValue("@Name", user.Name);
                 command.Parameters.AddWithValue("@Role", user.Role.ToString());
                 command.Parameters.AddWithValue("@RoomNumber", user.RoomNumber);
-                command.Parameters.AddWithValue("@Photo", user.Photo);
+
+                if (!string.IsNullOrWhiteSpace(user.Photo))
+                {
+                    byte[] photoBytes;
+
+                    if (user.Photo.Trim().Length % 4 == 0 && user.Photo.Contains("="))
+                    {
+                        try
+                        {
+                            photoBytes = Convert.FromBase64String(user.Photo);
+                        }
+                        catch
+                        {
+                            throw new InvalidOperationException("Photo is not a valid Base64 string.");
+                        }
+                    }
+                    else if (File.Exists(user.Photo))
+                    {
+                        photoBytes = File.ReadAllBytes(user.Photo);
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Invalid photo data. Provide a valid Base64 string or file path.");
+                    }
+                    command.Parameters.AddWithValue("@Photo", photoBytes);
+                }
+                else
+                {
+                    // Handle null or empty photo
+                    command.Parameters.AddWithValue("@Photo", DBNull.Value);
+                }
+
+
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -268,7 +317,8 @@ namespace HouseMateLink
                         Name = reader["Name"]?.ToString() ?? string.Empty,
                         Role = role,
                         RoomNumber = reader["RoomNumber"] != DBNull.Value ? Convert.ToInt32(reader["RoomNumber"]) : 0,
-                        Photo = reader["Photo"] != DBNull.Value ? reader["Photo"].ToString() : string.Empty
+                        Photo = Convert.ToBase64String((byte[])reader["Photo"])
+
                     };
                 }
                 return null;
@@ -420,8 +470,155 @@ namespace HouseMateLink
             return tasks;
         }
 
+        public void ArchiveEvent(string eventDate)
+        {
+            try
+            {
+                if (!DateTime.TryParseExact(eventDate, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
+                {
+                    MessageBox.Show("Invalid date format");
+                    return;
+                }
+
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    string checkSql = "SELECT COUNT(*) FROM EVENT WHERE EventDate = @EventDate AND IsArchived=@IsArchived";
+                    using (SqlCommand checkCmd = new SqlCommand(checkSql, conn))
+                    {
+                        checkCmd.Parameters.AddWithValue("@EventDate", parsedDate.ToString("yyyy-MM-dd"));
+                        checkCmd.Parameters.AddWithValue("@IsArchived", 0);
+
+                        int eventCount = (int)checkCmd.ExecuteScalar();
+                        if (eventCount == 0)
+                        {
+                            MessageBox.Show("No event found for the selected date.");
+                            return;
+                        }
+                    }
+
+                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this event?",
+                                                                "Delete Event", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        string deleteSql = "Update EVENT SET IsArchived=@IsArchived WHERE EventDate = @EventDate";
+                        using (SqlCommand deleteCmd = new SqlCommand(deleteSql, conn))
+                        {
+                            deleteCmd.Parameters.AddWithValue("@EventDate", parsedDate.ToString("yyyy-MM-dd"));
+                            deleteCmd.Parameters.AddWithValue("@IsArchived", 1);
+                            deleteCmd.ExecuteNonQuery();
+                        }
+
+                        MessageBox.Show("Event deleted successfully!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting the event: {ex.Message}");
+            }
+        }
+
+        public void SaveEvent(string eventDate, string eventText, string description)
+        {
+            try
+            {
+                if (!DateTime.TryParseExact(eventDate, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
+                {
+                    MessageBox.Show("Invalid date format");
+                    return;
+                }
+
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+                    string sql = "INSERT INTO EVENT (EventDate, EventText, Description, IsArchived) VALUES (@EventDate, @EventText, @Description, @IsArchived)";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@EventDate", parsedDate.ToString("yyyy-MM-dd"));
+                        cmd.Parameters.AddWithValue("@EventText", eventText);
+                        cmd.Parameters.AddWithValue("@Description", description);
+                        cmd.Parameters.AddWithValue("@IsArchived", 0);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Event saved!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving the event: {ex.Message}");
+            }
+        }
+
+        public string GetEventDescription(string description, int days)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    string sql = "SELECT TOP 1 Description FROM EVENT WHERE EventDate = @date AND IsArchived=@IsArchived";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@date",
+                            new DateTime(Calendar.static_year, Calendar.static_month, days));
+                        cmd.Parameters.AddWithValue("@IsArchived",0);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                description = reader["Description"].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error fetching event description: {ex.Message}");
+            }
+
+            return description;
+        }
+
+        public string GetEvent(int days)
+        {
+            string text = "";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    string sql = "SELECT EventText FROM EVENT WHERE EventDate = @date AND IsArchived=@IsArchived";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@date",
+                            new DateTime(Calendar.static_year, Calendar.static_month, days));
+                        cmd.Parameters.AddWithValue("@IsArchived", 0);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+
+                            while (reader.Read())
+                            {
+                                text += $"{reader["EventText"]}\n";
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading events: {ex.Message}");
+            }
+            return text;
+        }
     }
-
-
 }
 

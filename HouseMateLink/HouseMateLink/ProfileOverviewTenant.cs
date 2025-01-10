@@ -38,12 +38,11 @@ namespace HouseMateLink
         //        return new List<User>();
         //    }
         //}
-
+              
         private void PopulateUserSummariesPanel()
         {
             UserInfoSummaryPanel.Controls.Clear();
 
-            // Load the list of users
             List<User> users = myDBHelper.LoadUsersFromDBForTenant();
 
             if (users != null && users.Count > 0)
@@ -53,7 +52,6 @@ namespace HouseMateLink
                 int controlHeight = 250;
                 int padding = 10;
 
-                // Calculate how many columns fit in the panel
                 int columns = panelWidth / (controlWidth + padding);
                 if (columns < 1) columns = 1;
 
@@ -67,9 +65,14 @@ namespace HouseMateLink
                     Image userPhoto = null;
                     try
                     {
-                        if (!string.IsNullOrWhiteSpace(user.Photo) && File.Exists(user.Photo))
+                        if (!string.IsNullOrWhiteSpace(user.Photo))
                         {
-                            userPhoto = Image.FromFile(user.Photo);
+                            byte[] photoBytes = Convert.FromBase64String(user.Photo);
+
+                            using (MemoryStream ms = new MemoryStream(photoBytes))
+                            {
+                                userPhoto = Image.FromStream(ms);
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -95,12 +98,12 @@ namespace HouseMateLink
 
                     UserInfoSummaryPanel.Controls.Add(summaryControl);
 
-                    if ((i + 1) % columns == 0) 
+                    if ((i + 1) % columns == 0)
                     {
                         x = padding;
                         y += controlHeight + padding;
                     }
-                    else 
+                    else
                     {
                         x += controlWidth + padding;
                     }
@@ -116,6 +119,7 @@ namespace HouseMateLink
                 UserInfoSummaryPanel.AutoScrollMinSize = new Size(UserInfoSummaryPanel.Width, 0);
             }
         }
+
 
 
         private void button1_Click(object sender, EventArgs e)

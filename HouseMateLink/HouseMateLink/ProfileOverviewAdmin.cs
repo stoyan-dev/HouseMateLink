@@ -103,7 +103,15 @@ namespace HouseMateLink
                         Image userPhoto = null;
                         try
                         {
-                            userPhoto = Image.FromFile(newUser.Photo);
+                            if (!string.IsNullOrWhiteSpace(newUser.Photo))
+                            {
+                                byte[] photoBytes = Convert.FromBase64String(newUser.Photo);
+
+                                using (MemoryStream ms = new MemoryStream(photoBytes))
+                                {
+                                    userPhoto = Image.FromStream(ms);
+                                }
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -122,12 +130,12 @@ namespace HouseMateLink
 
                         userInfoControl.Size = new Size(columnWidth, 150);
 
-                        if (i % 2 == 0) 
+                        if (i % 2 == 0)
                         {
                             userInfoControl.Location = new Point(10, yPositionLeft);
                             yPositionLeft += userInfoControl.Height + 10;
                         }
-                        else 
+                        else
                         {
                             userInfoControl.Location = new Point(columnWidth + 20, yPositionRight);
                             yPositionRight += userInfoControl.Height + 10;
