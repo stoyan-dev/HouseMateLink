@@ -184,6 +184,8 @@ namespace HouseMateLink
                 itemCounter++;
 
                 tbAddGroceries.Text = string.Empty;
+                numericUpDown1.Value = numericUpDown1.Minimum;
+                numericUpDown2.Value = numericUpDown2.Maximum;
 
                 SaveShoppingListToJson();
             }
