@@ -87,10 +87,19 @@ namespace HouseMateLink
 
         private void btnCalendar_Click(object sender, EventArgs e)
         {
-            Calendar calendarForm = new Calendar();
-            calendarForm.FormClosed += (s, args) => this.Show();
-            calendarForm.Show();
-            this.Hide();
+            Calendar calendarForm = Application.OpenForms.OfType<Calendar>().FirstOrDefault();
+            if (calendarForm == null)
+            {
+                calendarForm = new Calendar();
+                calendarForm.FormClosed += (s, args) => this.Show(); // Show MainForm when Calendar is closed
+                calendarForm.Show();
+            }
+            else
+            {
+                calendarForm.BringToFront(); // Bring the existing Calendar form to the front
+            }
+
+            this.Hide(); // Hide MainForm while Calendar is open
         }
 
         private void btnAnnouncements_Click(object sender, EventArgs e)
@@ -110,30 +119,19 @@ namespace HouseMateLink
 
         private void btnProfileOverview_Click(object sender, EventArgs e)
         {
-            foreach (Form form in Application.OpenForms)
+            ProfileOverviewAdmin profileForm = Application.OpenForms.OfType<ProfileOverviewAdmin>().FirstOrDefault();
+            if (profileForm == null)
             {
-                if (form is ProfileOverviewAdmin || form is ProfileOverviewTenant)
-                {
-                    form.Close();
-                    break;
-                }
-            }
-
-            // Initialize and open the appropriate profile overview form
-            if (isAdmin)
-            {
-                ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin(myBuilding, isAdmin, currentUser);
-                profileOverviewAdmin.FormClosed += (s, args) => this.Show(); // Show MainForm when closed
-                profileOverviewAdmin.Show();
+                profileForm = new ProfileOverviewAdmin(myBuilding, isAdmin, currentUser);
+                profileForm.FormClosed += (s, args) => this.Show(); // Show MainForm when ProfileOverviewAdmin is closed
+                profileForm.Show();
             }
             else
             {
-                ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant(myBuilding, isAdmin, currentUser);
-                profileOverviewTenant.FormClosed += (s, args) => this.Show(); // Show MainForm when closed
-                profileOverviewTenant.Show();
+                profileForm.BringToFront(); // Bring the existing ProfileOverviewAdmin form to the front
             }
 
-            this.Hide();
+            this.Hide(); // Hide MainForm while ProfileOverviewAdmin is open
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
