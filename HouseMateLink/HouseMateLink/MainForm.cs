@@ -8,7 +8,7 @@ namespace HouseMateLink
     {
         private Building myBuilding;
         private DBHelper myDBHelper;
-        private int itemCounter;
+        private int itemCounter = 1;
         private bool isAdmin;
         private User currentUser;
         private DateTime weekStart;
@@ -185,7 +185,7 @@ namespace HouseMateLink
 
                 tbAddGroceries.Text = string.Empty;
                 numericUpDown1.Value = numericUpDown1.Minimum;
-                numericUpDown2.Value = numericUpDown2.Maximum;
+                numericUpDown2.Value = numericUpDown2.Minimum;
 
                 SaveShoppingListToJson();
             }
@@ -212,20 +212,26 @@ namespace HouseMateLink
 
         private void RenumberShoppingList()
         {
+            int newCounter = 1;
+
             for (int i = 0; i < lbShoppingList.Items.Count; i++)
             {
-                string itemText = lbShoppingList.Items[i].ToString();
+                string itemText = lbShoppingList.Items[i].ToString().Trim();
+
+                if (string.IsNullOrEmpty(itemText)) continue;
+
                 int firstDotIndex = itemText.IndexOf('.');
                 if (firstDotIndex != -1)
                 {
-                    itemText = itemText.Substring(firstDotIndex + 2);
+                    itemText = itemText.Substring(firstDotIndex + 2).Trim();
                 }
 
-                lbShoppingList.Items[i] = $"{i + 1}. {itemText}";
+                lbShoppingList.Items[i] = $"{newCounter}. {itemText}";
+                newCounter++;
             }
-
-            itemCounter = lbShoppingList.Items.Count + 1;
+            itemCounter = newCounter;
         }
+
 
         private void SaveShoppingListToJson()
         {
