@@ -22,6 +22,7 @@ namespace HouseMateLink
         public Calendar()
         {
             InitializeComponent();
+            
         }
 
         private void Calendar_FormClosing(object sender, FormClosingEventArgs e)
