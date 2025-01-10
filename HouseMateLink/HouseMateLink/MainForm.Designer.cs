@@ -73,6 +73,11 @@
             btnEditRules = new Button();
             rulesTextBox = new TextBox();
             tabGroceryList = new TabPage();
+            label9 = new Label();
+            label8 = new Label();
+            label7 = new Label();
+            numericUpDown2 = new NumericUpDown();
+            numericUpDown1 = new NumericUpDown();
             btnHomeGrocery = new Button();
             btnClearAllProducts = new Button();
             btnDeleteSelectedProduct = new Button();
@@ -99,6 +104,8 @@
             grbComplaints.SuspendLayout();
             tabHouseRules.SuspendLayout();
             tabGroceryList.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             tabTasks.SuspendLayout();
             grbTasks.SuspendLayout();
             SuspendLayout();
@@ -612,6 +619,11 @@
             // tabGroceryList
             // 
             tabGroceryList.BackColor = Color.DeepSkyBlue;
+            tabGroceryList.Controls.Add(label9);
+            tabGroceryList.Controls.Add(label8);
+            tabGroceryList.Controls.Add(label7);
+            tabGroceryList.Controls.Add(numericUpDown2);
+            tabGroceryList.Controls.Add(numericUpDown1);
             tabGroceryList.Controls.Add(btnHomeGrocery);
             tabGroceryList.Controls.Add(btnClearAllProducts);
             tabGroceryList.Controls.Add(btnDeleteSelectedProduct);
@@ -624,6 +636,59 @@
             tabGroceryList.Size = new Size(1145, 732);
             tabGroceryList.TabIndex = 5;
             tabGroceryList.Text = "Grocery List";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label9.Location = new Point(765, 400);
+            label9.Name = "label9";
+            label9.Size = new Size(149, 28);
+            label9.TabIndex = 13;
+            label9.Text = "Expected price:";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label8.Location = new Point(790, 286);
+            label8.Name = "label8";
+            label8.Size = new Size(95, 28);
+            label8.TabIndex = 12;
+            label8.Text = "Quantity:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label7.Location = new Point(790, 163);
+            label7.Name = "label7";
+            label7.Size = new Size(88, 28);
+            label7.TabIndex = 11;
+            label7.Text = "Product:";
+            // 
+            // numericUpDown2
+            // 
+            numericUpDown2.DecimalPlaces = 2;
+            numericUpDown2.Increment = new decimal(new int[] { 5, 0, 0, 65536 });
+            numericUpDown2.Location = new Point(754, 444);
+            numericUpDown2.Minimum = new decimal(new int[] { 5, 0, 0, 65536 });
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(169, 27);
+            numericUpDown2.TabIndex = 10;
+            numericUpDown2.Tag = "";
+            numericUpDown2.Value = new decimal(new int[] { 5, 0, 0, 65536 });
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(754, 326);
+            numericUpDown1.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            numericUpDown1.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(181, 27);
+            numericUpDown1.TabIndex = 9;
+            numericUpDown1.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // btnHomeGrocery
             // 
@@ -641,10 +706,10 @@
             // 
             btnClearAllProducts.BackColor = Color.Gold;
             btnClearAllProducts.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnClearAllProducts.Location = new Point(579, 665);
+            btnClearAllProducts.Location = new Point(592, 663);
             btnClearAllProducts.Margin = new Padding(2);
             btnClearAllProducts.Name = "btnClearAllProducts";
-            btnClearAllProducts.Size = new Size(211, 39);
+            btnClearAllProducts.Size = new Size(398, 39);
             btnClearAllProducts.TabIndex = 5;
             btnClearAllProducts.Text = "Clear all products";
             btnClearAllProducts.UseVisualStyleBackColor = false;
@@ -654,9 +719,9 @@
             // 
             btnDeleteSelectedProduct.BackColor = Color.Gold;
             btnDeleteSelectedProduct.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnDeleteSelectedProduct.Location = new Point(285, 665);
+            btnDeleteSelectedProduct.Location = new Point(154, 665);
             btnDeleteSelectedProduct.Name = "btnDeleteSelectedProduct";
-            btnDeleteSelectedProduct.Size = new Size(211, 37);
+            btnDeleteSelectedProduct.Size = new Size(342, 37);
             btnDeleteSelectedProduct.TabIndex = 4;
             btnDeleteSelectedProduct.Text = "Delete selected product";
             btnDeleteSelectedProduct.UseVisualStyleBackColor = false;
@@ -668,18 +733,18 @@
             lbShoppingList.Font = new Font("Segoe UI", 12F);
             lbShoppingList.FormattingEnabled = true;
             lbShoppingList.ItemHeight = 28;
-            lbShoppingList.Location = new Point(87, 168);
+            lbShoppingList.Location = new Point(44, 116);
             lbShoppingList.Name = "lbShoppingList";
-            lbShoppingList.Size = new Size(969, 452);
+            lbShoppingList.Size = new Size(549, 452);
             lbShoppingList.TabIndex = 3;
             // 
             // btnAddToTheList
             // 
             btnAddToTheList.BackColor = Color.Gold;
             btnAddToTheList.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnAddToTheList.Location = new Point(673, 97);
+            btnAddToTheList.Location = new Point(673, 528);
             btnAddToTheList.Name = "btnAddToTheList";
-            btnAddToTheList.Size = new Size(172, 40);
+            btnAddToTheList.Size = new Size(336, 40);
             btnAddToTheList.TabIndex = 1;
             btnAddToTheList.Text = "Add";
             btnAddToTheList.UseVisualStyleBackColor = false;
@@ -689,10 +754,11 @@
             // 
             tbAddGroceries.BackColor = Color.White;
             tbAddGroceries.Font = new Font("Segoe UI", 12F);
-            tbAddGroceries.Location = new Point(212, 97);
+            tbAddGroceries.Location = new Point(754, 204);
             tbAddGroceries.Name = "tbAddGroceries";
-            tbAddGroceries.Size = new Size(384, 34);
+            tbAddGroceries.Size = new Size(181, 34);
             tbAddGroceries.TabIndex = 0;
+            tbAddGroceries.TextChanged += tbAddGroceries_TextChanged;
             // 
             // tabTasks
             // 
@@ -805,6 +871,8 @@
             tabHouseRules.PerformLayout();
             tabGroceryList.ResumeLayout(false);
             tabGroceryList.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             tabTasks.ResumeLayout(false);
             grbTasks.ResumeLayout(false);
             grbTasks.PerformLayout();
@@ -871,5 +939,10 @@
         private Button btnNextWeek;
         private Button btnPreviousWeek;
         private Label lblWeekTasks;
+        private NumericUpDown numericUpDown1;
+        private Label label9;
+        private Label label8;
+        private Label label7;
+        private NumericUpDown numericUpDown2;
     }
 }
