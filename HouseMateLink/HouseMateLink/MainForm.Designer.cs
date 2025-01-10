@@ -615,6 +615,7 @@
             rulesTextBox.ScrollBars = ScrollBars.Vertical;
             rulesTextBox.Size = new Size(1064, 566);
             rulesTextBox.TabIndex = 3;
+            rulesTextBox.TabStop = false;
             // 
             // tabGroceryList
             // 
