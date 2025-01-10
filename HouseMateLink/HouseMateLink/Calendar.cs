@@ -153,5 +153,18 @@ namespace HouseMateLink
             }
         }
 
+        private void btnBackToHomePage_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is MainForm)
+                {
+                    form.Show();
+                    break;
+                }
+            }
+        }
     }
 }

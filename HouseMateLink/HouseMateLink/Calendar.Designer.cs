@@ -39,6 +39,7 @@
             lblThursday = new Label();
             lblSaturday = new Label();
             lblDate = new Label();
+            btnBackToHomePage = new Button();
             SuspendLayout();
             // 
             // flpDayHolder
@@ -148,12 +149,23 @@
             lblDate.TabIndex = 11;
             lblDate.Text = "DATE";
             // 
+            // btnBackToHomePage
+            // 
+            btnBackToHomePage.Location = new Point(47, 22);
+            btnBackToHomePage.Name = "btnBackToHomePage";
+            btnBackToHomePage.Size = new Size(100, 32);
+            btnBackToHomePage.TabIndex = 12;
+            btnBackToHomePage.Text = "Home";
+            btnBackToHomePage.UseVisualStyleBackColor = true;
+            btnBackToHomePage.Click += btnBackToHomePage_Click;
+            // 
             // Calendar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DeepSkyBlue;
             ClientSize = new Size(1215, 840);
+            Controls.Add(btnBackToHomePage);
             Controls.Add(btnNext);
             Controls.Add(lblDate);
             Controls.Add(btnPrevious);
@@ -187,5 +199,6 @@
         private Label lblThursday;
         private Label lblSaturday;
         private Label lblDate;
+        private Button btnBackToHomePage;
     }
 }
