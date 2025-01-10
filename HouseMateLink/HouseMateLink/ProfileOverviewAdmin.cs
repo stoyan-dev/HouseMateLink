@@ -14,16 +14,16 @@ namespace HouseMateLink
         private bool isAdmin;
         private string connStr = "Server=mssqlstud.fhict.local;Database=dbi550238;User Id=dbi550238;Password=12345;TrustServerCertificate=True";
 
-        public ProfileOverviewAdmin(bool a, User user)
+        public ProfileOverviewAdmin(Building b, bool a, User user)
         {
             InitializeComponent();
-            building = new Building("", 6);
+            building = b; // Assign the passed Building instance
             cbAddRole.DataSource = Role.GetValues(typeof(Role));
             isAdmin = a;
             myDBHelper = new DBHelper();
             cbRoom.Items.Clear();
             currentUser = user;
-            ManageAvailableRooms(6);
+            ManageAvailableRooms(building.amountOfRooms); // Use the Building property
             UserInfoPanel.AutoScroll = true;
             PopulateUserInfoPanel();
         }
@@ -74,8 +74,6 @@ namespace HouseMateLink
 
             myDBHelper.AddUser(user);
 
-            
-
             MessageBox.Show("New user added successfully!");
 
             tbAddName.Clear();
@@ -86,7 +84,7 @@ namespace HouseMateLink
             selectedPhotoFilePathAdd = null;
 
             PopulateUserInfoPanel();
-            ManageAvailableRooms(6);
+            ManageAvailableRooms(building.amountOfRooms); 
         }
 
         private void PopulateUserInfoPanel()
@@ -166,7 +164,7 @@ namespace HouseMateLink
         {
             UserInfoPanel.Controls.Remove(userInfoControl);
             myDBHelper.RemoveUserFromDB(user);
-            ManageAvailableRooms(6);
+            ManageAvailableRooms(building.amountOfRooms);
         }
 
         private void btnBack_Click(object sender, EventArgs e)

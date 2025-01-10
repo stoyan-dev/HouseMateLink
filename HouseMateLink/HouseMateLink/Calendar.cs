@@ -164,12 +164,14 @@ namespace HouseMateLink
 
             foreach (Form form in Application.OpenForms)
             {
-                if (form is MainForm)
+                if (form is MainForm mainForm)
                 {
-                    form.Show();
+                    mainForm.Show();
                     break;
                 }
             }
+
+            this.Close();
         }
     }
 }

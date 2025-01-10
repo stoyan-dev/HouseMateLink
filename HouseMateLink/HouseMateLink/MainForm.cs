@@ -88,7 +88,7 @@ namespace HouseMateLink
         private void btnCalendar_Click(object sender, EventArgs e)
         {
             Calendar calendarForm = new Calendar();
-            calendarForm.FormClosed += (s, args) => this.Show(); 
+            calendarForm.FormClosed += (s, args) => this.Show();
             calendarForm.Show();
             this.Hide();
         }
@@ -110,18 +110,30 @@ namespace HouseMateLink
 
         private void btnProfileOverview_Click(object sender, EventArgs e)
         {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is ProfileOverviewAdmin || form is ProfileOverviewTenant)
+                {
+                    form.Close();
+                    break;
+                }
+            }
+
+            // Initialize and open the appropriate profile overview form
             if (isAdmin)
             {
-                ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin(isAdmin, currentUser);
+                ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin(myBuilding, isAdmin, currentUser);
+                profileOverviewAdmin.FormClosed += (s, args) => this.Show(); // Show MainForm when closed
                 profileOverviewAdmin.Show();
-                this.Hide();
             }
             else
             {
-                ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant(myBuilding, this.isAdmin, currentUser);
+                ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant(myBuilding, isAdmin, currentUser);
+                profileOverviewTenant.FormClosed += (s, args) => this.Show(); // Show MainForm when closed
                 profileOverviewTenant.Show();
-                this.Hide();
             }
+
+            this.Hide();
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)

@@ -129,10 +129,18 @@ namespace HouseMateLink
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MainForm form = new MainForm(isAdmin, this.currentUser, myBuilding);
-            form.Show();
-            this.Hide();
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is MainForm mainForm)
+                {
+                    mainForm.Show();
+                    break;
+                }
+            }
+
+            this.Close(); 
         }
+
 
         private void UserInfoSummaryPanel_Paint(object sender, PaintEventArgs e)
         {
