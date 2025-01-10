@@ -21,7 +21,7 @@ namespace HouseMateLink
 
         private void ProfileOverviewTenant_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
 
         //private List<User> LoadUsersFromJson()

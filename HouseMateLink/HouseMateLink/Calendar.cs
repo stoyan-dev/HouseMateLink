@@ -27,7 +27,7 @@ namespace HouseMateLink
 
         private void Calendar_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
 
 

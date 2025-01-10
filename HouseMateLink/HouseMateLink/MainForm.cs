@@ -37,7 +37,7 @@ namespace HouseMateLink
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
 
         private void InitializeDBHelper()

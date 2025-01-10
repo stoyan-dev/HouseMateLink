@@ -30,7 +30,7 @@ namespace HouseMateLink
 
         private void ProfileOverviewAdmin_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
 
         private void btnSelectPhoto_Click(object sender, EventArgs e)

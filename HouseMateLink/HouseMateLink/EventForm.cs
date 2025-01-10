@@ -20,7 +20,7 @@ namespace Copy
 
         private void EventForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
 
         private void EventForm_Load(object sender, EventArgs e)

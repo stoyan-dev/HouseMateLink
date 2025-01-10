@@ -1,3 +1,4 @@
+using System;
 using System.Text.Json;
 
 namespace HouseMateLink
@@ -21,7 +22,7 @@ namespace HouseMateLink
 
         private void logIn_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
 
         private void label1_Click(object sender, EventArgs e)
