@@ -14,21 +14,26 @@ namespace HouseMateLink
     public partial class UserControlDays : UserControl
     {
         public static string static_day;
-        private string connString = "Server=mssqlstud.fhict.local;Database=dbi545643_dbcalendar;User Id=dbi545643_dbcalendar;Password=12345;TrustServerCertificate=True;";
+        private DBHelper dbHelper;
+        //private string connString = "Server=mssqlstud.fhict.local;Database=dbi545643_dbcalendar;User Id=dbi545643_dbcalendar;Password=12345;TrustServerCertificate=True;";
 
         public UserControlDays()
         {
             InitializeComponent();
+            dbHelper = new DBHelper();
         }
 
         private void UserControlDays_Load(object sender, EventArgs e)
         {
+        
         }
 
         public void days(int numDay)
         {
             lblDays.Text = numDay.ToString("D2");
-            displayEvent();
+            int days=int.Parse(lblDays.Text);
+            lblEvent.Text=dbHelper.GetEvent(days);
+            //displayEvent();
         }
 
         private void UserControlDays_Click(object sender, EventArgs e)
@@ -45,70 +50,72 @@ namespace HouseMateLink
         private string GetEventDescriptionForDay()
         {
             string description = "";
+            int days=int.Parse(lblDays.Text);
+            return dbHelper.GetEventDescription(description, days);
 
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connString))
-                {
-                    conn.Open();
+            //try
+            //{
+            //    using (SqlConnection conn = new SqlConnection(connString))
+            //    {
+            //        conn.Open();
 
-                    string sql = "SELECT TOP 1 Description FROM Events WHERE EventDate = @date";
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@date",
-                            new DateTime(Calendar.static_year, Calendar.static_month, int.Parse(lblDays.Text)));
+            //        string sql = "SELECT TOP 1 Description FROM Events WHERE EventDate = @date";
+            //        using (SqlCommand cmd = new SqlCommand(sql, conn))
+            //        {
+            //            cmd.Parameters.AddWithValue("@date",
+            //                new DateTime(Calendar.static_year, Calendar.static_month, int.Parse(lblDays.Text)));
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                description = reader["Description"].ToString();
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error fetching event description: {ex.Message}");
-            }
+            //            using (SqlDataReader reader = cmd.ExecuteReader())
+            //            {
+            //                if (reader.Read())
+            //                {
+            //                    description = reader["Description"].ToString();
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Error fetching event description: {ex.Message}");
+            //}
 
-            return description;
+            //return description;
         }
 
 
 
-        private void displayEvent()
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connString))
-                {
-                    conn.Open();
+        //private void displayEvent()
+        //{
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(connString))
+        //        {
+        //            conn.Open();
 
-                    string sql = "SELECT EventText FROM Events WHERE EventDate = @date";
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@date",
-                            new DateTime(Calendar.static_year, Calendar.static_month, int.Parse(lblDays.Text)));
+        //            string sql = "SELECT EventText FROM Events WHERE EventDate = @date";
+        //            using (SqlCommand cmd = new SqlCommand(sql, conn))
+        //            {
+        //                cmd.Parameters.AddWithValue("@date",
+        //                    new DateTime(Calendar.static_year, Calendar.static_month, int.Parse(lblDays.Text)));
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            lblEvent.Text = "";
+        //                using (SqlDataReader reader = cmd.ExecuteReader())
+        //                {
+        //                    lblEvent.Text = "";
 
-                            while (reader.Read())
-                            {
-                                lblEvent.Text += $"{reader["EventText"]}\n";
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading events: {ex.Message}");
-            }
-        }
+        //                    while (reader.Read())
+        //                    {
+        //                        lblEvent.Text += $"{reader["EventText"]}\n";
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"Error loading events: {ex.Message}");
+        //    }
+        //}
 
 
     }
