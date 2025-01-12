@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Copy;
+using HouseMateLink.Data;
 using Microsoft.Data.SqlClient;
 
 namespace HouseMateLink

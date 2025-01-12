@@ -2,7 +2,7 @@
 using Microsoft.Data.SqlClient;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace HouseMateLink
+namespace HouseMateLink.Data
 {
     public class DBHelper
     {
@@ -52,12 +52,12 @@ namespace HouseMateLink
 
                 while (dr.Read())
                 {
-                    
+
                     string? photoBase64 = null;
                     if (dr["Photo"] != DBNull.Value)
                     {
                         byte[] photoBytes = (byte[])dr["Photo"];
-                        photoBase64 = Convert.ToBase64String(photoBytes); 
+                        photoBase64 = Convert.ToBase64String(photoBytes);
                     }
 
                     users.Add(new User(
@@ -66,7 +66,7 @@ namespace HouseMateLink
                         dr["Name"].ToString(),
                         Enum.Parse<Role>(dr["Role"].ToString()),
                         Convert.ToInt32(dr["RoomNumber"]),
-                        photoBase64 
+                        photoBase64
                     ));
                 }
 
@@ -182,7 +182,7 @@ namespace HouseMateLink
                         {
                             while (reader.Read())
                             {
-                                unarchivedComplaints.Add(new Complaint((int)reader["ComplaintID"] ,reader["Description"].ToString(), reader.GetDateTime(reader.GetOrdinal("CreatedAt"))));
+                                unarchivedComplaints.Add(new Complaint((int)reader["ComplaintID"], reader["Description"].ToString(), reader.GetDateTime(reader.GetOrdinal("CreatedAt"))));
 
                             }
                         }
@@ -397,7 +397,7 @@ namespace HouseMateLink
                        WHERE AnnouncementID=@Id
                        """;
                 using SqlCommand command = new SqlCommand(sql, connection);
-                command.Parameters.Add("@IsArchived", SqlDbType.Bit).Value = true;  
+                command.Parameters.Add("@IsArchived", SqlDbType.Bit).Value = true;
                 command.Parameters.Add("@Id", SqlDbType.Int).Value = id;
 
                 connection.Open();
@@ -566,7 +566,7 @@ namespace HouseMateLink
                     {
                         cmd.Parameters.AddWithValue("@date",
                             new DateTime(Calendar.static_year, Calendar.static_month, days));
-                        cmd.Parameters.AddWithValue("@IsArchived",0);
+                        cmd.Parameters.AddWithValue("@IsArchived", 0);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {

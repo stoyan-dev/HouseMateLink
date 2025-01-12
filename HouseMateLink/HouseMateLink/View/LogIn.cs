@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json;
+using HouseMateLink.Data;
 
 namespace HouseMateLink
 {
@@ -11,7 +12,7 @@ namespace HouseMateLink
 
         private void logIn_Form_Closing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
 
         public logIn()

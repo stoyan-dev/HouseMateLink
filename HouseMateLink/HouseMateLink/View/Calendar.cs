@@ -15,14 +15,18 @@ namespace HouseMateLink
     public partial class Calendar : Form
     {
         private int month, year;
-
+        private bool isAdmin;
+        private User currentUser;
+        private Building building;
 
         public static int static_month, static_year;
 
-        public Calendar()
+        public Calendar(bool a, User user, Building b)
         {
             InitializeComponent();
-            
+            isAdmin = a;
+            currentUser = user;
+            building = b;
         }
 
         private void Calendar_FormClosing(object sender, FormClosingEventArgs e)
@@ -161,15 +165,19 @@ namespace HouseMateLink
 
         private void btnBackToHomePage_Click(object sender, EventArgs e)
         {
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form is MainForm mainForm)
-                {
-                    mainForm.Show(); // Show the existing MainForm
-                    this.Close();    // Close the Calendar form
-                    return;
-                }
-            }
+            //foreach (Form form in Application.OpenForms)
+            //{
+            //    if (form is MainForm mainForm)
+            //    {
+            //        mainForm.Show(); // Show the existing MainForm
+            //        this.Close();    // Close the Calendar form
+            //        return;
+            //    }
+            //}
+
+            MainForm mainForm = new MainForm(isAdmin,currentUser, building);
+            mainForm.Show();
+            this.Hide();
         }
     }
 }

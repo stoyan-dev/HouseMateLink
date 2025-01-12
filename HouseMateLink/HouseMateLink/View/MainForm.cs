@@ -1,6 +1,8 @@
-﻿using System.Diagnostics.Eventing.Reader;
+﻿using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Text.Json;
 using System.Windows.Forms;
+using HouseMateLink.Data;
 
 namespace HouseMateLink
 {
@@ -59,7 +61,6 @@ namespace HouseMateLink
             btnEditRules.Visible = isAdmin;
             rulesTextBox.ReadOnly = true;
 
-            //to hide the tab control headers
             tabHome.Appearance = TabAppearance.FlatButtons;
             tabHome.ItemSize = new Size(0, 1);
             tabHome.SizeMode = TabSizeMode.Fixed;
@@ -87,19 +88,14 @@ namespace HouseMateLink
 
         private void btnCalendar_Click(object sender, EventArgs e)
         {
-            Calendar calendarForm = Application.OpenForms.OfType<Calendar>().FirstOrDefault();
-            if (calendarForm == null)
-            {
-                calendarForm = new Calendar();
-                calendarForm.FormClosed += (s, args) => this.Show(); // Show MainForm when Calendar is closed
-                calendarForm.Show();
-            }
-            else
-            {
-                calendarForm.BringToFront(); // Bring the existing Calendar form to the front
-            }
+            //Calendar calendarForm = new Calendar();
+            //calendarForm.FormClosed += (s, args) => this.Show();
+            //calendarForm.Show();
+            //this.Hide();
 
-            this.Hide(); // Hide MainForm while Calendar is open
+            Calendar calendarForm= new Calendar(isAdmin, currentUser, myBuilding);
+            calendarForm.Show();
+            this.Hide();
         }
 
         private void btnAnnouncements_Click(object sender, EventArgs e)
@@ -119,27 +115,25 @@ namespace HouseMateLink
 
         private void btnProfileOverview_Click(object sender, EventArgs e)
         {
-            ProfileOverviewAdmin profileForm = Application.OpenForms.OfType<ProfileOverviewAdmin>().FirstOrDefault();
-            if (profileForm == null)
+            if(isAdmin)
             {
-                profileForm = new ProfileOverviewAdmin(myBuilding, isAdmin, currentUser);
-                profileForm.FormClosed += (s, args) => this.Show(); // Show MainForm when ProfileOverviewAdmin is closed
-                profileForm.Show();
+                ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin(myBuilding, isAdmin, currentUser);
+                profileOverviewAdmin.Show();
+                this.Hide();
             }
             else
             {
-                profileForm.BringToFront(); // Bring the existing ProfileOverviewAdmin form to the front
+                ProfileOverviewTenant profileOverviewTenant = new ProfileOverviewTenant(myBuilding, isAdmin, currentUser);
+                profileOverviewTenant.Show();
+                this.Hide();
             }
-
-            this.Hide(); // Hide MainForm while ProfileOverviewAdmin is open
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             logIn logInForm = new logIn();
+            logInForm.Show();
             this.Hide();
-            logInForm.ShowDialog();
-            this.Close();
         }
 
         private void LoadHouseRules()

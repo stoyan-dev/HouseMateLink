@@ -3,6 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using HouseMateLink;
+using HouseMateLink.Data;
 using Microsoft.Data.SqlClient;
 
 namespace Copy

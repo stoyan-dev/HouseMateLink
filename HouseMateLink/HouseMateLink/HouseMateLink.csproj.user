@@ -1,40 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="AnnouncementMessageControl.cs">
+    <Compile Update="User Control\AnnouncementMessageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Calendar.cs">
+    <Compile Update="View\Calendar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ComplaintMessageControl.cs">
+    <Compile Update="User Control\ComplaintMessageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="EventForm.cs">
+    <Compile Update="View\EventForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="LogIn.cs">
+    <Compile Update="View\LogIn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="MainForm.cs">
+    <Compile Update="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ProfileOverviewAdmin.cs">
+    <Compile Update="View\ProfileOverviewAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ProfileOverviewTenant.cs">
+    <Compile Update="View\ProfileOverviewTenant.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UserControlBlank.cs">
+    <Compile Update="User Control\UserControlBlank.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="UserControlDays.cs">
+    <Compile Update="User Control\UserControlDays.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="UserInfoControl.cs">
+    <Compile Update="User Control\UserInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="UserInfoSummaryControl.cs">
+    <Compile Update="User Control\UserInfoSummaryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>

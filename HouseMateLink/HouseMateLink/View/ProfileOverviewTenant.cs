@@ -1,4 +1,6 @@
 ﻿using System.Text.Json;
+using System.Windows.Forms;
+using HouseMateLink.Data;
 
 namespace HouseMateLink
 {
@@ -129,16 +131,20 @@ namespace HouseMateLink
 
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form is MainForm mainForm)
-                {
-                    mainForm.Show();
-                    break;
-                }
-            }
+            //foreach (Form form in Application.OpenForms)
+            //{
+            //    if (form is MainForm mainForm)
+            //    {
+            //        mainForm.Show();
+            //        break;
+            //    }
+            //}
 
-            this.Close(); 
+            //this.Close(); 
+
+            MainForm from = new MainForm(isAdmin, currentUser, myBuilding);
+            from.Show();
+            this.Hide();
         }
 
 

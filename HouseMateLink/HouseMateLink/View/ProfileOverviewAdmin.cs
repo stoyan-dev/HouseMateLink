@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using HouseMateLink.Data;
 using Microsoft.Data.SqlClient;
 using Microsoft.VisualBasic;
 
@@ -28,10 +29,10 @@ namespace HouseMateLink
             PopulateUserInfoPanel();
         }
 
-        //private void ProfileOverviewAdmin_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-        //    Environment.Exit(0);
-        //}
+        private void ProfileOverviewAdmin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
+        }
 
         private void btnSelectPhoto_Click(object sender, EventArgs e)
         {
@@ -169,15 +170,9 @@ namespace HouseMateLink
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form is MainForm mainForm)
-                {
-                    mainForm.Show(); // Show the existing MainForm instance
-                    this.Close();    // Close the ProfileOverviewAdmin form
-                    return;
-                }
-            }
+            MainForm from = new MainForm(isAdmin, currentUser, building);
+            from.Show();
+            this.Hide();
         }
 
         private void cbAddRole_SelectedIndexChanged(object sender, EventArgs e)
