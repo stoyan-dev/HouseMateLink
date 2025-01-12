@@ -29,7 +29,7 @@ namespace HouseMateLink
             PopulateUserInfoPanel();
         }
 
-        private void ProfileOverviewAdmin_FormClosing(object sender, FormClosingEventArgs e)
+        protected override void OnFormClosing(FormClosingEventArgs e)
         {
             Environment.Exit(0);
         }

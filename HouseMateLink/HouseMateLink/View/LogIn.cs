@@ -21,7 +21,7 @@ namespace HouseMateLink
             Initialization();
         }
 
-        private void logIn_FormClosing(object sender, FormClosingEventArgs e)
+        protected override void OnFormClosing(FormClosingEventArgs e)
         {
             Environment.Exit(0);
         }

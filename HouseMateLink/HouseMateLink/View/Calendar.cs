@@ -29,11 +29,10 @@ namespace HouseMateLink
             building = b;
         }
 
-        private void Calendar_FormClosing(object sender, FormClosingEventArgs e)
+        protected override void OnFormClosing(FormClosingEventArgs e)
         {
             Environment.Exit(0);
         }
-
 
         private void Calendar_Load(object sender, EventArgs e)
         {
