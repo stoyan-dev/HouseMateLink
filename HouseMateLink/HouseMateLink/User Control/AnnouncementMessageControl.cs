@@ -32,7 +32,7 @@ namespace HouseMateLink
             lblAnnouncementText = new Label
             {
                 Text = announcementText,
-                Size = new Size(600, 50),
+                Size = new Size(550, 70),
                 Location = new Point(10, 10),
                 Font = new Font("Arial", 10, FontStyle.Regular),
                 ForeColor = Color.Black

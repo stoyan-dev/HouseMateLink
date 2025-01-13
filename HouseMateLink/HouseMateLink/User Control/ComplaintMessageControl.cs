@@ -41,7 +41,7 @@ namespace HouseMateLink
             lblComplaintText = new Label
             {
                 Text = complaintText,
-                Size = new Size(600, 50),
+                Size = new Size(550, 70),
                 Location = new Point(10, 10),
                 Font = new Font("Arial", 10, FontStyle.Regular),
                 ForeColor = Color.Black
