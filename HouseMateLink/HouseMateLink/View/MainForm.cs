@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.Diagnostics.Eventing.Reader;
-using System.Text.Json;
-using System.Windows.Forms;
+﻿using System.Text.Json;
 using HouseMateLink.Data;
 
 namespace HouseMateLink
@@ -93,7 +90,7 @@ namespace HouseMateLink
             //calendarForm.Show();
             //this.Hide();
 
-            Calendar calendarForm= new Calendar(isAdmin, currentUser, myBuilding);
+            Calendar calendarForm = new Calendar(isAdmin, currentUser, myBuilding);
             calendarForm.Show();
             this.Hide();
         }
@@ -115,7 +112,7 @@ namespace HouseMateLink
 
         private void btnProfileOverview_Click(object sender, EventArgs e)
         {
-            if(isAdmin)
+            if (isAdmin)
             {
                 ProfileOverviewAdmin profileOverviewAdmin = new ProfileOverviewAdmin(myBuilding, isAdmin, currentUser);
                 profileOverviewAdmin.Show();
@@ -469,14 +466,14 @@ namespace HouseMateLink
                         a.AnnouncementID
                     );
 
-                    newAnnouncement.Size = new Size(columnWidth, 125);
+                    newAnnouncement.Size = new Size(columnWidth, 175);
 
-                    if (i % 2 == 0) // Left column
+                    if (i % 2 == 0)
                     {
                         newAnnouncement.Location = new Point(10, yPositionLeft);
                         yPositionLeft += newAnnouncement.Height + 10;
                     }
-                    else // Right column
+                    else
                     {
                         newAnnouncement.Location = new Point(columnWidth + 20, yPositionRight);
                         yPositionRight += newAnnouncement.Height + 10;
@@ -528,7 +525,7 @@ namespace HouseMateLink
                         c.ComplaintID
                     );
 
-                    newComplaint.Size = new Size(columnWidth, 110);
+                    newComplaint.Size = new Size(columnWidth, 150);
 
                     if (i % 2 == 0)
                     {
@@ -548,6 +545,7 @@ namespace HouseMateLink
                     panelComplaint.Width,
                     Math.Max(yPositionLeft, yPositionRight)
                 );
+
 
                 if (panelComplaint.Controls.Count > 0)
                 {

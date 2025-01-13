@@ -27,11 +27,12 @@ namespace HouseMateLink
         {
             this.BackColor = Color.Gold;
             this.Padding = new Padding(10);
+            this.Size = new Size(640, 500);
 
             lblAnnouncementText = new Label
             {
                 Text = announcementText,
-                AutoSize = true,
+                Size = new Size(600, 50),
                 Location = new Point(10, 10),
                 Font = new Font("Arial", 10, FontStyle.Regular),
                 ForeColor = Color.Black
@@ -41,7 +42,7 @@ namespace HouseMateLink
             {
                 Text = $"Created at: {createdAt.ToShortDateString()}",
                 AutoSize = true,
-                Location = new Point(10, 40),
+                Location = new Point(10, lblAnnouncementText.Bottom + 10),
                 Font = new Font("Arial", 8, FontStyle.Italic),
                 ForeColor = Color.Gray
             };
@@ -50,7 +51,7 @@ namespace HouseMateLink
             {
                 Text = $"Created by: {username}",
                 AutoSize = true,
-                Location = new Point(10, 60),
+                Location = new Point(10, lblAnnouncementDate.Bottom+10),
                 Font = new Font("Arial", 8, FontStyle.Italic),
                 ForeColor = Color.Gray
             };
@@ -58,7 +59,7 @@ namespace HouseMateLink
             btnArchive = new Button
             {
                 Text = "Archive",
-                Location = new Point(10, 80),
+                Location = new Point(10, lblUserName.Bottom+10),
                 Size = new Size(130, 35),
                 Font = new Font("Arial", 12, FontStyle.Italic),
                 BackColor = Color.GhostWhite
