@@ -207,6 +207,7 @@ namespace HouseMateLink
             if (lbShoppingList.SelectedIndex != -1)
             {
                 lbShoppingList.Items.RemoveAt(lbShoppingList.SelectedIndex);
+                lbShoppingList.Items.RemoveAt(lbShoppingList.SelectedIndex+1);
 
                 RenumberShoppingList();
                 SaveShoppingListToJson();
