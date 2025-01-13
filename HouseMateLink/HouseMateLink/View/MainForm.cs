@@ -467,7 +467,14 @@ namespace HouseMateLink
                         a.AnnouncementID
                     );
 
-                    newAnnouncement.Size = new Size(columnWidth, 175);
+                    if(isAdmin)
+                    {
+                        newAnnouncement.Size = new Size(columnWidth, 175);
+                    }
+                    else
+                    {
+                        newAnnouncement.Size = new Size(columnWidth, 125);
+                    }
 
                     if (i % 2 == 0)
                     {
@@ -526,7 +533,14 @@ namespace HouseMateLink
                         c.ComplaintID
                     );
 
-                    newComplaint.Size = new Size(columnWidth, 150);
+                    if (isAdmin)
+                    {
+                        newComplaint.Size = new Size(columnWidth, 150);
+                    }
+                    else 
+                    {
+                        newComplaint.Size = new Size(columnWidth, 110);
+                    }
 
                     if (i % 2 == 0)
                     {
@@ -538,7 +552,6 @@ namespace HouseMateLink
                         newComplaint.Location = new Point(columnWidth + 20, yPositionRight);
                         yPositionRight += newComplaint.Height + 10;
                     }
-
                     panelComplaint.Controls.Add(newComplaint);
                 }
 

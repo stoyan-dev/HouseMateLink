@@ -59,7 +59,7 @@ namespace HouseMateLink
             btnArchive = new Button
             {
                 Text = "Archive",
-                Location = new Point(10, lblUserName.Bottom+10),
+                Location = new Point(10, lblUserName.Bottom + 10),
                 Size = new Size(130, 35),
                 Font = new Font("Arial", 12, FontStyle.Italic),
                 BackColor = Color.GhostWhite
@@ -75,7 +75,6 @@ namespace HouseMateLink
                 btnArchive.Click += BtnArchive_Click;
                 Debug.WriteLine("Admin is true: Archive button shown and event bound.");
             }
-
 
             this.Controls.Add(lblAnnouncementText);
             this.Controls.Add(lblAnnouncementDate);
