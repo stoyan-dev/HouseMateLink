@@ -186,8 +186,6 @@ namespace HouseMateLink
             if (!string.IsNullOrEmpty(groceryItem))
             {
                 lbShoppingList.Items.Add($"{itemCounter}. {groceryItem} | Quantity: {quantity} | Price: {price}€");
-                lbShoppingList.Items.Add("");
-
                 itemCounter++;
 
                 tbAddGroceries.Text = string.Empty;
@@ -207,7 +205,6 @@ namespace HouseMateLink
             if (lbShoppingList.SelectedIndex != -1)
             {
                 lbShoppingList.Items.RemoveAt(lbShoppingList.SelectedIndex);
-                lbShoppingList.Items.RemoveAt(lbShoppingList.SelectedIndex+1);
 
                 RenumberShoppingList();
                 SaveShoppingListToJson();
