@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using HouseMateLink;
 using HouseMateLink.Data;
 using Microsoft.Data.SqlClient;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Copy
 {
@@ -19,10 +20,6 @@ namespace Copy
             dbHelper = new DBHelper();
         }
 
-        private void EventForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Environment.Exit(0);
-        }
 
         private void EventForm_Load(object sender, EventArgs e)
         {
@@ -41,47 +38,27 @@ namespace Copy
                 return;
             }
 
-
             if (string.IsNullOrWhiteSpace(description))
             {
                 MessageBox.Show("Description can't be empty");
                 return;
             }
 
-            dbHelper.SaveEvent(eventDate,eventText, description);
+            dbHelper.SaveEvent(eventDate, eventText, description);
+
+            foreach (Form form in System.Windows.Forms.Application.OpenForms)
+            {
+                if (form is Calendar calendarForm)
+                {
+                    calendarForm.RefreshCalendar();
+                    break;
+                }
+            }
 
             this.Close();
-            //try
-            //{
-            //    if (!DateTime.TryParseExact(eventDate, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
-            //    {
-            //        MessageBox.Show("Invalid date format");
-            //        return;
-            //    }
-
-            //    using (SqlConnection conn = new SqlConnection(connString))
-            //    {
-            //        conn.Open();
-            //        string sql = "INSERT INTO Events (EventDate, EventText, Description) VALUES (@EventDate, @EventText, @Description)";
-            //        using (SqlCommand cmd = new SqlCommand(sql, conn))
-            //        {
-            //            cmd.Parameters.AddWithValue("@EventDate", parsedDate.ToString("yyyy-MM-dd")); 
-            //            cmd.Parameters.AddWithValue("@EventText", eventText);
-            //            cmd.Parameters.AddWithValue("@Description", description);
-
-            //            cmd.ExecuteNonQuery();
-            //        }
-            //    }
-
-            //    MessageBox.Show("Event saved!");
-            //    this.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Error saving the event: {ex.Message}");
-            //}
         }
 
+        
 
         public void LoadEventDescription(string description)
         {
@@ -124,55 +101,17 @@ namespace Copy
             string eventDate = tbDate.Text;
             dbHelper.ArchiveEvent(eventDate);
             tbDescription.Text = "";
+
+            foreach (Form form in System.Windows.Forms.Application.OpenForms)
+            {
+                if (form is Calendar calendarForm)
+                {
+                    calendarForm.RefreshCalendar();
+                    break;
+                }
+            }
+
             this.Close();
-
-            //try
-            //{
-            //    if (!DateTime.TryParseExact(eventDate, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
-            //    {
-            //        MessageBox.Show("Invalid date format");
-            //        return;
-            //    }
-
-            //    using (SqlConnection conn = new SqlConnection(connString))
-            //    {
-            //        conn.Open();
-
-            //        string checkSql = "SELECT COUNT(*) FROM Events WHERE EventDate = @EventDate";
-            //        using (SqlCommand checkCmd = new SqlCommand(checkSql, conn))
-            //        {
-            //            checkCmd.Parameters.AddWithValue("@EventDate", parsedDate.ToString("yyyy-MM-dd"));
-
-            //            int eventCount = (int)checkCmd.ExecuteScalar();
-            //            if (eventCount == 0)
-            //            {
-            //                MessageBox.Show("No event found for the selected date.");
-            //                return;
-            //            }
-            //        }
-
-            //        DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this event?",
-            //                                                    "Delete Event", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            //        if (dialogResult == DialogResult.Yes)
-            //        {
-            //            string deleteSql = "DELETE FROM Events WHERE EventDate = @EventDate";
-            //            using (SqlCommand deleteCmd = new SqlCommand(deleteSql, conn))
-            //            {
-            //                deleteCmd.Parameters.AddWithValue("@EventDate", parsedDate.ToString("yyyy-MM-dd"));
-            //                deleteCmd.ExecuteNonQuery();
-            //            }
-
-            //            MessageBox.Show("Event deleted successfully!");
-
-            //            tbDescription.Text = "";
-            //            this.Close();
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Error deleting the event: {ex.Message}");
-            //}
         }
 
     }

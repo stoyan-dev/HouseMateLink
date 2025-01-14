@@ -164,19 +164,31 @@ namespace HouseMateLink
 
         private void btnBackToHomePage_Click(object sender, EventArgs e)
         {
-            //foreach (Form form in Application.OpenForms)
-            //{
-            //    if (form is MainForm mainForm)
-            //    {
-            //        mainForm.Show(); // Show the existing MainForm
-            //        this.Close();    // Close the Calendar form
-            //        return;
-            //    }
-            //}
-
             MainForm mainForm = new MainForm(isAdmin,currentUser, building);
             mainForm.Show();
             this.Hide();
+        }
+
+        public void RefreshCalendar()
+        {
+            flpDayHolder.Controls.Clear();
+
+            DateTime startOfTheMonth = new DateTime(year, month, 1);
+            int days = DateTime.DaysInMonth(year, month);
+            int daysOfTheWeek = Convert.ToInt32(startOfTheMonth.DayOfWeek.ToString("d")) + 1;
+
+            for (int i = 1; i < daysOfTheWeek; i++)
+            {
+                userControlBlank ucblank = new userControlBlank();
+                flpDayHolder.Controls.Add(ucblank);
+            }
+
+            for (int i = 1; i <= days; i++)
+            {
+                UserControlDays ucdays = new UserControlDays();
+                ucdays.days(i);
+                flpDayHolder.Controls.Add(ucdays);
+            }
         }
     }
 }
