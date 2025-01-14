@@ -183,6 +183,8 @@ namespace HouseMateLink
             int quantity = (int)numericUpDown1.Value;
             double price = (double)numericUpDown2.Value;
 
+            LoadShoppingListFromJson();
+
             if (!string.IsNullOrEmpty(groceryItem))
             {
                 lbShoppingList.Items.Add($"{itemCounter}. {groceryItem} | Quantity: {quantity} | Price: {price}€");
@@ -269,11 +271,21 @@ namespace HouseMateLink
                     string[] shoppingList = JsonSerializer.Deserialize<string[]>(jsonString);
 
                     lbShoppingList.Items.Clear();
+                    int maxItemCounter = 0;
 
                     foreach (var item in shoppingList)
                     {
                         lbShoppingList.Items.Add(item);
+                        string[] parts = item.Split('.');
+                        if (parts.Length > 0 && int.TryParse(parts[0].Trim(), out int itemNumber))
+                        {
+                            if (itemNumber > maxItemCounter)
+                            {
+                                maxItemCounter = itemNumber;
+                            }
+                        }
                     }
+                    itemCounter = maxItemCounter + 1;
                 }
                 else
                 {
