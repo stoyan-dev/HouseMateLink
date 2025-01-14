@@ -43,7 +43,7 @@ namespace HouseMateLink
 
             string eventDescription = GetEventDescriptionForDay();
 
-            EventForm eventForm = new EventForm();
+            EventForm eventForm = new EventForm(this);
             eventForm.LoadEventDescription(eventDescription);
             eventForm.Show();
         }

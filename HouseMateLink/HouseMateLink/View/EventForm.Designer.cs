@@ -88,6 +88,7 @@
             tbDescription.Name = "tbDescription";
             tbDescription.Size = new Size(306, 79);
             tbDescription.TabIndex = 5;
+            tbDescription.TabStop = false;
             // 
             // lblDescription
             // 

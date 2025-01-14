@@ -68,6 +68,6 @@
         #endregion
 
         private Label lblDays;
-        private Label lblEvent;
+        public Label lblEvent;
     }
 }

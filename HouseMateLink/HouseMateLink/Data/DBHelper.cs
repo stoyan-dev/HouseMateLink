@@ -520,16 +520,10 @@ namespace HouseMateLink.Data
             }
         }
 
-        public void SaveEvent(string eventDate, string eventText, string description)
+        public void SaveEvent(DateTime parsedDate, string eventText, string description)
         {
             try
             {
-                if (!DateTime.TryParseExact(eventDate, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
-                {
-                    MessageBox.Show("Invalid date format");
-                    return;
-                }
-
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
                     conn.Open();
@@ -544,7 +538,6 @@ namespace HouseMateLink.Data
                         cmd.ExecuteNonQuery();
                     }
                 }
-
                 MessageBox.Show("Event saved!");
             }
             catch (Exception ex)

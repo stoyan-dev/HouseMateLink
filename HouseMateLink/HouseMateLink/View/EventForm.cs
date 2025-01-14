@@ -12,16 +12,13 @@ namespace Copy
     {
        // private string connString = "Server=mssqlstud.fhict.local;Database=dbi545643_dbcalendar;User Id=dbi545643_dbcalendar;Password=12345;TrustServerCertificate=True;";
         private DBHelper dbHelper;
+        private UserControlDays userControlDays;
 
-        public EventForm()
+        public EventForm(UserControlDays ucd)
         {
             InitializeComponent();
             dbHelper = new DBHelper();
-        }
-
-        private void EventForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Environment.Exit(0);
+            userControlDays = ucd;
         }
 
         private void EventForm_Load(object sender, EventArgs e)
@@ -48,9 +45,17 @@ namespace Copy
                 return;
             }
 
-            dbHelper.SaveEvent(eventDate,eventText, description);
+            if (!DateTime.TryParseExact(eventDate, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
+            {
+                MessageBox.Show("Invalid date format");
+                return;
+            }
 
-            this.Close();
+            dbHelper.SaveEvent(parsedDate,eventText, description);
+            int day = parsedDate.Day;
+            userControlDays.lblEvent.Text = dbHelper.GetEvent(day);
+            this.Hide();
+
             //try
             //{
             //    if (!DateTime.TryParseExact(eventDate, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
@@ -123,8 +128,9 @@ namespace Copy
         {
             string eventDate = tbDate.Text;
             dbHelper.ArchiveEvent(eventDate);
-            tbDescription.Text = "";
-            this.Close();
+            tbDescription.Text = null;
+            userControlDays.lblEvent.Text = null;
+            this.Hide();
 
             //try
             //{
