@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using HouseMateLink;
 using HouseMateLink.Data;
 using Microsoft.Data.SqlClient;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Copy
 {
@@ -18,8 +19,13 @@ namespace Copy
         {
             InitializeComponent();
             dbHelper = new DBHelper();
+<<<<<<< HEAD
             userControlDays = ucd;
         }
+=======
+        }
+
+>>>>>>> 3e9f62d0c5a5daa96f7c2ea342e0996fd541e8b2
 
         private void EventForm_Load(object sender, EventArgs e)
         {
@@ -38,13 +44,13 @@ namespace Copy
                 return;
             }
 
-
             if (string.IsNullOrWhiteSpace(description))
             {
                 MessageBox.Show("Description can't be empty");
                 return;
             }
 
+<<<<<<< HEAD
             if (!DateTime.TryParseExact(eventDate, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime parsedDate))
             {
                 MessageBox.Show("Invalid date format");
@@ -85,8 +91,23 @@ namespace Copy
             //{
             //    MessageBox.Show($"Error saving the event: {ex.Message}");
             //}
+=======
+            dbHelper.SaveEvent(eventDate, eventText, description);
+
+            foreach (Form form in System.Windows.Forms.Application.OpenForms)
+            {
+                if (form is Calendar calendarForm)
+                {
+                    calendarForm.RefreshCalendar();
+                    break;
+                }
+            }
+
+            this.Close();
+>>>>>>> 3e9f62d0c5a5daa96f7c2ea342e0996fd541e8b2
         }
 
+        
 
         public void LoadEventDescription(string description)
         {
@@ -128,6 +149,7 @@ namespace Copy
         {
             string eventDate = tbDate.Text;
             dbHelper.ArchiveEvent(eventDate);
+<<<<<<< HEAD
             tbDescription.Text = null;
             userControlDays.lblEvent.Text = null;
             this.Hide();
@@ -179,6 +201,20 @@ namespace Copy
             //{
             //    MessageBox.Show($"Error deleting the event: {ex.Message}");
             //}
+=======
+            tbDescription.Text = "";
+
+            foreach (Form form in System.Windows.Forms.Application.OpenForms)
+            {
+                if (form is Calendar calendarForm)
+                {
+                    calendarForm.RefreshCalendar();
+                    break;
+                }
+            }
+
+            this.Close();
+>>>>>>> 3e9f62d0c5a5daa96f7c2ea342e0996fd541e8b2
         }
 
     }
