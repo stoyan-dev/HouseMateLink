@@ -365,6 +365,7 @@ namespace HouseMateLink
                     lbShoppingList.Items.Clear();
                     itemCounter = 1;
                     MessageBox.Show("All items have been cleared.");
+                    SaveShoppingListToJson();
                 }
             }
             else
