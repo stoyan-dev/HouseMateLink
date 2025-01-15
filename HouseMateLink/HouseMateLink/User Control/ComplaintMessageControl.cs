@@ -41,7 +41,7 @@ namespace HouseMateLink
             lblComplaintText = new Label
             {
                 Text = complaintText,
-                Size = new Size(600, 50),
+                Size = new Size(500, 50),
                 Location = new Point(10, 10),
                 Font = new Font("Arial", 10, FontStyle.Regular),
                 ForeColor = Color.Black
@@ -51,7 +51,7 @@ namespace HouseMateLink
             {
                 Text = $"Created at: {createdAt.ToShortDateString()}",
                 AutoSize = true,
-                Location = new Point(10, lblComplaintText.Bottom + 10),
+                Location = new Point(10, lblComplaintText.Bottom),
                 Font = new Font("Arial", 8, FontStyle.Italic),
                 ForeColor = Color.Gray
             };

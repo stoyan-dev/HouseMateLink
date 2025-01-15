@@ -32,7 +32,7 @@ namespace HouseMateLink
             lblAnnouncementText = new Label
             {
                 Text = announcementText,
-                Size = new Size(600, 50),
+                Size = new Size(500, 50),
                 Location = new Point(10, 10),
                 Font = new Font("Arial", 10, FontStyle.Regular),
                 ForeColor = Color.Black
@@ -42,7 +42,7 @@ namespace HouseMateLink
             {
                 Text = $"Created at: {createdAt.ToShortDateString()}",
                 AutoSize = true,
-                Location = new Point(10, lblAnnouncementText.Bottom + 10),
+                Location = new Point(10, lblAnnouncementText.Bottom),
                 Font = new Font("Arial", 8, FontStyle.Italic),
                 ForeColor = Color.Gray
             };
@@ -51,7 +51,7 @@ namespace HouseMateLink
             {
                 Text = $"Created by: {username}",
                 AutoSize = true,
-                Location = new Point(10, lblAnnouncementDate.Bottom+10),
+                Location = new Point(10, lblAnnouncementDate.Bottom),
                 Font = new Font("Arial", 8, FontStyle.Italic),
                 ForeColor = Color.Gray
             };
