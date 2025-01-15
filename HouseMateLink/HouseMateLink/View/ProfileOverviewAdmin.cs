@@ -18,13 +18,13 @@ namespace HouseMateLink
         public ProfileOverviewAdmin(Building b, bool a, User user)
         {
             InitializeComponent();
-            building = b; // Assign the passed Building instance
+            building = b;
             cbAddRole.DataSource = Role.GetValues(typeof(Role));
             isAdmin = a;
             myDBHelper = new DBHelper();
             cbRoom.Items.Clear();
             currentUser = user;
-            ManageAvailableRooms(building.amountOfRooms); // Use the Building property
+            ManageAvailableRooms(building.amountOfRooms); 
             UserInfoPanel.AutoScroll = true;
             PopulateUserInfoPanel();
         }
@@ -88,7 +88,7 @@ namespace HouseMateLink
             ManageAvailableRooms(building.amountOfRooms); 
         }
 
-        private void PopulateUserInfoPanel()
+        public void PopulateUserInfoPanel()
         {
             UserInfoPanel.Controls.Clear();
             List<User> users = myDBHelper.LoadUsersFromDBForAdmin();
@@ -166,6 +166,7 @@ namespace HouseMateLink
             UserInfoPanel.Controls.Remove(userInfoControl);
             myDBHelper.RemoveUserFromDB(user);
             ManageAvailableRooms(building.amountOfRooms);
+            PopulateUserInfoPanel();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
